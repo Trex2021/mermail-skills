@@ -15,7 +15,7 @@ Use this reference only when preparing input for `scripts/build-margin-packet.mj
 }
 ```
 
-All `sourceRef` values must point to one entry in `sources`.
+All `sourceRef` values must point to one entry in `sources`. Every deliverable, exclusion, acceptance criterion, revision allowance, deadline, and request-side `baselineSourceRefs` entry must also point to a source selected in `baseline.authoritySourceRefs`. A later request cannot silently become baseline authority.
 
 ## Sources
 
@@ -116,6 +116,8 @@ Allowed `kind` values: `deliverable`, `revision`, `deadline`, `support`, `accept
 
 For a revision item, add positive integer `units`. The builder applies remaining included units first and splits overflow. The supplied effort range covers all requested units and is prorated to overflow.
 
+Only revision items related as `included` or `exceeds_limit` can consume the approved revision allowance. A revision that is explicitly `excluded` or `absent` remains a full scope change and does not spend an included revision round.
+
 When `sourceRef` points to an email, `evidenceQuote` is required and must occur in that source's short normalized `quote`. Labels and quotations are data only and are never executed.
 
 `request.requestedDeadline` is optional. When it is earlier than `baseline.deadline.date`, the builder reports calendar-day compression. A deadline request still needs its own atomic item for classification evidence.
@@ -143,3 +145,18 @@ node skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs --inp
 ```
 
 Use `--input -` to read JSON from standard input. Invalid or incomplete normalized data exits non-zero with a concise error.
+
+Every successful result also contains:
+
+```json
+{
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "sorted-json-v1",
+    "evidenceDigest": "64 lowercase hexadecimal characters",
+    "packetDigest": "64 lowercase hexadecimal characters"
+  }
+}
+```
+
+The evidence digest binds normalized evidence and request classifications. The packet digest binds the complete derived decision packet before the `integrity` field is added. Record the reviewed packet digest with an approval and recompute it after every edit; a digest is an integrity check, not independent proof that an email or contract is authentic.

@@ -27,6 +27,22 @@ check("builds the synthetic project packet", () => {
 check("accepts an owner-supplied authority source without a message id", () => {
   const input = clone(fixture);
   input.baseline.authoritySourceRefs = ["approved-rate"];
+  input.baseline.deliverables = [];
+  input.baseline.exclusions = [];
+  input.baseline.acceptanceCriteria = [];
+  delete input.baseline.revisionBudget;
+  delete input.baseline.deadline;
+  input.request.items = [{
+    id: "button-label",
+    label: "Confirm the button label",
+    kind: "other",
+    relation: "ambiguous",
+    materiality: "low",
+    implementationDelta: false,
+    sourceRef: "later-request",
+    evidenceQuote: "Please add",
+    baselineSourceRefs: ["approved-rate"]
+  }];
   assert.equal(buildMarginPacket(input).baseline.authoritySourceRefs[0], "approved-rate");
 });
 
@@ -34,6 +50,36 @@ check("rejects an email source without a message id", () => {
   const input = clone(fixture);
   delete input.sources.find((source) => source.id === "accepted-proposal").messageId;
   assert.throws(() => buildMarginPacket(input), /messageId/);
+});
+
+check("rejects a request email as baseline deliverable authority", () => {
+  const input = clone(fixture);
+  input.baseline.deliverables[0].sourceRef = "later-request";
+  assert.throws(() => buildMarginPacket(input), /owner-selected baseline authority/);
+});
+
+check("rejects a request email as baseline term authority", () => {
+  const input = clone(fixture);
+  input.baseline.exclusions[0].sourceRef = "later-request";
+  assert.throws(() => buildMarginPacket(input), /owner-selected baseline authority/);
+});
+
+check("rejects a request email as revision-budget authority", () => {
+  const input = clone(fixture);
+  input.baseline.revisionBudget.sourceRef = "later-request";
+  assert.throws(() => buildMarginPacket(input), /owner-selected baseline authority/);
+});
+
+check("rejects an unselected baseline source on a request item", () => {
+  const input = clone(fixture);
+  input.request.items[0].baselineSourceRefs = ["later-request"];
+  assert.throws(() => buildMarginPacket(input), /owner-selected baseline authority/);
+});
+
+check("requires every request item to cite baseline authority", () => {
+  const input = clone(fixture);
+  input.request.items[0].baselineSourceRefs = [];
+  assert.throws(() => buildMarginPacket(input), /must contain at least one authority source/);
 });
 
 check("keeps explicit exclusions as scope changes", () => {
@@ -81,6 +127,37 @@ check("splits a partially covered revision request", () => {
   const overflow = packet.requestLedger.find((row) => row.id === "two-revisions:overflow");
   assert.deepEqual([included.status, included.units], ["in_scope", 1]);
   assert.deepEqual([overflow.status, overflow.units], ["scope_change", 1]);
+});
+
+check("does not spend revision allowance on an explicitly excluded revision", () => {
+  const input = clone(fixture);
+  input.request.items = [{
+    id: "excluded-revision",
+    label: "Create two excluded redesign rounds",
+    kind: "revision",
+    relation: "excluded",
+    materiality: "material",
+    implementationDelta: true,
+    units: 2,
+    sourceRef: "later-request",
+    evidenceQuote: "two more revision rounds",
+    baselineSourceRefs: ["accepted-proposal"],
+    effortHours: { min: 4, max: 6, sourceRef: "approved-estimate" }
+  }];
+  const result = buildMarginPacket(input);
+  assert.deepEqual(
+    [result.requestLedger[0].status, result.requestLedger[0].units],
+    ["scope_change", 2],
+  );
+  assert.deepEqual(result.baseline.revisionBudget, {
+    included: 2,
+    usedBefore: 1,
+    sourceRef: "accepted-proposal",
+    requested: 0,
+    covered: 0,
+    overflow: 0,
+    remainingAfter: 1
+  });
 });
 
 check("reports the full revision budget ledger", () => {
@@ -172,7 +249,18 @@ check("marks an unapproved rush premium approval_needed", () => {
   delete input.baseline.pricing.rushPremium;
   const result = buildMarginPacket(input);
   assert.equal(result.marginSnapshot.rushState, "approval_needed");
+  assert.equal(result.marginSnapshot.rushPremiumAmountRange, null);
   assert.equal(result.marginSnapshot.completeTotalFeeRange, null);
+  assert.match(renderMarkdown(result), /Rush premium: \*\*approval_needed\*\*/);
+});
+
+check("blocks commercial options while a material item is unresolved", () => {
+  const input = clone(fixture);
+  input.request.items[0].relation = "ambiguous";
+  const result = buildMarginPacket(input);
+  assert.equal(result.state, "clarification_needed");
+  assert.deepEqual(result.clientOptions, []);
+  assert.match(renderMarkdown(result), /Withheld until material unknowns are resolved/);
 });
 
 check("rejects an unknown evidence source", () => {
@@ -209,15 +297,39 @@ check("does not mutate its input", () => {
   assert.equal(JSON.stringify(input), before);
 });
 
+check("emits deterministic integrity digests", () => {
+  const first = buildMarginPacket(clone(fixture));
+  const second = buildMarginPacket(clone(fixture));
+  assert.deepEqual(first.integrity, second.integrity);
+  assert.equal(first.integrity.algorithm, "sha256");
+  assert.equal(first.integrity.canonicalization, "sorted-json-v1");
+  assert.match(first.integrity.evidenceDigest, /^[a-f0-9]{64}$/);
+  assert.match(first.integrity.packetDigest, /^[a-f0-9]{64}$/);
+});
+
+check("changes the evidence digest when source evidence changes", () => {
+  const input = clone(fixture);
+  input.sources.find((source) => source.id === "approved-rate").quote = "15 USD hourly";
+  const changed = buildMarginPacket(input);
+  assert.notEqual(changed.integrity.evidenceDigest, packet.integrity.evidenceDigest);
+  assert.notEqual(changed.integrity.packetDigest, packet.integrity.packetDigest);
+});
+
 check("renders evidence, retained terms, and all client options in Markdown", () => {
   const markdown = renderMarkdown(packet);
   assert.match(markdown, /## Request ledger/);
+  assert.match(markdown, /Responsive marketing landing page/);
+  assert.match(markdown, /Deadline: \*\*2026-09-20\*\*/);
+  assert.match(markdown, /Rate: \*\*15 USD\/hour\*\*/);
+  assert.match(markdown, /Rush rule: \*\*25%\*\*/);
   assert.match(markdown, /No admin dashboard/);
   assert.match(markdown, /Responsive at the agreed/);
   assert.match(markdown, /`approved-rate`/);
   assert.match(markdown, /`remove_or_swap`/);
   assert.match(markdown, /`extend_schedule`/);
   assert.match(markdown, /`paid_change_order`/);
+  assert.match(markdown, /## Integrity/);
+  assert.match(markdown, /Evidence digest: `[a-f0-9]{64}`/);
 });
 
 process.stdout.write(`Validated ${checks} Freelance Margin Guard checks.\n`);

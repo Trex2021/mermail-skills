@@ -57,12 +57,16 @@ node skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs \
 Use `--format markdown` for a reviewable packet. The builder deterministically:
 
 - supports email-backed and owner-supplied baseline sources;
+- rejects baseline facts and request comparisons that cite sources outside the owner-selected authority set;
 - splits partially covered revision requests into included and overflow rows;
+- keeps explicitly excluded revisions outside the included revision allowance;
 - retains rate and effort-estimate provenance;
 - preserves exclusions and acceptance criteria;
 - attributes only explicitly supplied dependency delays;
 - calculates fee ranges and rush premiums only from supplied rules;
-- emits remove/swap, schedule-extension, and paid-change-order options.
+- withholds commercial options while material evidence remains unresolved;
+- emits remove/swap, schedule-extension, and paid-change-order options; and
+- fingerprints both the evidence set and complete decision packet with deterministic SHA-256 digests.
 
 The builder does not read mail, infer contract meaning, set rates, or send messages. Its output is decision support, not a legal conclusion or client approval.
 
@@ -75,20 +79,25 @@ The builder does not read mail, infer contract meaning, set rates, or send messa
 5. Build a baseline ledger containing deliverables, quantities, platforms, exclusions, revision allowance and usage, dependencies, budget/currency, milestones, deadline, support, acceptance criteria, and change-control terms. Attach a source reference to every fact.
 6. Split the later request into atomic items. Record relation, materiality, implementation delta, requested units, evidence, and an owner-approved effort estimate where available.
 7. Run the deterministic packet builder. Review validation errors instead of bypassing them or hand-editing calculated totals.
-8. Present the margin snapshot, request ledger, revision balance, delay attribution, fee exposure, assumptions, exclusions, acceptance criteria, and three negotiation options. Label any incomplete commercial result `approval_needed`.
+8. Present the margin snapshot, request ledger, revision balance, delay attribution, fee exposure, assumptions, exclusions, acceptance criteria, integrity digests, and three negotiation options. Label any incomplete commercial result `approval_needed`; when a material item is `unknown`, resolve it before presenting binding commercial options.
 9. When requested, save a concise draft with `save_draft`. State what remains included, what is additional, and offer the three options without exposing internal confidence notes.
-10. Before `reply_to_email`, preview the exact mailbox/from, To/Cc/Bcc, subject, complete body, source thread, fee, deadline, and selected option. Obtain fresh approval for that exact payload, send once with one idempotency key, and verify the authoritative result.
+10. Before `reply_to_email`, preview the exact mailbox/from, To/Cc/Bcc, subject, complete body, source thread, fee, deadline, selected option, and packet digest. Obtain fresh approval for that exact payload and unchanged digest, send once with one idempotency key, and verify the authoritative result.
 11. Report the final state and unresolved items. Silence, a draft, a demand, or an uncertain tool result never constitutes agreement.
 
 ## Quality Gates
 
 - Every baseline fact and request item has a valid source reference; structured owner input is valid without a message id.
+- Every baseline fact and request-side baseline reference is pinned to the owner-selected authority set.
 - Revision allowance reports included, used-before, requested, covered, overflow, and remaining-after values.
+- Explicitly excluded revisions never consume the included revision allowance.
 - Every `scope_change` names the addition or expansion; low-impact ambiguity without implementation work remains `clarification`.
 - Rate, effort, rush premium, currency, and deadline provenance remain visible in the result.
 - Exclusions and acceptance criteria remain present in JSON, Markdown, and the negotiation packet.
 - Client-owned, freelancer-owned, shared, and unknown delays are reported separately; no delay owner or duration is inferred.
 - No fee, premium, currency, deadline, revision limit, or legal conclusion is invented.
+- Missing rush authority is rendered `approval_needed`, never as a zero-value premium.
+- Material unknowns block generation of binding commercial options.
+- Evidence and packet digests are deterministic and must be rechecked after any source, classification, estimate, rate, deadline, or option change.
 - A saved draft is never treated as sent, and no external message is sent without exact preview and fresh approval.
 - No PayBox or Agent Wallet action is part of this workflow.
 
@@ -103,6 +112,7 @@ Return these sections:
 5. `Client options` — `remove_or_swap`, `extend_schedule`, and `paid_change_order` when scope changes exist.
 6. `Reply` — exact draft and recipient preview when requested.
 7. `State` — one of `baseline_incomplete`, `in_scope`, `clarification_needed`, `scope_change_detected`, `drafted`, `awaiting_send_approval`, `sent`, `blocked`, or `uncertain`.
+8. `Integrity` — deterministic SHA-256 evidence and packet digests for freezing the reviewed decision before an approved reply.
 
 ## Example Requests
 

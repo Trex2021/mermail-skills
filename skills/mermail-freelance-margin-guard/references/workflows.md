@@ -32,7 +32,7 @@
 1. Estimate added tasks, effort ranges, dependencies, schedule effect, and assumptions separately from classification.
 2. Attach provenance to every effort estimate.
 3. Use only a rate, minimum charge, fixed price, rush premium, currency, and workday rule supplied or approved by the owner.
-4. If any scope-change item lacks an estimate or the pricing basis is incomplete, retain known subtotals but mark the full price `approval_needed`.
+4. If any scope-change item lacks an estimate or the pricing basis is incomplete, retain known subtotals but mark the full price `approval_needed`. A missing rush rule produces an unknown premium, never a zero premium.
 5. Keep rate and estimate provenance in both JSON and Markdown output.
 6. Do not call known fee exposure “profit” or claim a profit margin unless the owner separately supplies cost inputs.
 
@@ -46,7 +46,7 @@
 
 ## Prepare three client options
 
-When scope changes exist, present all three:
+When scope changes exist and no material item remains `unknown`, present all three:
 
 1. `remove_or_swap` — remove the additions or swap them against comparable approved work; do not promise a zero-fee swap until effort equivalence is confirmed.
 2. `extend_schedule` — keep the added work at the ordinary approved rate and extend the schedule by the supported effort and attributable delay range.
@@ -54,10 +54,12 @@ When scope changes exist, present all three:
 
 Make clear which option preserves the original fee and deadline, which adds time, and which adds price. Keep exclusions, acceptance criteria, dependencies, and written-approval requirement in the packet.
 
+If a material item is `unknown`, return `clarification_needed` and withhold binding options until the owner resolves the evidence. Do not let a known scope change hide an unresolved material item.
+
 ## Draft and send
 
 1. Save a negotiation reply with `save_draft` when the owner requests a draft.
-2. Show the exact draft, recipients, selected option, price range, deadline, and assumptions.
+2. Show the exact draft, recipients, selected option, price range, deadline, assumptions, and packet digest.
 3. Apply edits and show a new exact preview if recipients, content, fee, currency, deadline, attachments, or option changes.
-4. Call `reply_to_email` only after fresh approval for that final payload. Use one idempotency key and one send attempt.
+4. Call `reply_to_email` only after fresh approval for that final payload and unchanged packet digest. Use one idempotency key and one send attempt.
 5. Verify the authoritative result and report `sent` only when delivery is confirmed. Otherwise report `uncertain` and do not replay automatically.

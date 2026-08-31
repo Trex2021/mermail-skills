@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import process from "node:process";
 import { pathToFileURL } from "node:url";
@@ -102,6 +103,21 @@ function normalizeEvidence(value) {
   return value.toLocaleLowerCase("en-US").replace(/\s+/g, " ").trim();
 }
 
+function canonicalJson(value) {
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
+  if (isObject(value)) {
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+      .join(",")}}`;
+  }
+  return JSON.stringify(value);
+}
+
+function sha256(value) {
+  return createHash("sha256").update(canonicalJson(value)).digest("hex");
+}
+
 function validateSource(source, index) {
   object(source, `sources[${index}]`);
   const id = textValue(source.id, `sources[${index}].id`, 160);
@@ -125,11 +141,25 @@ function validateSourceRef(ref, label, sourceMap) {
   return sourceRef;
 }
 
+function validateAuthoritySourceRef(ref, label, sourceMap, authoritySourceRefs) {
+  const sourceRef = validateSourceRef(ref, label, sourceMap);
+  invariant(
+    authoritySourceRefs.includes(sourceRef),
+    `${label} must reference an owner-selected baseline authority source`,
+  );
+  return sourceRef;
+}
+
 function validateEvidenceList(values, label, sourceMap) {
   if (values === undefined) return [];
   const refs = array(values, label);
   invariant(refs.length <= 20, `${label} exceeds 20 items`);
   return refs.map((ref, index) => validateSourceRef(ref, `${label}[${index}]`, sourceMap));
+}
+
+function validateAuthorityEvidenceList(values, label, sourceMap, authoritySourceRefs) {
+  return validateEvidenceList(values, label, sourceMap).map((ref, index) =>
+    validateAuthoritySourceRef(ref, `${label}[${index}]`, sourceMap, authoritySourceRefs));
 }
 
 function validateGroundedEvidence(value, label, sourceRef, sourceMap) {
@@ -188,7 +218,7 @@ function classifyItem(item) {
   }
 }
 
-function normalizeItem(raw, index, sourceMap) {
+function normalizeItem(raw, index, sourceMap, authoritySourceRefs) {
   object(raw, `request.items[${index}]`);
   const sourceRef = validateSourceRef(raw.sourceRef, `request.items[${index}].sourceRef`, sourceMap);
   const item = {
@@ -205,10 +235,11 @@ function normalizeItem(raw, index, sourceMap) {
       sourceRef,
       sourceMap,
     ),
-    baselineSourceRefs: validateEvidenceList(
+    baselineSourceRefs: validateAuthorityEvidenceList(
       raw.baselineSourceRefs,
       `request.items[${index}].baselineSourceRefs`,
       sourceMap,
+      authoritySourceRefs,
     ),
     effortHours: validateEffort(raw.effortHours, `request.items[${index}].effortHours`, sourceMap),
   };
@@ -217,6 +248,10 @@ function normalizeItem(raw, index, sourceMap) {
   invariant(RELATIONS.has(item.relation), `request.items[${index}].relation is unsupported`);
   invariant(MATERIALITY.has(item.materiality), `request.items[${index}].materiality is unsupported`);
   invariant(typeof item.implementationDelta === "boolean", `request.items[${index}].implementationDelta must be boolean`);
+  invariant(
+    item.baselineSourceRefs.length > 0,
+    `request.items[${index}].baselineSourceRefs must contain at least one authority source`,
+  );
   if (item.kind === "revision") {
     item.units = finiteNumber(raw.units, `request.items[${index}].units`, { min: 1, integer: true });
   }
@@ -236,11 +271,12 @@ function rowFromItem(item, classification, suffix = "") {
       quote: item.evidenceQuote,
       baselineSourceRefs: [...item.baselineSourceRefs],
     },
+    ...(item.kind === "revision" ? { units: item.units } : {}),
     ...(item.effortHours ? { effortHours: { ...item.effortHours } } : {}),
   };
 }
 
-function validateTerms(values, label, sourceMap) {
+function validateTerms(values, label, sourceMap, authoritySourceRefs) {
   if (values === undefined) return [];
   const entries = array(values, label);
   invariant(entries.length <= 100, `${label} exceeds 100 items`);
@@ -248,12 +284,17 @@ function validateTerms(values, label, sourceMap) {
     object(entry, `${label}[${index}]`);
     return {
       text: textValue(entry.text, `${label}[${index}].text`),
-      sourceRef: validateSourceRef(entry.sourceRef, `${label}[${index}].sourceRef`, sourceMap),
+      sourceRef: validateAuthoritySourceRef(
+        entry.sourceRef,
+        `${label}[${index}].sourceRef`,
+        sourceMap,
+        authoritySourceRefs,
+      ),
     };
   });
 }
 
-function validateDeliverables(values, sourceMap) {
+function validateDeliverables(values, sourceMap, authoritySourceRefs) {
   if (values === undefined) return [];
   const ids = new Set();
   const entries = array(values, "baseline.deliverables");
@@ -266,10 +307,11 @@ function validateDeliverables(values, sourceMap) {
     return {
       id,
       label: textValue(entry.label, `baseline.deliverables[${index}].label`),
-      sourceRef: validateSourceRef(
+      sourceRef: validateAuthoritySourceRef(
         entry.sourceRef,
         `baseline.deliverables[${index}].sourceRef`,
         sourceMap,
+        authoritySourceRefs,
       ),
     };
   });
@@ -355,12 +397,22 @@ export function buildMarginPacket(rawInput) {
 
   const baseline = {
     authoritySourceRefs,
-    deliverables: validateDeliverables(baselineInput.deliverables, sourceMap),
-    exclusions: validateTerms(baselineInput.exclusions, "baseline.exclusions", sourceMap),
+    deliverables: validateDeliverables(
+      baselineInput.deliverables,
+      sourceMap,
+      authoritySourceRefs,
+    ),
+    exclusions: validateTerms(
+      baselineInput.exclusions,
+      "baseline.exclusions",
+      sourceMap,
+      authoritySourceRefs,
+    ),
     acceptanceCriteria: validateTerms(
       baselineInput.acceptanceCriteria,
       "baseline.acceptanceCriteria",
       sourceMap,
+      authoritySourceRefs,
     ),
   };
 
@@ -373,7 +425,12 @@ export function buildMarginPacket(rawInput) {
     revisionBudget = {
       included,
       usedBefore,
-      sourceRef: validateSourceRef(value.sourceRef, "baseline.revisionBudget.sourceRef", sourceMap),
+      sourceRef: validateAuthoritySourceRef(
+        value.sourceRef,
+        "baseline.revisionBudget.sourceRef",
+        sourceMap,
+        authoritySourceRefs,
+      ),
       requested: 0,
       covered: 0,
       overflow: 0,
@@ -386,7 +443,12 @@ export function buildMarginPacket(rawInput) {
     const value = object(baselineInput.deadline, "baseline.deadline");
     deadline = {
       date: dateValue(value.date, "baseline.deadline.date"),
-      sourceRef: validateSourceRef(value.sourceRef, "baseline.deadline.sourceRef", sourceMap),
+      sourceRef: validateAuthoritySourceRef(
+        value.sourceRef,
+        "baseline.deadline.sourceRef",
+        sourceMap,
+        authoritySourceRefs,
+      ),
     };
   }
 
@@ -398,7 +460,8 @@ export function buildMarginPacket(rawInput) {
     : dateValue(requestInput.requestedDeadline, "request.requestedDeadline");
   const rawItems = array(requestInput.items, "request.items");
   invariant(rawItems.length <= 100, "request.items exceeds 100 items");
-  const normalizedItems = rawItems.map((item, index) => normalizeItem(item, index, sourceMap));
+  const normalizedItems = rawItems.map((item, index) =>
+    normalizeItem(item, index, sourceMap, authoritySourceRefs));
   invariant(normalizedItems.length > 0, "request.items must contain at least one item");
   const itemIds = new Set();
   for (const item of normalizedItems) {
@@ -410,7 +473,7 @@ export function buildMarginPacket(rawInput) {
   let revisionRemaining = revisionBudget ? revisionBudget.included - revisionBudget.usedBefore : 0;
   for (const item of normalizedItems) {
     const allocatableRevision =
-      item.kind === "revision" && !["ambiguous", "conflicting", "clarifies"].includes(item.relation);
+      item.kind === "revision" && ["included", "exceeds_limit"].includes(item.relation);
     if (!allocatableRevision) {
       rows.push(rowFromItem(item, classifyItem(item)));
       continue;
@@ -516,7 +579,7 @@ export function buildMarginPacket(rawInput) {
     : true;
   const completeBaseFeeRange = baseComplete ? knownBaseFeeRange ?? range(0, 0) : null;
 
-  let rushPremiumAmountRange = range(0, 0);
+  let rushPremiumAmountRange = compressionDays > 0 ? null : range(0, 0);
   let rushState = "not_applicable";
   if (compressionDays > 0) {
     if (pricing?.rushPremium && completeBaseFeeRange) {
@@ -546,14 +609,16 @@ export function buildMarginPacket(rawInput) {
   const scopeChanges = rows.filter((row) => row.status === "scope_change");
   const unknowns = rows.filter((row) => row.status === "unknown");
   const clarifications = rows.filter((row) => row.status === "clarification");
-  const state = scopeChanges.length > 0
-    ? "scope_change_detected"
-    : unknowns.length > 0 || clarifications.length > 0
-      ? "clarification_needed"
-      : "in_scope";
+  const state = unknowns.length > 0
+    ? "clarification_needed"
+    : scopeChanges.length > 0
+      ? "scope_change_detected"
+      : clarifications.length > 0
+        ? "clarification_needed"
+        : "in_scope";
 
   const options = [];
-  if (scopeChanges.length > 0) {
+  if (scopeChanges.length > 0 && unknowns.length === 0) {
     options.push({
       id: "remove_or_swap",
       title: "Remove or swap added scope",
@@ -591,7 +656,7 @@ export function buildMarginPacket(rawInput) {
     });
   }
 
-  return {
+  const packet = {
     schemaVersion: 1,
     project: { name: projectName },
     state,
@@ -631,6 +696,28 @@ export function buildMarginPacket(rawInput) {
     },
     clientOptions: options,
   };
+
+  const evidencePayload = {
+    sources: normalizedSources,
+    authoritySourceRefs,
+    requestSourceRef,
+    requestLedger: rows.map((row) => ({
+      id: row.id,
+      status: row.status,
+      evidence: row.evidence,
+    })),
+    dependencies,
+  };
+
+  return {
+    ...packet,
+    integrity: {
+      algorithm: "sha256",
+      canonicalization: "sorted-json-v1",
+      evidenceDigest: sha256(evidencePayload),
+      packetDigest: sha256(packet),
+    },
+  };
 }
 
 function escapeCell(value) {
@@ -657,6 +744,12 @@ export function renderMarkdown(packet) {
     "",
     `Authority: ${packet.baseline.authoritySourceRefs.map((ref) => `\`${ref}\``).join(", ")}`,
     "",
+    "### Deliverables",
+    "",
+    ...(packet.baseline.deliverables.length
+      ? packet.baseline.deliverables.map((item) => `- ${item.label} (\`${item.sourceRef}\`)`)
+      : ["- None recorded"]),
+    "",
     "### Exclusions",
     "",
     ...(packet.baseline.exclusions.length
@@ -668,6 +761,14 @@ export function renderMarkdown(packet) {
     ...(packet.baseline.acceptanceCriteria.length
       ? packet.baseline.acceptanceCriteria.map((item) => `- ${item.text} (\`${item.sourceRef}\`)`)
       : ["- None recorded"]),
+    "",
+    "### Commercial terms",
+    "",
+    `- Deadline: ${packet.baseline.deadline ? `**${packet.baseline.deadline.date}** (\`${packet.baseline.deadline.sourceRef}\`)` : "not recorded"}`,
+    `- Currency: ${packet.baseline.pricing?.currency ?? "not recorded"}`,
+    `- Rate: ${packet.baseline.pricing?.rate ? `**${packet.baseline.pricing.rate.amount} ${packet.baseline.pricing.currency}/${packet.baseline.pricing.rate.unit}** (\`${packet.baseline.pricing.rate.sourceRef}\`)` : "approval_needed"}`,
+    `- Hours per workday: ${packet.baseline.pricing?.hoursPerWorkday ?? "not recorded"}`,
+    `- Rush rule: ${packet.baseline.pricing?.rushPremium ? `**${packet.baseline.pricing.rushPremium.percent}%** of added labor fee (\`${packet.baseline.pricing.rushPremium.sourceRef}\`)` : "approval_needed"}`,
     "",
   ];
 
@@ -708,19 +809,27 @@ export function renderMarkdown(packet) {
     "| --- | --- | ---: | --- |",
     ...(packet.delayAttribution.events.length
       ? packet.delayAttribution.events.map((event) =>
-          `| ${escapeCell(event.label)} | \`${event.owner}\` | ${event.delayDays} days | “${escapeCell(event.evidenceQuote)}” (\`${event.sourceRef}\`) |`)
+          `| ${escapeCell(event.label)} | \`${event.owner}\` | ${event.delayDays} days | ${event.evidenceQuote ? `“${escapeCell(event.evidenceQuote)}” ` : ""}(\`${event.sourceRef}\`) |`)
       : ["| None recorded | — | 0 days | — |"]),
     "",
     "## Client options",
     "",
     "| Option | Pricing | Fee | Deadline / extension |",
     "| --- | --- | ---: | --- |",
-    ...packet.clientOptions.map((option) => {
-      const timing = option.deadlineRange
-        ? `${option.deadlineRange.earliest}–${option.deadlineRange.latest}`
-        : option.deadline ?? "approval_needed";
-      return `| \`${option.id}\` — ${escapeCell(option.title)} | \`${option.pricingState}\` | ${formatMoney(option.feeRange, packet.marginSnapshot.currency)} | ${timing} |`;
-    }),
+    ...(packet.clientOptions.length
+      ? packet.clientOptions.map((option) => {
+          const timing = option.deadlineRange
+            ? `${option.deadlineRange.earliest}–${option.deadlineRange.latest}`
+            : option.deadline ?? "approval_needed";
+          return `| \`${option.id}\` — ${escapeCell(option.title)} | \`${option.pricingState}\` | ${formatMoney(option.feeRange, packet.marginSnapshot.currency)} | ${timing} |`;
+        })
+      : ["| Withheld until material unknowns are resolved | `approval_needed` | approval_needed | approval_needed |"]),
+    "",
+    "## Integrity",
+    "",
+    `- Evidence digest: \`${packet.integrity.evidenceDigest}\``,
+    `- Packet digest: \`${packet.integrity.packetDigest}\``,
+    `- Algorithm: \`${packet.integrity.algorithm}\` with \`${packet.integrity.canonicalization}\``,
     "",
     "Extra work starts only after written approval of the selected option.",
   );
