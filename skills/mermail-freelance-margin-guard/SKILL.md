@@ -109,7 +109,7 @@ Return these sections:
 2. `Request ledger` — one row per atomic or split revision item with status, reason, evidence, effort, and estimate provenance.
 3. `Margin snapshot` — known added hours, fee-at-risk range, rate provenance, rush rule, compression, and any unpriced items.
 4. `Delay attribution` — dependency event, owner, evidence, and supplied delay duration.
-5. `Client options` — `remove_or_swap`, `extend_schedule`, and `paid_change_order` when scope changes exist.
+5. `Client options` — `remove_or_swap`, `extend_schedule`, and `paid_change_order` when scope changes exist and no material item remains unresolved.
 6. `Reply` — exact draft and recipient preview when requested.
 7. `State` — one of `baseline_incomplete`, `in_scope`, `clarification_needed`, `scope_change_detected`, `drafted`, `awaiting_send_approval`, `sent`, `blocked`, or `uncertain`.
 8. `Integrity` — deterministic SHA-256 evidence and packet digests for freezing the reviewed decision before an approved reply.
