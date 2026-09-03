@@ -814,16 +814,16 @@ export function renderMarkdown(packet) {
     "",
     "## Client options",
     "",
-    "| Option | Pricing | Fee | Deadline / extension |",
-    "| --- | --- | ---: | --- |",
+    "| Option | Pricing | Additional fee | Deadline / extension | Conditions |",
+    "| --- | --- | ---: | --- | --- |",
     ...(packet.clientOptions.length
       ? packet.clientOptions.map((option) => {
           const timing = option.deadlineRange
             ? `${option.deadlineRange.earliest}–${option.deadlineRange.latest}`
             : option.deadline ?? "approval_needed";
-          return `| \`${option.id}\` — ${escapeCell(option.title)} | \`${option.pricingState}\` | ${formatMoney(option.feeRange, packet.marginSnapshot.currency)} | ${timing} |`;
+          return `| \`${option.id}\` — ${escapeCell(option.title)} | \`${option.pricingState}\` | ${formatMoney(option.feeRange, packet.marginSnapshot.currency)} | ${timing} | ${escapeCell(option.note)} |`;
         })
-      : ["| Withheld until material unknowns are resolved | `approval_needed` | approval_needed | approval_needed |"]),
+      : ["| Withheld until material unknowns are resolved | `approval_needed` | approval_needed | approval_needed | Resolve material evidence first. |"]),
     "",
     "## Integrity",
     "",

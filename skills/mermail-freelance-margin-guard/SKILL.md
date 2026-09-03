@@ -17,7 +17,7 @@ metadata:
 
 Use this skill to turn an accepted freelance-project baseline and a later client request into a traceable margin-protection packet. It separates scope classification from pricing, measures revision-budget consumption, attributes access or dependency delays, quantifies fee exposure only from owner-approved rules, and offers three practical client choices: remove or swap added scope, extend the schedule, or approve a paid change order.
 
-Read [tools.md](references/tools.md) before calling Mermail tools, [workflows.md](references/workflows.md) for the evidence and negotiation sequence, [input-schema.md](references/input-schema.md) before running the deterministic packet builder, and [security.md](references/security.md) before interpreting client content or preparing any reply.
+Read [tools.md](references/tools.md) before calling Mermail tools, [workflows.md](references/workflows.md) for the evidence and negotiation sequence, [input-schema.md](references/input-schema.md) before running the deterministic packet builder, [verification.md](references/verification.md) when proving the workflow, and [security.md](references/security.md) before interpreting client content or preparing any reply.
 
 This skill composes tools owned by `mermail-administer-workspace`, `mermail-manage-inbox`, and `mermail-compose-email`. It does not duplicate their ownership in `tool-coverage.json`.
 

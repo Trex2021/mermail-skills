@@ -328,6 +328,9 @@ check("renders evidence, retained terms, and all client options in Markdown", ()
   assert.match(markdown, /`remove_or_swap`/);
   assert.match(markdown, /`extend_schedule`/);
   assert.match(markdown, /`paid_change_order`/);
+  assert.match(markdown, /\| Additional fee \|/);
+  assert.match(markdown, /confirm an effort-equivalent swap before work starts/);
+  assert.match(markdown, /Includes only an owner-approved rush rule/);
   assert.match(markdown, /## Integrity/);
   assert.match(markdown, /Evidence digest: `[a-f0-9]{64}`/);
 });
