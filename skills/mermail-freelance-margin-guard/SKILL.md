@@ -7,7 +7,7 @@ metadata:
       env:
         - MERMAIL_API_KEY
     primaryEnv: MERMAIL_API_KEY
-    homepage: https://docs.mermail.app/ai/skills
+    homepage: https://docs.mermail.app
     emoji: "🧭"
 ---
 
