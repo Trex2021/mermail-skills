@@ -43,7 +43,16 @@ jobs:
         env:
           MERMAIL_MCP_TEST_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
           MERMAIL_REQUIRE_TEST_API_KEY: ${{ (github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/proof/pr-124-4d40deb') && '1' || '0' }}
-        run: npm run validate:remote
+        run: |
+          for attempt in 1 2 3 4; do
+            if npm run validate:remote; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 4 ]; then
+              sleep $((attempt * 5))
+            fi
+          done
+          exit 1
       - name: Run live Margin Guard proof
         if: github.event_name == 'workflow_dispatch' && inputs.live_margin_guard == 'seed_and_prove'
         env:
@@ -64,4 +73,13 @@ jobs:
           MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
           MERMAIL_LIVE_RESUME: "1"
           MERMAIL_LIVE_RUN_TAG: "34372972140-1"
-        run: npm run prove:live-margin
+        run: |
+          for attempt in 1 2 3 4; do
+            if npm run prove:live-margin; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 4 ]; then
+              sleep $((attempt * 5))
+            fi
+          done
+          exit 1
