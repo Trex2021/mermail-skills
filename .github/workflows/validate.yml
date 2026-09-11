@@ -3,7 +3,7 @@ name: Validate skills
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, proof/pr-124-e440589]
     tags: ["v*"]
   schedule:
     - cron: "17 3 * * *"
@@ -53,7 +53,7 @@ jobs:
           MERMAIL_LIVE_RUN_TAG: ${{ github.run_id }}-${{ github.run_attempt }}
         run: npm run prove:live-margin
       - name: Run one-message Mermail round-trip probe
-        if: github.event_name == 'workflow_dispatch' && inputs.live_margin_guard == 'roundtrip_probe'
+        if: (github.event_name == 'workflow_dispatch' && inputs.live_margin_guard == 'roundtrip_probe') || (github.event_name == 'push' && github.ref == 'refs/heads/proof/pr-124-e440589')
         env:
           MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
           MERMAIL_LIVE_SEND_APPROVED: "1"
