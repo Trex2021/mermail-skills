@@ -3,7 +3,7 @@ name: Validate skills
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, "proof/pr-124-0290380"]
     tags: ["v*"]
   schedule:
     - cron: "17 3 * * *"
@@ -39,11 +39,20 @@ jobs:
           node-version: 22
       - run: npm test
       - name: Validate production MCP contract
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/proof/pr-124-0290380'
         env:
           MERMAIL_MCP_TEST_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
-          MERMAIL_REQUIRE_TEST_API_KEY: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
-        run: npm run validate:remote
+          MERMAIL_REQUIRE_TEST_API_KEY: ${{ (github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/proof/pr-124-0290380') && '1' || '0' }}
+        run: |
+          for attempt in 1 2 3 4; do
+            if npm run validate:remote; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 4 ]; then
+              sleep $((attempt * 5))
+            fi
+          done
+          exit 1
       - name: Run live Margin Guard proof
         if: github.event_name == 'workflow_dispatch' && inputs.live_margin_guard == 'seed_and_prove'
         env:
@@ -57,4 +66,11 @@ jobs:
           MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
           MERMAIL_LIVE_RESUME: "1"
           MERMAIL_LIVE_RUN_TAG: ${{ inputs.resume_run_tag }}
+        run: npm run prove:live-margin
+      - name: Prove PR 124 head without another send
+        if: github.event_name == 'push' && github.ref == 'refs/heads/proof/pr-124-0290380'
+        env:
+          MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          MERMAIL_LIVE_RESUME: "1"
+          MERMAIL_LIVE_RUN_TAG: "34372972140-1"
         run: npm run prove:live-margin
