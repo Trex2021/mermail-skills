@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07111f" />
+    <meta
+      name="description"
+      content="Public judge proof dashboard for Mermail Freelance Margin Guard: authenticated runs, deterministic margin results, red-team defenses, and a 60-second review path."
+    />
+    <title>Mermail Freelance Margin Guard — Judge Proof</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307111f'/%3E%3Cpath d='M14 17h36v30H14z' fill='none' stroke='%236ee7f2' stroke-width='4'/%3E%3Cpath d='m16 20 16 13 16-13M24 41h16' fill='none' stroke='%23f8b84e' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #eef7fb;
+        --muted: #94a8b8;
+        --bg: #050b13;
+        --panel: #0a1523;
+        --panel-2: #0d1c2d;
+        --line: #21364a;
+        --cyan: #6ee7f2;
+        --cyan-soft: rgba(110, 231, 242, 0.12);
+        --amber: #f8b84e;
+        --amber-soft: rgba(248, 184, 78, 0.12);
+        --green: #7ee2a8;
+        --green-soft: rgba(126, 226, 168, 0.12);
+        --danger: #ff8797;
+        --shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+        --radius: 18px;
+        --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          radial-gradient(circle at 10% -10%, rgba(110, 231, 242, 0.13), transparent 30rem),
+          radial-gradient(circle at 90% 12%, rgba(248, 184, 78, 0.08), transparent 28rem),
+          var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        content: "";
+        pointer-events: none;
+        opacity: 0.22;
+        background-image:
+          linear-gradient(rgba(110, 231, 242, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(110, 231, 242, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: linear-gradient(to bottom, black, transparent 76%);
+      }
+
+      a { color: inherit; }
+
+      a:focus-visible,
+      button:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid var(--cyan);
+        outline-offset: 4px;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        border-bottom: 1px solid rgba(148, 168, 184, 0.16);
+        background: rgba(5, 11, 19, 0.84);
+        backdrop-filter: blur(18px);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: min(1180px, calc(100% - 32px));
+        min-height: 64px;
+        margin: 0 auto;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 760;
+        letter-spacing: -0.02em;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 1px solid rgba(110, 231, 242, 0.52);
+        border-radius: 10px;
+        background: linear-gradient(145deg, rgba(110, 231, 242, 0.17), rgba(248, 184, 78, 0.08));
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 13px;
+        box-shadow: inset 0 0 22px rgba(110, 231, 242, 0.06);
+      }
+
+      .topnav { display: flex; align-items: center; gap: 20px; }
+      .topnav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 650;
+      }
+      .topnav a:hover { color: var(--ink); }
+
+      main {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 72px 0 80px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 44px;
+        border: 1px solid rgba(110, 231, 242, 0.22);
+        border-radius: 26px;
+        background:
+          linear-gradient(145deg, rgba(13, 28, 45, 0.98), rgba(7, 17, 31, 0.98)),
+          var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .hero::after {
+        position: absolute;
+        top: -160px;
+        right: -140px;
+        width: 410px;
+        height: 410px;
+        border: 1px solid rgba(110, 231, 242, 0.16);
+        border-radius: 50%;
+        content: "";
+        box-shadow:
+          0 0 0 50px rgba(110, 231, 242, 0.025),
+          0 0 0 100px rgba(110, 231, 242, 0.018);
+      }
+
+      .hero-grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(290px, 0.65fr);
+        gap: 46px;
+        align-items: end;
+      }
+
+      .eyebrow,
+      .section-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 18px;
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        content: "";
+        box-shadow: 0 0 0 5px rgba(126, 226, 168, 0.12);
+      }
+
+      h1 {
+        max-width: 820px;
+        margin: 0;
+        font-size: clamp(2.55rem, 7vw, 5rem);
+        line-height: 0.98;
+        letter-spacing: -0.065em;
+      }
+
+      h1 span { color: var(--cyan); }
+
+      .lede {
+        max-width: 730px;
+        margin: 24px 0 0;
+        color: #c2d1dc;
+        font-size: clamp(1.05rem, 1.9vw, 1.25rem);
+        line-height: 1.55;
+      }
+
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+      .button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 17px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(148, 168, 184, 0.06);
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 760;
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(110, 231, 242, 0.58);
+        background: rgba(110, 231, 242, 0.08);
+      }
+
+      .button.primary { border-color: var(--cyan); background: var(--cyan); color: #041018; }
+      .button.primary:hover { background: #91f1f7; }
+
+      .stamp {
+        position: relative;
+        padding: 20px;
+        border: 1px solid rgba(126, 226, 168, 0.3);
+        border-radius: 16px;
+        background: rgba(126, 226, 168, 0.06);
+      }
+
+      .stamp-label {
+        margin: 0 0 8px;
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .stamp-value { margin: 0; font-size: 1.4rem; font-weight: 780; letter-spacing: -0.03em; }
+      .stamp-meta { margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .metric {
+        min-height: 140px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(13, 28, 45, 0.86), rgba(8, 20, 33, 0.86));
+      }
+
+      .metric-label {
+        margin: 0 0 15px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .metric-value {
+        margin: 0;
+        font-family: var(--mono);
+        font-size: clamp(1.4rem, 2.7vw, 2.15rem);
+        font-weight: 760;
+        line-height: 1.05;
+        letter-spacing: -0.06em;
+      }
+
+      .metric-value.cyan { color: var(--cyan); }
+      .metric-value.amber { color: var(--amber); }
+      .metric-value.green { color: var(--green); }
+      .metric-note { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+
+      section { margin-top: 84px; scroll-margin-top: 86px; }
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 26px;
+      }
+      .section-head h2 {
+        max-width: 720px;
+        margin: 0;
+        font-size: clamp(1.9rem, 4.5vw, 3.35rem);
+        line-height: 1.05;
+        letter-spacing: -0.045em;
+      }
+      .section-note { max-width: 420px; margin: 0; color: var(--muted); }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--panel);
+      }
+
+      .flow-step { position: relative; min-height: 164px; padding: 23px; border-right: 1px solid var(--line); }
+      .flow-step:last-child { border-right: 0; }
+      .flow-step::after {
+        position: absolute;
+        top: 34px;
+        right: -6px;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        border-top: 1px solid var(--cyan);
+        border-right: 1px solid var(--cyan);
+        background: var(--panel);
+        content: "";
+        transform: rotate(45deg);
+      }
+      .flow-step:last-child::after { display: none; }
+      .step-number { color: var(--cyan); font-family: var(--mono); font-size: 12px; }
+      .step-title { margin: 24px 0 7px; font-weight: 760; }
+      .step-text { margin: 0; color: var(--muted); font-size: 14px; }
+
+      .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .evidence-card {
+        position: relative;
+        overflow: hidden;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+      }
+      .evidence-card.request { border-color: rgba(248, 184, 78, 0.35); }
+      .card-tag {
+        display: inline-flex;
+        padding: 5px 9px;
+        border-radius: 999px;
+        background: var(--cyan-soft);
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .request .card-tag { background: var(--amber-soft); color: var(--amber); }
+      .evidence-card h3 { margin: 18px 0 13px; font-size: 1.45rem; letter-spacing: -0.025em; }
+      .evidence-card blockquote {
+        margin: 0;
+        padding-left: 18px;
+        border-left: 2px solid var(--cyan);
+        color: #cad7df;
+      }
+      .request blockquote { border-color: var(--amber); }
+      .source-meta { margin: 19px 0 0; color: var(--muted); font-family: var(--mono); font-size: 12px; }
+
+      .ledger-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+      }
+      table { width: 100%; min-width: 760px; border-collapse: collapse; }
+      th, td { padding: 17px 20px; text-align: left; border-bottom: 1px solid var(--line); }
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      tr:last-child td { border-bottom: 0; }
+      td strong { font-weight: 720; }
+      .mono { font-family: var(--mono); }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .status::before { width: 7px; height: 7px; border-radius: 50%; background: currentColor; content: ""; }
+      .status.change { color: var(--amber); }
+      .status.included { color: var(--green); }
+
+      .impact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; }
+      .impact-card { padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+      .impact-card h3 { margin: 0; font-size: 1.15rem; }
+      .impact-number {
+        margin: 22px 0 8px;
+        color: var(--amber);
+        font-family: var(--mono);
+        font-size: clamp(2.1rem, 5vw, 4rem);
+        font-weight: 780;
+        line-height: 1;
+        letter-spacing: -0.07em;
+      }
+      .impact-caption { margin: 0; color: var(--muted); }
+      .bar {
+        display: flex;
+        height: 16px;
+        margin: 30px 0 12px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #122438;
+      }
+      .bar span:nth-child(1) { width: 63%; background: var(--cyan); }
+      .bar span:nth-child(2) { width: 16%; background: #4eb1bd; }
+      .bar span:nth-child(3) { width: 21%; background: var(--amber); }
+      .bar-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; color: var(--muted); font-size: 12px; }
+      .bar-legend strong { display: block; margin-bottom: 2px; color: var(--ink); font-family: var(--mono); font-size: 13px; }
+      .fact-list { display: grid; gap: 14px; margin-top: 23px; }
+      .fact {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--line);
+      }
+      .fact:last-child { padding-bottom: 0; border-bottom: 0; }
+      .fact span { color: var(--muted); }
+      .fact strong { font-family: var(--mono); text-align: right; }
+
+      .option-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .option-card {
+        display: flex;
+        min-height: 300px;
+        flex-direction: column;
+        padding: 27px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(13, 28, 45, 0.9), rgba(8, 20, 33, 0.9));
+      }
+      .option-card.featured { border-color: rgba(248, 184, 78, 0.5); box-shadow: inset 0 0 40px rgba(248, 184, 78, 0.04); }
+      .option-index { color: var(--cyan); font-family: var(--mono); font-size: 12px; }
+      .featured .option-index { color: var(--amber); }
+      .option-card h3 { margin: 22px 0 12px; font-size: 1.35rem; line-height: 1.2; }
+      .option-card p { margin: 0; color: var(--muted); }
+      .option-price { margin-top: auto; padding-top: 30px; font-family: var(--mono); font-size: 1.3rem; font-weight: 760; }
+      .option-date { margin-top: 7px; color: var(--muted); font-size: 13px; }
+
+      .defense-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .defense {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 15px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--panel);
+      }
+      .defense-icon {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border-radius: 11px;
+        background: var(--green-soft);
+        color: var(--green);
+        font-family: var(--mono);
+        font-weight: 800;
+      }
+      .defense h3 { margin: 1px 0 6px; font-size: 1rem; }
+      .defense p { margin: 0; color: var(--muted); font-size: 14px; }
+
+      .test-band {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 24px;
+        margin-top: 16px;
+        padding: 22px 24px;
+        border: 1px solid rgba(126, 226, 168, 0.34);
+        border-radius: 15px;
+        background: var(--green-soft);
+      }
+      .test-score { color: var(--green); font-family: var(--mono); font-size: 1.7rem; font-weight: 800; }
+      .test-band p { margin: 0; color: #c6d8d1; }
+      .test-band a { color: var(--green); font-size: 14px; font-weight: 760; }
+
+      .integrity {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 16px;
+        padding: 30px;
+        border: 1px solid rgba(110, 231, 242, 0.25);
+        border-radius: var(--radius);
+        background: var(--panel);
+      }
+      .integrity-copy h3 { margin: 0 0 12px; font-size: 1.55rem; }
+      .integrity-copy p { margin: 0; color: var(--muted); }
+      .digest-list { display: grid; gap: 12px; }
+      .digest {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 16px;
+        align-items: center;
+        padding: 17px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: #07111d;
+      }
+      .digest-label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; }
+      .digest code {
+        display: block;
+        overflow: hidden;
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .copy-button {
+        min-height: 38px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: rgba(148, 168, 184, 0.06);
+        color: var(--ink);
+        cursor: pointer;
+        font: 700 12px var(--sans);
+      }
+      .copy-button:hover { border-color: var(--cyan); }
+
+      .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .proof-card {
+        display: flex;
+        min-height: 245px;
+        flex-direction: column;
+        padding: 25px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+        text-decoration: none;
+        transition: transform 160ms ease, border-color 160ms ease;
+      }
+      .proof-card:hover { transform: translateY(-3px); border-color: rgba(110, 231, 242, 0.55); }
+      .proof-type { color: var(--cyan); font-family: var(--mono); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+      .proof-card h3 { margin: 23px 0 10px; font-size: 1.3rem; }
+      .proof-card p { margin: 0; color: var(--muted); }
+      .proof-link { margin-top: auto; padding-top: 26px; color: var(--cyan); font-size: 14px; font-weight: 760; }
+
+      .quickstart {
+        display: grid;
+        grid-template-columns: 0.65fr 1.35fr;
+        gap: 26px;
+        padding: 32px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(145deg, #0c1a2a, #07111f);
+      }
+      .quickstart h2 { margin: 0 0 12px; font-size: 2rem; letter-spacing: -0.04em; }
+      .quickstart p { margin: 0; color: var(--muted); }
+      .command {
+        position: relative;
+        overflow-x: auto;
+        margin: 0;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #03070d;
+        color: #ccecf0;
+        font: 13px/1.7 var(--mono);
+        white-space: pre;
+      }
+
+      .privacy-note {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        margin-top: 16px;
+        padding: 18px 20px;
+        border: 1px solid rgba(148, 168, 184, 0.2);
+        border-radius: 14px;
+        background: rgba(148, 168, 184, 0.05);
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .privacy-note strong { color: var(--ink); }
+
+      footer {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 46px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
+      .footer-links { display: flex; gap: 18px; }
+      .footer-links a:hover { color: var(--ink); }
+
+      @media (max-width: 920px) {
+        main { padding-top: 44px; }
+        .hero { padding: 30px; }
+        .hero-grid,
+        .impact-grid,
+        .integrity,
+        .quickstart { grid-template-columns: 1fr; }
+        .metric-grid { grid-template-columns: repeat(2, 1fr); }
+        .flow { grid-template-columns: 1fr; }
+        .flow-step { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+        .flow-step:last-child { border-bottom: 0; }
+        .flow-step::after { display: none; }
+        .option-grid,
+        .proof-grid { grid-template-columns: 1fr; }
+        .option-card,
+        .proof-card { min-height: 0; }
+      }
+
+      @media (max-width: 680px) {
+        .topbar-inner { min-height: 58px; }
+        .topnav a:not(.keep) { display: none; }
+        main { width: min(100% - 22px, 1180px); padding-top: 26px; }
+        .hero { padding: 24px 20px; border-radius: 20px; }
+        .hero-grid { gap: 28px; }
+        h1 { font-size: clamp(2.3rem, 13vw, 3.7rem); }
+        .metric-grid,
+        .split-grid,
+        .defense-grid { grid-template-columns: 1fr; }
+        .metric { min-height: 0; }
+        section { margin-top: 64px; }
+        .section-head { align-items: flex-start; flex-direction: column; gap: 13px; }
+        .section-note { max-width: none; }
+        .bar-legend { grid-template-columns: 1fr; }
+        .test-band { grid-template-columns: 1fr; gap: 10px; }
+        .digest { grid-template-columns: minmax(0, 1fr) auto; }
+        .quickstart { padding: 22px; }
+        .command { font-size: 12px; }
+        .footer-inner { flex-direction: column; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: 0.01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Margin Guard judge proof home">
+          <span class="brand-mark" aria-hidden="true">MG</span>
+          <span>Judge Proof</span>
+        </a>
+        <nav class="topnav" aria-label="Page navigation">
+          <a href="#decision">Decision</a>
+          <a href="#defenses">Defenses</a>
+          <a href="#proof">Proof</a>
+          <a class="keep" href="#reproduce">60-sec review</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <article class="hero" aria-labelledby="page-title">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Verified branch snapshot · c7d1f75</p>
+            <h1 id="page-title">Freelance <span>Margin Guard</span></h1>
+            <p class="lede">
+              Converts a later client request into an evidence-backed scope and margin decision—without sending a reply, inventing pricing, or trusting instructions inside email.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#decision">Inspect the decision</a>
+              <a class="button" href="https://x.com/Ehsan_Benvari/status/2098798461021827504" target="_blank" rel="noreferrer">Watch 2:19 demo ↗</a>
+              <a class="button" href="https://github.com/Nudgen-Marketing/mermail-skills/pull/124" target="_blank" rel="noreferrer">Open PR #124 ↗</a>
+            </div>
+          </div>
+          <div class="stamp" aria-label="Review status">
+            <p class="stamp-label">Review status</p>
+            <p class="stamp-value">Reproducible &amp; fail-closed</p>
+            <p class="stamp-meta">Synthetic evidence only · no external send · no wallet action</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="metric-grid" aria-label="Verified result summary">
+        <article class="metric">
+          <p class="metric-label">Decision</p>
+          <p class="metric-value cyan">Scope change</p>
+          <p class="metric-note">Explicit exclusions remain out of scope</p>
+        </article>
+        <article class="metric">
+          <p class="metric-label">Added effort</p>
+          <p class="metric-value">26–33 h</p>
+          <p class="metric-note">Known, source-linked estimate range</p>
+        </article>
+        <article class="metric">
+          <p class="metric-label">Requested deadline</p>
+          <p class="metric-value amber">$487.50–618.75</p>
+          <p class="metric-note">Base labor plus approved rush rule</p>
+        </article>
+        <article class="metric">
+          <p class="metric-label">Current suite</p>
+          <p class="metric-value green">65 / 65</p>
+          <p class="metric-note">Behavior, integrity, contract, and security</p>
+        </article>
+      </div>
+
+      <section aria-labelledby="flow-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Decision path</p>
+            <h2 id="flow-title">Every result stays tied to evidence and owner authority.</h2>
+          </div>
+          <p class="section-note">The workflow reads only selected messages, treats their contents as untrusted evidence, and blocks commercial options when a material input is unresolved.</p>
+        </div>
+        <div class="flow">
+          <article class="flow-step">
+            <span class="step-number">01</span>
+            <p class="step-title">Select evidence</p>
+            <p class="step-text">Accepted baseline and later request only.</p>
+          </article>
+          <article class="flow-step">
+            <span class="step-number">02</span>
+            <p class="step-title">Lock authority</p>
+            <p class="step-text">Client mail cannot set rates or rewrite scope.</p>
+          </article>
+          <article class="flow-step">
+            <span class="step-number">03</span>
+            <p class="step-title">Classify atomically</p>
+            <p class="step-text">Included, clarification, change, or unknown.</p>
+          </article>
+          <article class="flow-step">
+            <span class="step-number">04</span>
+            <p class="step-title">Compute margin</p>
+            <p class="step-text">Owner-approved estimates and rules only.</p>
+          </article>
+          <article class="flow-step">
+            <span class="step-number">05</span>
+            <p class="step-title">Offer 3 paths</p>
+            <p class="step-text">No reply leaves the system without approval.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="decision" aria-labelledby="decision-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Synthetic Northstar scenario</p>
+            <h2 id="decision-title">The accepted scope and the later request are visibly different.</h2>
+          </div>
+          <p class="section-note">The fixture is public and synthetic. It contains no client, mailbox, credential, or private-project data.</p>
+        </div>
+        <div class="split-grid">
+          <article class="evidence-card">
+            <span class="card-tag">Accepted baseline</span>
+            <h3>One responsive landing page</h3>
+            <blockquote>Two revision rounds. No authenticated app, admin dashboard, or payment processing.</blockquote>
+            <p class="source-meta">EMAIL · synthetic-msg-001 · 2026-08-10</p>
+          </article>
+          <article class="evidence-card request">
+            <span class="card-tag">Later request</span>
+            <h3>Five additions and an earlier deadline</h3>
+            <blockquote>Add dashboard, Stripe payments, login, two more revisions, and deliver five days earlier.</blockquote>
+            <p class="source-meta">EMAIL · synthetic-msg-002 · 2026-08-29</p>
+          </article>
+        </div>
+
+        <div class="ledger-wrap" style="margin-top: 16px">
+          <table>
+            <thead>
+              <tr><th>Requested item</th><th>Evidence decision</th><th>Effort</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Admin dashboard</strong></td><td><span class="status change">Scope change</span></td><td class="mono">10–12 h</td><td>Explicitly excluded</td></tr>
+              <tr><td><strong>Stripe payment processing</strong></td><td><span class="status change">Scope change</span></td><td class="mono">8–10 h</td><td>Explicitly excluded</td></tr>
+              <tr><td><strong>User login &amp; authentication</strong></td><td><span class="status change">Scope change</span></td><td class="mono">6–8 h</td><td>Explicitly excluded</td></tr>
+              <tr><td><strong>First additional revision</strong></td><td><span class="status included">Included</span></td><td class="mono">2–3 h</td><td>Uses final remaining round</td></tr>
+              <tr><td><strong>Second additional revision</strong></td><td><span class="status change">Scope change</span></td><td class="mono">2–3 h</td><td>Exceeds allowance</td></tr>
+              <tr><td><strong>Five-day acceleration</strong></td><td><span class="status change">Scope change</span></td><td class="mono">—</td><td>Earlier than approved deadline</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="impact-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Margin exposure</p>
+            <h2 id="impact-title">The cost of the request is explicit—not buried in prose.</h2>
+          </div>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-card">
+            <h3>Complete fee at requested deadline</h3>
+            <p class="impact-number">$487.50–618.75</p>
+            <p class="impact-caption">USD · 26–33 added hours · five calendar days of compression</p>
+            <div class="bar" aria-label="Fee composition"><span></span><span></span><span></span></div>
+            <div class="bar-legend">
+              <span><strong>$390–495</strong>Base labor</span>
+              <span><strong>25%</strong>Approved rush rule</span>
+              <span><strong>$97.50–123.75</strong>Rush amount</span>
+            </div>
+          </article>
+          <article class="impact-card">
+            <h3>Evidence retained in the packet</h3>
+            <div class="fact-list">
+              <div class="fact"><span>Approved rate</span><strong>$15 / hour</strong></div>
+              <div class="fact"><span>Client-attributed delay</span><strong>2 days</strong></div>
+              <div class="fact"><span>Original deadline</span><strong>2026-09-20</strong></div>
+              <div class="fact"><span>Requested deadline</span><strong>2026-09-15</strong></div>
+              <div class="fact"><span>Unpriced material items</span><strong>0</strong></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="options-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Negotiation output</p>
+            <h2 id="options-title">Exactly three bounded options—never an automatic client reply.</h2>
+          </div>
+        </div>
+        <div class="option-grid">
+          <article class="option-card">
+            <span class="option-index">OPTION 01</span>
+            <h3>Remove or swap added scope</h3>
+            <p>Keep the accepted deadline by removing additions or confirming an effort-equivalent swap before work starts.</p>
+            <div class="option-price">$0 added fee</div>
+            <div class="option-date">Deadline: 2026-09-20</div>
+          </article>
+          <article class="option-card">
+            <span class="option-index">OPTION 02</span>
+            <h3>Keep additions and extend schedule</h3>
+            <p>Price the added work at the ordinary approved rate and include only the evidenced client delay.</p>
+            <div class="option-price">$390–495</div>
+            <div class="option-date">New range: 2026-09-26 → 2026-09-27</div>
+          </article>
+          <article class="option-card featured">
+            <span class="option-index">OPTION 03</span>
+            <h3>Paid change order at requested deadline</h3>
+            <p>Keep the additions and accelerated date using only the owner-approved rush rule.</p>
+            <div class="option-price">$487.50–618.75</div>
+            <div class="option-date">Deadline: 2026-09-15</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="defenses" aria-labelledby="defense-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Fail-closed red team</p>
+            <h2 id="defense-title">Six authority and provenance attacks now stop before pricing.</h2>
+          </div>
+          <p class="section-note">A controlled replay showed the parent commit accepted all six. The current branch rejects all six and preserves a positive control.</p>
+        </div>
+        <div class="defense-grid">
+          <article class="defense"><div class="defense-icon">✓</div><div><h3>Fake request authority</h3><p>A user source cannot masquerade as the selected later-request email.</p></div></article>
+          <article class="defense"><div class="defense-icon">✓</div><div><h3>Self-promoted baseline</h3><p>The later request cannot become authority for accepted scope or terms.</p></div></article>
+          <article class="defense"><div class="defense-icon">✓</div><div><h3>Aliased message identity</h3><p>One Mermail message cannot hide behind two local evidence ids.</p></div></article>
+          <article class="defense"><div class="defense-icon">✓</div><div><h3>Impossible chronology</h3><p>An email-backed baseline dated after the request is rejected.</p></div></article>
+          <article class="defense"><div class="defense-icon">✓</div><div><h3>Hidden deadline compression</h3><p>An earlier deadline cannot be mislabeled as already included.</p></div></article>
+          <article class="defense"><div class="defense-icon">✓</div><div><h3>Double-counted delay</h3><p>Duplicate or overlapping delay evidence cannot inflate an extension.</p></div></article>
+        </div>
+        <div class="test-band">
+          <div class="test-score">65 / 65</div>
+          <p>Current branch tests pass alongside repository validation for <strong>17 skills</strong> and <strong>71 business tools</strong>.</p>
+          <a href="https://github.com/Trex2021/mermail-skills/commit/c7d1f75a7721c05e1ecd5bd7e37403f64c2b9129" target="_blank" rel="noreferrer">Inspect hardening commit ↗</a>
+        </div>
+      </section>
+
+      <section aria-labelledby="integrity-title">
+        <div class="integrity">
+          <div class="integrity-copy">
+            <p class="section-kicker">Deterministic integrity</p>
+            <h3 id="integrity-title">Two hashes freeze what was reviewed.</h3>
+            <p>SHA-256 over canonical sorted JSON separates source-evidence integrity from the complete commercial decision. Evidence edits change both; fee-only edits change the packet digest.</p>
+          </div>
+          <div class="digest-list">
+            <div class="digest">
+              <div><span class="digest-label">Evidence digest</span><code id="evidence-digest">cab03e1d7cc6c9b6d5fdcc45dce545a45649f8b6a40f962058e7b014bc5e9b86</code></div>
+              <button class="copy-button" type="button" data-copy="evidence-digest">Copy</button>
+            </div>
+            <div class="digest">
+              <div><span class="digest-label">Packet digest</span><code id="packet-digest">1759759468a94f32bea460720fe10690ec4d1007b2569718065b511de090cc7d</code></div>
+              <button class="copy-button" type="button" data-copy="packet-digest">Copy</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="proof" aria-labelledby="proof-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Public proof set</p>
+            <h2 id="proof-title">Product behavior, Mermail transport, and review path are independently visible.</h2>
+          </div>
+          <p class="section-note">The two authenticated runs prove the live Mermail path. The current branch suite proves today’s decision and safety behavior.</p>
+        </div>
+        <div class="proof-grid">
+          <a class="proof-card" href="https://github.com/Trex2021/mermail-skills/actions/runs/34621365419" target="_blank" rel="noreferrer">
+            <span class="proof-type">Authenticated full run</span>
+            <h3>Two selected messages → complete packet</h3>
+            <p>72-tool discovery, workspace and mailbox access, bounded discovery, exact reads, margin result, and redacted public logs.</p>
+            <span class="proof-link">Open full proof ↗</span>
+          </a>
+          <a class="proof-card" href="https://github.com/Trex2021/mermail-skills/actions/runs/34622106807" target="_blank" rel="noreferrer">
+            <span class="proof-type">Authenticated round trip</span>
+            <h3>One synthetic self-send → exact read</h3>
+            <p>One non-retried send, bounded subject discovery, exact selected-message read, fixed-phrase verification, and redacted identifiers.</p>
+            <span class="proof-link">Open round-trip proof ↗</span>
+          </a>
+          <a class="proof-card" href="https://x.com/Ehsan_Benvari/status/2098798461021827504" target="_blank" rel="noreferrer">
+            <span class="proof-type">2:19 English demo</span>
+            <h3>The complete path in one watch</h3>
+            <p>Authenticated connection, selected-message reads, evidence ledger, margin output, three negotiation paths, and verification.</p>
+            <span class="proof-link">Watch demonstration ↗</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="reproduce" aria-labelledby="quick-title">
+        <div class="quickstart">
+          <div>
+            <p class="section-kicker">60-second review</p>
+            <h2 id="quick-title">Reproduce the decision locally.</h2>
+            <p>The command uses the committed synthetic fixture, sends nothing, and requires no private data or credentials.</p>
+          </div>
+          <pre class="command" aria-label="Judge quick start command"><code>npm test &amp;&amp; \
+node skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs \
+  --input tests/fixtures/freelance-margin-guard.json \
+  --format markdown</code></pre>
+        </div>
+        <div class="privacy-note">
+          <span aria-hidden="true">🔒</span>
+          <div><strong>Disclosure boundary:</strong> all displayed evidence is synthetic. No client reply, draft, wallet action, transaction, secret, mailbox identifier, or private project material is included.</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>Mermail Freelance Margin Guard · Public judge proof</span>
+        <div class="footer-links">
+          <a href="https://github.com/Nudgen-Marketing/mermail-skills/pull/124" target="_blank" rel="noreferrer">PR #124</a>
+          <a href="https://github.com/Trex2021/mermail-skills/commit/c7d1f75a7721c05e1ecd5bd7e37403f64c2b9129" target="_blank" rel="noreferrer">Snapshot c7d1f75</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll('[data-copy]').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const target = document.getElementById(button.dataset.copy);
+          if (!target || !navigator.clipboard) return;
+          await navigator.clipboard.writeText(target.textContent.trim());
+          const previous = button.textContent;
+          button.textContent = 'Copied';
+          window.setTimeout(() => { button.textContent = previous; }, 1400);
+        });
+      });
+    </script>
+  </body>
+</html>
