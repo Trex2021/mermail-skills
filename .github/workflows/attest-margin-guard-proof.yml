@@ -1,0 +1,50 @@
+name: Verify and attest Margin Guard proof
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "proof/**"
+      - ".github/workflows/attest-margin-guard-proof.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-and-attest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - name: Check out public proof
+        uses: actions/checkout@v4
+
+      - name: Verify packet integrity and decision arithmetic
+        run: node proof/verify-margin-guard-proof.mjs
+
+      - name: Create SLSA provenance
+        id: provenance
+        uses: actions/attest@v4
+        with:
+          subject-path: proof/margin-guard-proof-bundle.json
+
+      - name: Create Margin Guard proof attestation
+        id: margin-guard-attestation
+        uses: actions/attest@v4
+        with:
+          subject-path: proof/margin-guard-proof-bundle.json
+          predicate-type: https://trex2021.github.io/mermail-skills/predicates/margin-guard-proof/v1
+          predicate-path: proof/margin-guard-proof-predicate.json
+
+      - name: Publish verification links
+        run: |
+          {
+            echo "## Margin Guard public proof"
+            echo ""
+            echo "- SLSA provenance: ${{ steps.provenance.outputs.attestation-url }}"
+            echo "- Margin Guard predicate: ${{ steps.margin-guard-attestation.outputs.attestation-url }}"
+            echo "- Verify locally: \`gh attestation verify proof/margin-guard-proof-bundle.json --repo ${{ github.repository }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
