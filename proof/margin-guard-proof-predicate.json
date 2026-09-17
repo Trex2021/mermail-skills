@@ -1,0 +1,18 @@
+{
+  "predicateVersion": "1.0.0",
+  "skill": "mermail-freelance-margin-guard",
+  "sourceRepository": "https://github.com/Trex2021/mermail-skills",
+  "sourceCommit": "c7d1f75a7721c05e1ecd5bd7e37403f64c2b9129",
+  "upstreamPullRequest": "https://github.com/Nudgen-Marketing/mermail-skills/pull/124",
+  "tests": {
+    "dedicatedChecks": "65/65",
+    "repositorySkills": 17,
+    "businessTools": 71,
+    "adversarialArithmeticAndProvenanceScenarios": 1000
+  },
+  "authenticatedProofs": [
+    "https://github.com/Trex2021/mermail-skills/actions/runs/34621365419",
+    "https://github.com/Trex2021/mermail-skills/actions/runs/34622106807"
+  ],
+  "privacy": "Synthetic evidence only; no client data, mailbox identifiers, secrets, wallet action, or financial action."
+}
