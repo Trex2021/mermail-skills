@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#07111f" />
     <meta
       name="description"
-      content="Public judge proof dashboard for Mermail Freelance Margin Guard: authenticated runs, deterministic margin results, red-team defenses, and a 60-second review path."
+      content="Public judge proof dashboard for Mermail Freelance Margin Guard: authenticated runs, one-click independent verification, signed provenance, red-team defenses, and a 60-second review path."
     />
     <title>Mermail Freelance Margin Guard — Judge Proof</title>
     <link
@@ -545,6 +545,110 @@
       }
       .copy-button:hover { border-color: var(--cyan); }
 
+      .verifier-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+        gap: 16px;
+      }
+      .verifier-panel,
+      .verifier-meta {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+      }
+      .verifier-panel { overflow: hidden; }
+      .verifier-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 25px;
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(135deg, rgba(110, 231, 242, 0.08), rgba(126, 226, 168, 0.03));
+      }
+      .verifier-status {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        margin: 0 0 9px;
+        padding: 0 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--muted);
+        font: 800 11px var(--mono);
+        letter-spacing: 0.08em;
+      }
+      .verifier-status.pass { border-color: rgba(126, 226, 168, 0.42); background: var(--green-soft); color: var(--green); }
+      .verifier-status.fail { border-color: rgba(255, 135, 151, 0.42); background: rgba(255, 135, 151, 0.1); color: var(--danger); }
+      .verifier-status.busy { border-color: rgba(110, 231, 242, 0.42); background: var(--cyan-soft); color: var(--cyan); }
+      .verifier-summary { margin: 0; color: var(--muted); }
+      .verifier-seal {
+        display: grid;
+        width: 58px;
+        height: 58px;
+        flex: 0 0 58px;
+        place-items: center;
+        border: 1px solid rgba(126, 226, 168, 0.38);
+        border-radius: 50%;
+        background: var(--green-soft);
+        color: var(--green);
+        font: 900 24px var(--mono);
+      }
+      .verifier-checks {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .verifier-check {
+        display: grid;
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 10px;
+        min-height: 84px;
+        padding: 17px 19px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .verifier-check:nth-child(2n) { border-right: 0; }
+      .verifier-check strong { display: block; margin-bottom: 3px; font-size: 14px; }
+      .verifier-check span:not(.verifier-mark) { display: block; overflow-wrap: anywhere; color: var(--muted); font: 11px/1.45 var(--mono); }
+      .verifier-mark {
+        display: grid;
+        width: 25px;
+        height: 25px;
+        place-items: center;
+        border-radius: 50%;
+        font: 900 14px var(--mono);
+      }
+      .verifier-check.pass .verifier-mark { background: var(--green-soft); color: var(--green); }
+      .verifier-check.fail .verifier-mark { background: rgba(255, 135, 151, 0.1); color: var(--danger); }
+      .verifier-meta { display: flex; flex-direction: column; padding: 25px; }
+      .verifier-meta h3 { margin: 0 0 8px; font-size: 1.22rem; }
+      .verifier-meta > p { margin: 0 0 22px; color: var(--muted); font-size: 14px; }
+      .verifier-facts { display: grid; gap: 13px; margin: 0; }
+      .verifier-fact { padding-bottom: 13px; border-bottom: 1px solid var(--line); }
+      .verifier-fact dt { color: var(--muted); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+      .verifier-fact dd { margin: 4px 0 0; overflow-wrap: anywhere; color: var(--ink); font: 12px/1.5 var(--mono); }
+      .verifier-fact a { color: var(--cyan); }
+      .verifier-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+      .verifier-button {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(148, 168, 184, 0.06);
+        color: var(--ink);
+        cursor: pointer;
+        font: 750 13px var(--sans);
+        text-decoration: none;
+      }
+      .verifier-button.primary { border-color: rgba(110, 231, 242, 0.45); background: var(--cyan-soft); color: var(--cyan); }
+      .verifier-button.danger { border-color: rgba(255, 135, 151, 0.28); color: var(--danger); }
+      .verifier-button:hover { border-color: var(--cyan); }
+      .verifier-button.danger:hover { border-color: var(--danger); }
+      .tamper-note { margin: 14px 0 0; color: var(--muted); font-size: 13px; }
+
       .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
       .proof-card {
         display: flex;
@@ -619,6 +723,7 @@
         .hero-grid,
         .impact-grid,
         .integrity,
+        .verifier-shell,
         .quickstart { grid-template-columns: 1fr; }
         .metric-grid { grid-template-columns: repeat(2, 1fr); }
         .flow { grid-template-columns: 1fr; }
@@ -648,6 +753,11 @@
         .bar-legend { grid-template-columns: 1fr; }
         .test-band { grid-template-columns: 1fr; gap: 10px; }
         .digest { grid-template-columns: minmax(0, 1fr) auto; }
+        .verifier-head { padding: 21px; }
+        .verifier-checks { grid-template-columns: 1fr; }
+        .verifier-check { border-right: 0; }
+        .verifier-meta { padding: 21px; }
+        .verifier-actions { display: grid; }
         .quickstart { padding: 22px; }
         .command { font-size: 12px; }
         .footer-inner { flex-direction: column; }
@@ -669,6 +779,7 @@
         <nav class="topnav" aria-label="Page navigation">
           <a href="#decision">Decision</a>
           <a href="#defenses">Defenses</a>
+          <a href="#verify">Verify</a>
           <a href="#proof">Proof</a>
           <a class="keep" href="#reproduce">60-sec review</a>
         </nav>
@@ -905,6 +1016,48 @@
         </div>
       </section>
 
+      <section id="verify" aria-labelledby="verify-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">One-click public verifier</p>
+            <h2 id="verify-title">Recompute the proof in this browser.</h2>
+          </div>
+          <p class="section-note">This independent verifier downloads the public packet, recalculates both SHA-256 digests and all commercial invariants, and fails closed when any signed input is changed.</p>
+        </div>
+        <div class="verifier-shell">
+          <article class="verifier-panel" aria-live="polite">
+            <div class="verifier-head">
+              <div>
+                <p class="verifier-status busy" id="verify-status">LOADING PUBLIC PROOF</p>
+                <p class="verifier-summary" id="verify-summary">Preparing independent verification…</p>
+              </div>
+              <span class="verifier-seal" aria-hidden="true">✓</span>
+            </div>
+            <div class="verifier-checks" id="verify-checks"></div>
+          </article>
+          <aside class="verifier-meta" aria-label="Signed provenance">
+            <h3>Signed, public provenance</h3>
+            <p>GitHub generated keyless attestations backed by Sigstore’s public transparency log. No wallet, fee, or blockchain transaction was required.</p>
+            <dl class="verifier-facts">
+              <div class="verifier-fact"><dt>Attested artifact</dt><dd>proof/margin-guard-proof-bundle.json</dd></div>
+              <div class="verifier-fact"><dt>SHA-256 subject</dt><dd>cc9489dbeeb26e634f88739d1843299352ea87cf5aba8c8ab4a7471e3a80cb60</dd></div>
+              <div class="verifier-fact"><dt>Source snapshot</dt><dd><a href="https://github.com/Trex2021/mermail-skills/commit/c7d1f75a7721c05e1ecd5bd7e37403f64c2b9129" target="_blank" rel="noreferrer">c7d1f75 ↗</a></dd></div>
+              <div class="verifier-fact"><dt>Custom predicate</dt><dd><a href="https://github.com/Trex2021/mermail-skills/attestations/48081972" target="_blank" rel="noreferrer">GitHub attestation #48081972 ↗</a></dd></div>
+              <div class="verifier-fact"><dt>SLSA provenance</dt><dd><a href="https://github.com/Trex2021/mermail-skills/attestations/48081969" target="_blank" rel="noreferrer">GitHub attestation #48081969 ↗</a></dd></div>
+              <div class="verifier-fact"><dt>Transparency entry</dt><dd><a href="https://search.sigstore.dev/?logIndex=2871726353" target="_blank" rel="noreferrer">Rekor 2871726353 ↗</a></dd></div>
+            </dl>
+          </aside>
+        </div>
+        <div class="verifier-actions">
+          <button class="verifier-button primary" id="verify-proof" type="button">Verify published proof</button>
+          <button class="verifier-button danger" id="tamper-proof" type="button">Simulate tampering</button>
+          <button class="verifier-button" id="reset-proof" type="button">Reset proof</button>
+          <a class="verifier-button" href="./proof-bundle.json" download>Download proof bundle</a>
+          <a class="verifier-button" href="https://github.com/Trex2021/mermail-skills/actions/runs/35175428736" target="_blank" rel="noreferrer">Inspect attestation run ↗</a>
+        </div>
+        <p class="tamper-note" id="tamper-note">Verification runs entirely in your browser against the downloadable public bundle. No credentials, wallet, or server-side trust is required.</p>
+      </section>
+
       <section id="proof" aria-labelledby="proof-title">
         <div class="section-head">
           <div>
@@ -964,6 +1117,7 @@ node skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs \
       </div>
     </footer>
 
+    <script type="module" src="./proof-verifier-ui.mjs"></script>
     <script>
       document.querySelectorAll('[data-copy]').forEach((button) => {
         button.addEventListener('click', async () => {
