@@ -297,6 +297,50 @@
       .metric-value.green { color: var(--green); }
       .metric-note { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
 
+      .claim-map { margin-top: 36px; }
+      .claim-map .section-head { margin-bottom: 18px; }
+      .claim-map .section-head h2 { font-size: clamp(1.55rem, 3vw, 2.35rem); }
+      .claim-table-shell {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(13, 28, 45, 0.92), rgba(8, 20, 33, 0.92));
+      }
+      .claim-table {
+        width: 100%;
+        min-width: 820px;
+        border-collapse: collapse;
+      }
+      .claim-table th,
+      .claim-table td {
+        padding: 17px 19px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+      .claim-table tr:last-child td { border-bottom: 0; }
+      .claim-table th {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 760;
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+      }
+      .claim-table td {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .claim-table td:first-child {
+        width: 23%;
+        color: var(--ink);
+        font-weight: 760;
+      }
+      .claim-table td:nth-child(2) { width: 34%; }
+      .claim-table a { color: var(--cyan); font-weight: 700; text-decoration: none; }
+      .claim-table a:hover { text-decoration: underline; text-underline-offset: 3px; }
+      .claim-table .proof-ok { color: var(--green); font-weight: 760; }
+
       section { margin-top: 84px; scroll-margin-top: 86px; }
       .section-head {
         display: flex;
@@ -867,6 +911,43 @@
         .verifier-actions { display: grid; }
         .quickstart { padding: 22px; }
         .command { font-size: 12px; }
+        .claim-table-shell { overflow: visible; border: 0; background: transparent; }
+        .claim-table,
+        .claim-table tbody,
+        .claim-table tr,
+        .claim-table td { display: block; width: 100%; min-width: 0; }
+        .claim-table thead {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+        .claim-table tr {
+          margin-bottom: 12px;
+          border: 1px solid var(--line);
+          border-radius: 14px;
+          background: linear-gradient(180deg, rgba(13, 28, 45, 0.92), rgba(8, 20, 33, 0.92));
+          overflow: hidden;
+        }
+        .claim-table td,
+        .claim-table td:first-child,
+        .claim-table td:nth-child(2) { width: auto; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+        .claim-table td:last-child { border-bottom: 0; }
+        .claim-table td::before {
+          display: block;
+          margin-bottom: 5px;
+          color: var(--muted);
+          content: attr(data-label);
+          font-size: 10px;
+          font-weight: 760;
+          letter-spacing: 0.075em;
+          text-transform: uppercase;
+        }
         .footer-inner { flex-direction: column; }
       }
 
@@ -938,6 +1019,49 @@
           <p class="metric-note">Behavior, integrity, contract, and security</p>
         </article>
       </div>
+
+      <section class="claim-map" aria-labelledby="claim-map-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Claim → public proof</p>
+            <h2 id="claim-map-title">Four claims, each one directly verifiable.</h2>
+          </div>
+          <p class="section-note">No trust-me claims: every row opens the run, verifier, attestation, commit, or reproduction path behind it.</p>
+        </div>
+        <div class="claim-table-shell">
+          <table class="claim-table">
+            <thead>
+              <tr>
+                <th scope="col">Claim</th>
+                <th scope="col">Direct public evidence</th>
+                <th scope="col">What a judge can verify</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Claim">Authenticated Mermail use</td>
+                <td data-label="Direct public evidence"><a href="https://github.com/Trex2021/mermail-skills/actions/runs/34621365419" target="_blank" rel="noreferrer">End-to-end run ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/actions/runs/34622106807" target="_blank" rel="noreferrer">one-message round trip ↗</a></td>
+                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> connected workspace and mailbox, selected-message reads, and live transport.</td>
+              </tr>
+              <tr>
+                <td data-label="Claim">Deterministic margin decision</td>
+                <td data-label="Direct public evidence"><a href="#decision">Decision trace ↓</a> · <a href="https://github.com/Trex2021/mermail-skills/commit/c7d1f75a7721c05e1ecd5bd7e37403f64c2b9129" target="_blank" rel="noreferrer">red-team hardening ↗</a></td>
+                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 26–33 added hours, $487.50–618.75, six fail-closed regressions, and 65/65 checks.</td>
+              </tr>
+              <tr>
+                <td data-label="Claim">Independent provenance</td>
+                <td data-label="Direct public evidence"><a href="#verify">Browser verifier ↓</a> · <a href="https://github.com/Trex2021/mermail-skills/attestations/48081969" target="_blank" rel="noreferrer">SLSA ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/attestations/48081972" target="_blank" rel="noreferrer">custom attestation ↗</a></td>
+                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 11 client-side checks, deliberate tamper rejection, and signed public provenance.</td>
+              </tr>
+              <tr>
+                <td data-label="Claim">Safe 60-second reproduction</td>
+                <td data-label="Direct public evidence"><a href="https://github.com/Nudgen-Marketing/mermail-skills/pull/124#judge-quick-start-60-seconds" target="_blank" rel="noreferrer">Judge Quick Start ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/commit/87c04f21be6691170932b536707c101281ff4fb6" target="_blank" rel="noreferrer">current head ↗</a></td>
+                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 18 skills, 73 tools, and 65 checks—with no external send or wallet action.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <section aria-labelledby="flow-title">
         <div class="section-head">
