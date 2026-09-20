@@ -850,6 +850,24 @@
       }
       .quickstart h2 { margin: 0 0 12px; font-size: 2rem; letter-spacing: -0.04em; }
       .quickstart p { margin: 0; color: var(--muted); }
+      .review-files { display: grid; gap: 8px; margin-top: 20px; }
+      .review-file {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 11px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(148, 168, 184, 0.045);
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .review-file span { color: var(--cyan); font-family: var(--mono); font-size: 11px; }
+      .review-file:hover { border-color: rgba(110, 231, 242, 0.55); }
+      .run-panel { min-width: 0; }
       .command {
         position: relative;
         overflow-x: auto;
@@ -862,6 +880,16 @@
         font: 13px/1.7 var(--mono);
         white-space: pre;
       }
+      .quick-expected {
+        margin-top: 13px !important;
+        padding: 13px 15px;
+        border: 1px solid rgba(126, 226, 168, 0.24);
+        border-radius: 11px;
+        background: rgba(126, 226, 168, 0.055);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .quick-expected strong { color: var(--green); }
 
       .privacy-note {
         display: flex;
@@ -1395,14 +1423,23 @@
       <section id="reproduce" aria-labelledby="quick-title">
         <div class="quickstart">
           <div>
-            <p class="section-kicker">60-second review</p>
-            <h2 id="quick-title">Reproduce the decision locally.</h2>
-            <p>The command uses the committed synthetic fixture, sends nothing, and requires no private data or credentials.</p>
+            <p class="section-kicker">Five-minute review · one 60-second run</p>
+            <h2 id="quick-title">Four files. One command. One expected result.</h2>
+            <p>Open the contract, safety boundary, decision engine, and red-team suite in order; then reproduce the result with the committed synthetic fixture.</p>
+            <div class="review-files" aria-label="Core review files">
+              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/87c04f21be6691170932b536707c101281ff4fb6/skills/mermail-freelance-margin-guard/SKILL.md" target="_blank" rel="noreferrer">Skill contract <span>01 ↗</span></a>
+              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/87c04f21be6691170932b536707c101281ff4fb6/skills/mermail-freelance-margin-guard/references/security.md" target="_blank" rel="noreferrer">Safety boundary <span>02 ↗</span></a>
+              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/87c04f21be6691170932b536707c101281ff4fb6/skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs" target="_blank" rel="noreferrer">Decision engine <span>03 ↗</span></a>
+              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/87c04f21be6691170932b536707c101281ff4fb6/tests/freelance-margin-guard.mjs" target="_blank" rel="noreferrer">Red-team suite <span>04 ↗</span></a>
+            </div>
           </div>
-          <pre class="command" aria-label="Judge quick start command"><code>npm test &amp;&amp; \
+          <div class="run-panel">
+            <pre class="command" aria-label="Judge quick start command"><code>npm test &amp;&amp; \
 node skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs \
   --input tests/fixtures/freelance-margin-guard.json \
   --format markdown</code></pre>
+            <p class="quick-expected"><strong>Expected:</strong> 18 skills, 73 tools, and 65 Margin Guard checks pass; the packet reports <code>scope_change_detected</code>, 26–33 added hours, $487.50–618.75, three bounded options, and deterministic digests. No email, wallet action, credential, or private data is used.</p>
+          </div>
         </div>
         <div class="privacy-note">
           <span aria-hidden="true">🔒</span>
