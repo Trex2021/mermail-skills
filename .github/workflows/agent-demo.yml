@@ -45,18 +45,132 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$MERMAIL_API_KEY"
-          cat > "$RUNNER_TEMP/mermail-demo-mcp.json" <<'JSON'
-          {
-            "mcpServers": {
-              "mermail-demo": {
-                "type": "http",
-                "url": "https://console.mermail.app/mcp",
-                "headers": {"x-api-key": "${MERMAIL_API_KEY}"},
-                "tools": ["list_mailboxes", "search_emails", "list_emails", "get_email"]
+          umask 077
+          cat > "$RUNNER_TEMP/agent-proxy.mjs" <<'PROXY_JS'
+          import readline from 'node:readline';
+          
+          const ENDPOINT = 'https://console.mermail.app/mcp';
+          const SAFE_TOOLS = new Set(['list_mailboxes', 'search_emails', 'list_emails', 'get_email']);
+          const MIN_GAP_MS = 2000;
+          const RETRIES = 6;
+          let nextRequestAt = 0;
+          let remoteId = 0;
+          let remoteInitialized = false;
+          let cachedTools = null;
+          
+          const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+          
+          async function remote(method, params = {}) {
+            if (!process.env.MERMAIL_API_KEY) throw new Error('Mermail credential unavailable');
+            for (let attempt = 0; attempt < RETRIES; attempt += 1) {
+              await sleep(Math.max(0, nextRequestAt - Date.now()));
+              nextRequestAt = Date.now() + MIN_GAP_MS;
+              let response;
+              try {
+                response = await fetch(ENDPOINT, {
+                  method: 'POST',
+                  headers: {
+                    accept: 'application/json, text/event-stream',
+                    'content-type': 'application/json',
+                    'x-api-key': process.env.MERMAIL_API_KEY,
+                  },
+                  body: JSON.stringify({ jsonrpc: '2.0', id: ++remoteId, method, params }),
+                });
+              } catch {
+                if (attempt === RETRIES - 1) throw new Error('Mermail network unavailable');
+                await sleep(Math.min(1000 * 2 ** attempt, 16000));
+                continue;
               }
+              let result;
+              try { result = await response.json(); } catch { throw new Error('Mermail protocol response unavailable'); }
+              const rateLimited = response.status === 429 ||
+                (result.result?.isError === true && /rate[_ -]?limit/i.test(JSON.stringify(result.result))) ||
+                (result.error && /rate[_ -]?limit/i.test(String(result.error.message)));
+              if (rateLimited) {
+                if (attempt === RETRIES - 1) throw new Error('Mermail read rate limit exhausted');
+                await sleep(Math.min(1000 * 2 ** attempt, 16000));
+                continue;
+              }
+              if (!response.ok || result.error) throw new Error('Mermail read unavailable');
+              return result.result;
             }
+            throw new Error('Mermail read retry exhausted');
           }
-          JSON
+          
+          async function ensureRemote() {
+            if (remoteInitialized) return;
+            const initialized = await remote('initialize', {
+              protocolVersion: '2025-03-26',
+              capabilities: {},
+              clientInfo: { name: 'margin-guard-read-only-agent-proxy', version: '1.0.0' },
+            });
+            if (!initialized?.serverInfo) throw new Error('Mermail initialization unavailable');
+            remoteInitialized = true;
+          }
+          
+          async function handle(request) {
+            const { method, params = {} } = request;
+            if (method === 'initialize') return {
+              protocolVersion: '2025-03-26',
+              capabilities: { tools: { listChanged: false } },
+              serverInfo: { name: 'mermail-demo', version: '1.0.0' },
+            };
+            if (method === 'ping') return {};
+            if (method === 'tools/list') {
+              await ensureRemote();
+              if (!cachedTools) {
+                const listed = await remote('tools/list');
+                cachedTools = (listed?.tools || []).filter((tool) => SAFE_TOOLS.has(tool.name));
+                if (cachedTools.length !== SAFE_TOOLS.size) throw new Error('Read-only tool contract unavailable');
+              }
+              return { tools: cachedTools };
+            }
+            if (method === 'tools/call') {
+              const name = params?.name;
+              if (!SAFE_TOOLS.has(name)) throw new Error('Tool outside read-only allowlist');
+              await ensureRemote();
+              const result = await remote('tools/call', { name, arguments: params.arguments || {} });
+              if (!result || typeof result !== 'object') throw new Error('Mermail result unavailable');
+              return result;
+            }
+            throw new Error('Unsupported MCP request');
+          }
+          
+          let pending = Promise.resolve();
+          for await (const line of readline.createInterface({ input: process.stdin })) {
+            if (!line.trim()) continue;
+            pending = pending.then(async () => {
+              let request;
+              try { request = JSON.parse(line); } catch { return; }
+              if (request.id === undefined || request.id === null) return;
+              try {
+                const result = await handle(request);
+                process.stdout.write(JSON.stringify({ jsonrpc: '2.0', id: request.id, result }) + '\n');
+              } catch (error) {
+                const safe = error instanceof Error ? error.message : 'Mermail read unavailable';
+                process.stdout.write(JSON.stringify({ jsonrpc: '2.0', id: request.id,
+                  error: { code: -32000, message: safe } }) + '\n');
+              }
+            }).catch(() => {});
+          }
+          await pending;
+          PROXY_JS
+          node <<'MCP_CONFIG_JS'
+          const fs = require('node:fs');
+          const p = require('node:path');
+          const root = process.env.RUNNER_TEMP;
+          fs.writeFileSync(p.join(root, 'mermail-demo-mcp.json'), JSON.stringify({
+            mcpServers: {
+              'mermail-demo': {
+                type: 'stdio',
+                command: 'node',
+                args: [p.join(root, 'agent-proxy.mjs')],
+                env: { MERMAIL_API_KEY: process.env.MERMAIL_API_KEY },
+                tools: ['list_mailboxes', 'search_emails', 'list_emails', 'get_email'],
+              },
+            },
+          }), { mode: 0o600 });
+          MCP_CONFIG_JS
           cat > "$RUNNER_TEMP/agent-prompt.txt" <<'PROMPT'
           You are demonstrating the Mermail Freelance Margin Guard on public,
           self-addressed, synthetic test messages, never on private client mail.
