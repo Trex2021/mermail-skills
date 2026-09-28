@@ -28,7 +28,9 @@ jobs:
           test "$(git rev-parse HEAD)" = 445f56244d0e8797403b1a059539e813cf6af1f1
           npm test
       - name: Install GitHub Copilot CLI
-        run: npm install -g @github/copilot
+        run: |
+          npm install -g @github/copilot
+          copilot --version
       - name: Run agent against existing synthetic Mermail messages
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -88,7 +90,32 @@ jobs:
           status=$?
           set -e
           if [ "$status" -ne 0 ]; then
-            echo 'Copilot CLI did not complete; raw output withheld for privacy.'
+            node <<'JS'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const root = process.env.RUNNER_TEMP;
+          const stderr = fs.readFileSync(path.join(root, 'agent-errors.txt'), 'utf8');
+          const stdout = fs.readFileSync(path.join(root, 'agent-events.jsonl'), 'utf8');
+          const combined = (stderr + '\n' + stdout).toLowerCase();
+          const causes = [
+            ['cli_option', /unknown option|unrecognized option|invalid option|unexpected argument/],
+            ['auth_or_license', /unauthorized|forbidden|unauthenticated|authentication|license|sign.in|log.in|copilot requests|access denied|not entitled|403|401/],
+            ['quota_or_rate', /quota|rate limit|credit limit|exceeded limit|429/],
+            ['mcp_connection', /mcp|connection refused|network error|connect timeout|econn/],
+            ['bad_config', /invalid config|json parse|configuration error/],
+          ];
+          const reason = causes.find(([, pattern]) => pattern.test(combined))?.[0] || 'other';
+          const types = [];
+          for (const line of stdout.split(/\r?\n/)) {
+            try {
+              const event = JSON.parse(line);
+              if (typeof event.type === 'string' && !types.includes(event.type)) types.push(event.type);
+            } catch { /* no untrusted text printed */ }
+          }
+          console.log('Copilot CLI did not complete. Sanitized failure class: ' + reason);
+          console.log('JSONL event types: ' + (types.slice(0, 10).join(', ') || 'none'));
+          console.log('Raw output withheld for privacy.');
+          JS
             exit "$status"
           fi
           node <<'JS'
