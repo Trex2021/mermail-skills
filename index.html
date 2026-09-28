@@ -1031,14 +1031,14 @@
       <article class="hero" aria-labelledby="page-title">
         <div class="hero-grid">
           <div>
-            <p class="eyebrow">Attested hardening snapshot · c7d1f75</p>
+            <p class="eyebrow">Current PR head · 445f562 · 29 Sep 2026</p>
             <h1 id="page-title">Freelance <span>Margin Guard</span></h1>
             <p class="lede">
               Converts a later client request into an evidence-backed scope and margin decision—without sending a reply, inventing pricing, or trusting instructions inside email.
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="#decision">Inspect the decision</a>
-              <a class="button" href="https://x.com/Ehsan_Benvari/status/2098798461021827504" target="_blank" rel="noreferrer">Watch 2:19 demo ↗</a>
+              <a class="button primary" href="#reproduce">60-second judge route</a>
+              <a class="button" href="https://x.com/Ehsan_Benvari/status/2104696551444566308" target="_blank" rel="noreferrer">Watch final 2:19 demo ↗</a>
               <a class="button" href="https://github.com/Nudgen-Marketing/mermail-skills/pull/124" target="_blank" rel="noreferrer">Open PR #124 ↗</a>
             </div>
           </div>
@@ -1052,7 +1052,7 @@
 
       <aside class="differentiator" aria-label="Core differentiator">
         <p class="differentiator-label">Core differentiator</p>
-        <p class="differentiator-copy"><strong>Transaction proofs show that money moved.</strong> Margin Guard verifies whether it should move—by validating contractual authority, scope change, and margin impact before any send, wallet action, or transaction.</p>
+        <p class="differentiator-copy"><strong>Start with the current-head agent demo and read-only run.</strong> Margin Guard checks owner-selected authority, scope, and pricing before a reply or change-order decision. The separate public Solana Devnet transfer is only a Funding Gate compatibility example; no owner-approved payment for this synthetic Mermail change order is claimed.</p>
       </aside>
 
       <div class="metric-grid" aria-label="Verified result summary">
@@ -1098,8 +1098,8 @@
             <tbody>
               <tr>
                 <td data-label="Claim">Authenticated Mermail use</td>
-                <td data-label="Direct public evidence"><a href="https://github.com/Trex2021/mermail-skills/actions/runs/34621365419" target="_blank" rel="noreferrer">End-to-end run ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/actions/runs/34622106807" target="_blank" rel="noreferrer">one-message round trip ↗</a></td>
-                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> connected workspace and mailbox, selected-message reads, and live transport.</td>
+                <td data-label="Direct public evidence"><a href="https://github.com/Trex2021/mermail-skills/actions/runs/36267408834" target="_blank" rel="noreferrer">Current-head validation + packet ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/actions/runs/36488445741/job/109150952844" target="_blank" rel="noreferrer">direct-agent MCP replay ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/actions/runs/34622106807" target="_blank" rel="noreferrer">earlier synthetic delivery ↗</a></td>
+                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> exact 83-tool authenticated catalog, two existing synthetic-message reads, and a completed packet on PR head 445f562; earlier round trip proves synthetic delivery.</td>
               </tr>
               <tr>
                 <td data-label="Claim">Deterministic margin decision</td>
@@ -1107,14 +1107,14 @@
                 <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 26–33 added hours, $487.50–618.75, six fail-closed regressions, and 65/65 checks.</td>
               </tr>
               <tr>
-                <td data-label="Claim">Independent provenance</td>
+                <td data-label="Claim">Earlier signed proof snapshot</td>
                 <td data-label="Direct public evidence"><a href="#verify">Browser verifier ↓</a> · <a href="https://github.com/Trex2021/mermail-skills/attestations/48081969" target="_blank" rel="noreferrer">SLSA ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/attestations/48081972" target="_blank" rel="noreferrer">custom attestation ↗</a></td>
-                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 11 client-side checks, deliberate tamper rejection, and signed public provenance.</td>
+                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 11 browser checks and signed provenance for the archived c7d1f75 proof bundle. Current-head use and tests have separate green runs above.</td>
               </tr>
               <tr>
                 <td data-label="Claim">Safe 60-second reproduction</td>
-                <td data-label="Direct public evidence"><a href="https://github.com/Nudgen-Marketing/mermail-skills/pull/124#judge-quick-start-60-seconds" target="_blank" rel="noreferrer">Judge Quick Start ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/commit/87c04f21be6691170932b536707c101281ff4fb6" target="_blank" rel="noreferrer">current head ↗</a></td>
-                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 18 skills, 73 tools, and 65 checks—with no external send or wallet action.</td>
+                <td data-label="Direct public evidence"><a href="https://github.com/Nudgen-Marketing/mermail-skills/pull/124#judge-quick-start-60-seconds" target="_blank" rel="noreferrer">Judge Quick Start ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/commit/445f56244d0e8797403b1a059539e813cf6af1f1" target="_blank" rel="noreferrer">current head ↗</a></td>
+                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 18 skills, 82 business tools plus prepare_destructive_action, 65 core checks, and 57 Funding Gate checks; no external send or wallet action.</td>
               </tr>
             </tbody>
           </table>
@@ -1323,7 +1323,7 @@
         </div>
         <div class="test-band">
           <div class="test-score">65 / 65</div>
-          <p>Margin Guard remains <strong>65 / 65</strong>; the current PR head also validates <strong>18 skills</strong> and <strong>73 business tools</strong>.</p>
+          <p>Current PR head 445f562 passes <strong>65 / 65</strong> Margin Guard checks, 57 Funding Gate checks, and validation for <strong>18 skills</strong> and <strong>82 business tools</strong> plus prepare_destructive_action.</p>
           <a href="https://github.com/Trex2021/mermail-skills/commit/c7d1f75a7721c05e1ecd5bd7e37403f64c2b9129" target="_blank" rel="noreferrer">Inspect hardening commit ↗</a>
         </div>
       </section>
@@ -1354,7 +1354,7 @@
             <p class="section-kicker">One-click public verifier</p>
             <h2 id="verify-title">Recompute the proof in this browser.</h2>
           </div>
-          <p class="section-note">This independent verifier downloads the public packet, recalculates both SHA-256 digests and all commercial invariants, and fails closed when any signed input is changed.</p>
+          <p class="section-note">This browser verifier checks an archived c7d1f75 public proof bundle. Its signed provenance is scoped to that snapshot; use the current-head green runs above for PR head 445f562. It recalculates both SHA-256 digests and commercial invariants.</p>
         </div>
         <div class="verifier-shell">
           <article class="verifier-panel" aria-live="polite">
@@ -1396,26 +1396,26 @@
             <p class="section-kicker">Public proof set</p>
             <h2 id="proof-title">Product behavior, Mermail transport, and review path are independently visible.</h2>
           </div>
-          <p class="section-note">The two authenticated runs prove the live Mermail path. The current branch suite proves today’s decision and safety behavior.</p>
+          <p class="section-note">Start with the current-head run and independent read-only agent replay. The edited video visualizes those public logs; it is not a continuous screen capture. Earlier synthetic delivery is linked in the claim map.</p>
         </div>
         <div class="proof-grid">
-          <a class="proof-card" href="https://github.com/Trex2021/mermail-skills/actions/runs/34621365419" target="_blank" rel="noreferrer">
-            <span class="proof-type">Authenticated full run</span>
-            <h3>Two selected messages → complete packet</h3>
-            <p>72-tool discovery, workspace and mailbox access, bounded discovery, exact reads, margin result, and redacted public logs.</p>
-            <span class="proof-link">Open full proof ↗</span>
+          <a class="proof-card" href="https://github.com/Trex2021/mermail-skills/actions/runs/36267408834" target="_blank" rel="noreferrer">
+            <span class="proof-type">Current-head authenticated run</span>
+            <h3>83-tool catalog → two selected reads → packet</h3>
+            <p>PR head 445f562: production catalog validation, bounded discovery, two pre-existing synthetic-message reads, and the full deterministic margin packet. No new send.</p>
+            <span class="proof-link">Open current-head proof ↗</span>
           </a>
-          <a class="proof-card" href="https://github.com/Trex2021/mermail-skills/actions/runs/34622106807" target="_blank" rel="noreferrer">
-            <span class="proof-type">Authenticated round trip</span>
-            <h3>One synthetic self-send → exact read</h3>
-            <p>One non-retried send, bounded subject discovery, exact selected-message read, fixed-phrase verification, and redacted identifiers.</p>
-            <span class="proof-link">Open round-trip proof ↗</span>
+          <a class="proof-card" href="https://github.com/Trex2021/mermail-skills/actions/runs/36488445741/job/109150952844" target="_blank" rel="noreferrer">
+            <span class="proof-type">Independent direct-agent replay</span>
+            <h3>Read-only MCP calls → same margin decision</h3>
+            <p>Copilot on the same PR head uses a narrow Mermail read-tool allowlist, reads two existing synthetic messages, and reproduces the three negotiation options.</p>
+            <span class="proof-link">Inspect agent job ↗</span>
           </a>
-          <a class="proof-card" href="https://x.com/Ehsan_Benvari/status/2098798461021827504" target="_blank" rel="noreferrer">
-            <span class="proof-type">2:19 English demo</span>
-            <h3>The complete path in one watch</h3>
-            <p>Authenticated connection, selected-message reads, evidence ledger, margin output, three negotiation paths, and verification.</p>
-            <span class="proof-link">Watch demonstration ↗</span>
+          <a class="proof-card" href="https://x.com/Ehsan_Benvari/status/2104696551444566308" target="_blank" rel="noreferrer">
+            <span class="proof-type">Final 2:19 English demo</span>
+            <h3>The current-head agent path in one watch</h3>
+            <p>Edited proof visualization of the public read-only agent job: prompt, Mermail connection, selected-message reads, margin result, and three options.</p>
+            <span class="proof-link">Watch final demo ↗</span>
           </a>
         </div>
       </section>
@@ -1427,10 +1427,10 @@
             <h2 id="quick-title">Four files. One command. One expected result.</h2>
             <p>Open the contract, safety boundary, decision engine, and red-team suite in order; then reproduce the result with the committed synthetic fixture.</p>
             <div class="review-files" aria-label="Core review files">
-              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/87c04f21be6691170932b536707c101281ff4fb6/skills/mermail-freelance-margin-guard/SKILL.md" target="_blank" rel="noreferrer">Skill contract <span>01 ↗</span></a>
-              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/87c04f21be6691170932b536707c101281ff4fb6/skills/mermail-freelance-margin-guard/references/security.md" target="_blank" rel="noreferrer">Safety boundary <span>02 ↗</span></a>
-              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/87c04f21be6691170932b536707c101281ff4fb6/skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs" target="_blank" rel="noreferrer">Decision engine <span>03 ↗</span></a>
-              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/87c04f21be6691170932b536707c101281ff4fb6/tests/freelance-margin-guard.mjs" target="_blank" rel="noreferrer">Red-team suite <span>04 ↗</span></a>
+              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/445f56244d0e8797403b1a059539e813cf6af1f1/skills/mermail-freelance-margin-guard/SKILL.md" target="_blank" rel="noreferrer">Skill contract <span>01 ↗</span></a>
+              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/445f56244d0e8797403b1a059539e813cf6af1f1/skills/mermail-freelance-margin-guard/references/security.md" target="_blank" rel="noreferrer">Safety boundary <span>02 ↗</span></a>
+              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/445f56244d0e8797403b1a059539e813cf6af1f1/skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs" target="_blank" rel="noreferrer">Decision engine <span>03 ↗</span></a>
+              <a class="review-file" href="https://github.com/Trex2021/mermail-skills/blob/445f56244d0e8797403b1a059539e813cf6af1f1/tests/freelance-margin-guard.mjs" target="_blank" rel="noreferrer">Red-team suite <span>04 ↗</span></a>
             </div>
           </div>
           <div class="run-panel">
@@ -1438,12 +1438,12 @@
 node skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs \
   --input tests/fixtures/freelance-margin-guard.json \
   --format markdown</code></pre>
-            <p class="quick-expected"><strong>Expected:</strong> 18 skills, 73 tools, and 65 Margin Guard checks pass; the packet reports <code>scope_change_detected</code>, 26–33 added hours, $487.50–618.75, three bounded options, and deterministic digests. No email, wallet action, credential, or private data is used.</p>
+            <p class="quick-expected"><strong>Expected:</strong> 18 skills, 82 business tools plus prepare_destructive_action, 65 Margin Guard checks, and 57 Funding Gate checks pass; the synthetic packet reports <code>scope_change_detected</code>, 26–33 added hours, $487.50–$618.75, three bounded options, and deterministic digests. This local path sends no email and performs no wallet or payment action.</p>
           </div>
         </div>
         <div class="privacy-note">
           <span aria-hidden="true">🔒</span>
-          <div><strong>Disclosure boundary:</strong> all displayed evidence is synthetic. No client reply, draft, wallet action, transaction, secret, mailbox identifier, or private project material is included.</div>
+          <div><strong>Disclosure boundary:</strong> the Mermail scope scenario and messages are synthetic. No real payment for this change order is claimed; the separate public Devnet transfer is only a Funding Gate compatibility example. No client reply, wallet action, secret, mailbox identifier, or private project material is included.</div>
         </div>
       </section>
     </main>
