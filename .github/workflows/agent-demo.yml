@@ -112,7 +112,25 @@ jobs:
               if (typeof event.type === 'string' && !types.includes(event.type)) types.push(event.type);
             } catch { /* no untrusted text printed */ }
           }
+          const allowed = new Set([
+            'error','invalid','unknown','unsupported','unrecognized','option','argument',
+            'options','missing','required','value','expected','malformed','config',
+            'configuration','json','mcp','server','header','tool','tools','allow',
+            'deny','permission','permissions','read','shell','write','url','memory',
+            'token','copilot','github','license','authentication','login','sign',
+            'access','failed','failure','request','requests','quota','limit',
+            'network','connection','refused','timeout','credits','credit',
+            'model','prompt','session','disabled','unavailable','no','such',
+            'type','cannot','could','not','is','was','for','to','in','of',
+            'with','from','and','or','the','a','an','--no-ask-user',
+            '--additional-mcp-config','--secret-env-vars','--allow-tool',
+            '--deny-tool','--max-ai-credits','--disable-builtin-mcps',
+          ]);
+          const safeTokens = (stderr.toLowerCase().match(/--[a-z-]+|[a-z]+/g) || [])
+            .filter((word) => allowed.has(word)).slice(0, 35);
           console.log('Copilot CLI did not complete. Sanitized failure class: ' + reason);
+          console.log('Sanitized stderr terms: ' + (safeTokens.join(' ') || 'none'));
+          console.log('Output sizes: stderr=' + stderr.length + ', stdout=' + stdout.length);
           console.log('JSONL event types: ' + (types.slice(0, 10).join(', ') || 'none'));
           console.log('Raw output withheld for privacy.');
           JS
