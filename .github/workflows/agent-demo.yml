@@ -141,12 +141,28 @@ jobs:
           const events = fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'agent-events.jsonl'), 'utf8');
           const started = new Map();
           const done = [];
+          const toolStarts = [];
+          const eventTypes = new Map();
+          const failures = [];
           let final = '';
           for (const line of events.split(/\r?\n/)) {
             if (!line) continue;
             let event;
             try { event = JSON.parse(line); } catch { continue; }
             const data = event.data || {};
+            if (typeof event.type === 'string' && /^(?:assistant|session|tool|permission)\.[a-z_]+$/.test(event.type)) {
+              eventTypes.set(event.type, (eventTypes.get(event.type) || 0) + 1);
+            }
+            if (event.type === 'session.error') {
+              failures.push(['authentication', 'quota', 'rate_limit'].includes(data.errorType) ? data.errorType : 'other');
+            }
+            if (event.type === 'tool.execution_start') {
+              const known = ['list_mailboxes', 'search_emails', 'list_emails', 'get_email'];
+              const canonical = known.find((name) =>
+                data.mcpToolName === name ||
+                (typeof data.toolName === 'string' && data.toolName.endsWith('__' + name)));
+              toolStarts.push(canonical || 'other');
+            }
             if (event.type === 'tool.execution_start' && data.mcpServerName === 'mermail-demo') {
               started.set(data.toolCallId, data.mcpToolName);
             }
@@ -159,6 +175,11 @@ jobs:
           if (count('list_mailboxes') < 1 ||
               count('get_email') !== 2 ||
               count('search_emails') + count('list_emails') < 2) {
+            console.error('Event counts: ' + [...eventTypes].map(([key, n]) => key + '=' + n).join(' '));
+            console.error('Observed tool starts (names only): ' + toolStarts.join(', '));
+            console.error('Matched Mermail completion count: ' + done.length);
+            console.error('Session error class: ' + (failures.join(', ') || 'none'));
+            console.error('Agent declared BLOCKED: ' + /\bBLOCKED\b/.test(final));
             console.error('The agent did not independently complete the required MCP reads.');
             process.exit(1);
           }
