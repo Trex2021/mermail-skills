@@ -146,6 +146,7 @@ jobs:
           const failures = [];
           const mcpStatuses = [];
           const mcpKeys = new Set();
+          const mcpStatusKeys = new Set();
           let final = '';
           for (const line of events.split(/\r?\n/)) {
             if (!line) continue;
@@ -161,8 +162,10 @@ jobs:
             if (event.type === 'session.mcp_server_status_changed') {
               for (const key of Object.keys(data)) if (/^[a-zA-Z]{1,30}$/.test(key)) mcpKeys.add(key);
               const server = data.serverName === 'mermail-demo' ? 'mermail-demo' : 'other';
-              const state = String(data.status || data.state || data.newStatus || '').toLowerCase();
-              const safeState = ['connected', 'connecting', 'disconnected', 'error', 'failed', 'disabled', 'enabled', 'starting', 'stopped'].includes(state) ? state : 'other';
+              const raw = data.status || data.state || data.newStatus || '';
+              if (raw && typeof raw === 'object') for (const key of Object.keys(raw)) if (/^[a-zA-Z]{1,30}$/.test(key)) mcpStatusKeys.add(key);
+              const state = String(raw).toLowerCase();
+              const safeState = /^[a-z_-]{1,24}$/.test(state) ? state : 'other';
               mcpStatuses.push(server + ':' + safeState);
             }
             if (event.type === 'tool.execution_start') {
@@ -188,6 +191,7 @@ jobs:
             console.error('Observed tool starts (names only): ' + toolStarts.join(', '));
             console.error('Matched Mermail completion count: ' + done.length);
             console.error('MCP status keys: ' + [...mcpKeys].sort().join(', '));
+            console.error('MCP nested status keys: ' + [...mcpStatusKeys].sort().join(', '));
             console.error('MCP status sequence: ' + mcpStatuses.join(', '));
             console.error('Session error class: ' + (failures.join(', ') || 'none'));
             console.error('Agent declared BLOCKED: ' + /\bBLOCKED\b/.test(final));
