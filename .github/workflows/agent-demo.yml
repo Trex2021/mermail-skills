@@ -206,6 +206,9 @@ jobs:
           derived from the evidence. The names are RESULT_STATE, ADDED_HOURS,
           TOTAL_USD and OPTIONS. Use a hyphen between each numeric range's
           bounds, two decimal places for currency, and no extra prose.
+          OPTIONS is a count, never a description: its entire last line MUST
+          be exactly `OPTIONS=3`, with no option names, fee, deadline, punctuation
+          or commentary on that line. Put no text before or after the four lines.
           PROMPT
           set +e
           copilot -p "$(cat "$RUNNER_TEMP/agent-prompt.txt")" \
