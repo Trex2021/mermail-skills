@@ -278,6 +278,7 @@ jobs:
           const mcpStatuses = [];
           const mcpKeys = new Set();
           const mcpStatusKeys = new Set();
+          const assistantTexts = [];
           let final = '';
           for (const line of events.split(/\r?\n/)) {
             if (!line) continue;
@@ -320,7 +321,10 @@ jobs:
             if (event.type === 'tool.execution_complete' && data.success === true && started.has(data.toolCallId)) {
               done.push(started.get(data.toolCallId));
             }
-            if (event.type === 'assistant.message' && typeof data.content === 'string') final = data.content;
+            if (event.type === 'assistant.message' && typeof data.content === 'string') {
+              final = data.content;
+              assistantTexts.push(final);
+            }
           }
           const count = (name) => done.filter((tool) => tool === name).length;
           if (count('list_mailboxes') < 1 ||
@@ -345,6 +349,19 @@ jobs:
             'OPTIONS=3',
           ];
           if (!expected.every((entry) => final.split(/\r?\n/).map((x) => x.trim()).includes(entry))) {
+            const fieldNames = ['RESULT_STATE','ADDED_HOURS','TOTAL_USD','OPTIONS'];
+            const diagnostic = assistantTexts.slice(-3).map((message, index) => {
+              const parts = fieldNames.map((name) => {
+                const match = message.match(new RegExp('(?:^|\\n)\\s*' + name + '\\s*=\\s*([^\\r\\n]{1,80})'));
+                if (!match) return name + ':absent';
+                const value = match[1].trim();
+                const safe = /^[A-Za-z0-9_.$\u2013\u2014 -]{1,50}$/.test(value) ? value : 'noncanonical';
+                return name + ':' + safe;
+              });
+              return 'message' + (assistantTexts.length - 3 + index) + ' ' + parts.join(' ');
+            });
+            console.error('Sanitized final fields: ' + diagnostic.join(' | '));
+            console.error('Assistant message count: ' + assistantTexts.length);
             console.error('The agent output did not match the independently validated scenario.');
             process.exit(1);
           }
