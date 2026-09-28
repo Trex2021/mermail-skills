@@ -355,7 +355,9 @@ jobs:
                 const match = message.match(new RegExp('(?:^|\\n)\\s*' + name + '\\s*=\\s*([^\\r\\n]{1,80})'));
                 if (!match) return name + ':absent';
                 const value = match[1].trim();
-                const safe = /^[A-Za-z0-9_.$\u2013\u2014 -]{1,50}$/.test(value) ? value : 'noncanonical';
+                const safe = /^[A-Za-z0-9_.$\u2013\u2014 -]{1,50}$/.test(value) ? value :
+                  'numeric-shape=' + value.replace(/[^0-9.,$\u2013\u2014 -]/g, '?').slice(0, 60) +
+                  ';length=' + value.length;
                 return name + ':' + safe;
               });
               return 'message' + (assistantTexts.length - 3 + index) + ' ' + parts.join(' ');
