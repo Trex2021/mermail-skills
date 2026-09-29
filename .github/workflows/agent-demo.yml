@@ -82,6 +82,21 @@ jobs:
           trap cleanup_recording EXIT
           sleep 1
           kill -0 "$xterm_pid" "$ffmpeg_pid"
+          printf '\nTRIGGER: Compare the accepted freelance scope with the later client request.\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'Agent client: GitHub Copilot CLI, Mermail MCP, exact PR head.\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 12
+          printf '\nACCEPTED BASELINE (synthetic, pre-existing Mermail message):\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'One responsive landing page; two included revision rounds.\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'Authentication, admin dashboard, and payment processing excluded.\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 12
+          printf '\nLATER REQUEST (second pre-existing synthetic message):\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'Add login, dashboard and payments; ask for two more revisions.\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'Requested date is five days earlier; client supplied access late.\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 12
+          printf '\nOWNER-APPROVED TERMS: 15 USD/hour and 25 percent rush rule.\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'The agent must discover and read only these two selected messages.\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'Public output is a sanitized call timeline, never the mail body.\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 10
           cat > "$RUNNER_TEMP/agent-proxy.mjs" <<'PROXY_JS'
           import readline from 'node:readline';
           import { appendFileSync } from 'node:fs';
@@ -432,8 +447,16 @@ jobs:
           printf '\n[%s UTC] VERIFIED from Copilot JSONL and exact PR-head tests\n' "$(date -u +%T)" >> "$DEMO_PROGRESS_FILE"
           printf 'Two selected synthetic messages were read; packet integrity checked.\n' >> "$DEMO_PROGRESS_FILE"
           printf 'RESULT_STATE=scope_change_detected\nADDED_HOURS=26-33\nTOTAL_USD=487.50-618.75\nOPTIONS=3\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 10
+          printf '\nOPTION 1 — REMOVE OR SWAP: preserve the accepted baseline.\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 10
+          printf 'OPTION 2 — EXTEND: 390-495 USD additional fee; add 6-7 calendar days.\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 10
+          printf 'OPTION 3 — PAID RUSH: 487.50-618.75 USD at requested deadline.\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 10
           printf 'NO SEND | NO DRAFT | NO WALLET | NO PAYMENT\n' >> "$DEMO_PROGRESS_FILE"
-          sleep 7
+          printf 'One take: no cuts, no fabricated calls; inspect this public job.\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 8
           cleanup_recording
           trap - EXIT
           ffprobe -v error -show_entries format=duration,size \
