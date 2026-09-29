@@ -12,7 +12,7 @@ jobs:
   agent-proof:
     if: github.repository == 'Trex2021/mermail-skills'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 18
     steps:
       - name: Checkout exact PR head
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -31,6 +31,10 @@ jobs:
         run: |
           npm install -g @github/copilot
           copilot --version
+      - name: Install single-take recording tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb xterm ffmpeg fonts-dejavu-core
       - name: Independently confirm the two old synthetic messages still exist
         env:
           MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
@@ -46,8 +50,41 @@ jobs:
           set -euo pipefail
           test -n "$MERMAIL_API_KEY"
           umask 077
+          export DEMO_PROGRESS_FILE="$RUNNER_TEMP/agent-progress.txt"
+          recording="$RUNNER_TEMP/continuous-agent-proof.mp4"
+          printf 'MERMAIL FREELANCE MARGIN GUARD — CONTINUOUS LIVE AGENT RUN\n' > "$DEMO_PROGRESS_FILE"
+          printf 'Public GitHub run: %s | Exact PR head: 445f562\n' "$GITHUB_RUN_ID" >> "$DEMO_PROGRESS_FILE"
+          printf 'Read-only synthetic mail; no addresses, tokens, or message bodies shown.\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'The same job already passed npm test on the exact PR head.\n\n' >> "$DEMO_PROGRESS_FILE"
+          Xvfb :99 -screen 0 1280x720x24 -nolisten tcp > "$RUNNER_TEMP/xvfb.log" 2>&1 &
+          xvfb_pid=$!
+          export DISPLAY=:99
+          for attempt in {1..20}; do
+            test -S /tmp/.X11-unix/X99 && break
+            sleep 0.2
+          done
+          test -S /tmp/.X11-unix/X99
+          xterm -title 'Actual MCP calls — sanitized live feed' \
+            -geometry 100x26+16+16 -fa 'DejaVu Sans Mono' -fs 16 \
+            -bg '#091625' -fg '#e7f4ff' -e tail -n +1 -f "$DEMO_PROGRESS_FILE" &
+          xterm_pid=$!
+          sleep 2
+          ffmpeg -y -hide_banner -loglevel error -f x11grab -framerate 15 \
+            -video_size 1280x720 -i :99.0 -an -c:v libx264 \
+            -preset ultrafast -crf 23 -pix_fmt yuv420p \
+            -movflags +faststart "$recording" > "$RUNNER_TEMP/ffmpeg.log" 2>&1 &
+          ffmpeg_pid=$!
+          cleanup_recording() {
+            kill -INT "$ffmpeg_pid" 2>/dev/null || true
+            wait "$ffmpeg_pid" 2>/dev/null || true
+            kill "$xterm_pid" "$xvfb_pid" 2>/dev/null || true
+          }
+          trap cleanup_recording EXIT
+          sleep 1
+          kill -0 "$xterm_pid" "$ffmpeg_pid"
           cat > "$RUNNER_TEMP/agent-proxy.mjs" <<'PROXY_JS'
           import readline from 'node:readline';
+          import { appendFileSync } from 'node:fs';
           
           const ENDPOINT = 'https://console.mermail.app/mcp';
           const SAFE_TOOLS = new Set(['list_mailboxes', 'search_emails', 'list_emails', 'get_email']);
@@ -57,6 +94,15 @@ jobs:
           let remoteId = 0;
           let remoteInitialized = false;
           let cachedTools = null;
+
+          // This is the only live video feed. It logs fixed labels and tool names,
+          // never arguments, returned mail, account details, or credentials.
+          const progress = (message) => {
+            if (process.env.DEMO_PROGRESS_FILE) {
+              appendFileSync(process.env.DEMO_PROGRESS_FILE,
+                `[${new Date().toISOString().slice(11, 19)} UTC] ${message}\n`);
+            }
+          };
           
           const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
           
@@ -129,8 +175,10 @@ jobs:
               const name = params?.name;
               if (!SAFE_TOOLS.has(name)) throw new Error('Tool outside read-only allowlist');
               await ensureRemote();
+              progress(`Agent called Mermail ${name} (read-only)`);
               const result = await remote('tools/call', { name, arguments: params.arguments || {} });
               if (!result || typeof result !== 'object') throw new Error('Mermail result unavailable');
+              progress(`${name}: ${result.isError === true ? 'tool error; not accepted' : 'completed'}`);
               return result;
             }
             throw new Error('Unsupported MCP request');
@@ -165,7 +213,10 @@ jobs:
                 type: 'stdio',
                 command: 'node',
                 args: [p.join(root, 'agent-proxy.mjs')],
-                env: { MERMAIL_API_KEY: process.env.MERMAIL_API_KEY },
+                env: {
+                  MERMAIL_API_KEY: process.env.MERMAIL_API_KEY,
+                  DEMO_PROGRESS_FILE: process.env.DEMO_PROGRESS_FILE,
+                },
                 tools: ['list_mailboxes', 'search_emails', 'list_emails', 'get_email'],
               },
             },
@@ -210,6 +261,7 @@ jobs:
           be exactly `OPTIONS=3`, with no option names, fee, deadline, punctuation
           or commentary on that line. Put no text before or after the four lines.
           PROMPT
+          printf '[%s UTC] Independent agent started; awaiting real Mermail calls...\n' "$(date -u +%T)" >> "$DEMO_PROGRESS_FILE"
           set +e
           copilot -p "$(cat "$RUNNER_TEMP/agent-prompt.txt")" \
             --output-format=json --no-ask-user --no-auto-update \
@@ -377,3 +429,20 @@ jobs:
           for (const entry of expected) console.log('  ' + entry);
           console.log('Read-only synthetic demo passed. No message sent or wallet used.');
           JS
+          printf '\n[%s UTC] VERIFIED from Copilot JSONL and exact PR-head tests\n' "$(date -u +%T)" >> "$DEMO_PROGRESS_FILE"
+          printf 'Two selected synthetic messages were read; packet integrity checked.\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'RESULT_STATE=scope_change_detected\nADDED_HOURS=26-33\nTOTAL_USD=487.50-618.75\nOPTIONS=3\n' >> "$DEMO_PROGRESS_FILE"
+          printf 'NO SEND | NO DRAFT | NO WALLET | NO PAYMENT\n' >> "$DEMO_PROGRESS_FILE"
+          sleep 7
+          cleanup_recording
+          trap - EXIT
+          ffprobe -v error -show_entries format=duration,size \
+            -of default=noprint_wrappers=1 "$recording"
+          test -s "$recording"
+      - name: Upload uncut recording of this verified run
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: margin-guard-uncut-agent-proof-${{ github.run_id }}
+          path: ${{ runner.temp }}/continuous-agent-proof.mp4
+          if-no-files-found: error
+          retention-days: 90
