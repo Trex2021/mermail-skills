@@ -1,0 +1,53 @@
+name: PR124 blind live behavior at immutable product head
+
+on:
+  push:
+    branches: [evaluation/pr124-behavior-20261001]
+
+permissions:
+  contents: read
+  copilot-requests: write
+
+jobs:
+  behavior:
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - name: Checkout evaluation harness
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: harness
+          persist-credentials: false
+      - name: Checkout immutable product
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 3ad5f8ed296d05f8a53b9dfe1ef9ad56c671eb28
+          path: product
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Check product and install pinned client
+        run: |
+          test "$(git -C product rev-parse HEAD)" = 3ad5f8ed296d05f8a53b9dfe1ef9ad56c671eb28
+          npm --prefix product --offline test
+          npm install -g @github/copilot@1.0.89
+          copilot --version
+      - name: Execute five fresh live sessions and separate evaluator
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          PRODUCT_ROOT: ${{ github.workspace }}/product
+          HARNESS_ROOT: ${{ github.workspace }}/harness/evaluation/pr124-behavior
+          EVALUATION_ROOT: ${{ runner.temp }}/pr124-behavior
+        run: node harness/evaluation/pr124-behavior/run.mjs
+      - name: Upload privacy-reviewed behavior evidence only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr124-blind-behavior-${{ github.run_id }}
+          path: ${{ runner.temp }}/pr124-behavior/public/
+          if-no-files-found: error
+          retention-days: 14
