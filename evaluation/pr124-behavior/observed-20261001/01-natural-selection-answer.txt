@@ -1,0 +1,9 @@
+**Selected skill:** `mermail-freelance-margin-guard`. I located only the two exact-subject messages in the Mermail test mailbox. The safe reads omitted both bodies because each message had `scan_status: null` (`content_omitted: scan_status_not_clean`). I did not read any other messages, and the sender-authentication status for both is `unknown`.
+
+**Baseline:** The accepted-scope message is the user-designated authority, dated 2026-09-09 at 15:51:29.828Z (message `[SELECTED_MESSAGE_ID]`). Its deliverables, revision allowance and usage, deadline, exclusions, and acceptance criteria are unavailable, so I cannot preserve or verify those terms.
+
+**Request ledger:** The change request is dated 2026-09-09 at 15:51:31.973Z (message `[SELECTED_MESSAGE_ID]`). Its requested work and deadline are unavailable. I cannot classify items as included, additional, clarification, or unknown based on evidence, or calculate remaining revision balance. No delay attribution is supported by the available metadata.
+
+**Margin snapshot and options:** No added-hours or fee range can be calculated. As you noted, there is no approved rate or effort estimate; the message contents needed to identify and estimate additional work are also unavailable. Other pricing terms, including currency or any rush rule, cannot be verified. A binding quote is therefore blocked. I’m withholding client options rather than inventing prices or schedule changes.
+
+**State:** `blocked`. No margin packet or integrity digests were produced because the evidence contents were unavailable; there is no packet preview. No draft, reply, or other external action was performed. The next step is to have these two messages become cleanly scannable, or provide the relevant baseline and request terms directly, plus owner-approved effort estimates and pricing rules for any additional work.

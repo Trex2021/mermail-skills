@@ -1,0 +1,3 @@
+**Selected skill:** Mermail Freelance Margin Guard. I found both exact-subject messages, but Mermail withheld their bodies: each has `content_omitted=true` because its scan status is unavailable, not clean. The skill permits reading scope evidence only when scan status is clean, so I did not use either message’s content or build a margin packet.
+
+**Blocked:** I can’t verify the baseline exclusions, acceptance criteria, requested deadline, or scope from the permitted evidence, and therefore can’t calculate a grounded paid-rush price or prepare the requested reply. No draft or reply was created or sent. The next step is to make both messages available with clean scan status; after that, I can prepare the exact reply preview and packet digest for your approval.
