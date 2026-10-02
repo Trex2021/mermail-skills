@@ -1,0 +1,22 @@
+**Selected skill:** `mermail-freelance-margin-guard`.
+
+**Baseline:** The selected accepted-scope message defines one responsive landing page, two revision rounds (one already used), a 2026-10-20 deadline, and responsive acceptance at the agreed desktop, tablet, and mobile breakpoints. It excludes an authenticated application/login, admin dashboard, and payment processing. These are the only two messages read; both are in Sent, addressed from and to the mailbox itself, and have unknown sender authentication. They provide the selected scope text, but do not authenticate a client identity.
+
+**Request and margin:** The admin dashboard, Stripe integration, and login are excluded-baseline additions. Of the two requested revision rounds, one fits the remaining allowance and one is overflow; the allowance is then exhausted. The requested 2026-10-15 delivery is five days earlier, with zero added labor per your input. Total additional labor is **15–22 hours**: **$352.50–$517.00** at $23.50/hour, plus **$35.25–$51.70** rush premium, for a paid-rush total of **$387.75–$568.70 USD**. The staging-access delay is separately attributed to the client: **2 days**.
+
+**Options:** Remove or swap additions to retain the baseline $0 added fee and 2026-10-20 date (confirm effort equivalence for any swap); keep additions at the ordinary rate for $352.50–$517.00 and a supported schedule range of 2026-10-24–25; or choose the paid-rush proposal below for the requested 2026-10-15 deadline.
+
+**Reply preview — not saved or sent**
+- Mailbox: `[REDACTED]`
+- To / From: `[REDACTED]` / `[REDACTED]`
+- Cc / Bcc: none
+- Subject: `Re: [FMG-LIVE-34372972140-1] Change request`
+- Source message and thread: `[SELECTED_MESSAGE_ID]`
+
+> Thanks for outlining the requested changes. The accepted scope is one responsive landing page and two revision rounds; one round has already been used. Of the two additional rounds requested, one is covered by the remaining allowance and one is additional. The admin dashboard, Stripe payment processing, and user login were excluded from the baseline.
+>
+> **Paid-rush proposal:** Add the admin dashboard, Stripe integration, login, and one additional revision round, and target delivery by 2026-10-15, for an estimated **15–22 hours** at **$23.50/hour plus a 10% rush premium**, or **$387.75–$568.70 USD**. Earlier delivery itself adds no labor hours. The two-day staging-access delay is recorded separately as client-owned. The baseline acceptance criterion remains responsiveness at the agreed desktop, tablet, and mobile breakpoints; other baseline exclusions remain in effect except for these explicitly named additions. Please approve this exact change order in writing before added work begins.
+
+**State:** Packet `scope_change_detected`; reply `awaiting_send_approval`. No draft or email was created or sent. **Integrity:** deterministic packet verification passed; evidence digest `b73ca8a5de578c48cfdbecda54590226016d32239880b1e309c79c9569765094`; packet digest `8abb564edcb87174086e9262676bc5341f8595a9eae8e9a54e9d7a0f8debe198`.
+
+Sending requires your fresh approval of the complete preview and unchanged packet digest. Note that the source recipient resolves to your own mailbox, not a separately identified client; the preview preserves your instruction to use that recipient and thread.

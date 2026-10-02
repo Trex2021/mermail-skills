@@ -1,0 +1,25 @@
+**Selected skill:** `mermail-freelance-margin-guard`.
+
+**Baseline:** I used the owner-selected “[FMG-LIVE-34372972140-1] Accepted scope” as authority: one responsive landing page, two revision rounds, deadline **2026-10-20**, and acceptance at the agreed desktop, tablet, and mobile breakpoints. The baseline excludes an authenticated application/login, admin dashboard, and payment processing. One revision round was already used, leaving one included round.
+
+**Request ledger:** The admin dashboard, Stripe processing, and user login are additional because the baseline expressly excludes them. Of the two requested revision rounds, one is covered by the remaining allowance and one is additional; the owner’s 6–8-hour estimate splits to **3–4 additional hours** for that overflow round. The requested **2026-10-15** deadline is five calendar days earlier and is a scope change, though the owner confirms it adds **zero labor hours** by itself.
+
+**Margin and delay:** Additional labor is **15–22 hours**: dashboard 7–9, Stripe 3–5, login 2–4, and revision overflow 3–4. At the owner-approved **$23.50/hour**, that is **$352.50–$517.00** before rush. The 10% premium on added labor is **$35.25–$51.70**, making the paid-rush estimate **$387.75–$568.70 USD** for the requested October 15 deadline. The two-day staging-access delay is attributed to the client separately; it is not added labor and does not erase the requested deadline compression.
+
+**Options:** Remove or swap additions, preserving the original October 20 deadline and fee (no fee-free swap is assumed); keep additions at the ordinary rate and extend the schedule, estimated at **$352.50–$517.00** with a packet-calculated deadline range of **October 24–25**; or retain the additions and October 15 deadline at the paid-rush range above.
+
+**Reply preview — not sent or saved as a draft**
+- **To:** [REDACTED] (the selected message’s recipient)
+- **From:** [REDACTED]
+- **Subject:** Re: [FMG-LIVE-34372972140-1] Change request
+- **Thread:** [SELECTED_MESSAGE_ID]
+- **Source message:** [SELECTED_MESSAGE_ID]
+- **Cc/Bcc:** none
+
+> Thanks for the change request. The accepted scope is one responsive landing page, two revision rounds, and delivery by October 20, 2026. One revision round has already been used, leaving one included round. Of the two additional rounds requested, one is covered by the remaining allowance and one is additional.
+>
+> The admin dashboard, Stripe payment processing, and user login are outside the accepted scope. Adding those items, plus the one additional revision round, is estimated at 15–22 hours. At the approved rate of $23.50 per hour, that is $352.50–$517.00, plus the 10% rush premium of $35.25–$51.70, for an estimated paid-rush total of **$387.75–$568.70 USD** to target October 15, 2026. The earlier deadline itself adds no labor hours. I’ve noted the two-day client-owned staging-access delay separately.
+>
+> The original landing-page acceptance criterion remains responsiveness at the agreed desktop, tablet, and mobile breakpoints. A broader authenticated application and work beyond the additions listed above remain excluded. Please confirm the added-feature acceptance details and the exact agreed fee, scope, and October 15 deadline in writing before any additional work begins. This is a hypothetical estimate for discussion, not a contract or payment approval.
+
+**State and integrity:** The packet is `scope_change_detected`; its integrity verification passed. Evidence digest: `550899ea4b73116741c9a3ae6b2555da2256557d5789c047a9d00808e97dc82e`. Packet digest: `2ed18b3442efbaeefe0c6c74f4c2d6f075ff41eab72e775384f8685b2c70b1f6`. The final reply and digest have not been approved, so **no email action was executed**. Sending requires your approval of this exact preview and unchanged packet digest.

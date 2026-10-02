@@ -1,0 +1,53 @@
+**Selected skill:** `mermail-freelance-margin-guard`. I read only the two selected messages. The deterministic packet built and its integrity verified. **The reply below is a preview only**—nothing was sent or saved. The owner’s figures are treated as evaluation inputs, not contract or payment approval.
+
+### Baseline
+
+The owner-selected **Accepted scope** message is the baseline: one responsive landing page, two revision rounds, and a deadline of **2026-10-20**. One round has already been used, leaving **one included round**. The baseline excludes an authenticated application/login, admin dashboard, and payment processing. Acceptance remains responsiveness at the agreed desktop, tablet, and mobile breakpoints.
+
+### Request ledger
+
+| Requested work | Classification | Effort |
+|---|---|---:|
+| Admin dashboard | Scope change; explicitly excluded | 7–9 h |
+| Stripe payment processing | Scope change; payment processing excluded | 3–5 h |
+| User login | Scope change; explicitly excluded | 2–4 h |
+| Two more revision rounds | **1 in scope** using the remaining allowance; **1 scope-change overflow** | 3–4 h included; 3–4 h additional |
+| Deliver by **2026-10-15** | Scope change; five calendar days earlier | 0 added labor hours, per owner |
+
+### Margin snapshot and delay
+
+Added, billable effort is **15–22 hours**: 12–18 hours for the three additions plus 3–4 hours for the overflow revision round. At the owner-approved **$23.50/hour**, that is **$352.50–$517.00** before rush. The **10% premium on added labor** is **$35.25–$51.70**, making the paid-rush total **$387.75–$568.70 USD**. The earlier date itself adds no labor, but the approved rush rule applies to added labor.
+
+Staging access was delayed **2 days**, attributed to the **client** using the owner-supplied terms. The packet’s schedule-extension option accounts for that delay.
+
+### Client options
+
+- **Remove or swap:** Keep the baseline deadline of **2026-10-20**; remove the additions or confirm an effort-equivalent swap before work starts.
+- **Extend schedule:** Keep the additions at the ordinary rate (**$352.50–$517.00**) and extend to **2026-10-24–2026-10-25**.
+- **Paid change order:** Keep the requested **2026-10-15** deadline and additions for **$387.75–$568.70** including rush.
+
+### Reply preview — not sent
+
+**From:** [REDACTED]  
+**To:** [REDACTED] (the selected message’s recipient)  
+**Cc/Bcc:** None  
+**Subject:** Re: [FMG-LIVE-34372972140-1] Change request  
+**Source message / thread:** `[SELECTED_MESSAGE_ID]`
+
+> Thanks for the change request. The accepted baseline is one responsive landing page with two revision rounds; one round has been used, leaving one included. The admin dashboard, authenticated application/login, and payment processing remain excluded unless explicitly added by an agreed change order. The existing acceptance criterion remains responsive behavior at the agreed desktop, tablet, and mobile breakpoints; no other acceptance criteria are changed.
+>
+> One of the two requested revision rounds fits within the remaining included round. The other is additional. The admin dashboard, Stripe payment processing, and user login are also additions to the baseline.
+>
+> **Paid-rush option:** We can take on those additions, the one overflow revision round, and target delivery by **October 15, 2026**, for **$387.75–$568.70 USD**. This range reflects 15–22 additional hours at $23.50/hour plus the 10% rush premium on added labor. The earlier date itself adds no labor hours. The range is subject to written approval of the change order; no added work is approved by this proposal.
+>
+> Alternatively, we can remove or discuss an effort-equivalent swap for the additions and retain the October 20 baseline deadline, or keep the additions at the ordinary rate and extend the schedule to October 24–25 to account for the work and the two-day staging-access delay.
+>
+> Please confirm in writing which option you want to proceed with.
+
+### State and integrity
+
+**State:** `awaiting_send_approval`.  
+**Evidence digest:** `31b33d69f79a0ffd471308608f56968439125d881b80ac621049fde9bf898dcf`  
+**Packet digest:** `d91e9d566bbaf06515286130de0e946154cd18b051d0c02e1ef1913e64604da9`
+
+To send, the exact preview and unchanged packet digest need your explicit approval. **No send or funding action has been performed.**
