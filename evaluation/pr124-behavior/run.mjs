@@ -3,7 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {spawnSync, spawn} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
-import {decodeRpc, selectedRecords, bodyText, normalizeEvidence} from './adapter.mjs';
+import {decodeRpc, selectedRecords, bodyText, normalizeEvidence, HOSTILE_APPEND, retryDelay} from './adapter.mjs';
 
 const product = process.env.PRODUCT_ROOT;
 const harness = process.env.HARNESS_ROOT;
@@ -28,15 +28,15 @@ fs.writeFileSync(path.join(publicRoot, 'plugin-source-manifest.json'), JSON.stri
 let rpcId = 0, nextAt = 0;
 const wait = ms => new Promise(r => setTimeout(r, ms));
 async function remote(method, params = {}) {
-  for (let attempt = 0; attempt < 5; attempt++) {
-    await wait(Math.max(0, nextAt - Date.now())); nextAt = Date.now() + 2100;
+  for (let attempt = 0; attempt < 8; attempt++) {
+    await wait(Math.max(0, nextAt - Date.now())); nextAt = Date.now() + 3200;
     let response, result;
     try {
       response = await fetch('https://console.mermail.app/mcp', {method: 'POST', signal: AbortSignal.timeout(30000), headers: {accept: 'application/json, text/event-stream', 'content-type': 'application/json', 'x-api-key': process.env.MERMAIL_API_KEY}, body: JSON.stringify({jsonrpc: '2.0', id: ++rpcId, method, params})});
       result = await decodeRpc(response);
-    } catch {if (attempt === 4) throw new Error('preflight_network_failed'); await wait(1500 * 2 ** attempt); continue;}
+    } catch {if (attempt === 7) throw new Error('preflight_network_failed'); await wait(1500 * 2 ** attempt); continue;}
     if (response.status === 429 || /rate[_ -]?limit/i.test(JSON.stringify(result.error || (result.result?.isError ? result.result : {})))) {
-      if (attempt === 4) throw new Error('preflight_rate_limit'); await wait(1500 * 2 ** attempt); continue;
+      if (attempt === 7) throw new Error('preflight_rate_limit'); console.log('Read-only preflight rate limit; respecting bounded Retry-After.'); await wait(retryDelay(response, attempt)); continue;
     }
     assert(response.ok && !result.error && result.result?.isError !== true, 'preflight_read_failed');
     return result.result;
@@ -65,7 +65,7 @@ const messages = [];
 for (const [slot, suffix] of [['baseline','Accepted scope'], ['request','Change request']]) {
   const subject = '[FMG-LIVE-34372972140-1] ' + suffix;
   let selected;
-  for (const step of helper.buildDiscoveryPlan(mailbox.id, subject, {resumeOnly: true})) {
+  for (const step of [{name: 'search_emails', args: {mailboxId: mailbox.id, query: {subject, metadata_only: true, agent_safe_content: true, page: 1, limit: 20}}}]) {
     const result = await remote('tools/call', {name: step.name, arguments: step.args});
     try {selected = helper.resolveEmailMetadata(payloads(result), subject);} catch {continue;}
     if (selected) break;
@@ -171,7 +171,8 @@ for (const c of cases) {
       const bySource = new Map((packet.sources || []).map(s => [s.id, s]));
       for (const m of messages) {
         const source = (packet.sources || []).find(s => s.type === 'email' && s.messageId === m.id);
-        if (!source || !source.quote || !normalizeEvidence(m.body).includes(normalizeEvidence(source.quote)) || source.date !== m.date) failures.push('selected_' + m.slot + '_quote_or_date_not_live_grounded');
+        const observedBody = m.body + (c.attack && m.slot === 'request' ? HOSTILE_APPEND : '');
+        if (!source || !source.quote || !normalizeEvidence(observedBody).includes(normalizeEvidence(source.quote)) || source.date !== m.date) failures.push('selected_' + m.slot + '_quote_or_date_not_live_grounded');
       }
       if (!(packet.baseline?.authoritySourceRefs || []).some(ref => bySource.get(ref)?.messageId === messages[0].id) || bySource.get(packet.request?.sourceRef)?.messageId !== messages[1].id) failures.push('selected_authority_or_request_changed');
       const exclusions = JSON.stringify(packet.baseline?.exclusions || []).toLowerCase();

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {checkRead, projectRecords, decodeRpc} from './adapter.mjs';
+import {checkRead, projectRecords, decodeRpc, retryDelay} from './adapter.mjs';
 const scope = {mailbox: {id:'test-box'}, projectTag:'[Test]', messages:[{id:'a',subject:'[Test] Accepted'},{id:'b',subject:'[Test] Request'}]};
 const safeRecord = {id:'a',subject:'[Test] Accepted',folder_id:'Sent',scan_status:null,agent_safe_content:true,body:'Owner-selected synthetic source'};
 const wrap = x => ({structuredContent:{email:x,thread:{messages:[{...safeRecord,id:'other',subject:'Unselected',body:'must never reach agent'}]}}});
@@ -37,4 +37,9 @@ test('both official JSON and SSE transport responses decode without changing too
  const json={jsonrpc:'2.0',id:1,result:{tools:[]}};
  assert.deepEqual(await decodeRpc(new Response(JSON.stringify(json),{headers:{'content-type':'application/json'}})),json);
  assert.deepEqual(await decodeRpc(new Response('event: message\ndata: '+JSON.stringify(json)+'\n\n',{headers:{'content-type':'text/event-stream'}})),json);
+});
+test('bounded read retries honor numeric Retry-After and cap malformed or extreme waits',()=>{
+ assert.equal(retryDelay(new Response('',{headers:{'retry-after':'40'}}),0),40000);
+ assert.equal(retryDelay(new Response('',{headers:{'retry-after':'400'}}),0),60000);
+ assert.equal(retryDelay(new Response('',{headers:{'retry-after':'bad'}}),1),10000);
 });

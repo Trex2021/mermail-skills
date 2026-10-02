@@ -30,6 +30,7 @@ jobs:
           MERMAIL_REQUIRE_TEST_API_KEY: '1'
         run: npm run validate:remote
   behavior:
+    needs: production-contract
     if: github.repository == 'Trex2021/mermail-skills'
     runs-on: ubuntu-latest
     timeout-minutes: 28
