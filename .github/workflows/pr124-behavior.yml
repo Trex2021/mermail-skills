@@ -3,7 +3,7 @@ name: PR124 blind live behavior at immutable product head
 on:
   push:
     branches: [evaluation/pr124-behavior-20261002]
-    paths: ['evaluation/pr124-behavior/run.mjs', 'evaluation/pr124-behavior/proxy.mjs', 'evaluation/pr124-behavior/adapter.mjs', 'evaluation/pr124-behavior/adapter.test.mjs', '.github/workflows/pr124-behavior.yml']
+    paths: ['evaluation/pr124-behavior/run.mjs', 'evaluation/pr124-behavior/proxy.mjs', 'evaluation/pr124-behavior/adapter.mjs', 'evaluation/pr124-behavior/adapter.test.mjs', 'evaluation/pr124-behavior/preview.mjs', 'evaluation/pr124-behavior/preview.test.mjs', '.github/workflows/pr124-behavior.yml']
 
 permissions:
   contents: read
@@ -55,6 +55,7 @@ jobs:
           test "$(git -C product rev-parse HEAD)" = b337b56cf0c0b7594ea7f1aedc9adaf395dc90b9
           npm --prefix product --offline test
           node --test harness/evaluation/pr124-behavior/adapter.test.mjs
+          node --test harness/evaluation/pr124-behavior/preview.test.mjs
           npm install -g @github/copilot@1.0.89
           copilot --version
       - name: Execute five fresh live sessions and separate evaluator
@@ -63,6 +64,7 @@ jobs:
           MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
           PRODUCT_ROOT: ${{ github.workspace }}/product
           PRODUCT_COMMIT: b337b56cf0c0b7594ea7f1aedc9adaf395dc90b9
+          CASE_IDS: '04-approval-boundary'
           HARNESS_ROOT: ${{ github.workspace }}/harness/evaluation/pr124-behavior
           EVALUATION_ROOT: ${{ runner.temp }}/pr124-behavior
         run: node harness/evaluation/pr124-behavior/run.mjs
