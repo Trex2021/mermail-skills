@@ -3,6 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {spawnSync, spawn} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
+import {decodeRpc, selectedRecords, bodyText, normalizeEvidence} from './adapter.mjs';
 
 const product = process.env.PRODUCT_ROOT;
 const harness = process.env.HARNESS_ROOT;
@@ -10,11 +11,12 @@ const root = process.env.EVALUATION_ROOT;
 const privateRoot = path.join(root, 'private');
 const publicRoot = path.join(root, 'public');
 const plugin = path.join(root, 'agent-visible-plugin');
-const HEAD = '3ad5f8ed296d05f8a53b9dfe1ef9ad56c671eb28';
+const HEAD = process.env.PRODUCT_COMMIT;
 const assert = (ok, message) => {if (!ok) throw new Error(message);};
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 for (const p of [privateRoot, publicRoot, plugin]) fs.mkdirSync(p, {recursive: true, mode: 0o700});
 assert(product && harness && process.env.MERMAIL_API_KEY && process.env.GITHUB_TOKEN, 'configuration_missing');
+assert(/^[a-f0-9]{40}$/.test(HEAD || ''), 'immutable_product_commit_missing');
 assert(spawnSync('git', ['rev-parse', 'HEAD'], {cwd: product, encoding: 'utf8'}).stdout.trim() === HEAD, 'product_head_mismatch');
 fs.cpSync(path.join(product, 'skills'), path.join(plugin, 'skills'), {recursive: true});
 fs.copyFileSync(path.join(product, 'plugin.json'), path.join(plugin, 'plugin.json'));
@@ -31,7 +33,7 @@ async function remote(method, params = {}) {
     let response, result;
     try {
       response = await fetch('https://console.mermail.app/mcp', {method: 'POST', signal: AbortSignal.timeout(30000), headers: {accept: 'application/json, text/event-stream', 'content-type': 'application/json', 'x-api-key': process.env.MERMAIL_API_KEY}, body: JSON.stringify({jsonrpc: '2.0', id: ++rpcId, method, params})});
-      result = await response.json();
+      result = await decodeRpc(response);
     } catch {if (attempt === 4) throw new Error('preflight_network_failed'); await wait(1500 * 2 ** attempt); continue;}
     if (response.status === 429 || /rate[_ -]?limit/i.test(JSON.stringify(result.error || (result.result?.isError ? result.result : {})))) {
       if (attempt === 4) throw new Error('preflight_rate_limit'); await wait(1500 * 2 ** attempt); continue;
@@ -53,7 +55,7 @@ function payloads(result) {
 }
 const pick = (o, fields) => fields.map(k => o?.[k]).find(x => typeof x === 'string' && x.trim());
 await remote('initialize', {protocolVersion: '2025-03-26', capabilities: {}, clientInfo: {name: 'pr124-behavior-preflight', version: '1.0.0'}});
-const boxes = objects(payloads(await remote('tools/call', {name: 'list_mailboxes', arguments: {}}))).map(o => ({id: pick(o, ['public_id','publicId','mailbox_id','mailboxId','id']), email: pick(o, ['email','email_address','emailAddress','address']), invalid: o.disabled_at || o.disabledAt || ['disabled','deleted','failed','pending'].includes(String(o.status || o.state).toLowerCase())})).filter(o => o.id && o.email?.includes('@') && !o.invalid);
+const boxes = objects(payloads(await remote('tools/call', {name: 'list_mailboxes', arguments: {}}))).map(o => ({id: pick(o, ['public_id','publicId','mailbox_id','mailboxId','id']), email: pick(o, ['email','email_address','emailAddress','address']), metadata: Object.fromEntries(['public_id','email','status','can_receive','receiving_status','disabled_at'].filter(k => Object.hasOwn(o,k)).map(k => [k,o[k]])), invalid: o.disabled_at || o.disabledAt || ['disabled','deleted','failed','pending'].includes(String(o.status || o.state).toLowerCase())})).filter(o => o.id && o.email?.includes('@') && !o.invalid);
 const uniqueBoxes = [...new Map(boxes.map(m => [m.id, m])).values()];
 assert(uniqueBoxes.length === 1, 'preflight_mailbox_ambiguous');
 const mailbox = uniqueBoxes[0];
@@ -78,10 +80,15 @@ const scanDiagnostics = {checkedAt: new Date().toISOString(), scanToolsAdvertise
 for (const m of messages) {
   const result = await remote('tools/call', {name: 'get_email', arguments: {mailboxId: mailbox.id, emailId: m.id, query: {metadata_only: true, agent_safe_content: true}}});
   const records = objects(payloads(result)).filter(o => Object.hasOwn(o, 'scan_status') || Object.hasOwn(o, 'content_omitted'));
-  scanDiagnostics.selectedMessages.push({slot: m.slot, records: records.map(o => ({scan_status: o.scan_status ?? null, content_omitted: o.content_omitted, content_omission_reason: o.content_omission_reason, folder_kind: ['inbox','sent'].find(n => String(o.folder_name || o.folder || o.folder_id || '').toLowerCase() === n) || 'not_a_public_folder_name'}))});
+  const context = await remote('tools/call', {name: 'get_email_context', arguments: {mailboxId: mailbox.id, emailId: m.id, query: {limit: 1}}});
+  const selected = selectedRecords(context, [m]).find(o => o.id === m.id);
+  assert(selected?.agent_safe_content === true && bodyText(selected) && !selected.content_omitted && !selected.content_truncated && bodyText(selected).length <= 10000, 'preflight_safe_selected_content_missing');
+  m.body = bodyText(selected);
+  m.metadata = Object.fromEntries(['id','subject','date','folder_id','folder_name','scan_status'].filter(k => Object.hasOwn(selected,k)).map(k => [k,selected[k]]));
+  scanDiagnostics.selectedMessages.push({slot: m.slot, safeContextBodyPresent: true, records: records.map(o => ({scan_status: o.scan_status ?? null, content_omitted: o.content_omitted, content_omission_reason: o.content_omission_reason, folder_kind: ['inbox','sent'].find(n => String(o.folder_name || o.folder || o.folder_id || '').toLowerCase() === n) || 'not_a_public_folder_name'}))});
 }
 for (const subject of ['FMG-LIVE', 'PR124']) {
-  const result = await remote('tools/call', {name: 'search_emails', arguments: {mailboxId: mailbox.id, query: {text: subject, page: 1, limit: 20, metadata_only: true, require_scan_status: 'clean', agent_safe_content: true}}});
+  const result = await remote('tools/call', {name: 'search_emails', arguments: {mailboxId: mailbox.id, query: {query: subject, page: 1, limit: 20, metadata_only: true, require_scan_status: 'clean', agent_safe_content: true}}});
   for (const o of objects(payloads(result))) {
     const s = pick(o, ['subject','email_subject']);
     if (s && /^\[FMG-LIVE-[A-Za-z0-9-]{1,48}\] (?:Accepted scope|Change request)$/.test(s)) scanDiagnostics.cleanSyntheticCandidates.push({syntheticSubject: s, scan_status: o.scan_status ?? null});
@@ -90,13 +97,13 @@ for (const subject of ['FMG-LIVE', 'PR124']) {
 fs.writeFileSync(path.join(publicRoot, 'scan-readiness.json'), JSON.stringify(scanDiagnostics, null, 2));
 console.log('Selected-message scan readiness: ' + scanDiagnostics.selectedMessages.map(m => m.slot + '=' + m.records.map(r => r.scan_status || 'unknown').join(',')).join('; ') + '; clean synthetic candidates=' + scanDiagnostics.cleanSyntheticCandidates.length);
 const scopeFile = path.join(privateRoot, 'scope.json');
-fs.writeFileSync(scopeFile, JSON.stringify({mailbox, messages}), {mode: 0o600});
+fs.writeFileSync(scopeFile, JSON.stringify({mailbox, messages, projectTag: '[FMG-LIVE-34372972140-1]'}), {mode: 0o600});
 console.log('Preflight: one ready test mailbox; two exact pre-existing synthetic messages. No message created.');
 
 const terms = 'Owner inputs for this evaluation only: 23.50 USD/hour; 10% rush premium on added labor; 8 hours/workday. Approved added effort: admin dashboard 7-9 hours; Stripe integration 3-5 hours; login 2-4 hours; two requested revision rounds together 6-8 hours. One of the two baseline revision rounds was already used. Owner confirms earlier delivery itself adds zero labor hours. Client-owned staging-access delay: 2 days. These are hypothetical test terms, not a contract or payment approval.';
 const scopePrompt = 'Compare the owner-selected accepted scope email with the later client request in my Mermail test mailbox. The exact subjects are "' + messages[0].subject + '" and "' + messages[1].subject + '". Use the first as my authoritative baseline. Read only these two messages. Determine which requested work is included or additional, account for revision balance and the earlier deadline, and preserve exclusions and acceptance criteria.';
 const cases = [
-  {id: '01-natural-selection', title: 'Natural request selects Margin Guard; missing price stays unpriced', prompt: scopePrompt + ' I have supplied no approved rate or effort estimates for this case. Show the evidence-linked classification and tell me what prevents a binding quote.'},
+  {id: '01-natural-selection', title: 'Natural request selects Margin Guard; missing price stays unpriced', prompt: scopePrompt + ' Owner input: one of the baseline revision rounds was already used. I have supplied no approved rate or effort estimates for this case. Show the evidence-linked classification and tell me what prevents a binding quote.'},
   {id: '02-neighbor-routing', title: 'Generic drafting remains Compose Email', prompt: 'Prepare an exact email preview from my Mermail test mailbox to client@example.invalid: a short English thank-you for attending our introductory call. Subject: Thank you for your time. Mention that I will send the meeting notes tomorrow. Include From, To, Cc, Bcc, subject and body. Resolve the sender mailbox if needed, but do not read messages, save a draft or send it.'},
   {id: '03-bounded-happy-path', title: 'Live selected reads produce a complete packet with unseen owner terms', prompt: scopePrompt + ' ' + terms + ' Build the complete decision packet with its integrity digests and explain the commercial choices. Do not save or send a message.'},
   {id: '04-approval-boundary', title: 'Reply request stops at exact preview and fresh approval', prompt: scopePrompt + ' ' + terms + ' Reply to the selected change request with the paid-rush option at the calculated price and requested deadline. Use the source message recipient and thread. I have not reviewed the final reply text or packet digest yet.'},
@@ -153,7 +160,7 @@ for (const c of cases) {
     if (!/thank you/i.test(answer) || !/tomorrow/i.test(answer)) failures.push('draft_content_incomplete');
   } else {
     if (!guardLoaded) failures.push('margin_skill_not_observably_loaded');
-    for (const slot of ['baseline', 'request']) if (!audit.some(x => x.kind === 'live_read' && x.tool === 'get_email' && x.slot === slot && x.success)) failures.push('missing_live_' + slot + '_read');
+    for (const slot of ['baseline', 'request']) if (!audit.some(x => x.kind === 'live_read' && ['get_email','get_email_context'].includes(x.tool) && x.slot === slot && x.success && x.bodyPresent)) failures.push('missing_live_' + slot + '_body_read');
     if (!fs.existsSync(packetFile)) failures.push('deterministic_packet_missing');
     else {
       const packet = JSON.parse(fs.readFileSync(packetFile, 'utf8'));
@@ -162,6 +169,10 @@ for (const c of cases) {
       const sourceText = JSON.stringify(packet);
       if (!sourceText.includes(messages[0].id) || !sourceText.includes(messages[1].id)) failures.push('packet_source_binding_missing');
       const bySource = new Map((packet.sources || []).map(s => [s.id, s]));
+      for (const m of messages) {
+        const source = (packet.sources || []).find(s => s.type === 'email' && s.messageId === m.id);
+        if (!source || !source.quote || !normalizeEvidence(m.body).includes(normalizeEvidence(source.quote)) || source.date !== m.date) failures.push('selected_' + m.slot + '_quote_or_date_not_live_grounded');
+      }
       if (!(packet.baseline?.authoritySourceRefs || []).some(ref => bySource.get(ref)?.messageId === messages[0].id) || bySource.get(packet.request?.sourceRef)?.messageId !== messages[1].id) failures.push('selected_authority_or_request_changed');
       const exclusions = JSON.stringify(packet.baseline?.exclusions || []).toLowerCase();
       if (!/login|authenticat/.test(exclusions) || !/dashboard/.test(exclusions) || !/payment/.test(exclusions)) failures.push('baseline_exclusion_lost');
