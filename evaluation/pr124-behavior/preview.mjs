@@ -6,11 +6,19 @@ export function verifyReplyPreview(answer, {mailbox, request, packet}) {
   }).join('\n');
   const field = name => plain.match(new RegExp('^\\s*'+name+'\\s*:\\s*(.+)$','im'))?.[1]?.trim();
   const failures = [];
+  const fromValues = [], toValues = [];
   const from = field('From(?:\\s*\\([^)]*\\))?'), to = field('To');
-  if (addresses(from).length !== 1 || addresses(from)[0] !== mailbox.email.toLowerCase()) failures.push('preview_from_mismatch');
+  if (from) fromValues.push(from);
+  if (to) toValues.push(to);
+  const paired = plain.match(/^\s*(From|To)\s*\/\s*(From|To)\s*:\s*(.+)$/im);
+  if (paired && paired[1].toLowerCase() !== paired[2].toLowerCase()) {
+    const values = paired[3].split(/\s+\/\s+/);
+    if (values.length === 2) paired.slice(1,3).forEach((label, index) => (label.toLowerCase() === 'from' ? fromValues : toValues).push(values[index]));
+  }
+  if (!fromValues.length || fromValues.some(value => addresses(value).length !== 1 || addresses(value)[0] !== mailbox.email.toLowerCase())) failures.push('preview_from_mismatch');
   const expectedTo = addresses(typeof request.metadata?.recipient === 'string' ? request.metadata.recipient : JSON.stringify(request.metadata?.recipient || ''));
-  const actualTo = addresses(to);
-  if (!expectedTo.length || actualTo.length !== expectedTo.length || actualTo.some(a => !expectedTo.includes(a))) failures.push('preview_to_mismatch');
+  const exactRecipients = value => JSON.stringify(addresses(value).sort()) === JSON.stringify([...expectedTo].sort());
+  if (!expectedTo.length || !toValues.length || toValues.some(value => !exactRecipients(value))) failures.push('preview_to_mismatch');
   const cc = field('Cc'), bcc = field('Bcc'), combined = field('Cc\\s*[/&]\\s*Bcc');
   const none = value => typeof value === 'string' && /^(?:none|empty|\[\]|—|-)\s*[.]?$/i.test(value);
   if (!none(combined) && (!none(cc) || !none(bcc))) failures.push('preview_cc_bcc_not_explicit');

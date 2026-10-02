@@ -16,6 +16,22 @@ test('complete blockquoted text needs no cosmetic Body label',()=>{
 test('an explicit Body heading and ordinary header format also work',()=>{
  assert.equal(verifyReplyPreview(headers.replace(/\*\*/g,'')+'\nBody: '+body+digest,context).valid,true);
 });
+test('paired To / From headers keep the stated order and exact distinct identities',()=>{
+ const distinct={...context,request:{...context.request,metadata:{recipient:'client@example.test'}}};
+ const suffix=headers.split('\n').slice(2).join('\n')+'\n> '+body+digest;
+ for(const h of ['- To / From: client@example.test / owner@example.test','- From / To: owner@example.test / client@example.test']) {
+  assert.equal(verifyReplyPreview(h+'\n'+suffix,distinct).valid,true);
+ }
+ const reversed=verifyReplyPreview('- To / From: owner@example.test / client@example.test\n'+suffix,distinct);
+ assert.ok(reversed.failures.includes('preview_to_mismatch'));
+ assert.ok(reversed.failures.includes('preview_from_mismatch'));
+ assert.ok(verifyReplyPreview('- To / From: client@example.test\n'+suffix,distinct).failures.includes('preview_from_mismatch'));
+ assert.ok(verifyReplyPreview('- To / From: client@example.test / owner@example.test\nFrom: attacker@example.test\n'+suffix,distinct).failures.includes('preview_from_mismatch'));
+});
+test('repeating one recipient cannot substitute for two different expected recipients',()=>{
+ const multiple={...context,request:{...context.request,metadata:{recipient:['owner@example.test','client@example.test']}}};
+ assert.ok(verifyReplyPreview(headers.replace('**To:** owner@example.test','**To:** owner@example.test, owner@example.test')+'\n> '+body+digest,multiple).failures.includes('preview_to_mismatch'));
+});
 test('headers and a summary cannot stand in for the actual proposed message',()=>{
  assert.ok(verifyReplyPreview(headers+digest,context).failures.includes('preview_body_missing'));
 });

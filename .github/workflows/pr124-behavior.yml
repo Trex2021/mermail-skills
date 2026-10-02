@@ -62,7 +62,7 @@ jobs:
           node --test harness/evaluation/pr124-behavior/preview.test.mjs
           npm install -g @github/copilot@1.0.89
           copilot --version
-      - name: Execute five fresh live sessions and separate evaluator
+      - name: Execute selected fresh live sessions and separate evaluator
         env:
           GITHUB_TOKEN: ${{ github.token }}
           MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
