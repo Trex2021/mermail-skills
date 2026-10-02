@@ -2,7 +2,7 @@ const addresses = value => String(value ?? '').toLowerCase().match(/[a-z0-9._%+-
 export function verifyReplyPreview(answer, {mailbox, request, packet}) {
   const plain = answer.replace(/\*\*/g, '').replace(/`/g, '').split(/\r?\n/).map(line => {
     const row = line.match(/^\s*\|\s*([^|]+?)\s*\|\s*([^|]+)\s*\|\s*$/);
-    return row ? row[1] + ': ' + row[2] : line;
+    return row ? row[1] + ': ' + row[2] : line.replace(/^\s*(?:[-*+]\s+|\d+[.)]\s+)/, '');
   }).join('\n');
   const field = name => plain.match(new RegExp('^\\s*'+name+'\\s*:\\s*(.+)$','im'))?.[1]?.trim();
   const failures = [];

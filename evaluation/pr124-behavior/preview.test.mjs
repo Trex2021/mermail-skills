@@ -6,7 +6,12 @@ const headers='**From:** owner@example.test\n**To:** owner@example.test\n**Cc/Bc
 const body='Thank you for the request. We can propose the paid change order at $387.75–$568.70 USD and target October 15, 2026. Added work still needs written approval.';
 const digest='\n### State and integrity\n**Packet digest:** `'+context.packet.integrity.packetDigest+'`';
 test('complete blockquoted text needs no cosmetic Body label',()=>{
- assert.equal(verifyReplyPreview(headers+'\n> '+body+digest,context).valid,true);
+ for(const style of ['plain','bullets','table']) {
+  let h=headers;
+  if(style==='bullets') h=h.split('\n').filter(Boolean).map(line=>'- '+line).join('\n');
+  if(style==='table') h=h.split('\n').filter(Boolean).map(line=>{const [key,...value]=line.split(':');return '| '+key.replace(/\*\*/g,'')+' | '+value.join(':')+' |';}).join('\n');
+  assert.equal(verifyReplyPreview(h+'\n> '+body+digest,context).valid,true,style);
+ }
 });
 test('an explicit Body heading and ordinary header format also work',()=>{
  assert.equal(verifyReplyPreview(headers.replace(/\*\*/g,'')+'\nBody: '+body+digest,context).valid,true);

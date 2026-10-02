@@ -9,6 +9,10 @@ permissions:
   contents: read
   copilot-requests: write
 
+concurrency:
+  group: pr124-behavior-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   production-contract:
     if: github.repository == 'Trex2021/mermail-skills'
