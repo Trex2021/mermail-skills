@@ -22,7 +22,7 @@ jobs:
       - name: Checkout immutable product
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: b337b56cf0c0b7594ea7f1aedc9adaf395dc90b9
+          ref: 80a78dce73588de1a43d8d983503084a664cb1ef
           persist-credentials: false
       - name: Set up Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
@@ -47,7 +47,7 @@ jobs:
       - name: Checkout immutable product
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: b337b56cf0c0b7594ea7f1aedc9adaf395dc90b9
+          ref: 80a78dce73588de1a43d8d983503084a664cb1ef
           path: product
           persist-credentials: false
       - name: Set up Node
@@ -56,19 +56,18 @@ jobs:
           node-version: 22
       - name: Check product and install pinned client
         run: |
-          test "$(git -C product rev-parse HEAD)" = b337b56cf0c0b7594ea7f1aedc9adaf395dc90b9
+          test "$(git -C product rev-parse HEAD)" = 80a78dce73588de1a43d8d983503084a664cb1ef
           npm --prefix product --offline test
           node --test harness/evaluation/pr124-behavior/adapter.test.mjs
           node --test harness/evaluation/pr124-behavior/preview.test.mjs
           npm install -g @github/copilot@1.0.89
           copilot --version
-      - name: Execute selected fresh live sessions and separate evaluator
+      - name: Execute all five fresh live sessions and separate evaluator
         env:
           GITHUB_TOKEN: ${{ github.token }}
           MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
           PRODUCT_ROOT: ${{ github.workspace }}/product
-          PRODUCT_COMMIT: b337b56cf0c0b7594ea7f1aedc9adaf395dc90b9
-          CASE_IDS: '04-approval-boundary'
+          PRODUCT_COMMIT: 80a78dce73588de1a43d8d983503084a664cb1ef
           HARNESS_ROOT: ${{ github.workspace }}/harness/evaluation/pr124-behavior
           EVALUATION_ROOT: ${{ runner.temp }}/pr124-behavior
         run: node harness/evaluation/pr124-behavior/run.mjs

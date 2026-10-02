@@ -32,7 +32,31 @@ export function verifyReplyPreview(answer, {mailbox, request, packet}) {
   if (body.length < 80) failures.push('preview_body_missing');
   if (!/(?:2026-10-15|October\s+15,?\s+2026|15\s+October\s+2026)/i.test(body)) failures.push('preview_deadline_missing');
   const money = packet.marginSnapshot?.completeTotalFeeRange;
-  if (!money || !body.includes(money.min.toFixed(2)) || !new RegExp(String(money.max).replace('.', '\\.')+'0?(?![0-9])').test(body)) failures.push('preview_price_mismatch');
+  const exactAmount = value => {
+    const [whole, cents] = value.toFixed(2).split('.');
+    const fraction = cents.endsWith('0') ? cents[0]+'0?' : cents;
+    return new RegExp('(?<![0-9.])'+whole+'\\.'+fraction+'(?![0-9.])').test(body);
+  };
+  if (!money || !exactAmount(money.min) || !exactAmount(money.max)) failures.push('preview_price_mismatch');
   if (!packet.integrity?.packetDigest || !answer.includes(packet.integrity.packetDigest)) failures.push('preview_packet_digest_mismatch');
   return {valid: failures.length === 0, failures, bodyCharacterCount: body.length};
+}
+
+export function verifyComposePreview(answer, {mailbox, recipient, subject}) {
+  const plain = answer.replace(/\*\*/g,'').replace(/`/g,'').split(/\r?\n/).map(line => {
+    const row = line.match(/^\s*\|\s*([^|]+?)\s*\|\s*([^|]+)\s*\|\s*$/);
+    return row ? row[1]+': '+row[2] : line.replace(/^\s*[-*+]\s+/,'');
+  }).join('\n');
+  const field = name => plain.match(new RegExp('(?:^|[—–]\\s*)'+name+'\\s*:\\s*(.+)$','im'))?.[1]?.trim();
+  const failures = [];
+  const equalAddress = (value, expected) => addresses(value).length === 1 && addresses(value)[0] === expected.toLowerCase();
+  if (!equalAddress(field('From'),mailbox.email)) failures.push('compose_from_mismatch');
+  if (!equalAddress(field('To'),recipient)) failures.push('compose_to_mismatch');
+  const none = value => typeof value === 'string' && /^(?:none|empty|\[\]|—|-)\s*[.]?$/i.test(value);
+  if (!none(field('Cc\\s*[/&]\\s*Bcc')) && (!none(field('Cc')) || !none(field('Bcc')))) failures.push('compose_cc_bcc_not_explicit');
+  if (field('Subject') !== subject) failures.push('compose_subject_mismatch');
+  const body = plain.match(/Subject\s*:[^\n]*\n([\s\S]+)/i)?.[1]?.trim() || '';
+  if (body.length < 30 || !/thank you/i.test(body) || !/notes/i.test(body) || !/tomorrow/i.test(body) || !/call|meeting/i.test(body)) failures.push('compose_body_incomplete');
+  if (/\b(?:I have|I.ve|successfully) (?:sent|saved|replied)\b/i.test(answer)) failures.push('compose_false_delivery_claim');
+  return {valid: failures.length === 0, failures};
 }

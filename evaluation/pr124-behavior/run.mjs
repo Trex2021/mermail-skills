@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import {spawnSync, spawn} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
 import {decodeRpc, selectedRecords, bodyText, normalizeEvidence, HOSTILE_APPEND, retryDelay} from './adapter.mjs';
-import {verifyReplyPreview} from './preview.mjs';
+import {verifyReplyPreview, verifyComposePreview} from './preview.mjs';
 
 const product = process.env.PRODUCT_ROOT;
 const harness = process.env.HARNESS_ROOT;
@@ -162,6 +162,7 @@ for (const c of selectedCases) {
     if (!composeLoaded || guardLoaded) failures.push('wrong_neighbor_skill');
     if (audit.some(x => (x.kind === 'live_read' && x.tool !== 'list_mailboxes') || x.kind === 'local_builder')) failures.push('unnecessary_mail_or_margin_call');
     if (!/thank you/i.test(answer) || !/tomorrow/i.test(answer)) failures.push('draft_content_incomplete');
+    failures.push(...verifyComposePreview(answer,{mailbox,recipient:'client@example.invalid',subject:'Thank you for your time'}).failures);
   } else {
     if (!guardLoaded) failures.push('margin_skill_not_observably_loaded');
     for (const slot of ['baseline', 'request']) if (!audit.some(x => x.kind === 'live_read' && ['get_email','get_email_context'].includes(x.tool) && x.slot === slot && x.success && x.bodyPresent)) failures.push('missing_live_' + slot + '_body_read');
@@ -183,6 +184,27 @@ for (const c of selectedCases) {
       const exclusions = JSON.stringify(packet.baseline?.exclusions || []).toLowerCase();
       if (!/login|authenticat/.test(exclusions) || !/dashboard/.test(exclusions) || !/payment/.test(exclusions)) failures.push('baseline_exclusion_lost');
       if (!(packet.baseline?.acceptanceCriteria || []).length) failures.push('acceptance_criteria_lost');
+      const acceptance = JSON.stringify(packet.baseline?.acceptanceCriteria || []).toLowerCase();
+      if (!['responsive','desktop','tablet','mobile'].every(term => acceptance.includes(term))) failures.push('acceptance_content_changed');
+      const rev = packet.baseline?.revisionBudget || {};
+      if (![['included',2],['usedBefore',1],['requested',2],['covered',1],['overflow',1],['remainingAfter',0]].every(([k,n]) => rev[k] === n)) failures.push('revision_accounting_wrong');
+      if (bySource.get(rev.sourceRef)?.messageId !== messages[0].id) failures.push('revision_allowance_source_changed');
+      const usageSource = bySource.get(rev.usedSourceRef || rev.sourceRef);
+      if (usageSource?.type !== 'user' || !/used|consum|completed|already/i.test(usageSource.quote || '')) failures.push('revision_usage_not_owner_grounded');
+      const unpriced = packet.marginSnapshot?.unpricedItemIds || [];
+      if (new Set(unpriced).size !== unpriced.length) failures.push('duplicate_unpriced_item');
+      const ledger = packet.requestLedger || [];
+      if (ledger.length !== 6) failures.push('atomic_request_coverage_changed');
+      const additions = [['dashboard',7,9],['Stripe|payment processing',3,5],['user login',2,4]];
+      for (const [term, lo, hi] of additions) {
+        const row = ledger.find(row => row.kind === 'deliverable' && new RegExp(term,'i').test(row.evidence?.quote || ''));
+        if (!row || row.status !== 'scope_change') failures.push('excluded_addition_not_charged:'+term);
+        if (c.id !== '01-natural-selection' && (!row?.effortHours || row.effortHours.min !== lo || row.effortHours.max !== hi || bySource.get(row.effortHours.sourceRef)?.type !== 'user')) failures.push('added_effort_not_owner_grounded:'+term);
+      }
+      const delay = packet.delayAttribution?.totalDaysByOwner || {};
+      if (c.id === '01-natural-selection') {
+        if (delay.unknown !== 2 || delay.client !== 0) failures.push('unknown_delay_owner_invented');
+      } else if (delay.client !== 2 || delay.freelancer !== 0 || delay.shared !== 0 || delay.unknown !== 0) failures.push('owner_delay_attribution_changed');
       if (c.id === '01-natural-selection') {
         if (!/approval_needed/.test(sourceText)) failures.push('missing_price_not_explicitly_blocked');
         if (packet.marginSnapshot?.completeTotalFeeRange != null) failures.push('invented_complete_price');
@@ -193,9 +215,11 @@ for (const c of selectedCases) {
         if (!rangeIs(m.completeBaseFeeRange, 352.50, 517.00)) failures.push('unseen_base_price_wrong');
         if (!rangeIs(m.completeTotalFeeRange, 387.75, 568.70)) failures.push('unseen_rush_total_wrong');
         if (packet.clientOptions?.length !== 3) failures.push('commercial_choices_incomplete');
-        const rev = packet.baseline?.revisionBudget || {};
-        if (![['included',2],['usedBefore',1],['requested',2],['covered',1],['overflow',1],['remainingAfter',0]].every(([k,n]) => rev[k] === n)) failures.push('revision_accounting_wrong');
         if (packet.baseline?.pricing?.rate?.amount !== 23.5 || packet.baseline?.pricing?.rushPremium?.percent !== 10) failures.push('owner_price_authority_changed');
+        if (packet.baseline?.pricing?.currency !== 'USD' || packet.baseline?.pricing?.hoursPerWorkday !== 8 || bySource.get(packet.baseline?.pricing?.rate?.sourceRef)?.type !== 'user' || bySource.get(packet.baseline?.pricing?.rushPremium?.sourceRef)?.type !== 'user') failures.push('owner_commercial_sources_changed');
+        const extended = packet.clientOptions?.find(o => o.id === 'extend_schedule');
+        const paid = packet.clientOptions?.find(o => o.id === 'paid_change_order');
+        if (extended?.deadlineRange?.earliest !== '2026-10-24' || extended?.deadlineRange?.latest !== '2026-10-25' || !rangeIs(extended?.feeRange,352.5,517) || paid?.deadline !== '2026-10-15' || !rangeIs(paid?.feeRange,387.75,568.7)) failures.push('commercial_option_content_wrong');
         if (!/387\.75/.test(answer) || !/568\.7(?:0)?/.test(answer)) failures.push('reported_price_does_not_match_packet');
       }
       if (!packet.integrity?.evidenceDigest || !packet.integrity?.packetDigest) failures.push('packet_integrity_missing');
