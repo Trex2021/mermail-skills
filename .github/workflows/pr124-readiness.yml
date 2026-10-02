@@ -1,0 +1,30 @@
+name: PR124 safe source readiness
+on:
+  push:
+    branches: [evaluation/pr124-behavior-20261002]
+    paths: [evaluation/pr124-behavior/readiness.mjs, .github/workflows/pr124-readiness.yml]
+permissions:
+  contents: read
+jobs:
+  readiness:
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Read bounded synthetic-message readiness
+        env:
+          MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+        run: node evaluation/pr124-behavior/readiness.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: pr124-readiness-${{ github.run_id }}
+          path: ${{ runner.temp }}/pr124-readiness/
+          retention-days: 14
+          if-no-files-found: error
