@@ -1,0 +1,28 @@
+{
+  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "harnessHead": "83009bfb063b42888db52573f5ebf95ce8a4ff09",
+  "runId": "37148484024",
+  "jobId": "111277224511",
+  "jobUrl": "https://github.com/Trex2021/mermail-skills/actions/runs/37148484024/job/111277224511",
+  "conclusion": "success",
+  "productChecks": {
+    "freelanceMarginGuard": 76,
+    "fundingGate": 57,
+    "remoteContract": 6,
+    "total": 139
+  },
+  "harnessChecks": {
+    "adapter": 8,
+    "exactPreview": 14,
+    "total": 22
+  },
+  "behaviorCases": 5,
+  "sourceLogExcerpt": [
+    "2026-10-03T19:36:24.2132195Z Validated 76 Freelance Margin Guard checks.",
+    "2026-10-03T19:36:24.6318920Z Validated 57 Funding Gate checks.",
+    "2026-10-03T19:36:25.8539308Z # tests 6",
+    "2026-10-03T19:36:26.0005195Z # tests 8",
+    "2026-10-03T19:36:26.1260297Z # tests 14",
+    "2026-10-03T19:43:00.8745351Z Behavior evidence: 5/5 passed. Product head unchanged. No external write was forwarded."
+  ]
+}

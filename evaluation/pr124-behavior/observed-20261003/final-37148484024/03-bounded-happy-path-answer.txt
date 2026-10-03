@@ -1,0 +1,35 @@
+**The accepted-scope email is the baseline you selected.** The comparison finds additional scope and an earlier deadline request. I used the `mermail-freelance-margin-guard` skill and read only the two specified messages. Both were in Sent, and sender authentication was unknown; the baseline is therefore treated as authoritative because you selected it, not as independent proof of client identity.
+
+### Baseline
+- **Included:** one responsive landing page and two revision rounds; one round was already used, leaving **one**.
+- **Deadline:** 2026-10-20.
+- **Exclusions preserved:** authenticated application and login, admin dashboard, and payment processing.
+- **Acceptance criterion preserved:** responsive at the agreed desktop, tablet, and mobile breakpoints.
+
+### Request ledger
+
+| Request | Classification | Effort and provenance |
+|---|---|---|
+| Admin dashboard | Additional; explicitly excluded | 7–9 hours, owner-approved estimate |
+| Stripe payment processing | Additional; explicitly excluded | 3–5 hours, owner-approved estimate |
+| User login | Additional; explicitly excluded | 2–4 hours, owner-approved estimate |
+| Two more revision rounds | One round is **in scope** from the remaining allowance; the other is **additional** | Owner estimate is 6–8 hours for both; the packet prorates this to 3–4 hours for each round, so only the overflow round is added labor |
+| Deliver by 2026-10-15 | Scope change: five calendar days earlier than baseline | 0 added labor hours for the earlier date itself, as you specified |
+
+No new acceptance criteria were requested; the baseline criterion remains unchanged.
+
+### Margin snapshot
+The additional work totals **15–22 hours**: dashboard, Stripe, login, and the one revision round beyond the remaining allowance. At the owner-approved **$23.50/hour**, ordinary added fees are **$352.50–$517.00 USD**. The owner-approved **10% rush premium on added labor** is **$35.25–$51.70**, making the paid change-order range **$387.75–$568.70 USD**. These figures price the additional work, not the revision round that remains included.
+
+### Delay attribution
+The packet records a **2-day client-owned staging-access delay**, based on your supplied ownership and duration. This is separate from the requested five-day deadline compression.
+
+### Client options
+These are negotiation previews, not accepted terms:
+- **Remove or swap:** remove the additional requests, or agree an effort-equivalent swap before work starts; retain the 2026-10-20 deadline and original fee.
+- **Extend schedule:** keep the additions at the ordinary rate, **$352.50–$517.00**, and extend to **2026-10-24–2026-10-25**, including the attributed client delay.
+- **Paid change order:** keep the additions and requested **2026-10-15** deadline for **$387.75–$568.70**, including the approved rush premium.
+
+**State:** `scope_change_detected`. **Integrity:** evidence SHA-256 `52aac873602375584a7e1c57c1f72434e1f60293b1b3e4e1bbefcb81a33ddc0d`; packet SHA-256 `e2714ef66e5c17cd4db1e34afadccdbb6b839dbd7a6bdd543dfd604279e601f5`. The builder verified both digests and correspondence for the two selected email sources.
+
+No message was drafted or sent, and no option was approved. No funding gate was run; these hypothetical terms are not a contract or payment approval.

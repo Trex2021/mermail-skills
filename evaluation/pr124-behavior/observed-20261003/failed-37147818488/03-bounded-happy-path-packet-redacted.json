@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "name": "FMG-LIVE-34372972140-1"
+  },
+  "state": "scope_change_detected",
+  "sources": [
+    {
+      "id": "accepted-scope",
+      "type": "email",
+      "messageId": "[SELECTED_MESSAGE_ID]",
+      "date": "2026-09-09",
+      "quote": "one responsive landing page and two revision rounds"
+    },
+    {
+      "id": "change-request",
+      "type": "email",
+      "messageId": "[SELECTED_MESSAGE_ID]",
+      "date": "2026-09-09",
+      "quote": "add an admin dashboard, Stripe payment processing, user login, two more revision rounds, and deliver five calendar days earlier (2026-10-15)."
+    },
+    {
+      "id": "owner-pricing",
+      "type": "user",
+      "label": "Owner-approved pricing inputs",
+      "quote": "23.50 USD/hour; 10% rush premium on added labor; 8 hours/workday"
+    },
+    {
+      "id": "owner-revision-usage",
+      "type": "user",
+      "label": "Owner-confirmed prior revision usage",
+      "quote": "One of the two baseline revision rounds was already used."
+    },
+    {
+      "id": "owner-est-dashboard",
+      "type": "user",
+      "label": "Owner-approved admin dashboard effort",
+      "quote": "admin dashboard 7-9 hours"
+    },
+    {
+      "id": "owner-est-stripe",
+      "type": "user",
+      "label": "Owner-approved Stripe integration effort",
+      "quote": "Stripe integration 3-5 hours"
+    },
+    {
+      "id": "owner-est-login",
+      "type": "user",
+      "label": "Owner-approved login effort",
+      "quote": "login 2-4 hours"
+    },
+    {
+      "id": "owner-est-revisions",
+      "type": "user",
+      "label": "Owner-approved effort for both requested revision rounds",
+      "quote": "two requested revision rounds together 6-8 hours"
+    },
+    {
+      "id": "owner-est-deadline",
+      "type": "user",
+      "label": "Owner confirmation of no added labor for earlier delivery",
+      "quote": "Earlier delivery itself adds zero labor hours."
+    },
+    {
+      "id": "owner-delay",
+      "type": "user",
+      "label": "Owner-confirmed client-owned staging-access delay",
+      "quote": "Client-owned staging-access delay: 2 days."
+    }
+  ],
+  "baseline": {
+    "authoritySourceRefs": [
+      "accepted-scope"
+    ],
+    "deliverables": [
+      {
+        "id": "landing-page",
+        "label": "One responsive landing page",
+        "sourceRef": "accepted-scope"
+      }
+    ],
+    "exclusions": [
+      {
+        "text": "Authenticated application",
+        "sourceRef": "accepted-scope"
+      },
+      {
+        "text": "Login",
+        "sourceRef": "accepted-scope"
+      },
+      {
+        "text": "Admin dashboard",
+        "sourceRef": "accepted-scope"
+      },
+      {
+        "text": "Payment processing",
+        "sourceRef": "accepted-scope"
+      }
+    ],
+    "acceptanceCriteria": [
+      {
+        "text": "Responsive at agreed desktop, tablet, and mobile breakpoints",
+        "sourceRef": "accepted-scope"
+      }
+    ],
+    "revisionBudget": {
+      "included": 2,
+      "usedBefore": 1,
+      "sourceRef": "accepted-scope",
+      "requested": 2,
+      "covered": 1,
+      "overflow": 1,
+      "remainingAfter": 0,
+      "usedSourceRef": "owner-revision-usage"
+    },
+    "deadline": {
+      "date": "2026-10-20",
+      "sourceRef": "accepted-scope"
+    },
+    "pricing": {
+      "currency": "USD",
+      "hoursPerWorkday": 8,
+      "rate": {
+        "amount": 23.5,
+        "unit": "hour",
+        "sourceRef": "owner-pricing"
+      },
+      "rushPremium": {
+        "percent": 10,
+        "basis": "added_labor_fee",
+        "sourceRef": "owner-pricing"
+      }
+    }
+  },
+  "request": {
+    "sourceRef": "change-request",
+    "requestedDeadline": "2026-10-15",
+    "compressionDays": 5
+  },
+  "requestLedger": [
+    {
+      "id": "admin-dashboard",
+      "requestItemId": "admin-dashboard",
+      "label": "Add an admin dashboard",
+      "kind": "deliverable",
+      "status": "scope_change",
+      "reason": "the request is explicitly excluded by the approved baseline",
+      "evidence": {
+        "requestSourceRef": "change-request",
+        "quote": "add an admin dashboard",
+        "baselineSourceRefs": [
+          "accepted-scope"
+        ]
+      },
+      "effortHours": {
+        "min": 7,
+        "max": 9,
+        "sourceRef": "owner-est-dashboard"
+      }
+    },
+    {
+      "id": "stripe-processing",
+      "requestItemId": "stripe-processing",
+      "label": "Add Stripe payment processing",
+      "kind": "deliverable",
+      "status": "scope_change",
+      "reason": "the request is explicitly excluded by the approved baseline",
+      "evidence": {
+        "requestSourceRef": "change-request",
+        "quote": "Stripe payment processing",
+        "baselineSourceRefs": [
+          "accepted-scope"
+        ]
+      },
+      "effortHours": {
+        "min": 3,
+        "max": 5,
+        "sourceRef": "owner-est-stripe"
+      }
+    },
+    {
+      "id": "user-login",
+      "requestItemId": "user-login",
+      "label": "Add user login",
+      "kind": "deliverable",
+      "status": "scope_change",
+      "reason": "the request is explicitly excluded by the approved baseline",
+      "evidence": {
+        "requestSourceRef": "change-request",
+        "quote": "user login",
+        "baselineSourceRefs": [
+          "accepted-scope"
+        ]
+      },
+      "effortHours": {
+        "min": 2,
+        "max": 4,
+        "sourceRef": "owner-est-login"
+      }
+    },
+    {
+      "id": "requested-revisions:included",
+      "requestItemId": "requested-revisions",
+      "label": "Two additional revision rounds",
+      "kind": "revision",
+      "status": "in_scope",
+      "reason": "covered by the remaining approved revision allowance",
+      "evidence": {
+        "requestSourceRef": "change-request",
+        "quote": "two more revision rounds",
+        "baselineSourceRefs": [
+          "accepted-scope"
+        ]
+      },
+      "units": 1,
+      "effortHours": {
+        "min": 3,
+        "max": 4,
+        "sourceRef": "owner-est-revisions"
+      }
+    },
+    {
+      "id": "requested-revisions:overflow",
+      "requestItemId": "requested-revisions",
+      "label": "Two additional revision rounds",
+      "kind": "revision",
+      "status": "scope_change",
+      "reason": "exceeds the remaining approved revision allowance",
+      "evidence": {
+        "requestSourceRef": "change-request",
+        "quote": "two more revision rounds",
+        "baselineSourceRefs": [
+          "accepted-scope"
+        ]
+      },
+      "units": 1,
+      "effortHours": {
+        "min": 3,
+        "max": 4,
+        "sourceRef": "owner-est-revisions"
+      }
+    },
+    {
+      "id": "earlier-deadline",
+      "requestItemId": "earlier-deadline",
+      "label": "Deliver five calendar days earlier on 2026-10-15",
+      "kind": "deadline",
+      "status": "scope_change",
+      "reason": "the request exceeds an approved quantity or limit",
+      "evidence": {
+        "requestSourceRef": "change-request",
+        "quote": "deliver five calendar days earlier (2026-10-15)",
+        "baselineSourceRefs": [
+          "accepted-scope"
+        ]
+      },
+      "effortHours": {
+        "min": 0,
+        "max": 0,
+        "sourceRef": "owner-est-deadline"
+      }
+    }
+  ],
+  "marginSnapshot": {
+    "knownAddedHours": {
+      "min": 15,
+      "max": 22
+    },
+    "unpricedItemIds": [],
+    "rate": {
+      "amount": 23.5,
+      "unit": "hour",
+      "sourceRef": "owner-pricing"
+    },
+    "effectiveHourlyRate": 23.5,
+    "currency": "USD",
+    "rateSourceRef": "owner-pricing",
+    "knownBaseFeeRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "completeBaseFeeRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "feeAtRiskRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "basePricingState": "priced",
+    "rushPremium": {
+      "percent": 10,
+      "basis": "added_labor_fee",
+      "sourceRef": "owner-pricing"
+    },
+    "rushPremiumAmountRange": {
+      "min": 35.25,
+      "max": 51.7
+    },
+    "rushState": "priced",
+    "completeTotalFeeRange": {
+      "min": 387.75,
+      "max": 568.7
+    },
+    "pricingState": "priced"
+  },
+  "delayAttribution": {
+    "events": [
+      {
+        "id": "staging-access-delay",
+        "label": "Staging credentials supplied after agreed access date",
+        "owner": "client",
+        "delayDays": 2,
+        "sourceRef": "owner-delay",
+        "evidenceQuote": "Client-owned staging-access delay: 2 days."
+      }
+    ],
+    "totalDaysByOwner": {
+      "client": 2,
+      "freelancer": 0,
+      "shared": 0,
+      "unknown": 0
+    }
+  },
+  "clientOptions": [
+    {
+      "id": "remove_or_swap",
+      "title": "Remove or swap added scope",
+      "pricingState": "not_applicable",
+      "feeRange": {
+        "min": 0,
+        "max": 0
+      },
+      "deadline": "2026-10-20",
+      "note": "Remove additions or confirm an effort-equivalent swap before work starts."
+    },
+    {
+      "id": "extend_schedule",
+      "title": "Keep additions and extend the schedule",
+      "pricingState": "priced",
+      "feeRange": {
+        "min": 352.5,
+        "max": 517
+      },
+      "extensionDays": {
+        "min": 4,
+        "max": 5
+      },
+      "deadlineRange": {
+        "earliest": "2026-10-24",
+        "latest": "2026-10-25"
+      },
+      "note": "Use the ordinary owner-approved rate and include explicitly attributed client delay."
+    },
+    {
+      "id": "paid_change_order",
+      "title": "Approve a paid change order at the requested deadline",
+      "pricingState": "priced",
+      "feeRange": {
+        "min": 387.75,
+        "max": 568.7
+      },
+      "deadline": "2026-10-15",
+      "note": "Includes only an owner-approved rush rule; otherwise pricing remains approval_needed."
+    }
+  ],
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "sorted-json-v1",
+    "evidenceDigest": "2ad4e2f5c4a05c10be67b5f5b69112f8581a186010fb274735fa9c2381308985",
+    "packetDigest": "75f08d12fb5f0dfb25f66c04d47676a8cc49e7d772fb55d6e2fe1f83dd6eb17d"
+  }
+}

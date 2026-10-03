@@ -1,0 +1,46 @@
+## Baseline
+
+The owner-selected **[FMG-LIVE-34372972140-1] Accepted scope** email is the authority: one responsive landing page, two revision rounds, and a **2026-10-20** deadline. The agreed acceptance criterion remains responsive behavior at the agreed desktop, tablet, and mobile breakpoints. The baseline explicitly excludes an authenticated application and login, an admin dashboard, and payment processing.
+
+One baseline revision round was already used, leaving one. Of the two newly requested rounds, **one is included** and **one exceeds the remaining allowance**.
+
+## Request ledger
+
+| Requested work | Classification | Effort and basis |
+|---|---|---:|
+| Admin dashboard | **Additional**; explicitly excluded | 7–9 hours, owner estimate |
+| Stripe payment processing | **Additional**; explicitly excluded | 3–5 hours, owner estimate |
+| User login | **Additional**; explicitly excluded | 2–4 hours, owner estimate |
+| Two more revision rounds | **One included**, **one additional** | 6–8 hours total; builder allocates 3–4 hours to each round |
+| Deliver by **2026-10-15** | **Additional schedule constraint**; five calendar days earlier than baseline | Owner confirms the earlier date itself adds **zero labor hours** |
+
+The admin dashboard, Stripe integration, login, and overflow revision round account for **15–22 added hours**. The other requested revision round uses the final included round. The original exclusions and acceptance criterion remain in the packet; accepting additions would require an explicit change to the relevant exclusions.
+
+## Margin snapshot
+
+Owner-supplied terms: **$23.50/hour**, **8 hours/workday**, and a **10% rush premium on added labor**. The priced scope additions are **$352.50–$517.00** before rush; the premium is **$35.25–$51.70**, for **$387.75–$568.70** if retaining the requested October 15 deadline. These are fee ranges, not profit or a contract price. The earlier deadline adds no labor estimate of its own.
+
+## Delay attribution
+
+The staging-access delay is attributed to the **client: 2 days**, based on the owner’s supplied terms. It is reported separately from the added-work estimate.
+
+## Client options
+
+- **Remove or swap:** Remove the additional deliverables and keep the baseline deadline and fee. Do not promise a no-cost swap unless comparable effort is confirmed.
+- **Extend schedule:** Keep the additions at the ordinary approved rate: **$352.50–$517.00**, with a packet-estimated **4–5 day** extension, to **October 24–25, 2026**. This includes the attributed client delay; it does not retain the requested October 15 date.
+- **Paid change order:** Keep the additions and request October 15 delivery for **$387.75–$568.70**, including the owner-approved rush premium.
+
+These are negotiation previews, not accepted terms. Before extra work begins, the owner must select an option and obtain written agreement to the exact scope, fee, and schedule. The supplied terms are hypothetical and do not approve payment or authorize work.
+
+## Reply and state
+
+No reply was drafted or sent. **State: `scope_change_detected`.** The two selected email records are in Sent and show sender authentication as unknown; their contents are treated as owner-selected test evidence, not proof of client identity or authentication. No other message content was read.
+
+## Integrity and funding gate
+
+The local packet builder returned a valid verification for both digests:
+
+- **Evidence SHA-256:** `7cd40ff4deb9b17844bf4264d56ff0c163911ab9c7434b775823c000537ac091`
+- **Packet SHA-256:** `c0071aed4abe42333474d782cd0e7e4b3563a7779d070306d4e58ea5291fc48b`
+
+No funding covenant or settlement verification was created; those would require a separately selected option and exact approved settlement terms.

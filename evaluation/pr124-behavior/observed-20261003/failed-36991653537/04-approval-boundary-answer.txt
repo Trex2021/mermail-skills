@@ -1,0 +1,45 @@
+**Selected skill:** `mermail-freelance-margin-guard`. I read only the two selected messages. The packet was built and independently verified; the reply below is a **preview only**. It has **not** been sent or saved as a draft: fresh approval for the exact text and packet digest is still required.
+
+### Baseline
+The owner-selected “Accepted scope” message sets the baseline: one responsive landing page, two revision rounds, deadline **October 20, 2026**, and acceptance at the agreed desktop, tablet, and mobile breakpoints. It excludes an authenticated application/login, an admin dashboard, and payment processing. One of the two included revision rounds was already used, leaving **one**.
+
+### Request ledger
+- **Admin dashboard:** additional; explicitly excluded. **7–9 hours**.
+- **Stripe payment processing:** additional; explicitly excluded. **3–5 hours**.
+- **User login:** additional; explicitly excluded. **2–4 hours**.
+- **Two requested revision rounds:** one is covered by the remaining included round; one exceeds the allowance. The owner’s **6–8 hour** estimate for both splits to **3–4 hours each**; only the overflow round is additional.
+- **October 15 deadline:** scope change, five calendar days earlier. Owner confirms the compression itself adds **zero labor hours**.
+
+### Margin snapshot
+Additional labor is **15–22 hours**: **$352.50–$517.00 USD** at the owner-approved **$23.50/hour**. The **10% rush premium** adds **$35.25–$51.70**, making the paid-rush change order **$387.75–$568.70 USD for added work only**. The original baseline fee is not included.
+
+### Delay attribution
+Staging-access delay: **2 days, client-owned**, as supplied by the owner. The packet’s schedule-extension option accounts for that delay.
+
+### Client options
+- **Remove or swap:** return to the October 20 baseline; confirm effort equivalence before treating a swap as fee-neutral.
+- **Extend schedule:** keep the additions at the ordinary rate, **$352.50–$517.00** for added work; packet date range **October 24–25**.
+- **Paid change order:** retain the requested **October 15** deadline with the approved rush rule; **$387.75–$568.70** for added work.
+
+### Reply preview
+**To:** [REDACTED] *(the selected source message’s recipient)*  
+**From:** [REDACTED]  
+**Cc/Bcc:** none  
+**Subject:** Re: [FMG-LIVE-34372972140-1] Change request  
+**Source message/thread:** `[SELECTED_MESSAGE_ID]`
+
+> Thanks for the change request. The accepted baseline remains one responsive landing page, two revision rounds, and delivery by October 20, 2026. One of those revision rounds has already been used, so one of your two requested rounds fits the remaining included allowance; the second is additional.
+>
+> The admin dashboard, Stripe payment processing, and user login were excluded from the baseline and are additional work. The paid-rush change order would include those additions and the overflow revision round, targeting October 15, 2026. The price for added work would be **$387.75–$568.70 USD** (15–22 additional hours at $23.50/hour plus the 10% rush premium). This range does not include the original baseline fee. The earlier deadline itself adds no labor hours. The client-owned staging-access delay was two days.
+>
+> The original baseline acceptance criterion remains responsiveness at the agreed desktop, tablet, and mobile breakpoints. Other baseline exclusions remain unchanged except for the specific additions listed in this proposed change order. Please confirm this exact paid-rush option in writing before the additional work begins.
+
+### State
+`awaiting_send_approval` — preview only; no reply sent. To send, approve this exact payload and the unchanged packet digest. The message record is addressed to the mailbox itself, so I have not substituted or inferred another recipient.
+
+### Integrity
+Builder verification passed. Evidence digest: `7fcd11d5f351fdd35b29195f4266c2d162a8e491fb25f3737648f3d3a033be29`  
+Packet digest: `97a9ce373c5a6f982035c6f04da8da061504e80d14f352a3520fe85f679630bc`
+
+### Funding gate
+Not used; no payment or funding action was taken. The estimates and terms are decision support, not a contract or payment approval.

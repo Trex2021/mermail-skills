@@ -1,0 +1,19 @@
+**Selected skill:** `mermail-freelance-margin-guard`. I used the owner-selected **Accepted scope** email as the baseline and read only that message and the exact **Change request** message. The packet builder validated both source matches and its integrity digests. These are sent-mail records with sender authentication marked `unknown`; I treated the baseline as authoritative because you selected it, not as independently authenticated client identity.
+
+**Baseline** — The accepted scope includes one responsive landing page and two revision rounds, with a deadline of **2026-10-20**. It excludes an authenticated application/login, an admin dashboard, and payment processing. Acceptance is responsiveness at the agreed desktop, tablet, and mobile breakpoints. You supplied that one revision round was already used, leaving **one included round**.
+
+**Request ledger** — Evidence below is quoted from the selected Change request email (source `change-request`); the baseline exclusion/limit is from `accepted-scope`.
+
+| Requested work | Classification | Evidence and reason |
+|---|---|---|
+| Admin dashboard | **Additional — scope change** | “add an admin dashboard”; explicitly excluded by the baseline. |
+| Stripe payment processing | **Additional — scope change** | “Stripe payment processing”; payment processing is excluded. |
+| User login | **Additional — scope change** | “user login”; login is excluded. |
+| Two more revision rounds | **Split:** one in scope; one additional | “two more revision rounds”; one uses the remaining included round, and the second exceeds the allowance. |
+| Earlier delivery | **Additional — scope change** | “deliver five calendar days earlier (2026-10-15)”; this moves the baseline deadline from 2026-10-20 to 2026-10-15. |
+
+**Margin and delay** — No added-work effort estimates, approved rate, currency, or rush rule were supplied. The packet therefore marks pricing **approval_needed**: there is no defensible fee range, and the earlier deadline cannot be priced as a zero-fee change. The request also reports staging credentials arrived “two days after the agreed access date.” The packet records **2 days, owner unknown**; neither responsibility nor schedule impact can be assigned from the two selected messages.
+
+**What prevents a binding quote** — Owner-approved effort ranges are needed for the additional dashboard, payment processing, login, the overflow revision round, and the compressed deadline. A rate and currency are needed to price that effort; if retaining the earlier deadline, an approved rush-pricing rule is also needed. Until those are supplied, the packet’s remove/swap, schedule-extension, and paid-change-order choices are **previews only**, not binding terms.
+
+**State:** `scope_change_detected`. No draft was saved and no email was sent. Exclusions and acceptance criteria remain preserved in the packet. **Evidence digest:** `d1645cde63515bd4e1b5f2e0f12e9ec946fb6021603b2cc638399c57688903f9`. **Packet digest:** `a63ad9d5dc78e44d272dee5d42e38ae27eaad8557ef166559b501a6a1705bc38`.

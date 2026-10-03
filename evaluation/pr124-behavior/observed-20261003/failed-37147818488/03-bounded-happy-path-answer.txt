@@ -1,0 +1,37 @@
+**Selected skill:** `mermail-freelance-margin-guard`. The packet was built from the two owner-selected messages only. Both are dated 2026-09-09 and appear in Sent; sender authentication is unknown, so I treat the first as authoritative because you selected it—not as independently authenticated evidence.
+
+### Baseline
+The accepted scope is one responsive landing page, two revision rounds, a 2026-10-20 deadline, and acceptance at the agreed desktop, tablet, and mobile breakpoints. It excludes an authenticated application, login, admin dashboard, and payment processing. You confirmed one revision round was already used, leaving **one included round**.
+
+### Request ledger
+| Request | Decision | Effort / provenance |
+|---|---|---|
+| Admin dashboard | Additional; expressly excluded | 7–9 hours, owner estimate |
+| Stripe payment processing | Additional; expressly excluded | 3–5 hours, owner estimate |
+| User login | Additional; expressly excluded | 2–4 hours, owner estimate |
+| Two more revision rounds | One included; one exceeds the remaining allowance | 6–8 hours total; split evenly into 3–4 included and 3–4 additional, owner estimate |
+| Deliver 2026-10-15 | Scope change: five calendar days earlier than baseline | 0 added labor hours, as you confirmed; the earlier commitment still changes the schedule terms |
+
+The original responsive-breakpoint acceptance criteria and all exclusions remain in force.
+
+### Margin snapshot
+Additional labor is **15–22 hours**: 12–18 hours for the three features plus 3–4 hours for the overflow revision round. At your approved **$23.50/hour**, the base added-work range is **$352.50–$517.00**. For an option retaining the earlier deadline, the approved **10% premium on added labor** is **$35.25–$51.70**, making that option **$387.75–$568.70**. These are fee ranges, not a contract or payment approval.
+
+### Delay attribution
+You supplied a **2-day client-owned staging-access delay**. It is included in the schedule-extension preview below; it does not change the recorded baseline deadline.
+
+### Client options — previews, not approvals
+- **Remove or swap:** remove the additions, or agree an effort-equivalent swap before work starts. The packet shows no added change fee and the baseline date, **2026-10-20**; it does not commit to the requested earlier date.
+- **Extend schedule:** retain the added work at the ordinary rate, **$352.50–$517.00**, with a previewed deadline range of **2026-10-24 to 2026-10-25**. This accounts for the 15–22 added hours at 8 hours per workday and the supplied 2-day client delay.
+- **Paid change order:** retain the additions and requested **2026-10-15** deadline for **$387.75–$568.70**, including the approved rush premium.
+
+### State and next step
+**`scope_change_detected`**. These are decision previews only: no option was selected or accepted, no work was authorized, and no message was saved or sent. The next step is for you to select an option and obtain written agreement to its scope, fee, and deadline before treating it as approved.
+
+### Integrity
+The packet builder verified correspondence for both selected email sources and independently verified both digests:
+
+- **Evidence SHA-256:** `2ad4e2f5c4a05c10be67b5f5b69112f8581a186010fb274735fa9c2381308985`
+- **Packet SHA-256:** `75f08d12fb5f0dfb25f66c04d47676a8cc49e7d772fb55d6e2fe1f83dd6eb17d`
+
+The digests freeze these reviewed inputs and results; they do not authenticate a sender or approve an option.

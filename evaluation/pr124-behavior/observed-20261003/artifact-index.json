@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "recordedDate": "2026-10-03",
+  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "client": "GitHub Copilot CLI 1.0.89",
+  "scope": "One complete final run; historical failed runs retained unchanged; redacted presentation evidence, not original private packet bodies.",
+  "artifacts": [
+    {
+      "runId": "37148484024",
+      "directory": "final-37148484024",
+      "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+      "passedCases": 5,
+      "harnessHead": "83009bfb063b42888db52573f5ebf95ce8a4ff09",
+      "runUrl": "https://github.com/Trex2021/mermail-skills/actions/runs/37148484024",
+      "runConclusion": "success",
+      "artifactId": 11282613134,
+      "artifactName": "pr124-blind-behavior-37148484024",
+      "sizeBytes": 26087,
+      "archivePath": "archives/37148484024.zip",
+      "archiveSha256": "b767033905bed3f543af0931a1df0dbf181a23acc36332d238bbdcecd030f0e7",
+      "completedAt": "2026-10-03T19:43:05Z"
+    }
+  ],
+  "historicalArtifacts": [
+    {
+      "runId": "36991653537",
+      "directory": "failed-36991653537",
+      "productHead": "80a78dce73588de1a43d8d983503084a664cb1ef",
+      "passedCases": 2,
+      "harnessHead": "733206c7d520cbc55049a4114027a0b3f16ace34",
+      "runUrl": "https://github.com/Trex2021/mermail-skills/actions/runs/36991653537",
+      "runConclusion": "failure",
+      "artifactId": 11219629694,
+      "artifactName": "pr124-blind-behavior-36991653537",
+      "sizeBytes": 26461,
+      "archivePath": "archives/36991653537.zip",
+      "archiveSha256": "522c0033817d316e86389b84c154e0840ec3d1252b576d5dca4f453438d82e0e",
+      "completedAt": "2026-10-02T09:52:01Z"
+    },
+    {
+      "runId": "37147088726",
+      "directory": "failed-37147088726",
+      "productHead": "3f11d4e5f1ba734338e6c4c7eb9d5c75022d6ba3",
+      "passedCases": 2,
+      "harnessHead": "7f6cb3f35b6391157c24303a46005039c4bc8acf",
+      "runUrl": "https://github.com/Trex2021/mermail-skills/actions/runs/37147088726",
+      "runConclusion": "failure",
+      "artifactId": 11282586582,
+      "artifactName": "pr124-blind-behavior-37147088726",
+      "sizeBytes": 26441,
+      "archivePath": "archives/37147088726.zip",
+      "archiveSha256": "94a8c712372f19fceeadf49da107975420e947533dd1f9334e2a6bfa3243a0fb",
+      "completedAt": "2026-10-03T19:19:48Z"
+    },
+    {
+      "runId": "37147818488",
+      "directory": "failed-37147818488",
+      "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+      "passedCases": 4,
+      "harnessHead": "3d5ca14bc1c088f1e1dce319c97d211e8ebdf2e6",
+      "runUrl": "https://github.com/Trex2021/mermail-skills/actions/runs/37147818488",
+      "runConclusion": "failure",
+      "artifactId": 11282958411,
+      "artifactName": "pr124-blind-behavior-37147818488",
+      "sizeBytes": 25967,
+      "archivePath": "archives/37147818488.zip",
+      "archiveSha256": "6cfac1b0dc078898f24ef217ba0e5b1551a999ec761082ff4b62e3688fe46045",
+      "completedAt": "2026-10-03T19:32:08Z"
+    }
+  ]
+}

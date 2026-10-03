@@ -1,0 +1,10 @@
+**Selected skill:** `mermail-compose-email`. The only mailbox returned was `[REDACTED]` (`[TEST_MAILBOX_ID]`); it wasn’t explicitly labeled as a test mailbox.
+
+**Preview only** — not saved or sent.
+
+From: [REDACTED]  
+To: [EMAIL]  
+Cc: None  
+Bcc: None  
+Subject: Thank you for your time  
+Body: Thank you for taking the time to attend our introductory call. I’ll send the meeting notes tomorrow.

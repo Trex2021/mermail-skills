@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "name": "FMG-LIVE-34372972140-1"
+  },
+  "state": "scope_change_detected",
+  "sources": [
+    {
+      "id": "accepted-scope-email",
+      "type": "email",
+      "messageId": "[SELECTED_MESSAGE_ID]",
+      "date": "2026-09-09",
+      "quote": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20."
+    },
+    {
+      "id": "change-request-email",
+      "type": "email",
+      "messageId": "[SELECTED_MESSAGE_ID]",
+      "date": "2026-09-09",
+      "quote": "add an admin dashboard, Stripe payment processing, user login, two more revision rounds, and deliver five calendar days earlier (2026-10-15). Staging credentials were supplied two days after the agreed access date."
+    },
+    {
+      "id": "owner-rate",
+      "type": "user",
+      "label": "Owner-approved hourly rate",
+      "quote": "23.50 USD/hour"
+    },
+    {
+      "id": "owner-rush-rule",
+      "type": "user",
+      "label": "Owner-approved rush premium",
+      "quote": "10% rush premium on added labor"
+    },
+    {
+      "id": "owner-est-admin",
+      "type": "user",
+      "label": "Owner-approved admin dashboard estimate",
+      "quote": "7-9 hours"
+    },
+    {
+      "id": "owner-est-stripe",
+      "type": "user",
+      "label": "Owner-approved Stripe integration estimate",
+      "quote": "3-5 hours"
+    },
+    {
+      "id": "owner-est-login",
+      "type": "user",
+      "label": "Owner-approved login estimate",
+      "quote": "2-4 hours"
+    },
+    {
+      "id": "owner-est-revisions",
+      "type": "user",
+      "label": "Owner-approved estimate for two requested revision rounds",
+      "quote": "6-8 hours total for two requested revision rounds"
+    },
+    {
+      "id": "owner-revision-usage",
+      "type": "user",
+      "label": "Owner-confirmed prior revision usage",
+      "quote": "One of the two baseline revision rounds was already used"
+    },
+    {
+      "id": "owner-deadline-effort",
+      "type": "user",
+      "label": "Owner-confirmed labor impact of earlier delivery",
+      "quote": "Earlier delivery itself adds zero labor hours"
+    },
+    {
+      "id": "owner-staging-delay",
+      "type": "user",
+      "label": "Owner-attributed staging-access delay",
+      "quote": "Client-owned staging-access delay: 2 days"
+    },
+    {
+      "id": "owner-commercial-inputs",
+      "type": "user",
+      "label": "Owner-approved schedule and pricing rules",
+      "quote": "8 hours/workday"
+    }
+  ],
+  "baseline": {
+    "authoritySourceRefs": [
+      "accepted-scope-email"
+    ],
+    "deliverables": [
+      {
+        "id": "responsive-landing-page",
+        "label": "One responsive landing page",
+        "sourceRef": "accepted-scope-email"
+      }
+    ],
+    "exclusions": [
+      {
+        "text": "Authenticated application and login",
+        "sourceRef": "accepted-scope-email"
+      },
+      {
+        "text": "Admin dashboard",
+        "sourceRef": "accepted-scope-email"
+      },
+      {
+        "text": "Payment processing",
+        "sourceRef": "accepted-scope-email"
+      }
+    ],
+    "acceptanceCriteria": [
+      {
+        "text": "Responsive at agreed desktop, tablet, and mobile breakpoints",
+        "sourceRef": "accepted-scope-email"
+      }
+    ],
+    "revisionBudget": {
+      "included": 2,
+      "usedBefore": 1,
+      "sourceRef": "accepted-scope-email",
+      "requested": 2,
+      "covered": 1,
+      "overflow": 1,
+      "remainingAfter": 0,
+      "usedSourceRef": "owner-revision-usage"
+    },
+    "deadline": {
+      "date": "2026-10-20",
+      "sourceRef": "accepted-scope-email"
+    },
+    "pricing": {
+      "currency": "USD",
+      "hoursPerWorkday": 8,
+      "rate": {
+        "amount": 23.5,
+        "unit": "hour",
+        "sourceRef": "owner-rate"
+      },
+      "rushPremium": {
+        "percent": 10,
+        "basis": "added_labor_fee",
+        "sourceRef": "owner-rush-rule"
+      }
+    }
+  },
+  "request": {
+    "sourceRef": "change-request-email",
+    "requestedDeadline": "2026-10-15",
+    "compressionDays": 5
+  },
+  "requestLedger": [
+    {
+      "id": "admin-dashboard",
+      "requestItemId": "admin-dashboard",
+      "label": "Add admin dashboard",
+      "kind": "deliverable",
+      "status": "scope_change",
+      "reason": "the request is explicitly excluded by the approved baseline",
+      "evidence": {
+        "requestSourceRef": "change-request-email",
+        "quote": "add an admin dashboard",
+        "baselineSourceRefs": [
+          "accepted-scope-email"
+        ]
+      },
+      "effortHours": {
+        "min": 7,
+        "max": 9,
+        "sourceRef": "owner-est-admin"
+      }
+    },
+    {
+      "id": "stripe-integration",
+      "requestItemId": "stripe-integration",
+      "label": "Add Stripe payment processing integration",
+      "kind": "deliverable",
+      "status": "scope_change",
+      "reason": "the request is explicitly excluded by the approved baseline",
+      "evidence": {
+        "requestSourceRef": "change-request-email",
+        "quote": "Stripe payment processing",
+        "baselineSourceRefs": [
+          "accepted-scope-email"
+        ]
+      },
+      "effortHours": {
+        "min": 3,
+        "max": 5,
+        "sourceRef": "owner-est-stripe"
+      }
+    },
+    {
+      "id": "user-login",
+      "requestItemId": "user-login",
+      "label": "Add user login",
+      "kind": "deliverable",
+      "status": "scope_change",
+      "reason": "the request is explicitly excluded by the approved baseline",
+      "evidence": {
+        "requestSourceRef": "change-request-email",
+        "quote": "user login",
+        "baselineSourceRefs": [
+          "accepted-scope-email"
+        ]
+      },
+      "effortHours": {
+        "min": 2,
+        "max": 4,
+        "sourceRef": "owner-est-login"
+      }
+    },
+    {
+      "id": "requested-revisions:included",
+      "requestItemId": "requested-revisions",
+      "label": "Two additional requested revision rounds",
+      "kind": "revision",
+      "status": "in_scope",
+      "reason": "covered by the remaining approved revision allowance",
+      "evidence": {
+        "requestSourceRef": "change-request-email",
+        "quote": "two more revision rounds",
+        "baselineSourceRefs": [
+          "accepted-scope-email"
+        ]
+      },
+      "units": 1,
+      "effortHours": {
+        "min": 3,
+        "max": 4,
+        "sourceRef": "owner-est-revisions"
+      }
+    },
+    {
+      "id": "requested-revisions:overflow",
+      "requestItemId": "requested-revisions",
+      "label": "Two additional requested revision rounds",
+      "kind": "revision",
+      "status": "scope_change",
+      "reason": "exceeds the remaining approved revision allowance",
+      "evidence": {
+        "requestSourceRef": "change-request-email",
+        "quote": "two more revision rounds",
+        "baselineSourceRefs": [
+          "accepted-scope-email"
+        ]
+      },
+      "units": 1,
+      "effortHours": {
+        "min": 3,
+        "max": 4,
+        "sourceRef": "owner-est-revisions"
+      }
+    },
+    {
+      "id": "earlier-delivery",
+      "requestItemId": "earlier-delivery",
+      "label": "Move delivery to 2026-10-15, five calendar days before baseline",
+      "kind": "deadline",
+      "status": "scope_change",
+      "reason": "the request exceeds an approved quantity or limit",
+      "evidence": {
+        "requestSourceRef": "change-request-email",
+        "quote": "deliver five calendar days earlier (2026-10-15)",
+        "baselineSourceRefs": [
+          "accepted-scope-email"
+        ]
+      },
+      "effortHours": {
+        "min": 0,
+        "max": 0,
+        "sourceRef": "owner-deadline-effort"
+      }
+    }
+  ],
+  "marginSnapshot": {
+    "knownAddedHours": {
+      "min": 15,
+      "max": 22
+    },
+    "unpricedItemIds": [],
+    "rate": {
+      "amount": 23.5,
+      "unit": "hour",
+      "sourceRef": "owner-rate"
+    },
+    "effectiveHourlyRate": 23.5,
+    "currency": "USD",
+    "rateSourceRef": "owner-rate",
+    "knownBaseFeeRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "completeBaseFeeRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "feeAtRiskRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "basePricingState": "priced",
+    "rushPremium": {
+      "percent": 10,
+      "basis": "added_labor_fee",
+      "sourceRef": "owner-rush-rule"
+    },
+    "rushPremiumAmountRange": {
+      "min": 35.25,
+      "max": 51.7
+    },
+    "rushState": "priced",
+    "completeTotalFeeRange": {
+      "min": 387.75,
+      "max": 568.7
+    },
+    "pricingState": "priced"
+  },
+  "delayAttribution": {
+    "events": [
+      {
+        "id": "staging-access-delay",
+        "label": "Staging credentials supplied after the agreed access date",
+        "owner": "client",
+        "delayDays": 2,
+        "sourceRef": "owner-staging-delay",
+        "evidenceQuote": null
+      }
+    ],
+    "totalDaysByOwner": {
+      "client": 2,
+      "freelancer": 0,
+      "shared": 0,
+      "unknown": 0
+    }
+  },
+  "clientOptions": [
+    {
+      "id": "remove_or_swap",
+      "title": "Remove or swap added scope",
+      "pricingState": "not_applicable",
+      "feeRange": {
+        "min": 0,
+        "max": 0
+      },
+      "deadline": "2026-10-20",
+      "note": "Remove additions or confirm an effort-equivalent swap before work starts."
+    },
+    {
+      "id": "extend_schedule",
+      "title": "Keep additions and extend the schedule",
+      "pricingState": "priced",
+      "feeRange": {
+        "min": 352.5,
+        "max": 517
+      },
+      "extensionDays": {
+        "min": 4,
+        "max": 5
+      },
+      "deadlineRange": {
+        "earliest": "2026-10-24",
+        "latest": "2026-10-25"
+      },
+      "note": "Use the ordinary owner-approved rate and include explicitly attributed client delay."
+    },
+    {
+      "id": "paid_change_order",
+      "title": "Approve a paid change order at the requested deadline",
+      "pricingState": "priced",
+      "feeRange": {
+        "min": 387.75,
+        "max": 568.7
+      },
+      "deadline": "2026-10-15",
+      "note": "Includes only an owner-approved rush rule; otherwise pricing remains approval_needed."
+    }
+  ],
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "sorted-json-v1",
+    "evidenceDigest": "e2348df4204a8d1aeae77abfb37ece9a1af77796d3296f36427c2ed4445be550",
+    "packetDigest": "13263e798cd4ace5ae31351f71d4f518b4761df7d149cf9155ed15245d2c924f"
+  }
+}

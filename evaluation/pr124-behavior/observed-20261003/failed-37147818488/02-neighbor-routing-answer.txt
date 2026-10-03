@@ -1,0 +1,8 @@
+**Skill:** `mermail-compose-email`
+
+**Email preview** — From: [REDACTED] (mailbox `[TEST_MAILBOX_ID]`)  
+**To:** [EMAIL] · **Cc:** none · **Bcc:** none · **Recipient total:** 1  
+**Subject:** Thank you for your time  
+**Body:** Thank you for attending our introductory call. I will send the meeting notes tomorrow.
+
+This is a preview only, not a saved draft or sent email. The sender mailbox was resolved; no messages were read.

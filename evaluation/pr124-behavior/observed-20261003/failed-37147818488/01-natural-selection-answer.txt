@@ -1,0 +1,37 @@
+**Selected skill:** `mermail-freelance-margin-guard`. I read only the two specified message bodies and used the Accepted scope message as your authoritative baseline. This is an evidence-linked decision preview, not a legal conclusion or a sent client proposal.
+
+### Baseline
+- **Authority:** Accepted scope, 2026-09-09, message `[SELECTED_MESSAGE_ID]`: “one responsive landing page and two revision rounds.”
+- **Deadline:** 2026-10-20.
+- **Exclusions:** authenticated application and login, admin dashboard, and payment processing.
+- **Acceptance:** responsive at agreed desktop, tablet, and mobile breakpoints.
+- **Revision balance:** 2 rounds included; you said 1 had already been used, leaving 1 before this request.
+
+### Request ledger
+Evidence is from Change request, 2026-09-09, message `[SELECTED_MESSAGE_ID]`.
+
+| Request | Classification | Evidence and reason | Effort |
+|---|---|---|---|
+| Admin dashboard | **Additional — scope change** | “add an admin dashboard”; explicitly excluded by baseline | No approved estimate |
+| Stripe payment processing | **Additional — scope change** | “Stripe payment processing”; payment processing explicitly excluded | No approved estimate |
+| User login | **Additional — scope change** | “user login”; login explicitly excluded | No approved estimate |
+| Two more revision rounds | **Split:** 1 in scope; 1 additional | “two more revision rounds”; the remaining included round covers one, and the other exceeds the allowance | No approved estimate for overflow |
+| Earlier delivery, 2026-10-15 | **Additional — scope change** | “deliver five calendar days earlier (2026-10-15)”; five days earlier than the baseline deadline | No approved estimate |
+
+After this request, the included revision allowance would be **0 remaining**, with **1 additional round** beyond it.
+
+### Margin snapshot and delay
+No added hours or fee can be priced from the supplied information. The packet’s known-hours subtotal of 0–0 is **not** an estimate of zero effort and does **not** imply zero cost. There is no approved rate, currency, effort estimate for the additional work, or rush-premium rule. The earlier deadline is therefore not a zero-fee change.
+
+The request also says staging credentials were supplied “two days after the agreed access date.” The lateness is evidenced, but **ownership is unknown** and the messages do not establish whether it delayed the critical path or affected the deadline. I have not treated those two days as an automatic schedule extension.
+
+### Client options — previews only
+- **Remove or swap:** drop the additions or confirm an effort-equivalent swap; retain the baseline deadline of 2026-10-20.
+- **Extend schedule:** retain approved additions and set a revised date after estimates and any attributable delay are established.
+- **Paid change order:** retain additions and the requested 2026-10-15 deadline; amount and any rush premium remain **approval needed**.
+
+**What prevents a binding quote:** owner-approved effort estimates for the additions and revision overflow, an approved rate and currency, and a rush-pricing rule for the compressed deadline. To calculate an extension, clarify whether the staging-credential lateness caused project delay and who owned it.
+
+**Preserved terms:** the baseline exclusions and responsive desktop/tablet/mobile acceptance criteria remain unchanged unless separately approved.
+
+**State:** `scope_change_detected`; no quote is binding. The evidence and packet were verified. Evidence digest: `453aea0bb0d7ee3b167c4e75a16ad352f85da26fdcc337457c06ee30f03da67e`; packet digest: `dd98851afacb3f99697d1e37cfda78ad783588405b6ce2da106489cd727d0911`. These digests identify the reviewed packet; they do not authorize terms or actions. No draft was saved and nothing was sent.
