@@ -100,7 +100,7 @@ export function makePreview(mailbox, messages, packet, existingDraftId=null) {
     'Evidence: owner-selected "['+TAG+'] Accepted scope" and "['+TAG+'] Change request", dated '+packet.sources.find(s=>s.id==='accepted-proposal').date+'. Both are synthetic self-addressed Sent messages; scan status and sender authentication are unknown. They are not verified client messages.',
     'Packet SHA-256: '+packet.integrity.packetDigest
   ].join('\n\n');
-  const args={mailboxId:mailbox.id,body:{to:mailbox.email,subject:DRAFT_SUBJECT,body}};
+  const args={mailboxId:mailbox.id,body:{from:mailbox.email,to:mailbox.email,cc:[],bcc:[],subject:DRAFT_SUBJECT,body,body_format:'text',attachments:[]},idempotencyKey:'pr124-p2-draft-'+sha({mailbox:mailbox.id,subject:DRAFT_SUBJECT,body})};
   if(existingDraftId) args.body.draft_id=existingDraftId;
   const preview={action:'save_draft_only',from:mailbox.email,to:[mailbox.email],cc:[],bcc:[],subject:DRAFT_SUBJECT,body,sourceMessages:messages.map(m=>({slot:m.slot,id:m.id,subject:m.subject,date:packet.sources.find(s=>s.messageId===m.id).date,threadId:m.email.thread_id??null})),packetDigest:packet.integrity.packetDigest,arguments:args,threading:'New unsent negotiation draft; source metadata retained for traceability, not a claimed native threaded reply.'};
   return {preview,previewDigest:sha(preview),revision};
@@ -135,7 +135,8 @@ export async function prepare(remote, helper, builder) {
 export async function saveApproved(prepared, approvedDigest, remote) {
   check(/^[a-f0-9]{64}$/.test(approvedDigest||'')&&sha(prepared.preview)===approvedDigest&&prepared.previewDigest===approvedDigest,'exact_preview_approval_missing_or_stale');
   const p=prepared.preview;
-  check(p.action==='save_draft_only'&&p.from===prepared.mailbox.email&&p.to.length===1&&p.to[0]===p.from&&!p.cc.length&&!p.bcc.length&&p.arguments.mailboxId===prepared.mailbox.id&&p.arguments.body.to===p.from&&p.arguments.body.subject===p.subject&&p.arguments.body.body===p.body,'self_test_draft_scope_mismatch');
+  const b=p.arguments.body;
+  check(p.action==='save_draft_only'&&p.from===prepared.mailbox.email&&p.to.length===1&&p.to[0]===p.from&&!p.cc.length&&!p.bcc.length&&p.arguments.mailboxId===prepared.mailbox.id&&b.from===p.from&&b.to===p.from&&Array.isArray(b.cc)&&!b.cc.length&&Array.isArray(b.bcc)&&!b.bcc.length&&b.subject===p.subject&&b.body===p.body&&b.body_format==='text'&&Array.isArray(b.attachments)&&!b.attachments.length&&Object.keys(b).every(k=>['from','to','cc','bcc','subject','body','body_format','attachments','draft_id'].includes(k))&&Object.keys(p.arguments).every(k=>['mailboxId','body','idempotencyKey'].includes(k)),'self_test_draft_scope_mismatch');
   const saved=await remote('tools/call',{name:'save_draft',arguments:p.arguments});
   const ids=[...new Set(objects(payloads(saved)).map(o=>pick(o,['draft_id','draftId'])||(o.subject===p.subject?pick(o,['id','email_id','emailId']):null)).filter(Boolean))];
   check(ids.length===1,'saved_draft_id_missing_or_ambiguous_no_retry');
@@ -146,6 +147,7 @@ export async function saveApproved(prepared, approvedDigest, remote) {
   check(actual&&String(actual.folder_name||actual.folder_id||actual.status||'').toLowerCase().match(/^(drafts|draft)$/),'readback_not_unsent_draft');
   check(!actual.content_omitted&&!actual.content_truncated&&actual.agent_safe_content===true,'readback_safe_content_missing');
   check(emails(actual.recipient??actual.to).length===1&&emails(actual.recipient??actual.to)[0]===p.from.toLowerCase()&&!emails(actual.cc).length&&!emails(actual.bcc).length,'readback_recipients_mismatch');
+  check(emails(actual.sender??actual.from).length===1&&emails(actual.sender??actual.from)[0]===p.from.toLowerCase()&&(!Array.isArray(actual.attachments)||actual.attachments.length===0),'readback_sender_or_attachments_mismatch');
   check(bodyText(actual).replace(/\r\n/g,'\n')===p.body&&sha(bodyText(actual).replace(/\r\n/g,'\n'))===sha(p.body),'readback_body_mismatch');
   return {draftId,subject:p.subject,body:p.body,previewDigest:approvedDigest,packetDigest:p.packetDigest,readbackVerified:true,sent:false,checkedAt:new Date().toISOString()};
 }

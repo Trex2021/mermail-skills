@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {sha,encryptReview,saveApproved,makeRpc,makePacket,makePreview,TAG} from './output.mjs';
-const value={mailbox:{id:'selected-box',email:'owner@example.invalid'},preview:{action:'save_draft_only',from:'owner@example.invalid',to:['owner@example.invalid'],cc:[],bcc:[],subject:'Test',body:'Owner-approved hypothetical draft',packetDigest:'a'.repeat(64),arguments:{mailboxId:'selected-box',body:{to:'owner@example.invalid',subject:'Test',body:'Owner-approved hypothetical draft'}}}};
+const value={mailbox:{id:'selected-box',email:'owner@example.invalid'},preview:{action:'save_draft_only',from:'owner@example.invalid',to:['owner@example.invalid'],cc:[],bcc:[],subject:'Test',body:'Owner-approved hypothetical draft',packetDigest:'a'.repeat(64),arguments:{mailboxId:'selected-box',body:{from:'owner@example.invalid',to:'owner@example.invalid',cc:[],bcc:[],subject:'Test',body:'Owner-approved hypothetical draft',body_format:'text',attachments:[]},idempotencyKey:'test-identical-payload-only'}}};
 const ready=()=>{const p=structuredClone(value);p.previewDigest=sha(p.preview);return p;};
 test('missing exact approval makes no write even for an owner self-test draft',async()=>{
  let calls=0;await assert.rejects(saveApproved(ready(),'',async()=>{calls++;}));assert.equal(calls,0);
@@ -16,16 +16,16 @@ test('recipient, text and hidden-copy edits invalidate previously approved previ
 });
 test('allowed save happens once and verifies the exact unsent self-addressed readback',async()=>{
  const p=ready(),calls=[];
- const remote=async(method,args)=>{calls.push(args.name);return {structuredContent:args.name==='save_draft'?{draft_id:'draft-1'}:{id:'draft-1',subject:'Test',body:p.preview.body,recipient:p.preview.from,folder_name:'Drafts',agent_safe_content:true,scan_status:null}};};
+ const remote=async(method,args)=>{calls.push(args.name);return {structuredContent:args.name==='save_draft'?{draft_id:'draft-1'}:{id:'draft-1',subject:'Test',body:p.preview.body,sender:p.preview.from,recipient:p.preview.from,folder_name:'Drafts',agent_safe_content:true,scan_status:null}};};
  const result=await saveApproved(p,p.previewDigest,remote);assert.deepEqual(calls,['save_draft','get_email']);assert.equal(result.sent,false);assert.equal(result.readbackVerified,true);
 });
 test('uncertain write outcome is never retried and does not claim a saved draft',async()=>{
  const p=ready();let calls=0;await assert.rejects(saveApproved(p,p.previewDigest,async()=>{calls++;throw new Error('timeout');}));assert.equal(calls,1);
 });
 test('different saved text, recipient or non-draft state cannot pass readback',async()=>{
- for(const replacement of [{body:'Fee altered'},{recipient:'other@example.invalid'},{folder_name:'Sent'}]){
+ for(const replacement of [{body:'Fee altered'},{recipient:'other@example.invalid'},{folder_name:'Sent'},{sender:'other@example.invalid'},{attachments:[{filename:'unapproved.txt'}]}]){
   const p=ready();let writes=0;
-  const remote=async(_,{name})=>{if(name==='save_draft'){writes++;return{structuredContent:{draft_id:'draft-1'}};}return{structuredContent:{id:'draft-1',subject:'Test',body:p.preview.body,recipient:p.preview.from,folder_name:'Drafts',agent_safe_content:true,...replacement}};};
+  const remote=async(_,{name})=>{if(name==='save_draft'){writes++;return{structuredContent:{draft_id:'draft-1'}};}return{structuredContent:{id:'draft-1',subject:'Test',body:p.preview.body,sender:p.preview.from,recipient:p.preview.from,folder_name:'Drafts',agent_safe_content:true,...replacement}};};
   await assert.rejects(saveApproved(p,p.previewDigest,remote));assert.equal(writes,1);
  }
 });
