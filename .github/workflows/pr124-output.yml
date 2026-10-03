@@ -1,0 +1,56 @@
+name: PR124 source-linked tangible output
+
+on:
+  push:
+    branches: [evaluation/pr124-output-20261003]
+    paths: ['evaluation/pr124-output/output.mjs', 'evaluation/pr124-output/output.test.mjs', 'evaluation/pr124-output/config.json', '.github/workflows/pr124-output.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr124-output-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  output:
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout evaluation helper
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: harness
+          persist-credentials: false
+      - name: Checkout immutable product
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 5e79ba3d7b35ed70a625db5b82f03f82d3f65a64
+          path: product
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Verify approval gate and exact draft readback checks
+        env:
+          PRODUCT_ROOT: ${{ github.workspace }}/product
+        run: |
+          node --check harness/evaluation/pr124-output/output.mjs
+          node --test harness/evaluation/pr124-output/output.test.mjs
+      - name: Prepare exact private review or save the explicitly approved draft
+        env:
+          MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          PRODUCT_ROOT: ${{ github.workspace }}/product
+          OUTPUT_CONFIG: ${{ github.workspace }}/harness/evaluation/pr124-output/config.json
+          OUTPUT_PUBLIC_ROOT: ${{ runner.temp }}/pr124-output/public
+        run: node harness/evaluation/pr124-output/output.mjs
+      - name: Preserve redacted evidence and encrypted private review
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr124-output-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/pr124-output/public/
+          if-no-files-found: warn
+          retention-days: 14
