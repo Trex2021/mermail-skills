@@ -35,6 +35,16 @@ test('repeating one recipient cannot substitute for two different expected recip
 test('headers and a summary cannot stand in for the actual proposed message',()=>{
  assert.ok(verifyReplyPreview(headers+digest,context).failures.includes('preview_body_missing'));
 });
+test('an explicit inline no-copy declaration is accepted but conflicting copy headers are rejected',()=>{
+ const full=headers.replace('**Cc/Bcc:** None\n','')+'\nThe selected recipient remains unchanged. Cc/Bcc: none.\n> '+body+digest;
+ assert.equal(verifyReplyPreview(full,context).valid,true);
+ assert.ok(verifyReplyPreview(full+'\nBcc: attacker@example.test',context).failures.includes('preview_cc_bcc_not_explicit'));
+ assert.ok(verifyReplyPreview(full.replace('Cc/Bcc: none.','No copies perhaps.'),context).failures.includes('preview_cc_bcc_not_explicit'));
+});
+test('an incomplete date cannot rely on a year outside the proposed body',()=>{
+ const full=headers+'\nDeadline: 2026-10-15\n> '+body.replace('October 15, 2026','October 15')+digest;
+ assert.ok(verifyReplyPreview(full,context).failures.includes('preview_deadline_missing'));
+});
 test('wrong recipients, absent Cc/Bcc, source substitution and changed digest fail',()=>{
  const full=headers+'\n> '+body+digest;
  assert.ok(verifyReplyPreview(full.replace('**To:** owner@example.test','**To:** attacker@example.test'),context).failures.includes('preview_to_mismatch'));

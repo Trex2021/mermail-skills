@@ -19,9 +19,14 @@ export function verifyReplyPreview(answer, {mailbox, request, packet}) {
   const expectedTo = addresses(typeof request.metadata?.recipient === 'string' ? request.metadata.recipient : JSON.stringify(request.metadata?.recipient || ''));
   const exactRecipients = value => JSON.stringify(addresses(value).sort()) === JSON.stringify([...expectedTo].sort());
   if (!expectedTo.length || !toValues.length || toValues.some(value => !exactRecipients(value))) failures.push('preview_to_mismatch');
-  const cc = field('Cc'), bcc = field('Bcc'), combined = field('Cc\\s*[/&]\\s*Bcc');
+  const copies = [...plain.matchAll(/^\s*(Cc\s*[/&]\s*Bcc|Cc|Bcc)\s*:\s*(.+)$/gim)];
+  const inline = [...plain.matchAll(/(?<=[.!?]\s)(Cc\s*[/&]\s*Bcc)\s*:\s*(none|empty|\[\]|—|-)\s*[.]?\s*$/gim)];
+  copies.push(...inline);
+  const combined = copies.filter(m=>/[/&]/.test(m[1])).map(m=>m[2]);
+  const cc = copies.filter(m=>m[1].toLowerCase()==='cc').map(m=>m[2]);
+  const bcc = copies.filter(m=>m[1].toLowerCase()==='bcc').map(m=>m[2]);
   const none = value => typeof value === 'string' && /^(?:none|empty|\[\]|—|-)\s*[.]?$/i.test(value);
-  if (!none(combined) && (!none(cc) || !none(bcc))) failures.push('preview_cc_bcc_not_explicit');
+  if (!copies.length || copies.some(m=>!none(m[2])) || !combined.length && (!cc.length || !bcc.length)) failures.push('preview_cc_bcc_not_explicit');
   const subject = field('Subject');
   if (!subject || subject.replace(/^re:\s*/i,'') !== request.subject) failures.push('preview_subject_mismatch');
   const source = field('(?:Source[^:\n]*(?:message|thread)[^:\n]*|Thread[^:\n]*|Reply(?:\\s+to)?[^:\n]*message[^:\n]*)');

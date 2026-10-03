@@ -83,7 +83,7 @@ async function handle({method, params = {}}) {
   if (!readNames.has(name)) throw new Error('tool_not_allowed');
   const reason = checkRead(name, args, scope);
   if (reason) {
-    writeAudit({tool: name, kind: 'scope_violation', success: false, reason, queryKeys: Object.keys(args.query || {}).sort()});
+    writeAudit({tool: name, kind: 'scope_violation', success: false, reason, mailboxIdSupplied: typeof args.mailboxId === 'string', mailboxIdLooksLikeAddress: /@/.test(String(args.mailboxId || '')), queryKeys: Object.keys(args.query || {}).sort()});
     return {isError: true, content: [{type: 'text', text: 'Selected-source safety boundary: ' + reason + '. Use exact selected ids; discovery requires query.subject or query.query, metadata_only:true, agent_safe_content:true and a bound. Read selected context with query.limit:1, or direct email with the clean-scan safe projection.'}]};
   }
   await ensure();
