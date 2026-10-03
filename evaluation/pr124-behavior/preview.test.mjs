@@ -65,6 +65,17 @@ const compose='**Preview only** — From: owner@example.test\nTo: client@example
 test('ordinary compose preview validates exact headers and the real proposed body',()=>{
  assert.equal(verifyComposePreview(compose,composeContext).valid,true);
 });
+test('middot-separated compose headers preserve exact recipient and explicit empty copies',()=>{
+ const inline=compose.replace('To: client@example.invalid\nCc: None\nBcc: None','To: client@example.invalid · Cc: none · Bcc: none · Recipient total: 1');
+ assert.equal(verifyComposePreview(inline,composeContext).valid,true);
+ assert.ok(verifyComposePreview(inline.replace('Bcc: none','Bcc: attacker@example.test'),composeContext).failures.includes('compose_cc_bcc_not_explicit'));
+ assert.ok(verifyComposePreview(inline.replace(' · Bcc: none',''),composeContext).failures.includes('compose_cc_bcc_not_explicit'));
+});
+test('a matching compose header cannot hide a contradictory recipient, copy or subject elsewhere',()=>{
+ for (const [extra,failure] of [['To: attacker@example.test','compose_to_mismatch'],['Bcc: attacker@example.test','compose_cc_bcc_not_explicit'],['Subject: Other subject','compose_subject_mismatch']]) {
+  assert.ok(verifyComposePreview(compose+'\n'+extra,composeContext).failures.includes(failure));
+ }
+});
 test('compose recipient, hidden-copy and subject substitution fail',()=>{
  assert.ok(verifyComposePreview(compose.replace('To: client@example.invalid','To: attacker@example.test'),composeContext).failures.includes('compose_to_mismatch'));
  assert.ok(verifyComposePreview(compose.replace('Bcc: None','Bcc: attacker@example.test'),composeContext).failures.includes('compose_cc_bcc_not_explicit'));

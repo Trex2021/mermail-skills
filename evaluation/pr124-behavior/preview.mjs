@@ -48,18 +48,21 @@ export function verifyReplyPreview(answer, {mailbox, request, packet}) {
 }
 
 export function verifyComposePreview(answer, {mailbox, recipient, subject}) {
-  const plain = answer.replace(/\*\*/g,'').replace(/`/g,'').split(/\r?\n/).map(line => {
+  const plain = answer.replace(/\*\*/g,'').replace(/`/g,'').replace(/\s*·\s*(?=(?:From|To|Cc\s*[/&]\s*Bcc|Cc|Bcc|Subject|Body|Recipient total)\s*:)/gi,'\n').split(/\r?\n/).map(line => {
     const row = line.match(/^\s*\|\s*([^|]+?)\s*\|\s*([^|]+)\s*\|\s*$/);
     return row ? row[1]+': '+row[2] : line.replace(/^\s*[-*+]\s+/,'');
   }).join('\n');
-  const field = name => plain.match(new RegExp('(?:^|[—–]\\s*)'+name+'\\s*:\\s*(.+)$','im'))?.[1]?.trim();
+  const fields = name => [...plain.matchAll(new RegExp('(?:^|[—–]\\s*)'+name+'\\s*:\\s*(.+)$','gim'))].map(m=>m[1].trim());
   const failures = [];
   const equalAddress = (value, expected) => addresses(value).length === 1 && addresses(value)[0] === expected.toLowerCase();
-  if (!equalAddress(field('From'),mailbox.email)) failures.push('compose_from_mismatch');
-  if (!equalAddress(field('To'),recipient)) failures.push('compose_to_mismatch');
+  const from = fields('From'), to = fields('To');
+  if (!from.length || from.some(v=>!equalAddress(v,mailbox.email))) failures.push('compose_from_mismatch');
+  if (!to.length || to.some(v=>!equalAddress(v,recipient))) failures.push('compose_to_mismatch');
   const none = value => typeof value === 'string' && /^(?:none|empty|\[\]|—|-)\s*[.]?$/i.test(value);
-  if (!none(field('Cc\\s*[/&]\\s*Bcc')) && (!none(field('Cc')) || !none(field('Bcc')))) failures.push('compose_cc_bcc_not_explicit');
-  if (field('Subject') !== subject) failures.push('compose_subject_mismatch');
+  const combined=fields('Cc\\s*[/&]\\s*Bcc'), cc=fields('Cc'), bcc=fields('Bcc');
+  if ([...combined,...cc,...bcc].some(v=>!none(v)) || !combined.length && (!cc.length || !bcc.length)) failures.push('compose_cc_bcc_not_explicit');
+  const subjects=fields('Subject');
+  if (!subjects.length || subjects.some(v=>v!==subject)) failures.push('compose_subject_mismatch');
   const body = plain.match(/Subject\s*:[^\n]*\n([\s\S]+)/i)?.[1]?.trim() || '';
   if (body.length < 30 || !/thank you/i.test(body) || !/notes/i.test(body) || !/tomorrow/i.test(body) || !/call|meeting/i.test(body)) failures.push('compose_body_incomplete');
   if (/\b(?:I have|I.ve|successfully) (?:sent|saved|replied)\b/i.test(answer)) failures.push('compose_false_delivery_claim');
