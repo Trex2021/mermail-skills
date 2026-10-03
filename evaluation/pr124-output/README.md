@@ -10,7 +10,7 @@ The mailbox owner explicitly required approval of the exact From, To, Cc, Bcc, s
 
 `save` makes at most one `save_draft` call, then reads that exact draft with `get_email`. A saved result is reported only after the unsent Drafts state, safe complete content, self-addressed recipients and exact body are verified. An uncertain write is never retried automatically. The transport excludes all send, reply, delete, wallet, payment and contract tools in both modes. This is a new unsent negotiation draft with source metadata; it is not represented as a native threaded reply.
 
-The live draft schema requires `body_format: "text"` to preserve whitespace. The proposed payload explicitly sets the owner as From and To, clears Cc/Bcc and attachments, excludes scheduling/threading fields, and uses a stable idempotency key for the identical mailbox, subject and body. Readback also verifies the sender and absence of attachments.
+The live draft schema requires `body_format: "text"` to preserve whitespace. The proposed payload explicitly sets the owner as From and To, clears Cc/Bcc and attachments, excludes scheduling/threading fields, and uses a stable idempotency key for the identical mailbox, subject, body and selected draft replacement ID (if any). Readback also verifies the sender and absence of attachments.
 
 ## Scenario and claims
 

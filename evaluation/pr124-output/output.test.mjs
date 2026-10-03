@@ -54,6 +54,9 @@ test('pinned product verifies both selected sources and prices only the overflow
  assert.equal(prepared.packet.baseline.revisionBudget.covered,1);assert.equal(prepared.packet.baseline.revisionBudget.overflow,1);
  const {preview}=makePreview(mailbox,messages,prepared.packet);
  assert(preview.body.includes('2026-10-24-2026-10-25'));assert(preview.body.includes('387.75-568.70 USD'));
+ const replacement=makePreview(mailbox,messages,prepared.packet,'existing-draft');
+ assert.notEqual(replacement.preview.arguments.idempotencyKey,preview.arguments.idempotencyKey);
+ assert.notEqual(replacement.previewDigest,sha(preview));
  const foreign=structuredClone(messages);foreign[1].email.recipient='other@example.invalid';
  assert.throws(()=>makePacket(helper,builder,mailbox,foreign),/source_is_not_selected_self_test/);
 });

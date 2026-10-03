@@ -100,8 +100,10 @@ export function makePreview(mailbox, messages, packet, existingDraftId=null) {
     'Evidence: owner-selected "['+TAG+'] Accepted scope" and "['+TAG+'] Change request", dated '+packet.sources.find(s=>s.id==='accepted-proposal').date+'. Both are synthetic self-addressed Sent messages; scan status and sender authentication are unknown. They are not verified client messages.',
     'Packet SHA-256: '+packet.integrity.packetDigest
   ].join('\n\n');
-  const args={mailboxId:mailbox.id,body:{from:mailbox.email,to:mailbox.email,cc:[],bcc:[],subject:DRAFT_SUBJECT,body,body_format:'text',attachments:[]},idempotencyKey:'pr124-p2-draft-'+sha({mailbox:mailbox.id,subject:DRAFT_SUBJECT,body})};
-  if(existingDraftId) args.body.draft_id=existingDraftId;
+  const identity={mailbox:mailbox.id,subject:DRAFT_SUBJECT,body};
+  const args={mailboxId:mailbox.id,body:{from:mailbox.email,to:mailbox.email,cc:[],bcc:[],subject:DRAFT_SUBJECT,body,body_format:'text',attachments:[]}};
+  if(existingDraftId) { args.body.draft_id=existingDraftId; identity.draftId=existingDraftId; }
+  args.idempotencyKey='pr124-p2-draft-'+sha(identity);
   const preview={action:'save_draft_only',from:mailbox.email,to:[mailbox.email],cc:[],bcc:[],subject:DRAFT_SUBJECT,body,sourceMessages:messages.map(m=>({slot:m.slot,id:m.id,subject:m.subject,date:packet.sources.find(s=>s.messageId===m.id).date,threadId:m.email.thread_id??null})),packetDigest:packet.integrity.packetDigest,arguments:args,threading:'New unsent negotiation draft; source metadata retained for traceability, not a claimed native threaded reply.'};
   return {preview,previewDigest:sha(preview),revision};
 }

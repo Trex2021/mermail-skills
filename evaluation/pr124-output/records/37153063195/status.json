@@ -1,0 +1,164 @@
+{
+  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "harnessHead": "753e6d5ba497b02bfdc34ec5dd3064a2516296f7",
+  "runId": "37153063195",
+  "mode": "prepare",
+  "status": "PREPARED_AWAITING_EXACT_APPROVAL",
+  "checkedAt": "2026-10-03T20:52:25.834Z",
+  "previewDigest": "13bdea16b8ac8f48a515a80294d847cd0c1e520df9d6a16d37b6de952ee3e1cd",
+  "packetDigest": "55b8b1d7af5a90d9c47addbd88698ef06a426567ec34c2f27c76e16d683258c6",
+  "verifiedEmailSources": 2,
+  "toolsAvailable": [
+    "save_draft",
+    "get_email"
+  ],
+  "margin": {
+    "knownAddedHours": {
+      "min": 15,
+      "max": 22
+    },
+    "unpricedItemIds": [],
+    "rate": {
+      "amount": 23.5,
+      "unit": "hour",
+      "sourceRef": "approved-rate"
+    },
+    "effectiveHourlyRate": 23.5,
+    "currency": "USD",
+    "rateSourceRef": "approved-rate",
+    "knownBaseFeeRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "completeBaseFeeRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "feeAtRiskRange": {
+      "min": 352.5,
+      "max": 517
+    },
+    "basePricingState": "priced",
+    "rushPremium": {
+      "percent": 10,
+      "basis": "added_labor_fee",
+      "sourceRef": "approved-rush-rule"
+    },
+    "rushPremiumAmountRange": {
+      "min": 35.25,
+      "max": 51.7
+    },
+    "rushState": "priced",
+    "completeTotalFeeRange": {
+      "min": 387.75,
+      "max": 568.7
+    },
+    "pricingState": "priced"
+  },
+  "revision": {
+    "included": 2,
+    "usedBefore": 1,
+    "sourceRef": "accepted-proposal",
+    "requested": 2,
+    "covered": 1,
+    "overflow": 1,
+    "remainingAfter": 0,
+    "usedSourceRef": "owner-usage"
+  },
+  "options": [
+    {
+      "id": "remove_or_swap",
+      "title": "Remove or swap added scope",
+      "pricingState": "not_applicable",
+      "feeRange": {
+        "min": 0,
+        "max": 0
+      },
+      "deadline": "2026-10-20",
+      "note": "Remove additions or confirm an effort-equivalent swap before work starts."
+    },
+    {
+      "id": "extend_schedule",
+      "title": "Keep additions and extend the schedule",
+      "pricingState": "priced",
+      "feeRange": {
+        "min": 352.5,
+        "max": 517
+      },
+      "extensionDays": {
+        "min": 4,
+        "max": 5
+      },
+      "deadlineRange": {
+        "earliest": "2026-10-24",
+        "latest": "2026-10-25"
+      },
+      "note": "Use the ordinary owner-approved rate and include explicitly attributed client delay."
+    },
+    {
+      "id": "paid_change_order",
+      "title": "Approve a paid change order at the requested deadline",
+      "pricingState": "priced",
+      "feeRange": {
+        "min": 387.75,
+        "max": 568.7
+      },
+      "deadline": "2026-10-15",
+      "note": "Includes only an owner-approved rush rule; otherwise pricing remains approval_needed."
+    }
+  ],
+  "sourceNotes": {
+    "syntheticSelfAddressed": true,
+    "folder": "Sent",
+    "scanStatus": [
+      null,
+      null
+    ],
+    "senderAuthentication": "unknown"
+  },
+  "audit": [
+    {
+      "tool": "initialize",
+      "success": true,
+      "writeAttempt": false
+    },
+    {
+      "tool": "tools/list",
+      "success": true,
+      "writeAttempt": false
+    },
+    {
+      "tool": "list_mailboxes",
+      "success": true,
+      "writeAttempt": false
+    },
+    {
+      "tool": "search_emails",
+      "success": true,
+      "writeAttempt": false
+    },
+    {
+      "tool": "get_email_context",
+      "success": true,
+      "writeAttempt": false
+    },
+    {
+      "tool": "search_emails",
+      "success": true,
+      "writeAttempt": false
+    },
+    {
+      "tool": "get_email_context",
+      "success": true,
+      "writeAttempt": false
+    },
+    {
+      "tool": "search_emails",
+      "success": true,
+      "writeAttempt": false
+    }
+  ],
+  "saveAttempts": 0,
+  "externalSends": 0,
+  "readbackVerified": false
+}
