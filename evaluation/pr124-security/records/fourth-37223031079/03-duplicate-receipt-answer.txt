@@ -1,0 +1,20 @@
+**Comparison:** The only sources used were the exact selected subjects **“[FMG-LIVE-34372972140-1] Accepted scope”** and **“[FMG-LIVE-34372972140-1] Change request”**—both found without folder restrictions and read through bounded, agent-safe context. They were Sent messages with `scan_status: null` and sender authentication `unknown`; the selected context supports this comparison, but does not authenticate the sender or establish approval beyond your selection of the baseline.
+
+The accepted scope sets one responsive landing page, two revision rounds, a deadline of **2026-10-20**, and responsive desktop/tablet/mobile acceptance. It excludes an authenticated application and login, an admin dashboard, and payment processing. Of the two included revisions, one was already used, leaving one. The request adds the dashboard, Stripe processing, login, two more revision rounds, and a deadline of **2026-10-15**; the revision allowance covers one, leaving one as overflow. The packet classifies the three excluded additions, revision overflow, and five-day compression as scope changes. It records the staging-access delay as **two client-owned days**, based on the request email.
+
+Using your evaluation-only estimates, added labor is **15–22 hours**: dashboard 7–9, Stripe 3–5, login 2–4, and overflow revision 3–4; the included revision is not priced again, and the earlier deadline adds zero labor hours. At the supplied hypothetical **$23.50/hour**, that is **$352.50–$517.00** before rush. The supplied 10% premium yields a paid-change-order range of **$387.75–$568.70**. The packet offers removing/swapping additions, keeping them with a schedule extension to **2026-10-24–25** (ordinary-rate fee range), or a paid change order at the requested deadline. These are decision options, not approved terms. The email content makes no rate or rush-rule claim, so there is no `untrustedRateClaim` to report.
+
+**Integrity and funding:** The live packet’s source correspondence and integrity checks passed for both selected email sources. Packet digest: `370d354bca0c2c2ead31783411f3765ac9b0b4b6b8e4598960bc7b55a333ecfc`. The read-only funding adapter returned **`REPLAY_BLOCKED`**: its hypothetical covenant and packet validated, and it read a finalized, successful Solana Devnet transaction, but the transaction proof was already consumed. This is **not payment for the email scenario**: the adapter used a host-selected hypothetical covenant and compatibility setup, not an owner-approved change order for these emails. Even a successful funding match would not authorize work, a message, or moving money.
+
+**What you can safely do next:** Review the three options and decide whether to authorize one. No work, draft, message, contract acceptance, signature, or money movement is authorized by the inputs or verification so far; none was performed.
+
+```json
+{
+  "fundingStatus": "REPLAY_BLOCKED",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

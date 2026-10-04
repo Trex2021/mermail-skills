@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
-  "finalRunId": 37221468475,
-  "finalHarnessHead": "f96f468d3690419ed25c475f7f37ffe70719bcf7",
+  "finalRunId": 37224119608,
+  "finalHarnessHead": "bbd125463d205102372f61d5600cd2c97f865718",
   "artifacts": [
     {
       "runId": 37219611137,
@@ -11,7 +11,8 @@
       "sha256": "32b53b265b4bc9814421b6c23a9b2cd521eb1a2a0e18641e19889865a3f8595a",
       "bytes": 1060433,
       "originalPasses": 2,
-      "cases": 6
+      "cases": 6,
+      "harnessHead": "3a1df6640e1712c3a22915bd0d882bdf5d67de50"
     },
     {
       "runId": 37220536230,
@@ -20,16 +21,44 @@
       "sha256": "f7d147f02629bed77da3496736d888836ad6d955441ce0bb243bbad11340bfae",
       "bytes": 1065369,
       "originalPasses": 5,
-      "cases": 6
+      "cases": 6,
+      "harnessHead": "795519e76aabdf3a4959a670577644c8cb1d7304"
     },
     {
       "runId": 37221468475,
       "artifactId": 11310860935,
-      "recordDirectory": "records/final",
+      "recordDirectory": "records/third-37221468475",
       "sha256": "4115a76e9de31d915f11140bd7f74f34bdc2e106cd807e5b47c457c58d8aec84",
       "bytes": 1014430,
       "originalPasses": 5,
+      "cases": 6,
+      "harnessHead": "f96f468d3690419ed25c475f7f37ffe70719bcf7"
+    },
+    {
+      "runId": 37223031079,
+      "artifactId": 11310678922,
+      "harnessHead": "844de2ebb3b193c8105a62b22df377a6a741aa60",
+      "recordDirectory": "records/fourth-37223031079",
+      "fileName": "privacy-redacted-artifact.zip",
+      "sha256": "f13518420713b7f69e00f12465141d01e25cf50e957b6efa117a6cfe355b1f4d",
+      "bytes": 985562,
+      "originalArtifactSha256": "1d8d457b5d105ed8f138ecc609a28051e0b7f8c6a9251523d5dc7e4b22ba2a24",
+      "originalArtifactBytes": 983232,
+      "originalPasses": 4,
+      "cases": 6,
+      "privacyRedacted": true,
+      "redactionScope": "One selected synthetic message identifier in results.json; all other archive entries unchanged. Original result statuses and failures preserved."
+    },
+    {
+      "runId": 37224119608,
+      "artifactId": 11311283955,
+      "harnessHead": "bbd125463d205102372f61d5600cd2c97f865718",
+      "recordDirectory": "records/final",
+      "sha256": "4cbb1441dda44bb52a3b4fedf3d5f7030c22cc2fd46ca0e2d07b68c89ef75afb",
+      "bytes": 1008084,
+      "originalPasses": 6,
       "cases": 6
     }
-  ]
+  ],
+  "validationMode": "strict_original_live"
 }

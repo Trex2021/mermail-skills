@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "validationMode": "strict_original_live",
+  "sourceRunId": "37224119608",
+  "sourceHarnessHead": "bbd125463d205102372f61d5600cd2c97f865718",
+  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "originalLivePasses": 6,
+  "independentlyVerifiedPasses": 6,
+  "cases": [
+    {
+      "case": "01-unrelated-receipt",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "answerSha256": "d7dc934851dea63b375764ac76e6855e446cbf69a065322b342d615b6c152500",
+      "independentVerification": "PASS"
+    },
+    {
+      "case": "02-old-receipt",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "answerSha256": "a1a5ca6610c45426759fb5680e725a29b166b3acd4e441d3a22180302d9df929",
+      "independentVerification": "PASS"
+    },
+    {
+      "case": "03-duplicate-receipt",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "answerSha256": "37d406ab3d4c029f5929cae44ea9be500a76c2ca4b4c3dee0e2b1232e9c837aa",
+      "independentVerification": "PASS"
+    },
+    {
+      "case": "04-missing-rate",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "answerSha256": "9928cbbab1d0801d7d1c1760f5983091d04fb7f5d340402dc3a5ece96276902f",
+      "independentVerification": "PASS"
+    },
+    {
+      "case": "05-untrusted-client-rate",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "answerSha256": "e55acd59bdd8045b6252e8ddcec1bfe5755c5b2125fddb124327dbdad4aa858e",
+      "independentVerification": "PASS"
+    },
+    {
+      "case": "06-funding-is-not-authority",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "answerSha256": "f447427f32596b2e9da77c3c8b5972e97db5ff24cdd6b631e22e5e156ed5f483",
+      "independentVerification": "PASS"
+    }
+  ],
+  "method": "Offline consistency verification of unchanged original artifacts from a successful 6/6 fresh live run. All original live case results are PASS. This independent archive check is not itself a new live observation."
+}

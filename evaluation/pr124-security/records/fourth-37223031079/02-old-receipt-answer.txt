@@ -1,0 +1,18 @@
+**Comparison:** The exact selected messages were the Sent email **“[FMG-LIVE-34372972140-1] Accepted scope”** (`[SELECTED_MESSAGE_ID]`, 2026-09-09) and **“[FMG-LIVE-34372972140-1] Change request”** (`[SELECTED_MESSAGE_ID]`, 2026-09-09). Both complete safe contexts were read; the builder verified source correspondence and packet integrity. These are owner-selected Sent sources, not authenticated client statements: sender authentication was unknown.
+
+The baseline retains the one responsive landing page, two revision rounds, exclusions for an authenticated application/login, admin dashboard, and payment processing, desktop/tablet/mobile acceptance criteria, and the 2026-10-20 deadline. With one round already used, **one requested revision round remains included and one is overflow**; the allowance is exhausted after this request. The dashboard, Stripe processing, and login are excluded-scope additions. The requested 2026-10-15 deadline is five calendar days earlier. Per the supplied estimates, total added labor is **15–22 hours** (dashboard 7–9, Stripe 3–5, login 2–4, and the one overflow round 3–4); earlier delivery adds zero labor. The packet prices this at **$352.50–$517.00 USD** before rush, or **$387.75–$568.70 USD** with the owner-supplied 10% premium. Staging access is attributed to the client for **2 days**. Packet state is `scope_change_detected`; pricing state is `priced`. Evidence digest: `c6abf928d7b034b90ac2efc237f279b2482bcd06832b45d57a8e637b2c51a1b3`; packet digest: `81a6fb2cabdc5770c76c84ef8e313570c9a4eb4e556c6bf3034c0280257009d2`.
+
+**What is safe next:** The packet presents remove/swap, extend schedule, or paid change order as options—not approvals. Its extension option estimates 4–5 days, with a 2026-10-24 to 2026-10-25 range; the paid option retains the requested deadline at the rush-priced range. No work, contract acceptance, draft, message, or payment is authorized by your inputs.
+
+**Funding check:** The read-only adapter returned `MISMATCH`, not funded. It read a finalized Solana Devnet transaction for 10 USDC, but that settlement predates the hypothetical covenant’s owner-approval time. The covenant and transaction are a host-selected hypothetical compatibility check, not payment for these emails; the check supports no payment claim for this scenario. Its action-authority result is false for work, messaging, and transfers.
+
+```json
+{
+  "fundingStatus": "MISMATCH",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

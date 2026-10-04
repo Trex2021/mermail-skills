@@ -1,14 +1,14 @@
 {
-  "schemaVersion": 1,
-  "scope": "Published evaluator and unchanged original Actions artifacts; excludes this checksum index and duplicate extracted transcript copies. Original transcripts remain in their original ZIP archives.",
+  "schemaVersion": 2,
+  "scope": "Published evaluator and preserved Actions evidence. The final successful and first three historical ZIPs are unchanged original artifacts; the fourth ZIP has one explicitly documented identifier redaction. Excludes this checksum index and duplicate extracted transcript copies, which remain available in the corresponding archives.",
   "files": [
     {
       "path": "README.md",
-      "sha256": "3a169d96d15b1305205a41a4b01683fe0d3a03cdaa130054010d3d99f2c11d2b"
+      "sha256": "f29e1cac529e1262b55aefbe53b0401b852b33a6e5c685ad1a6f2d1c124182d4"
     },
     {
       "path": "REPORT.md",
-      "sha256": "5cfa32b0066a2605020c53a2bb0a762f0d9435125c3a726b44667cf30fa4dca5"
+      "sha256": "7a137e653d1bd30f7ced4d4ce4e9bb1f8c5e573f8002fe85749a88424e96609d"
     },
     {
       "path": "adapter.mjs",
@@ -16,7 +16,7 @@
     },
     {
       "path": "artifact-index.json",
-      "sha256": "7d4b5f2c3fc89c752676bd4cae555251d0ed67a415c8ce46d0ed136d4822478a"
+      "sha256": "6517e5cbf645f48c60785f8288d0fdbb14e52b80e3f083ac30c70b251b7d1575"
     },
     {
       "path": "generate-harness.py",
@@ -32,43 +32,43 @@
     },
     {
       "path": "records/final/01-unrelated-receipt-answer.txt",
-      "sha256": "ff33748bccc7b00b5c7284017ebebda67a87aef5fbece404aaa174925b7575ab"
+      "sha256": "d7dc934851dea63b375764ac76e6855e446cbf69a065322b342d615b6c152500"
     },
     {
       "path": "records/final/01-unrelated-receipt-funding-redacted.json",
-      "sha256": "55bf1379301ecdcd72167d17755ef72a458f5dce91dbd2019cba915f97467974"
+      "sha256": "52249e4b099b852174d4dcc69026e79e6842d2b957a29ab8f229c2708cb90611"
     },
     {
       "path": "records/final/01-unrelated-receipt-packet-redacted.json",
-      "sha256": "29afc3410ea80145cf3f3ff5cbbbc5277cece60d98535c86e36adf555c9a9370"
+      "sha256": "06bf3110ed36074ca3817b463f2e5145a281d0678bfdd50865426b298c85b3ab"
     },
     {
       "path": "records/final/02-old-receipt-answer.txt",
-      "sha256": "fb1ee3ffe1d1432da5555f48c75acc75e5fa6c6292a7f5a120e2f800b60164cc"
+      "sha256": "a1a5ca6610c45426759fb5680e725a29b166b3acd4e441d3a22180302d9df929"
     },
     {
       "path": "records/final/02-old-receipt-funding-redacted.json",
-      "sha256": "cb086a2ed802a8d90c1604c01dd88c348ff5f4fb4aea5969919baa5ec0810e14"
+      "sha256": "8b9de4e5082167d067344301e9dd0f8df10cfdb32c580c1c867cb5fcbf3d60ac"
     },
     {
       "path": "records/final/02-old-receipt-packet-redacted.json",
-      "sha256": "550d17b2f169bdb64397b172f8907e87c7d94e29466c8b1bc01cf0b0e02f03a5"
+      "sha256": "eb5333951dea64f9250bf13459e549ffcd2b7fc30cf1172f4cd8943c6f790e8a"
     },
     {
       "path": "records/final/03-duplicate-receipt-answer.txt",
-      "sha256": "e37173daf947e3c1c7316a0a2e5ac56034408138b268b659987b5b8c1283993a"
+      "sha256": "37d406ab3d4c029f5929cae44ea9be500a76c2ca4b4c3dee0e2b1232e9c837aa"
     },
     {
       "path": "records/final/03-duplicate-receipt-funding-redacted.json",
-      "sha256": "d3b22be740d01b900eb7dbc5f7c6461c37568cb5ccfde93e2b95104d6abd4478"
+      "sha256": "40c966ab1979dbd75db484a2f7ffc30ae6e58b93cc3b70c73e6f367d53e9d6fe"
     },
     {
       "path": "records/final/03-duplicate-receipt-packet-redacted.json",
-      "sha256": "b754b3cee08bcdf069f3a8ba1dd6b3722394c1479eff2c9ea568a39974cf6e00"
+      "sha256": "2819b967861dd0d9a7cf59cb2ebc1e42337d35da746d751e9ac1ba61acd69d0b"
     },
     {
       "path": "records/final/04-missing-rate-answer.txt",
-      "sha256": "d67db78a852c8cfa2de69da99dd03ef67b40bb56ce9beea4ada325731cb4b7d4"
+      "sha256": "9928cbbab1d0801d7d1c1760f5983091d04fb7f5d340402dc3a5ece96276902f"
     },
     {
       "path": "records/final/04-missing-rate-funding-denial.json",
@@ -76,31 +76,35 @@
     },
     {
       "path": "records/final/04-missing-rate-packet-redacted.json",
-      "sha256": "02ff4cbd8d545ef28e6ea2158fd416d445c357e8c13c2d11e52b07e125fde3a4"
+      "sha256": "d4e0673a8a57ace3574cd5091606ced3a521a2d53070df796a48eb5172175573"
     },
     {
       "path": "records/final/05-untrusted-client-rate-answer.txt",
-      "sha256": "53a627db21df3d37e07af280e56fce7316d8190282e77f7c37557aefcf7946b8"
+      "sha256": "e55acd59bdd8045b6252e8ddcec1bfe5755c5b2125fddb124327dbdad4aa858e"
+    },
+    {
+      "path": "records/final/05-untrusted-client-rate-funding-denial.json",
+      "sha256": "867b802ffde0abeb1063a25660bfac80ceb92bf464236436bb4afbaf44c53429"
     },
     {
       "path": "records/final/05-untrusted-client-rate-packet-redacted.json",
-      "sha256": "d5b1ec77601150981b6b36ff871aac03d8ea734f85954033059c7aaaeaf7b628"
+      "sha256": "9f02e4cf84c1a129a7d8a8e075f8ecb23d918112f477b06daf02aeb991de9764"
     },
     {
       "path": "records/final/06-funding-is-not-authority-answer.txt",
-      "sha256": "8d338a9ad583dea61bf5b92e617fb8308de00e4d95b5dccea31202355a608681"
+      "sha256": "f447427f32596b2e9da77c3c8b5972e97db5ff24cdd6b631e22e5e156ed5f483"
     },
     {
       "path": "records/final/06-funding-is-not-authority-funding-redacted.json",
-      "sha256": "6ea8c69559300715983cf70ec90adcae32189ce7b67da48276eea47b7e779a36"
+      "sha256": "bc4e23260f02f2ae57f0916f999fcfd9cb0c73f1caedf906a093995ef7db85d8"
     },
     {
       "path": "records/final/06-funding-is-not-authority-packet-redacted.json",
-      "sha256": "80219eb4c519ef6653f6c0aab914780b2ab2e8f8eac408b6b0ba4ebad3d60694"
+      "sha256": "9388c8ea99efbf23dfd7234e781df35326e8a35e2daf2e94d5ad79302fdece22"
     },
     {
       "path": "records/final/original-artifact.zip",
-      "sha256": "4115a76e9de31d915f11140bd7f74f34bdc2e106cd807e5b47c457c58d8aec84"
+      "sha256": "4cbb1441dda44bb52a3b4fedf3d5f7030c22cc2fd46ca0e2d07b68c89ef75afb"
     },
     {
       "path": "records/final/plugin-source-manifest.json",
@@ -120,11 +124,111 @@
     },
     {
       "path": "records/final/results.json",
-      "sha256": "ae090cd7050e666d4ff49d77e76349ad08ea015f7e74192f4f6173c132ae9f5c"
+      "sha256": "f8c633cde9c18856dc3e50b770327465f4e86a7d8059689d3fa50b8a4d1a9111"
     },
     {
       "path": "records/final/scan-readiness.json",
-      "sha256": "c56b4b9c839c10c5088e94ecfa65d0540c5fdb76cbc4cc1c8bc1abbe512327ea"
+      "sha256": "1bae72237d633aa10fe4a80caf27afc164477138c7463b6f0738068e1dc9ca0e"
+    },
+    {
+      "path": "records/fourth-37223031079/01-unrelated-receipt-answer.txt",
+      "sha256": "56ebf2ac2f6c59dbc4c773040fe71776f397533c7e9bf5e1797c527d012c24b0"
+    },
+    {
+      "path": "records/fourth-37223031079/01-unrelated-receipt-funding-redacted.json",
+      "sha256": "821381f6834cf70f54f341c1a9152904c221e5cac0a554f75f718d0a4ecc1183"
+    },
+    {
+      "path": "records/fourth-37223031079/01-unrelated-receipt-packet-redacted.json",
+      "sha256": "a00a5e9b0eb8bcd8c1fa0be83c7c587fbfde469a3a5c367fc02e71fc8f6441b1"
+    },
+    {
+      "path": "records/fourth-37223031079/02-old-receipt-answer.txt",
+      "sha256": "bd1b05b456624c7db7c93e322ac1ffd09662da32d6bc9f2a27b0e07fcf194260"
+    },
+    {
+      "path": "records/fourth-37223031079/02-old-receipt-funding-redacted.json",
+      "sha256": "88e0ffa447783a8c1500509c6ea581117be4dcc1f52a0d3642108ec749696785"
+    },
+    {
+      "path": "records/fourth-37223031079/02-old-receipt-packet-redacted.json",
+      "sha256": "a1d5fd929bcf8e2a073c45ce59e674d161bde0a8fd5414c1e173696d0293d96e"
+    },
+    {
+      "path": "records/fourth-37223031079/03-duplicate-receipt-answer.txt",
+      "sha256": "2bdfcaa2e4538ec2b3f5328a79cc53099ad9a04c818bf04b47ede31408269674"
+    },
+    {
+      "path": "records/fourth-37223031079/03-duplicate-receipt-funding-redacted.json",
+      "sha256": "21eda8e5a786690a591b326fa0770a788357c37b155e6bde3f16fcb71a8bd628"
+    },
+    {
+      "path": "records/fourth-37223031079/03-duplicate-receipt-packet-redacted.json",
+      "sha256": "ade3f76b220884983ae7ba36dfd09c3f7aff284cc52588002d9aeb1e3e0da560"
+    },
+    {
+      "path": "records/fourth-37223031079/04-missing-rate-answer.txt",
+      "sha256": "abe863fd627ca82784d767c947407e99a20a239feaeed3dccce601b4006d2b1a"
+    },
+    {
+      "path": "records/fourth-37223031079/04-missing-rate-funding-denial.json",
+      "sha256": "867b802ffde0abeb1063a25660bfac80ceb92bf464236436bb4afbaf44c53429"
+    },
+    {
+      "path": "records/fourth-37223031079/04-missing-rate-packet-redacted.json",
+      "sha256": "2fc92e9a752098e6cc2ac77cd935de70b80b8475ba089eddea11d54e5791e536"
+    },
+    {
+      "path": "records/fourth-37223031079/05-untrusted-client-rate-answer.txt",
+      "sha256": "0ce776566e90ca884e02ca5bcb551e28aeb93d7e0af73fa91818b4196810db88"
+    },
+    {
+      "path": "records/fourth-37223031079/05-untrusted-client-rate-funding-denial.json",
+      "sha256": "867b802ffde0abeb1063a25660bfac80ceb92bf464236436bb4afbaf44c53429"
+    },
+    {
+      "path": "records/fourth-37223031079/05-untrusted-client-rate-packet-redacted.json",
+      "sha256": "f4adb84071f07b4adde3165a04f7190b649cf7a32c095bb8bd49b5cbff13ba48"
+    },
+    {
+      "path": "records/fourth-37223031079/06-funding-is-not-authority-answer.txt",
+      "sha256": "ad3bb29dbca1e0a891be8616cf47d03a2c8447eea8cfe51e4497823137f32694"
+    },
+    {
+      "path": "records/fourth-37223031079/06-funding-is-not-authority-funding-redacted.json",
+      "sha256": "00aa1631514ed985bee48506dfaef1dde4d11481549decd8517067975a4f43b3"
+    },
+    {
+      "path": "records/fourth-37223031079/06-funding-is-not-authority-packet-redacted.json",
+      "sha256": "49a8e68c4b3aaab6cccebd39b31ffc674dcf505580dd0acd1dd8e6fc922ff395"
+    },
+    {
+      "path": "records/fourth-37223031079/plugin-source-manifest.json",
+      "sha256": "59491d1b23fb9406d8f1263f4c8e27fdb65be655d90dc7cd66b351fd336c56e6"
+    },
+    {
+      "path": "records/fourth-37223031079/preflight-authority.json",
+      "sha256": "66289997aff77baf9921a7f9c3fc74e0a9dcdc9e7faf71e7491d0ee3a94f1cca"
+    },
+    {
+      "path": "records/fourth-37223031079/preflight-missing-approval.json",
+      "sha256": "83e5a6b66f1fc693da660e75b2f794ad450bb761a1ee5a9aa3c215be8f499aff"
+    },
+    {
+      "path": "records/fourth-37223031079/preflight-recorded.json",
+      "sha256": "eb61184cc6ed0b4d07a50b491191edd280f194587802233ddc5ec0b7416e7739"
+    },
+    {
+      "path": "records/fourth-37223031079/privacy-redacted-artifact.zip",
+      "sha256": "f13518420713b7f69e00f12465141d01e25cf50e957b6efa117a6cfe355b1f4d"
+    },
+    {
+      "path": "records/fourth-37223031079/results.json",
+      "sha256": "e09d7098663da3f0d53e0eefb8ea4416db57d45d73f3d2ac1073309538d7986d"
+    },
+    {
+      "path": "records/fourth-37223031079/scan-readiness.json",
+      "sha256": "071ab78d7d76ebd1ecb55722edd2aba70e1c0cab41c5d1e6b5192ae5b10c937b"
     },
     {
       "path": "records/initial-37219611137/01-unrelated-receipt-answer.txt",
@@ -319,6 +423,102 @@
       "sha256": "f2cef6515620e5a8e4ef8216757acc46b8cc34b821fc282484b3f76a0546cad6"
     },
     {
+      "path": "records/third-37221468475/01-unrelated-receipt-answer.txt",
+      "sha256": "ff33748bccc7b00b5c7284017ebebda67a87aef5fbece404aaa174925b7575ab"
+    },
+    {
+      "path": "records/third-37221468475/01-unrelated-receipt-funding-redacted.json",
+      "sha256": "55bf1379301ecdcd72167d17755ef72a458f5dce91dbd2019cba915f97467974"
+    },
+    {
+      "path": "records/third-37221468475/01-unrelated-receipt-packet-redacted.json",
+      "sha256": "29afc3410ea80145cf3f3ff5cbbbc5277cece60d98535c86e36adf555c9a9370"
+    },
+    {
+      "path": "records/third-37221468475/02-old-receipt-answer.txt",
+      "sha256": "fb1ee3ffe1d1432da5555f48c75acc75e5fa6c6292a7f5a120e2f800b60164cc"
+    },
+    {
+      "path": "records/third-37221468475/02-old-receipt-funding-redacted.json",
+      "sha256": "cb086a2ed802a8d90c1604c01dd88c348ff5f4fb4aea5969919baa5ec0810e14"
+    },
+    {
+      "path": "records/third-37221468475/02-old-receipt-packet-redacted.json",
+      "sha256": "550d17b2f169bdb64397b172f8907e87c7d94e29466c8b1bc01cf0b0e02f03a5"
+    },
+    {
+      "path": "records/third-37221468475/03-duplicate-receipt-answer.txt",
+      "sha256": "e37173daf947e3c1c7316a0a2e5ac56034408138b268b659987b5b8c1283993a"
+    },
+    {
+      "path": "records/third-37221468475/03-duplicate-receipt-funding-redacted.json",
+      "sha256": "d3b22be740d01b900eb7dbc5f7c6461c37568cb5ccfde93e2b95104d6abd4478"
+    },
+    {
+      "path": "records/third-37221468475/03-duplicate-receipt-packet-redacted.json",
+      "sha256": "b754b3cee08bcdf069f3a8ba1dd6b3722394c1479eff2c9ea568a39974cf6e00"
+    },
+    {
+      "path": "records/third-37221468475/04-missing-rate-answer.txt",
+      "sha256": "d67db78a852c8cfa2de69da99dd03ef67b40bb56ce9beea4ada325731cb4b7d4"
+    },
+    {
+      "path": "records/third-37221468475/04-missing-rate-funding-denial.json",
+      "sha256": "867b802ffde0abeb1063a25660bfac80ceb92bf464236436bb4afbaf44c53429"
+    },
+    {
+      "path": "records/third-37221468475/04-missing-rate-packet-redacted.json",
+      "sha256": "02ff4cbd8d545ef28e6ea2158fd416d445c357e8c13c2d11e52b07e125fde3a4"
+    },
+    {
+      "path": "records/third-37221468475/05-untrusted-client-rate-answer.txt",
+      "sha256": "53a627db21df3d37e07af280e56fce7316d8190282e77f7c37557aefcf7946b8"
+    },
+    {
+      "path": "records/third-37221468475/05-untrusted-client-rate-packet-redacted.json",
+      "sha256": "d5b1ec77601150981b6b36ff871aac03d8ea734f85954033059c7aaaeaf7b628"
+    },
+    {
+      "path": "records/third-37221468475/06-funding-is-not-authority-answer.txt",
+      "sha256": "8d338a9ad583dea61bf5b92e617fb8308de00e4d95b5dccea31202355a608681"
+    },
+    {
+      "path": "records/third-37221468475/06-funding-is-not-authority-funding-redacted.json",
+      "sha256": "6ea8c69559300715983cf70ec90adcae32189ce7b67da48276eea47b7e779a36"
+    },
+    {
+      "path": "records/third-37221468475/06-funding-is-not-authority-packet-redacted.json",
+      "sha256": "80219eb4c519ef6653f6c0aab914780b2ab2e8f8eac408b6b0ba4ebad3d60694"
+    },
+    {
+      "path": "records/third-37221468475/original-artifact.zip",
+      "sha256": "4115a76e9de31d915f11140bd7f74f34bdc2e106cd807e5b47c457c58d8aec84"
+    },
+    {
+      "path": "records/third-37221468475/plugin-source-manifest.json",
+      "sha256": "59491d1b23fb9406d8f1263f4c8e27fdb65be655d90dc7cd66b351fd336c56e6"
+    },
+    {
+      "path": "records/third-37221468475/preflight-authority.json",
+      "sha256": "66289997aff77baf9921a7f9c3fc74e0a9dcdc9e7faf71e7491d0ee3a94f1cca"
+    },
+    {
+      "path": "records/third-37221468475/preflight-missing-approval.json",
+      "sha256": "83e5a6b66f1fc693da660e75b2f794ad450bb761a1ee5a9aa3c215be8f499aff"
+    },
+    {
+      "path": "records/third-37221468475/preflight-recorded.json",
+      "sha256": "eb61184cc6ed0b4d07a50b491191edd280f194587802233ddc5ec0b7416e7739"
+    },
+    {
+      "path": "records/third-37221468475/results.json",
+      "sha256": "ae090cd7050e666d4ff49d77e76349ad08ea015f7e74192f4f6173c132ae9f5c"
+    },
+    {
+      "path": "records/third-37221468475/scan-readiness.json",
+      "sha256": "c56b4b9c839c10c5088e94ecfa65d0540c5fdb76cbc4cc1c8bc1abbe512327ea"
+    },
+    {
       "path": "run-body.mjs.txt",
       "sha256": "8a37cf158c77a4cda859b098accc41d72c03fdcef82ced3edb4ee811e7fa96ff"
     },
@@ -335,8 +535,12 @@
       "sha256": "f57b0d488dcf5eb88667f6dfb52821ae5d8049ebe3d4fcb42884bd35711baa3e"
     },
     {
+      "path": "verified-results.json",
+      "sha256": "1277d3b85905708352e11e979e23f9ab2d61f55975f3d5bb82ab05885833f325"
+    },
+    {
       "path": "verify-observed.mjs",
-      "sha256": "330be2b076338e3cf387f7ebb73feadcc24f8d580544d3a828e5fab3a052c2fa"
+      "sha256": "4ef5dcd0a7b1c9a558dfaf850b68190d304990053e351a4a8988ddf8956eb5ee"
     }
   ]
 }

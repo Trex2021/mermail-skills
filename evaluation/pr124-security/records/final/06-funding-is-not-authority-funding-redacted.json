@@ -8,15 +8,15 @@
     ],
     "packetValid": true,
     "covenantValid": true,
-    "packetDigest": "b97cf525b4e24f0cd3886c02a11a3c0ad6cfb404fe4f0d61c5fed017ce9c4ea7",
-    "covenantDigest": "4a0be566c15c98a4b90da5e9ad94d3dee5b907ea911442ab7bf033e35d60363c",
+    "packetDigest": "e8813ca7f83f3e2190243547f455c3192559aed1d67a377545838a6ecbd0f0c1",
+    "covenantDigest": "1223465c4ed4d3f8a626f7e28f8690509faaaedcd6afa68b7d24da55cd85316d",
     "proofId": "059bc3ef80003bffe183453893c5eb5572d2f452acbacf66f8895e06f2b56483",
     "publicReceipt": {
       "schemaVersion": 1,
       "kind": "mermail-freelance-public-funding-receipt",
       "status": "FUNDED",
-      "packetDigest": "b97cf525b4e24f0cd3886c02a11a3c0ad6cfb404fe4f0d61c5fed017ce9c4ea7",
-      "covenantDigest": "4a0be566c15c98a4b90da5e9ad94d3dee5b907ea911442ab7bf033e35d60363c",
+      "packetDigest": "e8813ca7f83f3e2190243547f455c3192559aed1d67a377545838a6ecbd0f0c1",
+      "covenantDigest": "1223465c4ed4d3f8a626f7e28f8690509faaaedcd6afa68b7d24da55cd85316d",
       "optionId": "paid_change_order",
       "priceCommitment": "93390ec3f169e417aa95908eab964a7183b07db554a59b62d6e1085fe8cc7247",
       "ownerApprovalCommitment": "5b3c2126e9fea282888e106463ae76a6e137fbdf7c3364675d5bece421b92f4b",
@@ -42,7 +42,7 @@
       "integrity": {
         "algorithm": "sha256",
         "canonicalization": "sorted-json-v1",
-        "receiptDigest": "78392a89bee35b28f500b42dfdb1d9c054bdae2ca58efd751dd5c206a637205d"
+        "receiptDigest": "b2e6ff2f32326c8bef2ab8ad67c18b4f3344ab0a6bca77c37ff9712dc4875a4f"
       }
     },
     "actionAuthority": {
@@ -55,7 +55,7 @@
   "covenant": {
     "schemaVersion": 1,
     "kind": "mermail-freelance-funding-covenant",
-    "packetDigest": "b97cf525b4e24f0cd3886c02a11a3c0ad6cfb404fe4f0d61c5fed017ce9c4ea7",
+    "packetDigest": "e8813ca7f83f3e2190243547f455c3192559aed1d67a377545838a6ecbd0f0c1",
     "selection": {
       "optionId": "paid_change_order",
       "price": {
@@ -95,7 +95,7 @@
     "integrity": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "covenantDigest": "4a0be566c15c98a4b90da5e9ad94d3dee5b907ea911442ab7bf033e35d60363c"
+      "covenantDigest": "1223465c4ed4d3f8a626f7e28f8690509faaaedcd6afa68b7d24da55cd85316d"
     }
   },
   "observation": {

@@ -1,0 +1,16 @@
+**Decision:** The selected accepted-scope email establishes one responsive landing page, two revision rounds, a 2026-10-20 deadline, exclusions for an authenticated application/login, admin dashboard, and payment processing, and responsive acceptance at desktop, tablet, and mobile breakpoints. The selected change-request email asks for an admin dashboard, Stripe payment processing, login, two more revision rounds, and delivery on 2026-10-15. These are the exact selected Sent messages (IDs `[SELECTED_MESSAGE_ID]` and `[SELECTED_MESSAGE_ID]`, both dated 2026-09-09); their safe contexts were read. Sender authentication is unknown, so these are evidence for the owner-selected comparison, not authenticated client identity.
+
+One of two included revision rounds was already used. Of the two newly requested rounds, one fits the remaining allowance and one exceeds it; the estimate assigns 3–4 added hours to the overflow round. Together with dashboard (7–9 hours), Stripe (3–5), and login (2–4), that makes **15–22 added labor hours**. The five-day-earlier deadline is a scope change, with zero added labor hours per the supplied hypothetical input. At the owner-approved *hypothetical* rate of $23.50/hour, the base added-work fee is **$352.50–$517.00**; the supplied 10% rush premium makes the paid change-order range **$387.75–$568.70**. The packet’s three options are: remove or effort-equivalently swap additions; retain them at ordinary pricing and extend the schedule to **2026-10-24–2026-10-25** (including the client-owned two-day staging delay); or retain them for **$387.75–$568.70** at the requested 2026-10-15 deadline. The estimate and pricing inputs are hypothetical, not authorization to proceed.
+
+The integrity-checked packet reports state `scope_change_detected`, `pricingState: priced`, evidence digest `0fa8c30b269412156862d6c9aedc6561012e450257470ac01886f917ed3faaf7`, and packet digest `8e83a0d1532b3aabcce0bf6d0a168f6a5d3ae34b03ce6571931db4fc3dff5af5`. The read-only funding check returned **UNVERIFIED** because the expected SPL token settlement was not found. It checked a host-selected hypothetical Solana Devnet covenant, not a settlement for these emails; it therefore does **not** support payment for this email scenario. Even a successful compatibility check would not authorize work, messaging, or payment. No work, draft, message, contract, signature, or transfer is authorized. The safe next step is to select and explicitly approve the exact commercial option and terms before any such action.
+
+```json
+{
+  "fundingStatus": "UNVERIFIED",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

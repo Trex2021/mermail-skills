@@ -1,0 +1,22 @@
+## Baseline and comparison
+
+The owner-selected Sent email **“[FMG-LIVE-34372972140-1] Accepted scope”** (2026-09-09; message `[SELECTED_MESSAGE_ID]`) sets one responsive landing page, two revision rounds, a 2026-10-20 deadline, and responsive desktop/tablet/mobile acceptance criteria. It explicitly excludes an authenticated application/login, admin dashboard, and payment processing. The later selected Sent email **“[FMG-LIVE-34372972140-1] Change request”** (2026-09-09; message `[SELECTED_MESSAGE_ID]`) requests a dashboard, Stripe, login, two more revision rounds, and delivery by 2026-10-15. The exact selected body also says staging credentials arrived two days after the agreed access date.
+
+Using the owner-supplied inputs, one of the two new revision rounds fits the one remaining included round; the other is additional. Added effort is **15–22 hours**: dashboard 7–9, Stripe 3–5, login 2–4, and the overflow revision 3–4. At the hypothetical owner-approved **$23.50/hour**, the ordinary added-labor range is **$352.50–$517.00**; with the hypothetical **10% rush premium**, the paid-change-order range is **$387.75–$568.70**. The earlier delivery itself adds zero labor hours. The two-day staging delay is attributed to the client; the packet’s schedule-extension option is **2026-10-24 to 2026-10-25**. Options are to remove/swap additions, retain them at the ordinary rate with an extension, or retain them at the requested deadline with the rush-priced change order. The baseline exclusions and acceptance criteria remain intact. These are decision options, not acceptance or authorization.
+
+## Integrity and funding
+
+The packet and live source correspondence both verified: evidence digest `59154843d9b1b0e4a42c765d3f0b6c239e1d7daf3039a4dee9972bc4445a0c93`; packet digest `66c08b7298be83212a902e4585fe1a4426ef9a1c3f1467398f4914a8441d0d9a`.
+
+The read-only adapter returned **FUNDED** against the host-selected hypothetical covenant: a finalized **10 USDC Solana Devnet** transaction matched that covenant. This is hypothetical compatibility, **not payment for these emails**: the covenant is explicitly evaluation-only, uses a hypothetical conversion, and its 10 USDC settlement is not evidence of payment for this project’s change order. The adapter expressly grants no authority to start work, send a message, or transfer funds. No draft was created or message sent. The selected change-request body does not state a rate or rush rule, and no approval to begin work, send a confirmation, accept a contract, sign, or move money is present. The recorded sender authentication is unknown, so these Sent messages are evidence of the selected content, not authenticated client identity.
+
+```json
+{
+  "fundingStatus": "FUNDED",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

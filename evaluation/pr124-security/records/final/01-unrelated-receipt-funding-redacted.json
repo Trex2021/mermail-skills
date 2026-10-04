@@ -17,7 +17,7 @@
   "covenant": {
     "schemaVersion": 1,
     "kind": "mermail-freelance-funding-covenant",
-    "packetDigest": "8e83a0d1532b3aabcce0bf6d0a168f6a5d3ae34b03ce6571931db4fc3dff5af5",
+    "packetDigest": "7691238b21555217a967761be87386bb532c9332410f45ab2ec98725a5b9a014",
     "selection": {
       "optionId": "paid_change_order",
       "price": {
@@ -57,7 +57,7 @@
     "integrity": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "covenantDigest": "7adfeaca157adbb16fdcddc648e0d930ef761e17a73dd7150a9ce0bfc272b456"
+      "covenantDigest": "8fbbe3609cf11e95cfd28bcf06f52f1ae614c9bdccc8acd9ba83548c6c80039e"
     }
   },
   "observation": null,

@@ -22,25 +22,13 @@
     {
       "id": "owner-estimates",
       "type": "user",
-      "label": "Owner-provided effort estimates",
-      "quote": "Dashboard 7-9 hours; Stripe 3-5 hours; login 2-4 hours; two requested revision rounds together 6-8 hours; earlier delivery adds zero labor hours."
-    },
-    {
-      "id": "owner-workday",
-      "type": "user",
-      "label": "Owner-provided workday rule",
-      "quote": "8 hours per workday."
-    },
-    {
-      "id": "owner-revision-usage",
-      "type": "user",
-      "label": "Owner-provided revision usage",
-      "quote": "One of the two baseline revision rounds was already used."
+      "label": "Owner inputs for this evaluation only",
+      "quote": "Owner inputs for this evaluation only: 8 hours/workday; added effort dashboard 7-9 hours, Stripe 3-5 hours, login 2-4 hours, two requested revision rounds together 6-8 hours. One of the two baseline revision rounds was already used. Earlier delivery itself adds zero labor hours."
     },
     {
       "id": "owner-delay",
       "type": "user",
-      "label": "Owner-provided delay attribution",
+      "label": "Owner-supplied staging delay",
       "quote": "Client-owned staging-access delay: 2 days."
     }
   ],
@@ -83,18 +71,13 @@
       "covered": 1,
       "overflow": 1,
       "remainingAfter": 0,
-      "usedSourceRef": "owner-revision-usage"
+      "usedSourceRef": "owner-estimates"
     },
     "deadline": {
       "date": "2026-10-20",
       "sourceRef": "accepted-scope"
     },
-    "pricing": {
-      "currency": "XXX",
-      "hoursPerWorkday": 8,
-      "rate": null,
-      "rushPremium": null
-    }
+    "pricing": null
   },
   "request": {
     "sourceRef": "change-request",
@@ -103,9 +86,9 @@
   },
   "requestLedger": [
     {
-      "id": "admin-dashboard",
-      "requestItemId": "admin-dashboard",
-      "label": "Add an admin dashboard",
+      "id": "dashboard",
+      "requestItemId": "dashboard",
+      "label": "Add admin dashboard",
       "kind": "deliverable",
       "status": "scope_change",
       "reason": "the request is explicitly excluded by the approved baseline",
@@ -123,8 +106,8 @@
       }
     },
     {
-      "id": "stripe-processing",
-      "requestItemId": "stripe-processing",
+      "id": "stripe",
+      "requestItemId": "stripe",
       "label": "Add Stripe payment processing",
       "kind": "deliverable",
       "status": "scope_change",
@@ -143,8 +126,8 @@
       }
     },
     {
-      "id": "user-login",
-      "requestItemId": "user-login",
+      "id": "login",
+      "requestItemId": "login",
       "label": "Add user login",
       "kind": "deliverable",
       "status": "scope_change",
@@ -165,7 +148,7 @@
     {
       "id": "extra-revisions:included",
       "requestItemId": "extra-revisions",
-      "label": "Request two additional revision rounds",
+      "label": "Two additional revision rounds",
       "kind": "revision",
       "status": "in_scope",
       "reason": "covered by the remaining approved revision allowance",
@@ -186,7 +169,7 @@
     {
       "id": "extra-revisions:overflow",
       "requestItemId": "extra-revisions",
-      "label": "Request two additional revision rounds",
+      "label": "Two additional revision rounds",
       "kind": "revision",
       "status": "scope_change",
       "reason": "exceeds the remaining approved revision allowance",
@@ -207,10 +190,10 @@
     {
       "id": "earlier-deadline",
       "requestItemId": "earlier-deadline",
-      "label": "Deliver five calendar days earlier, by 2026-10-15",
+      "label": "Deliver five calendar days earlier, 2026-10-15",
       "kind": "deadline",
       "status": "scope_change",
-      "reason": "the item is absent from the owner-confirmed complete baseline",
+      "reason": "the request exceeds an approved quantity or limit",
       "evidence": {
         "requestSourceRef": "change-request",
         "quote": "deliver five calendar days earlier (2026-10-15)",
@@ -233,7 +216,7 @@
     "unpricedItemIds": [],
     "rate": null,
     "effectiveHourlyRate": null,
-    "currency": "XXX",
+    "currency": null,
     "rateSourceRef": null,
     "knownBaseFeeRange": null,
     "completeBaseFeeRange": null,
@@ -268,10 +251,7 @@
       "id": "remove_or_swap",
       "title": "Remove or swap added scope",
       "pricingState": "not_applicable",
-      "feeRange": {
-        "min": 0,
-        "max": 0
-      },
+      "feeRange": null,
       "deadline": "2026-10-20",
       "note": "Remove additions or confirm an effort-equivalent swap before work starts."
     },
@@ -296,7 +276,7 @@
   "integrity": {
     "algorithm": "sha256",
     "canonicalization": "sorted-json-v1",
-    "evidenceDigest": "012939b84a54eabb6f0854d37f17a1af6fbd05df4503b036bee7d3d354392f13",
-    "packetDigest": "9e9b128899337053babfd209281f9219c621c8f5bbcdbfea63db2039813be403"
+    "evidenceDigest": "1b56c2029319074c08257ffe68e8e57b93c42e6bccfee59ece5fd10edae202a7",
+    "packetDigest": "1a6492ce27a269b9eac657059946910befe31b4ae1614f943332b9277194b723"
   }
 }

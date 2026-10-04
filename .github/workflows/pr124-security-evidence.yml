@@ -27,9 +27,9 @@ jobs:
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: 22
-      - name: Verify corrected evaluator regression checks
+      - name: Verify evaluator regression checks
         env:
           PRODUCT_ROOT: ${{ github.workspace }}/product
         run: node --test harness/evaluation/pr124-security/security.test.mjs
-      - name: Verify unchanged original live evidence and reconciliation
+      - name: Verify preserved live evidence and original decisions
         run: node harness/evaluation/pr124-security/verify-observed.mjs --product-root "$GITHUB_WORKSPACE/product"

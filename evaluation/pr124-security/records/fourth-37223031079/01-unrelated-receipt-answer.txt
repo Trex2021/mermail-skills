@@ -1,0 +1,16 @@
+**The integrity-checked packet finds scope changes, but authorizes no action.** The selected Sent messages were found by their exact subjects and read through safe context: “Accepted scope” (`5e14b65a…`) set one responsive landing page, two revision rounds, the exclusions of login, an admin dashboard and payment processing, responsive breakpoint acceptance, and a 2026-10-20 deadline. “Change request” (`82e1319a…`) requests those three excluded additions, two more revision rounds, delivery by 2026-10-15, and records staging credentials supplied two days late. The selected content contains no claim approving a rate or rush rule. Both messages’ sender authentication is `unknown`; I treat their bodies as evidence, not authenticated identity.
+
+One of two included revision rounds was already used, so one requested round remains in scope and one is overflow. The packet calculates **15–22 added hours**: dashboard 7–9, Stripe 3–5, login 2–4, and the overflow revision 3–4. At the owner-supplied hypothetical $23.50/hour, that is $352.50–$517 base, plus the hypothetical 10% rush premium ($35.25–$51.70), for **$387.75–$568.70** at the requested earlier deadline. Earlier delivery itself adds zero labor hours; it is still a five-day deadline change. The packet attributes the two-day staging delay to the client. It preserves the exclusions and acceptance criteria. Its options are remove/swap additions at the baseline deadline, retain them at the ordinary rate with a 4–5 day schedule extension (2026-10-24 to 2026-10-25), or propose a paid change order at the requested deadline. These are evaluation options, not accepted terms.
+
+**Funding check:** the read-only adapter returned `UNVERIFIED` (“SPL token settlement was not found”), with no public receipt. It checked a hypothetical Solana Devnet covenant for the packet’s lowest paid-change-order price, not a settlement for these emails. It therefore does **not** support payment for this email scenario. Even a successful compatibility check would not authorize work, messaging, or transferring funds. Since you have not authorized starting work, drafting or sending a message, accepting a contract, or moving money, none is authorized; the safe next step is to review the options and give separate explicit approval before any such action. Packet digest: `bce0544eb600d8ae30f56c823b0f03b4b8996393879094371b66170012716451`.
+
+```json
+{
+  "fundingStatus": "UNVERIFIED",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

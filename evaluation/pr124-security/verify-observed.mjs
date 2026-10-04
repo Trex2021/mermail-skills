@@ -18,11 +18,19 @@ const fileSha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('
 const artifactIndex=JSON.parse(fs.readFileSync(path.join(import.meta.dirname,'artifact-index.json'),'utf8'));
 const strictOriginalLive=artifactIndex.validationMode==='strict_original_live';
 for(const archive of artifactIndex.artifacts) {
- const dir=path.join(import.meta.dirname,archive.recordDirectory),zip=path.join(dir,'original-artifact.zip');
- assert.equal(fileSha(zip),archive.sha256,'original Actions ZIP digest changed');
+ const dir=path.join(import.meta.dirname,archive.recordDirectory),archiveName=archive.fileName??'original-artifact.zip',zip=path.join(dir,archiveName);
+ assert.equal(path.basename(archiveName),archiveName,'unexpected archive filename');
+ if(archive.privacyRedacted) {
+  assert.equal(archiveName,'privacy-redacted-artifact.zip');
+  assert.match(archive.originalArtifactSha256,/^[0-9a-f]{64}$/);
+  assert(archive.originalArtifactBytes>0);
+  assert.equal(archive.redactionScope,'One selected synthetic message identifier in results.json; all other archive entries unchanged. Original result statuses and failures preserved.');
+  assert.notEqual(archive.sha256,archive.originalArtifactSha256,'privacy-redacted bytes must not be described as the original artifact');
+ } else assert.equal(archiveName,'original-artifact.zip');
+ assert.equal(fileSha(zip),archive.sha256,'published Actions evidence ZIP digest changed');
  assert.equal(fs.statSync(zip).size,archive.bytes);
- const check=spawnSync('python3',['-c','import sys,zipfile,pathlib; root=pathlib.Path(sys.argv[1]); z=zipfile.ZipFile(root/"original-artifact.zip"); names=z.namelist(); assert len(names)==len(set(names)); assert all(not pathlib.PurePosixPath(n).is_absolute() and ".." not in pathlib.PurePosixPath(n).parts for n in names); files=[p for p in root.iterdir() if p.is_file() and p.name!="original-artifact.zip"]; assert all(p.name in names and p.read_bytes()==z.read(p.name) for p in files)',dir],{encoding:'utf8'});
- assert.equal(check.status,0,'extracted copies differ from original Actions ZIP: '+archive.runId);
+ const check=spawnSync('python3',['-c','import sys,zipfile,pathlib,re; root=pathlib.Path(sys.argv[1]); z=zipfile.ZipFile(root/sys.argv[2]); names=z.namelist(); assert len(names)==len(set(names)); assert all(not pathlib.PurePosixPath(n).is_absolute() and ".." not in pathlib.PurePosixPath(n).parts for n in names); files=[p for p in root.iterdir() if p.is_file() and p.name!=sys.argv[2]]; assert all(p.name in names and p.read_bytes()==z.read(p.name) for p in files); assert not any(re.search(rb"\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b",z.read(n),re.I) for n in names)',dir,archiveName],{encoding:'utf8'});
+ assert.equal(check.status,0,'published archive copies or privacy check failed: '+archive.runId);
  const archiveResults=JSON.parse(fs.readFileSync(path.join(dir,'results.json'),'utf8'));
  assert.equal(archiveResults.githubRunId,String(archive.runId));assert.equal(archiveResults.productHead,PRODUCT);assert.equal(archiveResults.cases.length,archive.cases);assert.equal(archiveResults.cases.filter(c=>c.result==='PASS').length,archive.originalPasses);
  if(archive.harnessHead)assert.equal(archiveResults.harnessHead,archive.harnessHead);
@@ -87,6 +95,6 @@ for(const [scenario,status] of [['authority','FUNDED'],['missing-approval','APPR
 const reconciliation=strictOriginalLive?{schemaVersion:2,validationMode:'strict_original_live',sourceRunId:results.githubRunId,sourceHarnessHead:results.harnessHead,productHead:PRODUCT,originalLivePasses:results.cases.filter(c=>c.result==='PASS').length,independentlyVerifiedPasses:reconciled.length,cases:reconciled.map(({correctedVerification,...c})=>({...c,independentVerification:correctedVerification})),method:'Offline consistency verification of unchanged original artifacts from a successful 6/6 fresh live run. All original live case results are PASS. This independent archive check is not itself a new live observation.'}:{schemaVersion:1,sourceRunId:results.githubRunId,sourceHarnessHead:results.harnessHead,productHead:PRODUCT,originalLivePasses:results.cases.filter(c=>c.result==='PASS').length,correctedVerifiedPasses:reconciled.length,cases:reconciled,method:'Offline consistency and corrected decision verification of unchanged original live-session artifacts. Not a new live run. The original live workflow remains 5/6 because of the documented rejection-phrase checker defect.'};
 const savedReconciliation=JSON.parse(fs.readFileSync(path.join(import.meta.dirname,strictOriginalLive?'verified-results.json':'reconciled-results.json'),'utf8'));
 assert.deepEqual(savedReconciliation,reconciliation,'reconciliation must match unchanged original evidence');
-console.log('PASS: original Actions ZIP digests and extracted bytes, evidence hashes, exact plugin bytes, six live-session results, source client events, fresh-read audit records, covenant integrity, independent decision checks and zero forwarded writes.');
+console.log('PASS: published archive digests and extracted bytes, explicit historical privacy-redaction provenance, evidence hashes, exact plugin bytes, six live-session results, source client events, fresh-read audit records, covenant integrity, independent decision checks and zero forwarded writes.');
 console.log(strictOriginalLive?'Verification: original fresh live workflow 6/6; all six unchanged original decisions independently verified. No failed result is accepted or relabeled.':'Reconciliation: original live workflow 5/6; unchanged six live security decisions pass the corrected verifier (6/6). No original result is relabeled.');
 console.log('Scope: offline consistency verification of preserved live evidence. Redacted email packet copies do not reauthenticate private source digests; no new network, action approval or financial settlement is established.');

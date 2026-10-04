@@ -20,34 +20,10 @@
       "quote": "Change request: add an admin dashboard, Stripe payment processing, user login, two more revision rounds, and deliver five calendar days earlier (2026-10-15). Staging credentials were supplied two days after the agreed access date."
     },
     {
-      "id": "owner-revision-usage",
+      "id": "owner-inputs",
       "type": "user",
-      "label": "Owner-provided revision usage for this evaluation",
-      "quote": "One of the two baseline revision rounds was already used."
-    },
-    {
-      "id": "owner-commercial-inputs",
-      "type": "user",
-      "label": "Owner-approved hypothetical rate and workday",
-      "quote": "23.50 USD/hour; 8 hours/workday."
-    },
-    {
-      "id": "owner-estimates",
-      "type": "user",
-      "label": "Owner-provided estimates for this evaluation",
-      "quote": "Admin dashboard 7-9 hours; Stripe 3-5 hours; login 2-4 hours; two requested revision rounds together 6-8 hours; earlier delivery adds zero labor hours."
-    },
-    {
-      "id": "owner-rush-rule",
-      "type": "user",
-      "label": "Owner-approved hypothetical rush rule",
-      "quote": "10% rush premium on added labor."
-    },
-    {
-      "id": "owner-delay-input",
-      "type": "user",
-      "label": "Owner-provided delay attribution for this evaluation",
-      "quote": "Client-owned staging-access delay: 2 days."
+      "label": "Owner-provided hypothetical pricing, effort, revision usage, and delay inputs",
+      "quote": "8 hours/workday; dashboard 7-9 hours, Stripe 3-5 hours, login 2-4 hours, two requested revision rounds together 6-8 hours; one baseline revision round already used; earlier delivery adds zero labor hours; client-owned staging-access delay 2 days; hypothetical owner-approved rate 23.50 USD/hour and 10% rush premium on added labor."
     }
   ],
   "baseline": {
@@ -56,22 +32,22 @@
     ],
     "deliverables": [
       {
-        "id": "responsive-landing-page",
+        "id": "landing-page",
         "label": "One responsive landing page",
         "sourceRef": "accepted-scope"
       }
     ],
     "exclusions": [
       {
-        "text": "Authenticated application and login",
+        "text": "Authenticated application and login excluded",
         "sourceRef": "accepted-scope"
       },
       {
-        "text": "Admin dashboard",
+        "text": "Admin dashboard excluded",
         "sourceRef": "accepted-scope"
       },
       {
-        "text": "Payment processing",
+        "text": "Payment processing excluded",
         "sourceRef": "accepted-scope"
       }
     ],
@@ -89,7 +65,7 @@
       "covered": 1,
       "overflow": 1,
       "remainingAfter": 0,
-      "usedSourceRef": "owner-revision-usage"
+      "usedSourceRef": "owner-inputs"
     },
     "deadline": {
       "date": "2026-10-20",
@@ -101,12 +77,12 @@
       "rate": {
         "amount": 23.5,
         "unit": "hour",
-        "sourceRef": "owner-commercial-inputs"
+        "sourceRef": "owner-inputs"
       },
       "rushPremium": {
         "percent": 10,
         "basis": "added_labor_fee",
-        "sourceRef": "owner-rush-rule"
+        "sourceRef": "owner-inputs"
       }
     }
   },
@@ -119,7 +95,7 @@
     {
       "id": "admin-dashboard",
       "requestItemId": "admin-dashboard",
-      "label": "Add admin dashboard",
+      "label": "Add an admin dashboard",
       "kind": "deliverable",
       "status": "scope_change",
       "reason": "the request is explicitly excluded by the approved baseline",
@@ -133,7 +109,7 @@
       "effortHours": {
         "min": 7,
         "max": 9,
-        "sourceRef": "owner-estimates"
+        "sourceRef": "owner-inputs"
       }
     },
     {
@@ -153,7 +129,7 @@
       "effortHours": {
         "min": 3,
         "max": 5,
-        "sourceRef": "owner-estimates"
+        "sourceRef": "owner-inputs"
       }
     },
     {
@@ -173,12 +149,12 @@
       "effortHours": {
         "min": 2,
         "max": 4,
-        "sourceRef": "owner-estimates"
+        "sourceRef": "owner-inputs"
       }
     },
     {
-      "id": "revision-rounds:included",
-      "requestItemId": "revision-rounds",
+      "id": "extra-revisions:included",
+      "requestItemId": "extra-revisions",
       "label": "Two additional revision rounds",
       "kind": "revision",
       "status": "in_scope",
@@ -194,12 +170,12 @@
       "effortHours": {
         "min": 3,
         "max": 4,
-        "sourceRef": "owner-estimates"
+        "sourceRef": "owner-inputs"
       }
     },
     {
-      "id": "revision-rounds:overflow",
-      "requestItemId": "revision-rounds",
+      "id": "extra-revisions:overflow",
+      "requestItemId": "extra-revisions",
       "label": "Two additional revision rounds",
       "kind": "revision",
       "status": "scope_change",
@@ -215,13 +191,13 @@
       "effortHours": {
         "min": 3,
         "max": 4,
-        "sourceRef": "owner-estimates"
+        "sourceRef": "owner-inputs"
       }
     },
     {
-      "id": "earlier-delivery",
-      "requestItemId": "earlier-delivery",
-      "label": "Deliver five calendar days earlier",
+      "id": "earlier-deadline",
+      "requestItemId": "earlier-deadline",
+      "label": "Deliver five calendar days earlier, by 2026-10-15",
       "kind": "deadline",
       "status": "scope_change",
       "reason": "the request exceeds an approved quantity or limit",
@@ -235,7 +211,7 @@
       "effortHours": {
         "min": 0,
         "max": 0,
-        "sourceRef": "owner-estimates"
+        "sourceRef": "owner-inputs"
       }
     }
   ],
@@ -248,11 +224,11 @@
     "rate": {
       "amount": 23.5,
       "unit": "hour",
-      "sourceRef": "owner-commercial-inputs"
+      "sourceRef": "owner-inputs"
     },
     "effectiveHourlyRate": 23.5,
     "currency": "USD",
-    "rateSourceRef": "owner-commercial-inputs",
+    "rateSourceRef": "owner-inputs",
     "knownBaseFeeRange": {
       "min": 352.5,
       "max": 517
@@ -269,7 +245,7 @@
     "rushPremium": {
       "percent": 10,
       "basis": "added_labor_fee",
-      "sourceRef": "owner-rush-rule"
+      "sourceRef": "owner-inputs"
     },
     "rushPremiumAmountRange": {
       "min": 35.25,
@@ -286,11 +262,11 @@
     "events": [
       {
         "id": "staging-access-delay",
-        "label": "Staging credentials supplied late",
+        "label": "Client-owned staging-access delay",
         "owner": "client",
         "delayDays": 2,
-        "sourceRef": "owner-delay-input",
-        "evidenceQuote": "Client-owned staging-access delay: 2 days."
+        "sourceRef": "owner-inputs",
+        "evidenceQuote": null
       }
     ],
     "totalDaysByOwner": {
@@ -345,7 +321,7 @@
   "integrity": {
     "algorithm": "sha256",
     "canonicalization": "sorted-json-v1",
-    "evidenceDigest": "9aa7dfb14eec5a860dc906058f8eb81707a973b5d08e2ccd6a6f6eacc83aafc7",
-    "packetDigest": "b97cf525b4e24f0cd3886c02a11a3c0ad6cfb404fe4f0d61c5fed017ce9c4ea7"
+    "evidenceDigest": "a2f046cf1808ff1d28913efc09a9a8b42058fdabe415d60301b035c508e784bb",
+    "packetDigest": "e8813ca7f83f3e2190243547f455c3192559aed1d67a377545838a6ecbd0f0c1"
   }
 }

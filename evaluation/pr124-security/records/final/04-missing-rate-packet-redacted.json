@@ -20,33 +20,51 @@
       "quote": "Change request: add an admin dashboard, Stripe payment processing, user login, two more revision rounds, and deliver five calendar days earlier (2026-10-15). Staging credentials were supplied two days after the agreed access date."
     },
     {
-      "id": "owner-revision-usage",
+      "id": "revision-usage",
       "type": "user",
-      "label": "Owner-provided revision usage for this evaluation",
+      "label": "Owner-supplied revision usage",
       "quote": "One of the two baseline revision rounds was already used."
-    },
-    {
-      "id": "owner-effort-estimates",
-      "type": "user",
-      "label": "Owner-provided effort estimates for this evaluation",
-      "quote": "Dashboard 7-9 hours; Stripe 3-5 hours; login 2-4 hours; two requested revision rounds together 6-8 hours."
     },
     {
       "id": "owner-workday",
       "type": "user",
-      "label": "Owner-provided workday length for this evaluation",
+      "label": "Owner-supplied workday length",
       "quote": "8 hours/workday."
     },
     {
-      "id": "owner-deadline-effort",
+      "id": "estimate-dashboard",
       "type": "user",
-      "label": "Owner-provided labor impact for earlier delivery",
+      "label": "Owner-supplied dashboard effort estimate",
+      "quote": "Added effort dashboard 7-9 hours."
+    },
+    {
+      "id": "estimate-stripe",
+      "type": "user",
+      "label": "Owner-supplied Stripe effort estimate",
+      "quote": "Stripe 3-5 hours."
+    },
+    {
+      "id": "estimate-login",
+      "type": "user",
+      "label": "Owner-supplied login effort estimate",
+      "quote": "login 2-4 hours."
+    },
+    {
+      "id": "estimate-revisions",
+      "type": "user",
+      "label": "Owner-supplied revision effort estimate",
+      "quote": "two requested revision rounds together 6-8 hours."
+    },
+    {
+      "id": "estimate-delivery",
+      "type": "user",
+      "label": "Owner-supplied earlier-delivery effort",
       "quote": "Earlier delivery itself adds zero labor hours."
     },
     {
-      "id": "owner-staging-delay",
+      "id": "staging-delay",
       "type": "user",
-      "label": "Owner-provided staging-access dependency for this evaluation",
+      "label": "Owner-supplied staging-access delay attribution",
       "quote": "Client-owned staging-access delay: 2 days."
     }
   ],
@@ -89,18 +107,13 @@
       "covered": 1,
       "overflow": 1,
       "remainingAfter": 0,
-      "usedSourceRef": "owner-revision-usage"
+      "usedSourceRef": "revision-usage"
     },
     "deadline": {
       "date": "2026-10-20",
       "sourceRef": "accepted-scope"
     },
-    "pricing": {
-      "currency": "XXX",
-      "hoursPerWorkday": 8,
-      "rate": null,
-      "rushPremium": null
-    }
+    "pricing": null
   },
   "request": {
     "sourceRef": "change-request",
@@ -111,7 +124,7 @@
     {
       "id": "admin-dashboard",
       "requestItemId": "admin-dashboard",
-      "label": "Add an admin dashboard",
+      "label": "Add admin dashboard",
       "kind": "deliverable",
       "status": "scope_change",
       "reason": "the request is explicitly excluded by the approved baseline",
@@ -125,7 +138,7 @@
       "effortHours": {
         "min": 7,
         "max": 9,
-        "sourceRef": "owner-effort-estimates"
+        "sourceRef": "estimate-dashboard"
       }
     },
     {
@@ -145,7 +158,7 @@
       "effortHours": {
         "min": 3,
         "max": 5,
-        "sourceRef": "owner-effort-estimates"
+        "sourceRef": "estimate-stripe"
       }
     },
     {
@@ -165,13 +178,13 @@
       "effortHours": {
         "min": 2,
         "max": 4,
-        "sourceRef": "owner-effort-estimates"
+        "sourceRef": "estimate-login"
       }
     },
     {
       "id": "revision-rounds:included",
       "requestItemId": "revision-rounds",
-      "label": "Two more revision rounds",
+      "label": "Two additional revision rounds",
       "kind": "revision",
       "status": "in_scope",
       "reason": "covered by the remaining approved revision allowance",
@@ -186,13 +199,13 @@
       "effortHours": {
         "min": 3,
         "max": 4,
-        "sourceRef": "owner-effort-estimates"
+        "sourceRef": "estimate-revisions"
       }
     },
     {
       "id": "revision-rounds:overflow",
       "requestItemId": "revision-rounds",
-      "label": "Two more revision rounds",
+      "label": "Two additional revision rounds",
       "kind": "revision",
       "status": "scope_change",
       "reason": "exceeds the remaining approved revision allowance",
@@ -207,12 +220,12 @@
       "effortHours": {
         "min": 3,
         "max": 4,
-        "sourceRef": "owner-effort-estimates"
+        "sourceRef": "estimate-revisions"
       }
     },
     {
-      "id": "earlier-delivery",
-      "requestItemId": "earlier-delivery",
+      "id": "earlier-deadline",
+      "requestItemId": "earlier-deadline",
       "label": "Deliver five calendar days earlier",
       "kind": "deadline",
       "status": "scope_change",
@@ -227,7 +240,7 @@
       "effortHours": {
         "min": 0,
         "max": 0,
-        "sourceRef": "owner-deadline-effort"
+        "sourceRef": "estimate-delivery"
       }
     }
   ],
@@ -239,7 +252,7 @@
     "unpricedItemIds": [],
     "rate": null,
     "effectiveHourlyRate": null,
-    "currency": "XXX",
+    "currency": null,
     "rateSourceRef": null,
     "knownBaseFeeRange": null,
     "completeBaseFeeRange": null,
@@ -258,7 +271,7 @@
         "label": "Staging credentials supplied after agreed access date",
         "owner": "client",
         "delayDays": 2,
-        "sourceRef": "owner-staging-delay",
+        "sourceRef": "staging-delay",
         "evidenceQuote": null
       }
     ],
@@ -274,10 +287,7 @@
       "id": "remove_or_swap",
       "title": "Remove or swap added scope",
       "pricingState": "not_applicable",
-      "feeRange": {
-        "min": 0,
-        "max": 0
-      },
+      "feeRange": null,
       "deadline": "2026-10-20",
       "note": "Remove additions or confirm an effort-equivalent swap before work starts."
     },
@@ -302,7 +312,7 @@
   "integrity": {
     "algorithm": "sha256",
     "canonicalization": "sorted-json-v1",
-    "evidenceDigest": "71f6a0cdb866f7cf6a32e1ae11eb6732ab2d266c1f7ae6eb96040ee6c193b5de",
-    "packetDigest": "bf14da678428dc7114d7bb1d87a83e33aee9f811f487df4f9f54f9ff2aa313e3"
+    "evidenceDigest": "093e88474a72824bc0f9e479deeb8327e29b0cec50b066bc0135b5f70f042a1f",
+    "packetDigest": "07f31c600dc630eec53017d142dc7fe8eeb6554eb4d7b8fd9b759c832a0a6ed5"
   }
 }

@@ -8,8 +8,8 @@
     ],
     "packetValid": true,
     "covenantValid": true,
-    "packetDigest": "7f9a3129a6319008ceca301bcca4e2e8f8a14c523c056b3bc0249472dc0491be",
-    "covenantDigest": "1dbc21c18169a0f7264d3f13b83758353cf241e7ed6e737790880e2f4c44d2a1",
+    "packetDigest": "5cda77598d50b6177bf4f300af4a6828ef07493de9761d80b2df23860bd97456",
+    "covenantDigest": "11bac75dc5c1549bd937770511c5a2d5e8ea007b71210b296c0dbf3bc80dbf75",
     "publicReceipt": null,
     "actionAuthority": {
       "startWork": false,
@@ -21,7 +21,7 @@
   "covenant": {
     "schemaVersion": 1,
     "kind": "mermail-freelance-funding-covenant",
-    "packetDigest": "7f9a3129a6319008ceca301bcca4e2e8f8a14c523c056b3bc0249472dc0491be",
+    "packetDigest": "5cda77598d50b6177bf4f300af4a6828ef07493de9761d80b2df23860bd97456",
     "selection": {
       "optionId": "paid_change_order",
       "price": {
@@ -61,7 +61,7 @@
     "integrity": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "covenantDigest": "1dbc21c18169a0f7264d3f13b83758353cf241e7ed6e737790880e2f4c44d2a1"
+      "covenantDigest": "11bac75dc5c1549bd937770511c5a2d5e8ea007b71210b296c0dbf3bc80dbf75"
     }
   },
   "observation": {

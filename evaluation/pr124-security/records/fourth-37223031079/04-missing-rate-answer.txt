@@ -1,0 +1,24 @@
+**Outcome: scope change detected; no binding quote or funded order can be established.** I found exactly the two requested subject matches, without folder restrictions, in the ready Mermail mailbox. The selected safe contexts identify them as Sent messages dated 2026-09-09. Their scan status is null and sender authentication is unknown, so they serve as owner-selected evidence—not authenticated proof of client identity.
+
+**Baseline —** Accepted scope email `[SELECTED_MESSAGE_ID]`: one responsive landing page, two revision rounds, deadline 2026-10-20. It excludes an authenticated application and login, an admin dashboard, and payment processing; acceptance is responsive behavior at the agreed desktop, tablet, and mobile breakpoints. Owner input says one baseline round was already used, leaving **one** included round.
+
+**Request ledger —** Change request email `[SELECTED_MESSAGE_ID]` asks for an admin dashboard (excluded; **7–9 hours**), Stripe payment processing (excluded; **3–5 hours**), and user login (excluded; **2–4 hours**). It also asks for two more revision rounds: one is within the remaining allowance, and one exceeds it. The owner’s **6–8 hours** for both rounds split evenly, making the overflow **3–4 hours**. The request to deliver 2026-10-15 is five calendar days earlier; the owner estimates zero added labor for earlier delivery itself. These estimates are owner inputs, not terms approved by the client.
+
+**Margin and delay —** Known added effort is **15–22 hours** (the excluded features plus the one overflow revision); at the supplied 8 hours/workday, that is **1.875–2.75 workdays of effort**, not a binding schedule extension. The request says staging credentials arrived two days after the agreed access date; the owner attributes **2 days to the client**. Keep that delay separate from the effort estimate; the packet does not establish a revised calendar deadline.
+
+The packet retains the exclusions and acceptance criteria. Its state is `scope_change_detected`; `pricingState` is **`approval_needed`**. No owner-approved hourly rate or currency was supplied, so neither ordinary-rate pricing nor a binding fee can be calculated. No rush-premium rule was supplied, so the five-day compression cannot be priced as a rush change order. The selected emails themselves do not assert owner approval of a rate or rush rule.
+
+**Safe next steps —** The available choices are to remove or swap the additions (confirm comparable effort before agreeing), keep them and negotiate a schedule extension, or pursue a paid change order at the requested deadline. None is currently binding: get the missing owner-approved rate and currency, and—if retaining the earlier deadline—the rush rule; then obtain explicit agreement to the chosen terms. No message or work is authorized by this evaluation. The Funding Gate returned `PRICING_APPROVAL_REQUIRED` because there is no fully priced option or covenant. Its host setup is a hypothetical Solana Devnet compatibility case, **not payment for these emails**; no transaction observation or RPC call was returned.
+
+**Integrity —** The live builder verified correspondence for both selected email sources and independently validated the packet and evidence digests: evidence `ddc7800e3f04a2f97a5454f4ac184331d951d3e972227ac923bde3482a3b0d2e`; packet `7ea4de0a89e45cee8cf28f44dfcc29d2bfbcf2dc5411f44503e87fb996d171a9`.
+
+```json
+{
+  "fundingStatus": "NOT_EVALUATED",
+  "rateState": "approval_needed",
+  "approvedRate": null,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```
