@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-04T19:04:52.704Z",
+  "priority": 5,
+  "priorityComplete": false,
+  "authorPreparationComplete": true,
+  "repository": "Nudgen-Marketing/mermail-skills",
+  "pullRequest": 124,
+  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "upstreamBase": "9f2e6e0f9d77d4967bd451058fb7c19a32825da9",
+  "productChangedByPriority5": false,
+  "guideCommit": "8f63549f9adb39d78767011e9c4384b87c9f0e28",
+  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/8f63549f9adb39d78767011e9c4384b87c9f0e28/evaluation/pr124-review/REVIEW-GUIDE.md",
+  "descriptionUpdatedAndReadBack": true,
+  "reviewRequest": {
+    "kind": "public_comment_to_verified_upstream_maintainer",
+    "id": 5983346999,
+    "url": "https://github.com/Nudgen-Marketing/mermail-skills/pull/124#issuecomment-5983346999",
+    "exactReadbackVerified": true,
+    "formalReviewerAssignment": false
+  },
+  "humanReviewsReceived": 0,
+  "unresolvedInlineThreads": 0,
+  "upstreamRuns": [
+    {
+      "id": 37147782754,
+      "name": "Publish plugin bundle to ClawHub",
+      "status": "completed",
+      "conclusion": "action_required",
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782754"
+    },
+    {
+      "id": 37147782241,
+      "name": "Cursor Directory submission readiness",
+      "status": "completed",
+      "conclusion": "action_required",
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782241"
+    },
+    {
+      "id": 37147782342,
+      "name": "Validate skills",
+      "status": "completed",
+      "conclusion": "action_required",
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782342"
+    },
+    {
+      "id": 37147782395,
+      "name": "Publish skills to ClawHub",
+      "status": "completed",
+      "conclusion": "action_required",
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782395"
+    },
+    {
+      "id": 37147782398,
+      "name": "Plugin Security Scan",
+      "status": "completed",
+      "conclusion": "action_required",
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782398"
+    }
+  ],
+  "upstreamWritePermission": false,
+  "mergeable": true,
+  "mergeableState": "unstable",
+  "merged": false,
+  "remaining": [
+    "Independent human review on the exact current product head.",
+    "Maintainer authorization and actual successful execution of the five upstream PR workflows.",
+    "Resolve any concrete review findings and recheck the final head.",
+    "Obtain explicit owner authorization before any merge."
+  ],
+  "scope": "Review preparation and request only. No product code change, Mermail send, wallet connection, transaction, merge or upstream permission change."
+}
