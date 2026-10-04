@@ -1,0 +1,16 @@
+{
+  "skills/mermail-freelance-margin-guard/SKILL.md": "03ac30313b323e4570eeb41c1bea9e822da9838a5354e0ec45444d7c8283ef9c",
+  "skills/mermail-freelance-margin-guard/references/security.md": "c2fd553b73849abd81586c72f787e9749107aae3f750c9b4bc41876ba708ad9b",
+  "skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs": "64be04b85f7261ce36f307916838a078d93ac731b9c5f49538539027967375ba",
+  "skills/mermail-freelance-margin-guard/scripts/funding-gate.mjs": "1a193a96f7e4fad04b0ad59349c32b0e1781b1de56162c2b0dc131afc5d1271b",
+  "skills/mermail-freelance-margin-guard/scripts/run-live-proof.mjs": "adf4c7cf0d190ffac86b50fdfbad2a8a1d20d42dcf4ef01f20c48d6da8c83a00",
+  "skills/mermail-mcp/scripts/check-connection.mjs": "e89ec1468f3e9264bbe03e8df1844573aa0b62bc7208782dda4d96b308ad1c84",
+  "skills/mermail-mcp/references/security.md": "a8153dfafede25c269c59012091144485cb1a5c2016a4671406dea2879d6e78f",
+  "scripts/clawhub-ci-publish.py": "ba95c548986705c3fcb73dce11d3c1ca1bc12ed712796576d7bd92fd4a23ad7a",
+  "scripts/publish-clawhub.sh": "93c235615ffe6f961672e357538b127c9c215c0bc15fe3e1159fa198b85a4f70",
+  ".github/workflows/validate.yml": "6e8dd1e7a0b665404e64d648cf885d32e141dde5d98d7784f67e53633cce0fc0",
+  ".github/workflows/clawhub-skill-publish.yml": "a9c97c81c9cd548d1ec59acc12032929317611773f36598130505bc236749083",
+  ".github/workflows/clawhub-package-publish.yml": "3dfefdf18c7c0736452f679d9c512efd0133ab113cf0df9ab3df7e62f2938038",
+  ".codex-plugin/plugin.json": "a568e5fe32f0c3ed363108a22f104c2a37a51d19a932d93f7a6496093a89a66a",
+  "tests/validate.mjs": "06053f964c4aa613e72ca51632ca6600502ba1dc1d375b2d0965a0132e826030"
+}

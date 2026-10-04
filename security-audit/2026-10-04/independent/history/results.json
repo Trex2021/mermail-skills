@@ -1,0 +1,62 @@
+[
+  {
+    "case": "partial-overlap-delay",
+    "required": "reject partially overlapping quotes of one delay",
+    "observed": {
+      "clientDelay": 4,
+      "extensionDays": {
+        "min": 8,
+        "max": 9
+      },
+      "integrityValid": true
+    }
+  },
+  {
+    "case": "solana-wrong-cluster",
+    "required": "reject devnet settlement for mainnet-beta covenant",
+    "observed": {
+      "status": "FUNDED",
+      "declaredChain": "mainnet-beta",
+      "explorerUrl": "https://explorer.solana.com/tx/3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333",
+      "receiptValid": true,
+      "calls": [
+        {
+          "url": "https://api.devnet.solana.com/",
+          "method": "getTransaction"
+        },
+        {
+          "url": "https://api.devnet.solana.com/",
+          "method": "getTransaction"
+        }
+      ]
+    }
+  },
+  {
+    "case": "evm-orphaned-receipt-block",
+    "required": "reject a receipt whose block hash is different from the canonical block used for time and finality",
+    "observed": {
+      "status": "FUNDED",
+      "transactionBlockHash": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+      "canonicalBlockHash": "0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef",
+      "reportedConfirmations": 6,
+      "settledAt": "2026-09-22T16:00:00.000Z",
+      "calls": [
+        "eth_chainId",
+        "eth_getTransactionByHash",
+        "eth_getTransactionReceipt",
+        "eth_blockNumber",
+        "eth_getBlockByNumber"
+      ]
+    }
+  },
+  {
+    "case": "spl-owner-net-increase-zero",
+    "required": "exact net balance increase for owner-selected recipient across their token accounts",
+    "observed": {
+      "status": "FUNDED",
+      "recipientNetIncreaseAtomic": "0",
+      "requiredIncreaseAtomic": "487500000",
+      "observedIncreaseAtomic": "487500000"
+    }
+  }
+]

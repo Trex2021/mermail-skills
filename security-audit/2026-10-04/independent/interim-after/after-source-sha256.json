@@ -1,0 +1,9 @@
+{
+  "skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs": "ea98e820c8f3d5b99420585e2ad91033aea1491528bacc0a71e12a72ad72d7ec",
+  "skills/mermail-freelance-margin-guard/scripts/funding-gate.mjs": "56e6420f5c815a80e71a2e863cde10e65a2cd198e615c0455db9e8c5adb6a98b",
+  "skills/mermail-freelance-margin-guard/scripts/run-live-proof.mjs": "c385eef044ece674a179aec71e69b6202054e477cba8a69b9b8085e62f98c3c8",
+  "skills/mermail-mcp/scripts/check-connection.mjs": "854d0a52039ed05678c1e80a0836768e7d5974f90710f54df8837197ec35f981",
+  "scripts/clawhub-ci-publish.py": "0bc4cb202ec08a41560ac97ae00db1283d8086d073591fd71805e4162df75f79",
+  "scripts/publish-clawhub.sh": "172fb0170141fa373506f7a5fc2d72d67a2a5bbf528e53eb56c8a8cb6471a634",
+  "tests/validate.mjs": "6a9111f89870f7d48813030b81a5f7fbd471b3138b704e30304c71032672ae20"
+}

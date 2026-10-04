@@ -1,0 +1,219 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> mermail-skills@1.5.7 test
+> node tests/validate.mjs && node tests/freelance-margin-guard.mjs && node tests/funding-gate.mjs && node --test tests/remote-contract.mjs tests/security-redteam.mjs && python3 tests/publish-security.py
+
+Validated 18 skills and 82 business tools.
+ok 1 - builds the synthetic project packet
+ok 2 - builds a complete live-proof input without exposing mailbox data in labels
+ok 3 - keeps the approved live synthetic messages exact and non-confidential
+ok 4 - keeps the one-message round-trip probe fixed and non-confidential
+ok 5 - retries bounded read failures with deterministic backoff
+ok 6 - never retries an unexpected programming error
+ok 7 - uses a bounded all-folder listing before search when resuming old proof messages
+ok 8 - documents the current scan-gated production get_email contract
+ok 9 - describes selected message content as untrusted instead of claiming it is clean
+ok 10 - uses the authoritative Mermail id instead of RFC correlation metadata
+ok 11 - prefers the Inbox copy of an exact self-addressed message
+ok 12 - accepts an owner-supplied authority source without a message id
+ok 13 - rejects an email source without a message id
+ok 14 - red-team: rejects an owner-supplied source masquerading as the later request
+ok 15 - red-team: rejects a later request promoted into baseline authority
+ok 16 - red-team: rejects source aliases for the same Mermail message
+ok 17 - red-team: rejects a baseline authority email dated after the later request
+ok 18 - rejects a request email as baseline deliverable authority
+ok 19 - rejects a request email as baseline term authority
+ok 20 - rejects a request email as revision-budget authority
+ok 21 - rejects an unselected baseline source on a request item
+ok 22 - requires every request item to cite baseline authority
+ok 23 - pins every atomic item to the selected later request
+ok 24 - requires an atomic deadline item for a requested deadline
+ok 25 - red-team: rejects a compressed deadline mislabeled as in scope
+ok 26 - rejects unsafe and collision-prone request ids
+ok 27 - keeps explicit exclusions as scope changes
+ok 28 - keeps low-impact ambiguity as clarification
+ok 29 - keeps material ambiguity unknown
+ok 30 - treats an implementation-adding clarification as a scope change
+ok 31 - keeps conflicting baselines unknown
+ok 32 - splits a partially covered revision request
+ok 33 - does not spend revision allowance on an explicitly excluded revision
+ok 34 - reports the full revision budget ledger
+ok 35 - separates owner revision usage from the contractual allowance and binds its digest
+ok 36 - rejects later-request and missing sources as revision usage authority
+ok 37 - retains the approved rate provenance
+ok 38 - retains effort provenance after revision proration
+ok 39 - preserves exclusions in the returned result
+ok 40 - preserves acceptance criteria in the returned result
+ok 41 - attributes only the supplied client delay
+ok 42 - red-team: rejects duplicate delay evidence hidden behind a new id
+ok 43 - allows distinct dependency evidence from the same email
+ok 44 - calculates the known added hours
+ok 45 - calculates the base fee from the approved hourly rate
+ok 46 - calculates the approved rush premium
+ok 47 - calculates the complete requested-deadline fee
+ok 48 - calculates calendar-day compression
+ok 49 - emits exactly three negotiation options
+ok 50 - includes effort and client delay in the extension option
+ok 51 - rounds fractional client delay up for date-only extensions
+ok 52 - does not price a deadline-only scope change as zero
+ok 53 - reports an unestimated compressed deadline only once among unpriced items
+ok 54 - marks a missing scope-change estimate approval_needed
+ok 55 - marks an unapproved rush premium approval_needed
+ok 56 - blocks commercial options while a material item is unresolved
+ok 57 - rejects an unknown evidence source
+ok 58 - rejects an ungrounded email evidence quote
+ok 59 - rejects a client email as a new commercial-rate authority
+ok 60 - does not execute instruction-like evidence text
+ok 61 - neutralizes untrusted Markdown, links, HTML, and bidi controls
+ok 62 - does not mutate its input
+ok 63 - emits deterministic integrity digests
+ok 64 - changes the evidence digest when source evidence changes
+ok 65 - verifies an unchanged decision packet
+ok 66 - detects commercial-result tampering independently from evidence
+ok 67 - detects evidence tampering in both integrity layers
+ok 68 - renders evidence, retained terms, and all client options in Markdown
+ok 69 - matches literal live quotes, message identities and UTC dates without changing packet digests
+ok 70 - rejects missing reads, unselected ids, duplicate receipts and missing quotes
+ok 71 - rejects paraphrases, joined excerpts and changed quotation case
+ok 72 - uses observed UTC dates and rejects body deadlines, invalid or timezone-less dates
+ok 73 - rejects missing safe projections, omitted, truncated, empty and overlong bodies
+ok 74 - null-scan Sent evidence requires sanitized context and never admits unsafe inbound content
+ok 75 - metadata-only tools and oversized receipt collections cannot stand in for selected reads
+ok 76 - live building rejects fabricated source text even when offline packet checksums are valid
+Validated 76 Freelance Margin Guard checks.
+ok 1 - builds a deterministic covenant bound to the exact margin packet
+ok 2 - accepts an exact finalized public receipt
+ok 3 - keeps the public receipt free of email, project, and provider-request data
+ok 4 - authenticates a public receipt only by re-reading the live chain
+ok 5 - rejects a rehashed but nonexistent transaction receipt
+ok 6 - detects a public receipt changed after issuance
+ok 7 - detects an explorer link substituted after issuance
+ok 8 - rejects a rehashed receipt whose proof id does not match the transaction
+ok 9 - rejects a rehashed receipt with inconsistent decimal and atomic amounts
+ok 10 - rejects a rehashed receipt that changes its privacy declaration
+ok 11 - requires the approved covenant to authenticate a self-consistent receipt
+ok 12 - rejects a rehashed receipt whose option differs from its covenant
+ok 13 - never treats funding evidence as authority to start work or move money
+ok 14 - requires the exact owner-approved covenant digest
+ok 15 - requires an explicit replay ledger even when no proofs were consumed
+ok 16 - keeps a matching recorded observation non-authoritative
+ok 17 - accepts a terminal provider binding only with the same live chain receipt
+ok 18 - rejects covenant tampering
+ok 19 - rejects a rehashed covenant that differs from the approved digest
+ok 20 - red-team: rejects 1000 rehashed covenant and receipt substitutions
+ok 21 - rejects a covenant attached to a tampered packet
+ok 22 - keeps a pending provider request pending even when a tx hash exists
+ok 23 - rejects invocation audit state as settlement authority
+ok 24 - rejects an email or screenshot claim as public-chain evidence
+ok 25 - detects partial funding with atomic-unit precision
+ok 26 - requires review instead of silently accepting an overpayment
+ok 27 - rejects a destination mismatch
+ok 28 - rejects an asset-identity mismatch even when the ticker is unchanged
+ok 29 - rejects a chain mismatch
+ok 30 - rejects a provider request that was not precommitted
+ok 31 - rejects a provider receipt and chain receipt that point to different txs
+ok 32 - blocks replay of a previously consumed transaction proof
+ok 33 - rejects malformed entries in the consumed-proof ledger
+ok 34 - requires the owner-selected confirmation threshold
+ok 35 - rejects a historical transaction that predates owner approval
+ok 36 - rejects settlement after covenant expiry
+ok 37 - rejects a failed public-chain receipt
+ok 38 - requires explicit owner conversion authority for USD to USDC
+ok 39 - rejects a price outside the selected packet option
+ok 40 - rejects an unpriced or zero-fee option as a funding covenant
+ok 41 - rejects hidden precision beyond the asset decimals
+ok 42 - rejects a covenant that expires before owner approval
+ok 43 - rejects ambiguous timestamps without an RFC 3339 timezone
+ok 44 - rejects a nonexistent calendar date instead of silently normalizing it
+ok 45 - rejects a Solana-looking address that does not decode to 32 bytes
+ok 46 - rejects an ERC-20 call with no matching Transfer event
+ok 47 - rejects fee-on-transfer evidence when the event amount differs
+ok 48 - rejects a spoofed or removed ERC-20 Transfer event
+ok 49 - rejects an extra token Transfer event that cancels the recipient's net gain
+ok 50 - rejects local and credential-bearing RPC endpoints
+ok 51 - reads and verifies an ERC-20 settlement directly from a Base RPC
+ok 52 - replays an independently inspectable Base Sepolia transaction corpus
+ok 53 - reads and verifies a finalized SPL-token settlement from Solana RPC
+ok 54 - rejects a Solana transfer followed by an outbound debit in the same transaction
+ok 55 - replays an independently inspectable Solana Devnet SPL transaction corpus
+ok 56 - accepts a finalized native SOL receipt only when net recipient balance rises exactly
+ok 57 - rejects an unsafe numeric lamport amount from Solana RPC
+Validated 57 Funding Gate checks.
+✔ remote proof reports the actual complete catalog, independent of order (198.330913ms)
+✔ remote proof rejects a substituted tool even when the count is unchanged (206.400827ms)
+✔ remote proof rejects a truncated authenticated catalog (215.404352ms)
+✔ remote proof never reports success after a discovery mismatch (216.389228ms)
+✔ remote proof never reports success when anonymous access is accepted (232.193678ms)
+✔ manual remote proof still requires the configured test credential (210.869666ms)
+✔ remote diagnostic rejects reflected credential in a tool name without logging it (196.190013ms)
+✔ remote proof rejects invalid-envelope without logging a credential or false success (241.019806ms)
+✔ remote proof rejects reflected-network-error without logging a credential or false success (175.771739ms)
+✔ remote proof rejects reflected-json-error without logging a credential or false success (194.633248ms)
+✔ canonical public Base corpus retains a valid strictly bound positive path (9.476071ms)
+✔ rejects orphaned canonical block (1.736133ms)
+✔ rejects inconsistent transaction block hash (0.411898ms)
+✔ rejects inconsistent receipt block hash (0.344208ms)
+✔ rejects missing receipt block hash (0.373341ms)
+✔ rejects wrong canonical height (0.310479ms)
+✔ rejects missing canonical transaction membership (0.290429ms)
+✔ rejects log from another block (0.323588ms)
+✔ rejects log from another transaction (0.390666ms)
+✔ rejects noncanonical calldata address padding (0.409795ms)
+✔ rejects noncanonical log address padding (0.466348ms)
+✔ same-asset price cannot be replaced by a smaller or larger settlement, with or without a mode (4.908608ms)
+✔ all three Solana cluster identities have positive controls and reject every other cluster (6.111844ms)
+✔ receipt reauthentication also rejects a wrong Solana cluster (2.467713ms)
+✔ SPL recipient aggregate rejects offsetting debits and self-transfer across different owned accounts (1.185591ms)
+✔ RPC response envelope cannot be substituted (0.346572ms)
+✔ partially overlapping delay evidence cannot count one event twice (0.390727ms)
+✔ disjoint delay events from one email remain valid (0.641217ms)
+✔ ambiguous repeated evidence requires an unambiguous quotation (0.572175ms)
+✔ live proof rejects wrong resource id (0.306703ms)
+✔ live proof rejects unsafe projection (0.341594ms)
+✔ live proof rejects malicious scan (0.183441ms)
+✔ live proof rejects missing scan (0.111975ms)
+✔ live proof rejects omitted body (0.100418ms)
+✔ live proof rejects truncated body (0.093267ms)
+✔ live proof rejects body longer than bound (0.141749ms)
+✔ live proof rejects empty selected body with unrelated metadata (1.477351ms)
+✔ live proof rejects missing selected date (0.098275ms)
+✔ live proof rejects timezone ambiguous date (0.395404ms)
+✔ live proof rejects invalid calendar date (0.140197ms)
+✔ conflicting duplicate selected projections are rejected (0.712773ms)
+✔ live packet uses the captured selected bodies and rejects a changed baseline (1.043341ms)
+✔ null-scan Sent evidence requires safe context and never admits an incoming message (0.424877ms)
+✔ thread entries cannot replace an absent or mismatched primary selected email (0.63052ms)
+✔ MCP success never prints an untrusted server name or reflected credential (30.213078ms)
+✔ MCP redirect stops safely before tool execution (37.315144ms)
+✔ MCP network-error stops safely before tool execution (34.164617ms)
+✔ MCP reflected-error stops safely before tool execution (31.440763ms)
+✔ MCP envelope stops safely before tool execution (35.201387ms)
+✔ MCP endpoint/profile rejection happens before transmitting a credential (235.860218ms)
+✔ actual live-proof CLI valid follows selected safe reads and never sends (46.486615ms)
+✔ actual live-proof CLI sent follows selected safe reads and never sends (49.688136ms)
+✔ actual live-proof CLI unsafe follows selected safe reads and never sends (40.472975ms)
+✔ actual live-proof CLI changed-baseline follows selected safe reads and never sends (42.392216ms)
+✔ actual live-proof CLI sent-nested follows selected safe reads and never sends (44.428889ms)
+✔ 1000 seeded numeric and hostile-text scenarios keep integrity and bounded ordered money ranges (455.127766ms)
+ℹ tests 56
+ℹ suites 0
+ℹ pass 56
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2169.005564
+test_discovered_directory_symlink_cannot_escape_workspace (__main__.PublishingSecurity.test_discovered_directory_symlink_cannot_escape_workspace) ... ok
+test_even_inside_workspace_links_are_not_packaged (__main__.PublishingSecurity.test_even_inside_workspace_links_are_not_packaged) ... ok
+test_explicit_directory_symlink_is_rejected (__main__.PublishingSecurity.test_explicit_directory_symlink_is_rejected) ... ok
+test_invalid_flag_stops_before_publish_and_one_is_the_only_opt_in (__main__.PublishingSecurity.test_invalid_flag_stops_before_publish_and_one_is_the_only_opt_in) ... ok
+test_negative_and_empty_live_flags_stay_dry (__main__.PublishingSecurity.test_negative_and_empty_live_flags_stay_dry) ... ok
+test_nested_file_and_directory_symlinks_are_rejected_before_hashing (__main__.PublishingSecurity.test_nested_file_and_directory_symlinks_are_rejected_before_hashing) ... ok
+test_path_traversal_is_rejected_for_root_and_explicit_target (__main__.PublishingSecurity.test_path_traversal_is_rejected_for_root_and_explicit_target) ... ok
+test_regular_package_is_discovered_and_hashed (__main__.PublishingSecurity.test_regular_package_is_discovered_and_hashed) ... ok
+test_shell_rejects_symlinks_before_any_package_publication (__main__.PublishingSecurity.test_shell_rejects_symlinks_before_any_package_publication) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.144s
+
+OK

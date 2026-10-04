@@ -1,0 +1,10 @@
+PASS get_email supports direct selected projection
+PASS get_email_context requires a primary email envelope
+PASS mismatched primary cannot be repaired by matching thread sibling
+PASS unselected sibling does not contaminate the correct primary
+PASS omitted primary cannot be repaired by safe matching thread sibling
+PASS absent primary cannot be replaced by plain matching thread sibling
+FAIL absent primary cannot be replaced by nested email in thread sibling: required selected primary envelope behavior
+
+true !== false
+

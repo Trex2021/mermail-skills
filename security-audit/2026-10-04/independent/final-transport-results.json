@@ -1,0 +1,86 @@
+{
+  "passes": 12,
+  "failures": 0,
+  "results": [
+    {
+      "name": "connection checker redacts error-key",
+      "pass": true,
+      "detail": {
+        "exitCode": 1,
+        "stdout": "",
+        "stderr": "MCP request failed (code -32000).\n"
+      }
+    },
+    {
+      "name": "connection checker redacts throw-key",
+      "pass": true,
+      "detail": {
+        "exitCode": 1,
+        "stdout": "",
+        "stderr": "MCP network request failed or timed out.\n"
+      }
+    },
+    {
+      "name": "connection checker redacts invalid-json-key",
+      "pass": true,
+      "detail": {
+        "exitCode": 1,
+        "stdout": "",
+        "stderr": "MCP returned an invalid JSON response.\n"
+      }
+    },
+    {
+      "name": "connection checker redacts name-key",
+      "pass": true,
+      "detail": {
+        "exitCode": 0,
+        "stdout": "Connected to Mermail; discovered 83 tools (full profile).\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "connection checker redacts catalog-key",
+      "pass": true,
+      "detail": {
+        "exitCode": 0,
+        "stdout": "Connected to Mermail; discovered 83 tools (full profile).\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "connection checker rejects before credential transport: http://console.mermail.app/mcp",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "connection checker rejects before credential transport: https://evil.example.test/mcp",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "connection checker rejects before credential transport: https://console.mermail.app/mcp?profile=bad",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "connection checker rejects before credential transport: https://console.mermail.app/mcp?profile=agent-inbox&profile=agent-inbox",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "connection checker rejects wrong JSON-RPC envelope",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "CI remote validator redacts key reflected in authenticated catalog",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "CI remote validator rejects wrong JSON-RPC envelope",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

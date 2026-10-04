@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-04",
+  "scope": "Public PR124 skill code and relevant shared helpers; no private HSE access",
+  "productCommit": "c4876e43189c41771fcfa89f30d6cab400257654",
+  "productTree": "d788bc1628cd43fd4917e0970b7892b73afd400a",
+  "baselineProductCommit": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "repositoryChecks": {
+    "core": 76,
+    "funding": 57,
+    "remoteContract": 10,
+    "securityRedteam": 46,
+    "pythonPublisher": 9,
+    "total": 198,
+    "failures": 0
+  },
+  "embeddedScenarios": {
+    "covenantReceiptSubstitutions": 1000,
+    "seededNumericHostileText": 1000,
+    "additionalNamedTests": false
+  },
+  "independentAutomatedChecks": {
+    "categories": {
+      "final-results.json": 37,
+      "final-transport-results.json": 12,
+      "final-publishing-results.json": 16,
+      "final-live-results.json": 8,
+      "final-primary-results.json": 7
+    },
+    "total": 80,
+    "failures": 0,
+    "syntheticOnly": true,
+    "humanReview": false
+  },
+  "ci": {
+    "runId": 37239386192,
+    "url": "https://github.com/Trex2021/mermail-skills/actions/runs/37239386192",
+    "harnessCommit": "ac38c2b86bb968f2901d8750502b9716d60f40bb",
+    "conclusion": "success",
+    "completedAt": "2026-10-04T22:16:48Z",
+    "artifactId": 11316985778,
+    "zipSHA256": "f57bfe5347a44cbc800951fea3ea6279511ad2741e5eb2f69653eaf8e9a15aa7",
+    "jobId": 111544826984
+  },
+  "productionReadOnly": {
+    "authenticated": true,
+    "fullCatalogTools": 83,
+    "inboxProfileTools": 12,
+    "executedMethods": [
+      "initialize",
+      "tools/list",
+      "list_workspaces",
+      "list_mailboxes"
+    ],
+    "allToolBehaviorsExercised": false,
+    "newFinancialAction": false
+  },
+  "publicBaseObservation": {
+    "freshRead": true,
+    "canonicalInclusion": true,
+    "matchingTokenEvent": true,
+    "receiptBlockDecimals": true,
+    "realMermailPayment": false,
+    "actualOwnerApproval": false
+  },
+  "upstreamWorkflows": [
+    {
+      "id": 37239114011,
+      "name": "Publish plugin bundle to ClawHub",
+      "head_sha": "c4876e43189c41771fcfa89f30d6cab400257654",
+      "status": "completed",
+      "conclusion": "action_required",
+      "html_url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239114011"
+    },
+    {
+      "id": 37239113644,
+      "name": "Plugin Security Scan",
+      "head_sha": "c4876e43189c41771fcfa89f30d6cab400257654",
+      "status": "completed",
+      "conclusion": "action_required",
+      "html_url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113644"
+    },
+    {
+      "id": 37239113655,
+      "name": "Validate skills",
+      "head_sha": "c4876e43189c41771fcfa89f30d6cab400257654",
+      "status": "completed",
+      "conclusion": "action_required",
+      "html_url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113655"
+    },
+    {
+      "id": 37239113686,
+      "name": "Cursor Directory submission readiness",
+      "head_sha": "c4876e43189c41771fcfa89f30d6cab400257654",
+      "status": "completed",
+      "conclusion": "action_required",
+      "html_url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113686"
+    },
+    {
+      "id": 37239113714,
+      "name": "Publish skills to ClawHub",
+      "head_sha": "c4876e43189c41771fcfa89f30d6cab400257654",
+      "status": "completed",
+      "conclusion": "action_required",
+      "html_url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113714"
+    }
+  ],
+  "publishedByteComparison": [
+    {
+      "path": "package.json",
+      "blob": "01e00d82ad30197881a87e59f419d206440f77a0",
+      "bytesEqual": true
+    },
+    {
+      "path": "scripts/clawhub-ci-publish.py",
+      "blob": "bce1f8de7e21d2677c633ac083f42a4615ecf574",
+      "bytesEqual": true
+    },
+    {
+      "path": "scripts/publish-clawhub.sh",
+      "blob": "ae20e884ba4c0f3f99f26880e078d2c0127adaec",
+      "bytesEqual": true
+    },
+    {
+      "path": "skills/mermail-freelance-margin-guard/references/funding-gate.md",
+      "blob": "eea39623187a2c5bbb21e92e4ab40cc6cefded86",
+      "bytesEqual": true
+    },
+    {
+      "path": "skills/mermail-freelance-margin-guard/references/security.md",
+      "blob": "de62e27ebbdff723696278902ab134240f5f2440",
+      "bytesEqual": true
+    },
+    {
+      "path": "skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs",
+      "blob": "483d8ba2a5cfc8a237f57f3870fa71697e1beefa",
+      "bytesEqual": true
+    },
+    {
+      "path": "skills/mermail-freelance-margin-guard/scripts/funding-gate.mjs",
+      "blob": "31faf9e32637e14e33e11be7f7b0099df5c26986",
+      "bytesEqual": true
+    },
+    {
+      "path": "skills/mermail-freelance-margin-guard/scripts/run-live-proof.mjs",
+      "blob": "13fe05750dcf25f682570a0e109c4a6e99ca428f",
+      "bytesEqual": true
+    },
+    {
+      "path": "skills/mermail-mcp/references/security.md",
+      "blob": "cd32ace97ef7ba5a317eebf7dd37ac12dfde4823",
+      "bytesEqual": true
+    },
+    {
+      "path": "skills/mermail-mcp/scripts/check-connection.mjs",
+      "blob": "ea6a4eb058110af51cc8db94558924a54f47d37c",
+      "bytesEqual": true
+    },
+    {
+      "path": "tests/fixtures/funding-gate-base-sepolia.json",
+      "blob": "00a498010dd281a6ff15f6bee3c1dadd1a139cdf",
+      "bytesEqual": true
+    },
+    {
+      "path": "tests/funding-gate.mjs",
+      "blob": "06c1b5fff5b5654642325b3426529d65646b281c",
+      "bytesEqual": true
+    },
+    {
+      "path": "tests/publish-security.py",
+      "blob": "51d2867a81f672c9c48745ac3801f82c9c278117",
+      "bytesEqual": true
+    },
+    {
+      "path": "tests/remote-contract.mjs",
+      "blob": "f3540975baf5a9f1d06d99d32d20b29abd93644f",
+      "bytesEqual": true
+    },
+    {
+      "path": "tests/security-redteam.mjs",
+      "blob": "3e10e3a3045ba833caab058dac3ce1643e427317",
+      "bytesEqual": true
+    },
+    {
+      "path": "tests/validate.mjs",
+      "blob": "711bff2f662432964f4478813cb5c8a69c06c255",
+      "bytesEqual": true
+    }
+  ],
+  "remainingConfirmedDefectsInTestedMatrix": 0,
+  "guaranteeOfNoUndiscoveredVulnerabilities": false,
+  "humanMaintainerReviewStillRequired": true,
+  "noEmailWalletFinancialOrPublisherActions": true
+}

@@ -1,0 +1,6 @@
+{
+  "scanner": "bounded local pattern scan; not a full secret/CVE scanner",
+  "filesScanned": 162,
+  "candidateSecrets": [],
+  "dependencyPackages": []
+}

@@ -1,0 +1,12 @@
+PASS connection checker redacts error-key
+PASS connection checker redacts throw-key
+PASS connection checker redacts invalid-json-key
+PASS connection checker redacts name-key
+PASS connection checker redacts catalog-key
+PASS connection checker rejects before credential transport: http://console.mermail.app/mcp
+PASS connection checker rejects before credential transport: https://evil.example.test/mcp
+PASS connection checker rejects before credential transport: https://console.mermail.app/mcp?profile=bad
+PASS connection checker rejects before credential transport: https://console.mermail.app/mcp?profile=agent-inbox&profile=agent-inbox
+PASS connection checker rejects wrong JSON-RPC envelope
+PASS CI remote validator redacts key reflected in authenticated catalog
+PASS CI remote validator rejects wrong JSON-RPC envelope

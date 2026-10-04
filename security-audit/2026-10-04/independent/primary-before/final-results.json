@@ -1,0 +1,191 @@
+{
+  "passes": 37,
+  "failures": 0,
+  "results": [
+    {
+      "name": "fixture remains priced with the original numeric results",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "partial overlapping delay rejected, reverse=false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "partial overlapping delay rejected, reverse=true",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "ambiguous repeated evidence is rejected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "distinct delay evidence in same email remains valid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "normalized whitespace does not bypass partial overlap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "same-asset numerically equal trailing zeros accepted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "same-asset mismatch rejected: 487.499999999999999999",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "same-asset mismatch rejected: 487.500000000000000001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "same-asset mismatch rejected: 1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "same-asset explicit conversion is restricted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "valid native Base inclusion still funds and reauthenticates",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Base rejects orphaned receipt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Base rejects wrong transaction block hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Base rejects wrong receipt block hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Base rejects wrong canonical block number",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Base rejects transaction absent from canonical block",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Base rejects missing canonical block hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Solana correct genesis accepted: mainnet-beta",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Solana correct genesis accepted: devnet",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Solana correct genesis accepted: testnet",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Solana devnet genesis rejected for mainnet before transaction read",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SPL exact aggregate credit remains funded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SPL outgoing debit from second owner account is rejected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SPL debit from a closed owner account is included",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "newly created SPL recipient account remains supported",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "duplicate SPL aggregate balance entries reject",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper accepts safe selected evidence",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper rejects id",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper rejects body",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper rejects scan_status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper rejects agent_safe_content",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper rejects content_omitted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper rejects content_truncated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper accepts repeated identical projection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper rejects conflicting projection copies",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "live helper accepts semantically identical projections with reordered JSON keys",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "exitCode": 0,
+  "reportedPassed": true,
+  "stdout": "Authenticated Mermail proof passed: initialize; 83-tool catalog; list_workspaces; list_mailboxes (read-only).\nValidated 18 skills and 82 business tools.\n",
+  "stderr": "",
+  "mockOnly": true
+}

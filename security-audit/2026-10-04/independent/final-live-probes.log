@@ -1,0 +1,8 @@
+PASS inbox
+PASS sent
+PASS sent_named
+PASS sent_incoming
+PASS sent_omitted
+PASS changed_baseline
+PASS sent_unavailable
+PASS sent_nested_primary

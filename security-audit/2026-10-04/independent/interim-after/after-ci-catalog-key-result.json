@@ -1,0 +1,6 @@
+{
+  "exitCode": 1,
+  "syntheticKeyInStderr": true,
+  "stderr": "ERROR: authenticated tools/list differs from tool-coverage.json: uncovered: [SYNTHETIC_KEY]; absent on server: get_composio_calendar_account; duplicate server entries: none\n",
+  "mockOnly": true
+}

@@ -1,0 +1,16 @@
+PASS ordinary Python skill discovery and hashing remains supported
+PASS Python rejects discovered directory symlink escape
+PASS Python rejects nested file symlink escape before discovery
+PASS Python direct hashing rejects broken symlink
+PASS Python explicit absolute target outside workspace rejected
+PASS Python explicit internal symlink is also rejected
+PASS Shell preserves dry run for flag None
+PASS Shell preserves dry run for flag 0
+PASS Shell preserves dry run for flag false
+PASS Shell preserves dry run for flag no
+PASS Shell invalid flag rejects before CLI: yes
+PASS Shell invalid flag rejects before CLI: TRUE
+PASS Shell invalid flag rejects before CLI:  1
+PASS Shell invalid flag rejects before CLI: bad
+PASS Shell exact flag 1 activates only the fake publisher
+PASS Shell rejects nested symlink before any fake publish

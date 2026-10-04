@@ -1,0 +1,11 @@
+PASS inbox
+PASS sent
+PASS sent_named
+PASS sent_incoming
+PASS sent_omitted
+PASS changed_baseline
+PASS sent_unavailable
+FAIL sent_nested_primary: Expected values to be strictly equal:
+
+0 !== 1
+

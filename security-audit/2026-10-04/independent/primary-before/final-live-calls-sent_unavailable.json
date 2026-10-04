@@ -1,0 +1,58 @@
+[
+  {
+    "method": "initialize",
+    "params": {
+      "protocolVersion": "2025-03-26",
+      "capabilities": {},
+      "clientInfo": {
+        "name": "mermail-margin-guard-proof",
+        "version": "1.0.0"
+      }
+    }
+  },
+  {
+    "method": "tools/list",
+    "params": {}
+  },
+  {
+    "method": "tools/call",
+    "params": {
+      "name": "list_mailboxes",
+      "arguments": {}
+    }
+  },
+  {
+    "method": "tools/call",
+    "params": {
+      "name": "list_emails",
+      "arguments": {
+        "mailboxId": "synthetic-mailbox",
+        "query": {
+          "page": 1,
+          "limit": 100,
+          "sortColumn": "date",
+          "sortDirection": "DESC",
+          "metadata_only": true,
+          "agent_safe_content": true
+        }
+      }
+    }
+  },
+  {
+    "method": "tools/call",
+    "params": {
+      "name": "list_emails",
+      "arguments": {
+        "mailboxId": "synthetic-mailbox",
+        "query": {
+          "page": 1,
+          "limit": 100,
+          "sortColumn": "date",
+          "sortDirection": "DESC",
+          "metadata_only": true,
+          "agent_safe_content": true
+        }
+      }
+    }
+  }
+]

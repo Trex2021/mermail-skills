@@ -1,0 +1,37 @@
+PASS fixture remains priced with the original numeric results
+PASS partial overlapping delay rejected, reverse=false
+PASS partial overlapping delay rejected, reverse=true
+PASS ambiguous repeated evidence is rejected
+PASS distinct delay evidence in same email remains valid
+PASS normalized whitespace does not bypass partial overlap
+PASS same-asset numerically equal trailing zeros accepted
+PASS same-asset mismatch rejected: 487.499999999999999999
+PASS same-asset mismatch rejected: 487.500000000000000001
+PASS same-asset mismatch rejected: 1
+PASS same-asset explicit conversion is restricted
+PASS valid native Base inclusion still funds and reauthenticates
+PASS Base rejects orphaned receipt
+PASS Base rejects wrong transaction block hash
+PASS Base rejects wrong receipt block hash
+PASS Base rejects wrong canonical block number
+PASS Base rejects transaction absent from canonical block
+PASS Base rejects missing canonical block hash
+PASS Solana correct genesis accepted: mainnet-beta
+PASS Solana correct genesis accepted: devnet
+PASS Solana correct genesis accepted: testnet
+PASS Solana devnet genesis rejected for mainnet before transaction read
+PASS SPL exact aggregate credit remains funded
+PASS SPL outgoing debit from second owner account is rejected
+PASS SPL debit from a closed owner account is included
+PASS newly created SPL recipient account remains supported
+PASS duplicate SPL aggregate balance entries reject
+PASS live helper accepts safe selected evidence
+PASS live helper rejects id
+PASS live helper rejects body
+PASS live helper rejects scan_status
+PASS live helper rejects agent_safe_content
+PASS live helper rejects content_omitted
+PASS live helper rejects content_truncated
+PASS live helper accepts repeated identical projection
+PASS live helper rejects conflicting projection copies
+PASS live helper accepts semantically identical projections with reordered JSON keys

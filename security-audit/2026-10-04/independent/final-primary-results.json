@@ -1,0 +1,198 @@
+{
+  "passes": 7,
+  "failures": 0,
+  "results": [
+    {
+      "name": "get_email supports direct selected projection",
+      "pass": true,
+      "expectedAllow": true,
+      "observedAllow": true,
+      "error": null,
+      "payload": {
+        "id": "selected-synthetic",
+        "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+        "date": "2026-08-10T12:00:00Z",
+        "scan_status": "clean",
+        "agent_safe_content": true,
+        "folder_id": "Inbox",
+        "is_incoming": true,
+        "content_omitted": false,
+        "content_truncated": false
+      }
+    },
+    {
+      "name": "get_email_context requires a primary email envelope",
+      "pass": true,
+      "expectedAllow": false,
+      "observedAllow": false,
+      "error": "live proof stopped at selected-message-identity",
+      "payload": {
+        "id": "selected-synthetic",
+        "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+        "date": "2026-08-10T12:00:00Z",
+        "scan_status": "clean",
+        "agent_safe_content": true,
+        "folder_id": "Inbox",
+        "is_incoming": true,
+        "content_omitted": false,
+        "content_truncated": false
+      }
+    },
+    {
+      "name": "mismatched primary cannot be repaired by matching thread sibling",
+      "pass": true,
+      "expectedAllow": false,
+      "observedAllow": false,
+      "error": "live proof stopped at selected-message-identity",
+      "payload": {
+        "email": {
+          "id": "unselected-synthetic",
+          "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+          "date": "2026-08-10T12:00:00Z",
+          "scan_status": "clean",
+          "agent_safe_content": true,
+          "folder_id": "Inbox",
+          "is_incoming": true,
+          "content_omitted": false,
+          "content_truncated": false
+        },
+        "thread": {
+          "messages": [
+            {
+              "id": "selected-synthetic",
+              "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+              "date": "2026-08-10T12:00:00Z",
+              "scan_status": "clean",
+              "agent_safe_content": true,
+              "folder_id": "Inbox",
+              "is_incoming": true,
+              "content_omitted": false,
+              "content_truncated": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "unselected sibling does not contaminate the correct primary",
+      "pass": true,
+      "expectedAllow": true,
+      "observedAllow": true,
+      "error": null,
+      "payload": {
+        "email": {
+          "id": "selected-synthetic",
+          "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+          "date": "2026-08-10T12:00:00Z",
+          "scan_status": "clean",
+          "agent_safe_content": true,
+          "folder_id": "Inbox",
+          "is_incoming": true,
+          "content_omitted": false,
+          "content_truncated": false
+        },
+        "thread": {
+          "messages": [
+            {
+              "id": "unselected-synthetic",
+              "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+              "date": "2026-08-10T12:00:00Z",
+              "scan_status": "clean",
+              "agent_safe_content": true,
+              "folder_id": "Inbox",
+              "is_incoming": true,
+              "content_omitted": false,
+              "content_truncated": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "omitted primary cannot be repaired by safe matching thread sibling",
+      "pass": true,
+      "expectedAllow": false,
+      "observedAllow": false,
+      "error": "live proof stopped at selected-message-security",
+      "payload": {
+        "email": {
+          "id": "selected-synthetic",
+          "body": "",
+          "date": "2026-08-10T12:00:00Z",
+          "scan_status": "clean",
+          "agent_safe_content": true,
+          "folder_id": "Inbox",
+          "is_incoming": true,
+          "content_omitted": true,
+          "content_truncated": false
+        },
+        "thread": {
+          "messages": [
+            {
+              "id": "selected-synthetic",
+              "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+              "date": "2026-08-10T12:00:00Z",
+              "scan_status": "clean",
+              "agent_safe_content": true,
+              "folder_id": "Inbox",
+              "is_incoming": true,
+              "content_omitted": false,
+              "content_truncated": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "absent primary cannot be replaced by plain matching thread sibling",
+      "pass": true,
+      "expectedAllow": false,
+      "observedAllow": false,
+      "error": "live proof stopped at selected-message-identity",
+      "payload": {
+        "thread": {
+          "messages": [
+            {
+              "id": "selected-synthetic",
+              "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+              "date": "2026-08-10T12:00:00Z",
+              "scan_status": "clean",
+              "agent_safe_content": true,
+              "folder_id": "Inbox",
+              "is_incoming": true,
+              "content_omitted": false,
+              "content_truncated": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "absent primary cannot be replaced by nested email in thread sibling",
+      "pass": true,
+      "expectedAllow": false,
+      "observedAllow": false,
+      "error": "live proof stopped at selected-message-identity",
+      "payload": {
+        "thread": {
+          "messages": [
+            {
+              "email": {
+                "id": "selected-synthetic",
+                "body": "Accepted scope: one responsive landing page and two revision rounds. Excluded: authenticated application and login, admin dashboard, and payment processing. Acceptance: responsive at agreed desktop, tablet, and mobile breakpoints. Deadline: 2026-10-20.",
+                "date": "2026-08-10T12:00:00Z",
+                "scan_status": "clean",
+                "agent_safe_content": true,
+                "folder_id": "Inbox",
+                "is_incoming": true,
+                "content_omitted": false,
+                "content_truncated": false
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "mockOnly": true
+}

@@ -1,0 +1,21 @@
+{
+  "productCommit": "c4876e43189c41771fcfa89f30d6cab400257654",
+  "files": {
+    "package.json": "2cd4e4f21959949efcacf66e1f8d809b174cc1c233360c0c670d240efe7efaee",
+    "scripts/clawhub-ci-publish.py": "0bc4cb202ec08a41560ac97ae00db1283d8086d073591fd71805e4162df75f79",
+    "scripts/publish-clawhub.sh": "172fb0170141fa373506f7a5fc2d72d67a2a5bbf528e53eb56c8a8cb6471a634",
+    "skills/mermail-freelance-margin-guard/references/funding-gate.md": "13cc23e699fa6658aeeb3f411e9cad4d4b76cdb1435a6f1d4fa6bfabbd34ee0d",
+    "skills/mermail-freelance-margin-guard/references/security.md": "a9d968ca1f47097626a2ea46d8b8e2602b0fcb0ffcd5f4e1e47122d03de8cb12",
+    "skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs": "ea98e820c8f3d5b99420585e2ad91033aea1491528bacc0a71e12a72ad72d7ec",
+    "skills/mermail-freelance-margin-guard/scripts/funding-gate.mjs": "56e6420f5c815a80e71a2e863cde10e65a2cd198e615c0455db9e8c5adb6a98b",
+    "skills/mermail-freelance-margin-guard/scripts/run-live-proof.mjs": "a017db3576be781a0d3112753e00ba2ddaee8a695f32abf56c1d86306c686d3c",
+    "skills/mermail-mcp/references/security.md": "789116fdddb8ede44cb4088b76bf242ec63dc64a25971ea64badf1878c17ef3d",
+    "skills/mermail-mcp/scripts/check-connection.mjs": "3986f79ab7ea90f96108d70a1aa477c2ecfc1087ff6085d1b3ed2f357ebafc60",
+    "tests/fixtures/funding-gate-base-sepolia.json": "1219d3cc4841eda8ebc3b9ed09df9a2ece8740d16b07d49ba764c361bcf0d9c0",
+    "tests/funding-gate.mjs": "bc6cb96023253bbb4ad6bc4751fc8a2b096e004e800a7a1a47b423ff505859d7",
+    "tests/publish-security.py": "acfca360e48e50a3da62ce8915138073e1fa39d91cf0aa1042ee163469a4fe3f",
+    "tests/remote-contract.mjs": "58563613af9bfe3e66444a451ebcfab2a21c424cbb066f40e3618f710d168fb9",
+    "tests/security-redteam.mjs": "9489b3e98e798d6c021fe42f5216b170ef8acf5d13e6372320473855e486595b",
+    "tests/validate.mjs": "90e1a103dc6c03a9a34be0c6a77e77d9eb35a4955eb6796028e5e09cb09391a4"
+  }
+}

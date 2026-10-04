@@ -1,0 +1,103 @@
+{
+  "passes": 16,
+  "failures": 0,
+  "results": [
+    {
+      "name": "ordinary Python skill discovery and hashing remains supported",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Python rejects discovered directory symlink escape",
+      "pass": true,
+      "detail": "Publish packages must not contain symbolic links"
+    },
+    {
+      "name": "Python rejects nested file symlink escape before discovery",
+      "pass": true,
+      "detail": "Publish packages must not contain symbolic links"
+    },
+    {
+      "name": "Python direct hashing rejects broken symlink",
+      "pass": true,
+      "detail": "Publish packages must not contain symbolic links"
+    },
+    {
+      "name": "Python explicit absolute target outside workspace rejected",
+      "pass": true,
+      "detail": "Publish path must be inside the repository"
+    },
+    {
+      "name": "Python explicit internal symlink is also rejected",
+      "pass": true,
+      "detail": "Publish packages must not contain symbolic links"
+    },
+    {
+      "name": "Shell preserves dry run for flag None",
+      "pass": true,
+      "detail": {
+        "calls": 18,
+        "allDryRun": true
+      }
+    },
+    {
+      "name": "Shell preserves dry run for flag 0",
+      "pass": true,
+      "detail": {
+        "calls": 18,
+        "allDryRun": true
+      }
+    },
+    {
+      "name": "Shell preserves dry run for flag false",
+      "pass": true,
+      "detail": {
+        "calls": 18,
+        "allDryRun": true
+      }
+    },
+    {
+      "name": "Shell preserves dry run for flag no",
+      "pass": true,
+      "detail": {
+        "calls": 18,
+        "allDryRun": true
+      }
+    },
+    {
+      "name": "Shell invalid flag rejects before CLI: yes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Shell invalid flag rejects before CLI: TRUE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Shell invalid flag rejects before CLI:  1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Shell invalid flag rejects before CLI: bad",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Shell exact flag 1 activates only the fake publisher",
+      "pass": true,
+      "detail": {
+        "calls": 18,
+        "localMockOnly": true
+      }
+    },
+    {
+      "name": "Shell rejects nested symlink before any fake publish",
+      "pass": true,
+      "detail": {
+        "noPublisherCalls": true
+      }
+    }
+  ]
+}

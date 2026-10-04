@@ -1,0 +1,79 @@
+{
+  "baselineCommit": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "fixedCommit": "c4876e43189c41771fcfa89f30d6cab400257654",
+  "controlledOnly": true,
+  "before": [
+    {
+      "id": "solana-cluster-substitution",
+      "expected": "reject",
+      "observed": "FUNDED",
+      "methods": [
+        "getTransaction"
+      ],
+      "actionAuthority": {
+        "startWork": false,
+        "sendMessage": false,
+        "transferFunds": false,
+        "reason": "Funding evidence never replaces explicit owner approval for work, messaging, or money movement."
+      }
+    },
+    {
+      "id": "evm-inconsistent-canonical-block",
+      "expected": "reject",
+      "observed": "FUNDED",
+      "actionAuthority": {
+        "startWork": false,
+        "sendMessage": false,
+        "transferFunds": false,
+        "reason": "Funding evidence never replaces explicit owner approval for work, messaging, or money movement."
+      }
+    },
+    {
+      "id": "same-asset-price-settlement-mismatch",
+      "expected": "reject",
+      "observed": "accepted",
+      "price": "487.5",
+      "settlement": "0.002527"
+    },
+    {
+      "id": "credential-redirect",
+      "expected": "no credential reaching redirected origin",
+      "observed": "dummy key reached redirected origin",
+      "requests": 2,
+      "exitCode": 1,
+      "usesRealKey": false
+    }
+  ],
+  "after": [
+    {
+      "id": "solana-cluster-substitution",
+      "expected": "reject",
+      "observed": "rejected",
+      "reason": "RPC Solana cluster does not match covenant",
+      "methods": [
+        "getGenesisHash"
+      ]
+    },
+    {
+      "id": "evm-inconsistent-canonical-block",
+      "expected": "reject",
+      "observed": "rejected",
+      "reason": "RPC transaction or receipt is not in the canonical block"
+    },
+    {
+      "id": "same-asset-price-settlement-mismatch",
+      "expected": "reject",
+      "observed": "rejected",
+      "reason": "same-asset settlement amount must equal the selected price"
+    },
+    {
+      "id": "credential-redirect",
+      "expected": "no credential reaching redirected origin",
+      "observed": "blocked",
+      "requests": 0,
+      "exitCode": 1,
+      "usesRealKey": false
+    }
+  ],
+  "afterRecordedBeforeFinalEnvelopeFollowup": true
+}

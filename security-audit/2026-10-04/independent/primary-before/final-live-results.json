@@ -1,0 +1,246 @@
+{
+  "passes": 7,
+  "failures": 1,
+  "results": [
+    {
+      "mode": "inbox",
+      "pass": true,
+      "shouldPass": true,
+      "observed": {
+        "exitCode": 0,
+        "reportedPassed": true,
+        "stdout": "Live Mermail Margin Guard proof passed.\nPrivacy: API key, mailbox address, mailbox id, message ids, and message bodies are redacted.\nEvidence path: 1 ready mailbox; 2 synthetic self-addressed messages; 2 bounded metadata discoveries; 2 exact selected-message reads.\nEvidence dates: baseline 2026-08-10; request 2026-08-29.\nDecision: scope_change_detected; revision budget 2 included / 1 previously used / 1 newly covered / 1 overflow / 0 remaining.\nMargin: 26-33 hours; 390-495 USD base.\nRush: 97.5-123.75 USD; requested-deadline total 487.5-618.75 USD.\nOptions: remove_or_swap, extend_schedule, paid_change_order (exactly 3).\nEvidence digest: ad35ace95e2a585e6652cb4c614bf8d39b4f02c66a30172f6f672ad8976a56d0\nPacket digest: 8a38cfda9a1a55dee82d66db27fc5f748eceaf29de794dd3f147b8a065453ee7\nDelivery: no client email, reply, draft, wallet action, or financial action was performed.\n",
+        "stderr": "",
+        "selectedReads": [
+          {
+            "name": "get_email",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-baseline",
+              "query": {
+                "require_scan_status": "clean",
+                "agent_safe_content": true,
+                "max_body_chars": 10000
+              }
+            }
+          },
+          {
+            "name": "get_email",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-request",
+              "query": {
+                "require_scan_status": "clean",
+                "agent_safe_content": true,
+                "max_body_chars": 10000
+              }
+            }
+          }
+        ],
+        "mockOnly": true
+      }
+    },
+    {
+      "mode": "sent",
+      "pass": true,
+      "shouldPass": true,
+      "observed": {
+        "exitCode": 0,
+        "reportedPassed": true,
+        "stdout": "Live Mermail Margin Guard proof passed.\nPrivacy: API key, mailbox address, mailbox id, message ids, and message bodies are redacted.\nEvidence path: 1 ready mailbox; 2 synthetic self-addressed messages; 2 bounded metadata discoveries; 2 exact selected-message reads.\nEvidence dates: baseline 2026-08-10; request 2026-08-29.\nDecision: scope_change_detected; revision budget 2 included / 1 previously used / 1 newly covered / 1 overflow / 0 remaining.\nMargin: 26-33 hours; 390-495 USD base.\nRush: 97.5-123.75 USD; requested-deadline total 487.5-618.75 USD.\nOptions: remove_or_swap, extend_schedule, paid_change_order (exactly 3).\nEvidence digest: ad35ace95e2a585e6652cb4c614bf8d39b4f02c66a30172f6f672ad8976a56d0\nPacket digest: 8a38cfda9a1a55dee82d66db27fc5f748eceaf29de794dd3f147b8a065453ee7\nDelivery: no client email, reply, draft, wallet action, or financial action was performed.\n",
+        "stderr": "",
+        "selectedReads": [
+          {
+            "name": "get_email_context",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-baseline",
+              "query": {
+                "limit": 1
+              }
+            }
+          },
+          {
+            "name": "get_email_context",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-request",
+              "query": {
+                "limit": 1
+              }
+            }
+          }
+        ],
+        "mockOnly": true
+      }
+    },
+    {
+      "mode": "sent_named",
+      "pass": true,
+      "shouldPass": true,
+      "observed": {
+        "exitCode": 0,
+        "reportedPassed": true,
+        "stdout": "Live Mermail Margin Guard proof passed.\nPrivacy: API key, mailbox address, mailbox id, message ids, and message bodies are redacted.\nEvidence path: 1 ready mailbox; 2 synthetic self-addressed messages; 2 bounded metadata discoveries; 2 exact selected-message reads.\nEvidence dates: baseline 2026-08-10; request 2026-08-29.\nDecision: scope_change_detected; revision budget 2 included / 1 previously used / 1 newly covered / 1 overflow / 0 remaining.\nMargin: 26-33 hours; 390-495 USD base.\nRush: 97.5-123.75 USD; requested-deadline total 487.5-618.75 USD.\nOptions: remove_or_swap, extend_schedule, paid_change_order (exactly 3).\nEvidence digest: ad35ace95e2a585e6652cb4c614bf8d39b4f02c66a30172f6f672ad8976a56d0\nPacket digest: 8a38cfda9a1a55dee82d66db27fc5f748eceaf29de794dd3f147b8a065453ee7\nDelivery: no client email, reply, draft, wallet action, or financial action was performed.\n",
+        "stderr": "",
+        "selectedReads": [
+          {
+            "name": "get_email_context",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-baseline",
+              "query": {
+                "limit": 1
+              }
+            }
+          },
+          {
+            "name": "get_email_context",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-request",
+              "query": {
+                "limit": 1
+              }
+            }
+          }
+        ],
+        "mockOnly": true
+      }
+    },
+    {
+      "mode": "sent_incoming",
+      "pass": true,
+      "shouldPass": false,
+      "observed": {
+        "exitCode": 1,
+        "reportedPassed": false,
+        "stdout": "",
+        "stderr": "Freelance Margin Guard: live proof stopped at selected-message-security. Sensitive details were not printed.\n",
+        "selectedReads": [
+          {
+            "name": "get_email_context",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-baseline",
+              "query": {
+                "limit": 1
+              }
+            }
+          }
+        ],
+        "mockOnly": true
+      }
+    },
+    {
+      "mode": "sent_omitted",
+      "pass": true,
+      "shouldPass": false,
+      "observed": {
+        "exitCode": 1,
+        "reportedPassed": false,
+        "stdout": "",
+        "stderr": "Freelance Margin Guard: live proof stopped at selected-message-security. Sensitive details were not printed.\n",
+        "selectedReads": [
+          {
+            "name": "get_email_context",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-baseline",
+              "query": {
+                "limit": 1
+              }
+            }
+          }
+        ],
+        "mockOnly": true
+      }
+    },
+    {
+      "mode": "changed_baseline",
+      "pass": true,
+      "shouldPass": false,
+      "observed": {
+        "exitCode": 1,
+        "reportedPassed": false,
+        "stdout": "",
+        "stderr": "Freelance Margin Guard: live proof stopped unexpectedly. Sensitive details were not printed.\n",
+        "selectedReads": [
+          {
+            "name": "get_email",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-baseline",
+              "query": {
+                "require_scan_status": "clean",
+                "agent_safe_content": true,
+                "max_body_chars": 10000
+              }
+            }
+          },
+          {
+            "name": "get_email",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-request",
+              "query": {
+                "require_scan_status": "clean",
+                "agent_safe_content": true,
+                "max_body_chars": 10000
+              }
+            }
+          }
+        ],
+        "mockOnly": true
+      }
+    },
+    {
+      "mode": "sent_unavailable",
+      "pass": true,
+      "shouldPass": false,
+      "observed": {
+        "exitCode": 1,
+        "reportedPassed": false,
+        "stdout": "",
+        "stderr": "Freelance Margin Guard: live proof stopped at selected-sent-context-unavailable. Sensitive details were not printed.\n",
+        "selectedReads": [],
+        "mockOnly": true
+      }
+    },
+    {
+      "mode": "sent_nested_primary",
+      "pass": false,
+      "shouldPass": false,
+      "error": "Expected values to be strictly equal:\n\n0 !== 1\n",
+      "observed": {
+        "exitCode": 0,
+        "reportedPassed": true,
+        "stdout": "Live Mermail Margin Guard proof passed.\nPrivacy: API key, mailbox address, mailbox id, message ids, and message bodies are redacted.\nEvidence path: 1 ready mailbox; 2 synthetic self-addressed messages; 2 bounded metadata discoveries; 2 exact selected-message reads.\nEvidence dates: baseline 2026-08-10; request 2026-08-29.\nDecision: scope_change_detected; revision budget 2 included / 1 previously used / 1 newly covered / 1 overflow / 0 remaining.\nMargin: 26-33 hours; 390-495 USD base.\nRush: 97.5-123.75 USD; requested-deadline total 487.5-618.75 USD.\nOptions: remove_or_swap, extend_schedule, paid_change_order (exactly 3).\nEvidence digest: ad35ace95e2a585e6652cb4c614bf8d39b4f02c66a30172f6f672ad8976a56d0\nPacket digest: 8a38cfda9a1a55dee82d66db27fc5f748eceaf29de794dd3f147b8a065453ee7\nDelivery: no client email, reply, draft, wallet action, or financial action was performed.\n",
+        "stderr": "",
+        "selectedReads": [
+          {
+            "name": "get_email_context",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-baseline",
+              "query": {
+                "limit": 1
+              }
+            }
+          },
+          {
+            "name": "get_email_context",
+            "arguments": {
+              "mailboxId": "synthetic-mailbox",
+              "emailId": "synthetic-request",
+              "query": {
+                "limit": 1
+              }
+            }
+          }
+        ],
+        "mockOnly": true
+      }
+    }
+  ]
+}
