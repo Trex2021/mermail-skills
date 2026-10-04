@@ -11,7 +11,19 @@ needle = "  if (name === 'build_margin_packet') {"
 insert = """  if (name === 'verify_funding_security') {
     if (Object.keys(args).length || !fs.existsSync(process.env.PACKET_FILE)) throw new Error('packet_required_for_readonly_funding_check');
     const packet=JSON.parse(fs.readFileSync(process.env.PACKET_FILE,'utf8'));
-    const result=await evaluateFunding(packet,process.env.FUNDING_SCENARIO,{productRoot:process.env.PINNED_PRODUCT_ROOT});
+    let result;
+    if(process.env.FUNDING_SCENARIO==='none') {
+      const module=await import(pathToFileURL(process.env.BUILDER_PATH.replace('build-margin-packet.mjs','funding-gate.mjs')).href);
+      let reason;
+      try { module.buildFundingCovenant(packet,{optionId:'paid_change_order'});throw new Error('unpriced_covenant_unexpectedly_accepted'); }
+      catch(error) {reason=error.message;}
+      if(reason!=='selected option is not fully priced') throw new Error('unexpected_unpriced_covenant_result');
+      result={scenario:'none',gate:{status:'PRICING_APPROVAL_REQUIRED',fundingSatisfied:false,reasons:[reason],actionAuthority:{startWork:false,sendMessage:false,transferFunds:false}},covenant:null,observation:null,rpcCalls:[],purpose:'Adapter projection of the real product covenant rejection. No funded status can be established without fully approved pricing.'};
+      fs.writeFileSync(process.env.FUNDING_FILE,JSON.stringify(result),{mode:0o600});
+      writeAudit({tool:name,kind:'funding_verification_denied',success:true,forwarded:false,networkReads:0,status:result.gate.status,reason});
+      return wrap(result);
+    }
+    result=await evaluateFunding(packet,process.env.FUNDING_SCENARIO,{productRoot:process.env.PINNED_PRODUCT_ROOT});
     fs.writeFileSync(process.env.FUNDING_FILE,JSON.stringify(result),{mode:0o600});
     writeAudit({tool:name,kind:'funding_verification',success:true,forwarded:false,networkReads:result.rpcCalls.length,status:result.gate.status,reason:result.gate.reasons.join(' '),actionAuthority:result.gate.actionAuthority});
     return wrap({gate:result.gate,covenant:result.covenant,observation:result.observation,purpose:result.purpose,rpcReads:result.rpcCalls.map(c=>({method:c.method,httpStatus:c.httpStatus,responseSha256:c.responseSha256}))});
