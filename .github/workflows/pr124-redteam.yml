@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 5e79ba3d7b35ed70a625db5b82f03f82d3f65a64
+          ref: 2fff21912cfd8445a64b739bc558f6a4f232340b
           path: product
           persist-credentials: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
@@ -24,6 +24,22 @@ jobs:
         run: |
           set -o pipefail
           npm --offline test 2>&1 | tee ../product-tests.log
+      - name: Read-only production MCP compatibility
+        working-directory: product
+        env:
+          MERMAIL_MCP_TEST_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+        run: |
+          set -o pipefail
+          if [[ -n "$MERMAIL_MCP_TEST_API_KEY" ]]; then
+            export MERMAIL_REQUIRE_TEST_API_KEY=1
+          else
+            echo "Authenticated checks unavailable: test credential is not configured." | tee ../production-auth-status.log
+          fi
+          node tests/validate.mjs --remote 2>&1 | tee ../production-check.log
+          if [[ -n "$MERMAIL_MCP_TEST_API_KEY" ]]; then
+            MERMAIL_API_KEY="$MERMAIL_MCP_TEST_API_KEY" node skills/mermail-mcp/scripts/check-connection.mjs 2>&1 | tee ../connection-check.log
+            MERMAIL_API_KEY="$MERMAIL_MCP_TEST_API_KEY" MERMAIL_MCP_URL='https://console.mermail.app/mcp?profile=agent-inbox' node skills/mermail-mcp/scripts/check-connection.mjs 2>&1 | tee ../inbox-profile-check.log
+          fi
       - name: Read public compatibility block metadata
         working-directory: product
         run: |
@@ -46,6 +62,29 @@ jobs:
           }
           await writeFile('../public-compatibility-metadata.json',JSON.stringify(results,null,2)+'\n');
           JS
+      - name: Verify current public Base compatibility without any payment claim
+        working-directory: product
+        run: |
+          node --input-type=module <<'JS' 2>&1 | tee ../public-base-observation.log
+          import {readFile} from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          import {buildMarginPacket} from './skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs';
+          import {buildFundingCovenant,observePublicSettlement} from './skills/mermail-freelance-margin-guard/scripts/funding-gate.mjs';
+          const f=JSON.parse(await readFile('tests/fixtures/funding-gate-base-sepolia.json'));
+          const p=buildMarginPacket(JSON.parse(await readFile('tests/fixtures/freelance-margin-guard.json')));
+          const c=buildFundingCovenant(p,{
+            optionId:'paid_change_order',price:{amount:'487.5',currency:'USD'},
+            settlement:{chain:'base-sepolia',assetSymbol:'TEST',assetId:f.transaction.to,decimals:6,amount:'0.002527',destination:'0x'+f.transaction.input.slice(34,74)},
+            conversion:{mode:'owner_fixed',sourceRef:'compatibility-test-only'},
+            binding:{mode:'public_transaction'},ownerApprovalRef:'synthetic-fixture-not-actual-approval',
+            ownerApprovedAt:'2026-09-23T16:00:00Z',policy:{minimumConfirmations:2}
+          });
+          const observed=await observePublicSettlement(c,f.transaction.hash,{rpcUrl:f.source.rpc});
+          assert.equal(observed.amountAtomic,'2527'); assert.equal(observed.decimals,6);
+          assert.equal(observed.destination,c.settlement.destination);assert.equal(observed.receiptStatus,'success');
+          console.log('Fresh read-only public Base compatibility passed: canonical inclusion, matching token event, receipt-block decimals.');
+          console.log('This historical public sample is not a Mermail payment, owner approval, or financial action.');
+          JS
       - name: Preserve public test log, compatibility metadata and source assets
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -54,6 +93,11 @@ jobs:
           retention-days: 7
           path: |
             product-tests.log
+            production-check.log
+            production-auth-status.log
+            connection-check.log
+            inbox-profile-check.log
+            public-base-observation.log
             public-compatibility-metadata.json
             product/assets/screenshot-1.png
             product/assets/screenshot-2.png
