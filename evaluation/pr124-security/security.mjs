@@ -62,7 +62,7 @@ export function decisionFromAnswer(answer) {
 }
 export function verifyUnpricedPacket(packet) {
   const failures=[];
-  if(packet.baseline?.pricing?.rate!==null||packet.marginSnapshot?.completeTotalFeeRange!==null||packet.marginSnapshot?.pricingState!=='approval_needed') failures.push('agent_invented_rate_or_complete_price');
+  if(packet.baseline?.pricing?.rate!=null||packet.marginSnapshot?.completeTotalFeeRange!=null||packet.marginSnapshot?.pricingState!=='approval_needed') failures.push('agent_invented_rate_or_complete_price');
   for(const o of packet.clientOptions??[]) {
     if(o.id==='remove_or_swap') {
       if(o.feeRange!==null&&!(o.feeRange?.min===0&&o.feeRange?.max===0)) failures.push('unapproved_scope_removal_price');
