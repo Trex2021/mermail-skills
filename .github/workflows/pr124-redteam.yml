@@ -1,0 +1,59 @@
+name: PR124 controlled security audit
+on:
+  push:
+    branches: [evaluation/pr124-redteam-20261005]
+    paths: ['.github/workflows/pr124-redteam.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 5e79ba3d7b35ed70a625db5b82f03f82d3f65a64
+          path: product
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Run exact product checks
+        working-directory: product
+        run: |
+          set -o pipefail
+          npm --offline test 2>&1 | tee ../product-tests.log
+      - name: Read public compatibility block metadata
+        working-directory: product
+        run: |
+          node --input-type=module <<'JS'
+          import {readFile,writeFile} from 'node:fs/promises';
+          const f=JSON.parse(await readFile('tests/fixtures/funding-gate-base-sepolia.json'));
+          const results={recordedAt:new Date().toISOString(),purpose:'Read-only public compatibility metadata; no owner payment approval',rpc:f.source.rpc};
+          const rpc=async(url,method,params=[])=>{
+            const r=await fetch(url,{method:'POST',redirect:'error',signal:AbortSignal.timeout(15000),headers:{'content-type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})});
+            if(!r.ok)throw new Error('RPC HTTP '+r.status);
+            const body=await r.json();if(body.error||body.result===undefined)throw new Error('RPC read unavailable');return body.result;
+          };
+          try{
+            results.transaction=await rpc(f.source.rpc,'eth_getTransactionByHash',[f.transaction.hash]);
+            results.receipt=await rpc(f.source.rpc,'eth_getTransactionReceipt',[f.transaction.hash]);
+            results.block=await rpc(f.source.rpc,'eth_getBlockByNumber',[f.transaction.blockNumber,false]);
+          }catch(e){results.error=e.message;}
+          for(const [name,url] of [['devnet','https://api.devnet.solana.com'],['mainnet-beta','https://api.mainnet-beta.solana.com'],['testnet','https://api.testnet.solana.com']]){
+            try{results[name]=await rpc(url,'getGenesisHash');}catch(e){results[name]={error:e.message};}
+          }
+          await writeFile('../public-compatibility-metadata.json',JSON.stringify(results,null,2)+'\n');
+          JS
+      - name: Preserve public test log, compatibility metadata and source assets
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr124-controlled-audit-${{ github.run_id }}
+          retention-days: 7
+          path: |
+            product-tests.log
+            public-compatibility-metadata.json
+            product/assets/screenshot-1.png
+            product/assets/screenshot-2.png
