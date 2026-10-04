@@ -65,6 +65,7 @@ jobs:
       - name: Verify current public Base compatibility without any payment claim
         working-directory: product
         run: |
+          set -o pipefail
           node --input-type=module <<'JS' 2>&1 | tee ../public-base-observation.log
           import {readFile} from 'node:fs/promises';
           import assert from 'node:assert/strict';
