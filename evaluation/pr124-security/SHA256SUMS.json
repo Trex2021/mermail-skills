@@ -320,23 +320,23 @@
     },
     {
       "path": "run-body.mjs.txt",
-      "sha256": "20b31e960c52f66d7024ab9bcfe48c5329748ab5fd87e961f609cd52401d571e"
+      "sha256": "8a37cf158c77a4cda859b098accc41d72c03fdcef82ced3edb4ee811e7fa96ff"
     },
     {
       "path": "run.mjs",
-      "sha256": "51dbea38ae8d4ff15a013c0c4b3556bb9b34deed0724fa241c7996a7e880f599"
+      "sha256": "3c2d4ce0966a94a8ac4ddd329ceccf9490a1c45d900e466a3c9e14ed96670d6a"
     },
     {
       "path": "security.mjs",
-      "sha256": "a5330a5dd5f92edfb6cda853bded06f1ce9b40850b3955d0d591b998e3f5efd1"
+      "sha256": "8c5c5e4d30bdd060988ad46c4ac64378b4f9a7e9032cd0cc4177d8c5eba6a280"
     },
     {
       "path": "security.test.mjs",
-      "sha256": "e114450ee63411973e19b07e6f5951952d619ebb27eff879d7fc2491eb7a9fb3"
+      "sha256": "f57b0d488dcf5eb88667f6dfb52821ae5d8049ebe3d4fcb42884bd35711baa3e"
     },
     {
       "path": "verify-observed.mjs",
-      "sha256": "5b42e40644646694445abbcb8fdfb0c8808e6cb1418d8f689fea263bb8a73bcd"
+      "sha256": "330be2b076338e3cf387f7ebb73feadcc24f8d580544d3a828e5fab3a052c2fa"
     }
   ]
 }

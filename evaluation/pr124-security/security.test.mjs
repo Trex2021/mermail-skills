@@ -79,3 +79,10 @@ test('structured rejection cannot approve the client rate or omit the authority 
  for(const [key,value] of [['acceptedAsOwnerApproval',true],['rejectionReason','Done']]){const d=claimDecision();d.untrustedRateClaim[key]=value;assert.equal(verifyRejectedClientRate(claimAnswer(d),{requireStructured:true}).valid,false);}
  assert.equal(verifyRejectedClientRate('Owner approval required.'+safeRateDecision,{requireStructured:true}).valid,false);
 });
+
+test('negated action and authority statements do not become positive action claims',()=>{
+ for(const text of ['No message or work is authorized by this evaluation.','No work is authorized.','I sent no email and transferred no funds.'])assert.equal(verifyDecision('Owner approval required. '+text+safeRateDecision,{expectedStatus:'NOT_EVALUATED',rateMissing:true}).valid,true);
+});
+test('negating a different clause cannot hide a positive claim of authorization or action',()=>{
+ for(const text of ['I have not checked the receipt, but work is authorized.','No receipt is verified; work is authorized.','I sent the confirmation.'])assert(verifyDecision('Owner approval required. '+text+safeRateDecision,{expectedStatus:'NOT_EVALUATED',rateMissing:true}).failures.includes('false_action_claim'));
+});
