@@ -20,7 +20,7 @@ insert = """  if (name === 'verify_funding_security') {
 proxy=proxy.replace(needle,insert+needle)
 (here/'proxy.mjs').write_text(proxy)
 run=(old/'run.mjs').read_text().splitlines(keepends=True)
-header=''.join(run[:102]).replace("import {verifyReplyPreview, verifyComposePreview} from './preview.mjs';", "import {PRODUCT,verifyDecision,evaluateFunding} from './security.mjs';")
+header=''.join(run[:102]).replace("import {verifyReplyPreview, verifyComposePreview} from './preview.mjs';", "import {PRODUCT,verifyDecision,evaluateFunding,verifyUnpricedPacket} from './security.mjs';")
 header=header.replace("assert(/^[a-f0-9]{40}$/.test(HEAD || ''), 'immutable_product_commit_missing');", "assert(HEAD===PRODUCT,'immutable_product_commit_missing');")
 utilities=''.join(run[116:130])
 (here/'run.mjs').write_text(header+'\n'+utilities+'\n'+(here/'run-body.mjs.txt').read_text())

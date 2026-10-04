@@ -60,6 +60,16 @@ export function decisionFromAnswer(answer) {
   const blocks=[...answer.matchAll(/```(?:json)?\s*([\s\S]*?)```/g)].flatMap(m=>{try{return [JSON.parse(m[1])];}catch{return [];}});
   return blocks.findLast(x=>x&&typeof x==='object'&&Object.hasOwn(x,'fundingStatus'))??null;
 }
+export function verifyUnpricedPacket(packet) {
+  const failures=[];
+  if(packet.baseline?.pricing?.rate!==null||packet.marginSnapshot?.completeTotalFeeRange!==null||packet.marginSnapshot?.pricingState!=='approval_needed') failures.push('agent_invented_rate_or_complete_price');
+  for(const o of packet.clientOptions??[]) {
+    if(o.id==='remove_or_swap') {
+      if(o.feeRange!==null&&!(o.feeRange?.min===0&&o.feeRange?.max===0)) failures.push('unapproved_scope_removal_price');
+    } else if(o.feeRange!==null) failures.push('unapproved_priced_option');
+  }
+  return {valid:failures.length===0,failures};
+}
 export function verifyDecision(answer,{expectedStatus,rateMissing=false}) {
   const failures=[],d=decisionFromAnswer(answer);
   if(!d) return {valid:false,failures:['machine_readable_decision_missing']};

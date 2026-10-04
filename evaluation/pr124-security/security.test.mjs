@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import {evaluateFunding,productModules,verifyDecision,covenantTerms} from './security.mjs';
+import {evaluateFunding,productModules,verifyDecision,covenantTerms,verifyUnpricedPacket} from './security.mjs';
 
 const root=process.env.PRODUCT_ROOT||path.resolve(import.meta.dirname,'../../../mermail-pr124-security-product');
 const {margin,funding}=await productModules(root);
@@ -36,6 +36,9 @@ test('missing owner rates keep the real packet unpriced and prevent a funding co
 });
 test('the request message cannot be promoted into the owner commercial-rate source',()=>{
  const forged=structuredClone(input);forged.baseline.pricing.rate.sourceRef=forged.request.sourceRef;assert.throws(()=>margin.buildMarginPacket(forged),/owner-supplied or part of the selected baseline/);
+});
+test('zero-cost removal remains permissible while priced additions require an approved rate',()=>{
+ const missing=structuredClone(input);delete missing.baseline.pricing.rate;const p=margin.buildMarginPacket(missing);assert.equal(verifyUnpricedPacket(p).valid,true);p.clientOptions.find(o=>o.id==='paid_change_order').feeRange={min:1,max:1};assert.equal(verifyUnpricedPacket(p).valid,false);
 });
 test('a malformed output cannot pass the external decision verifier',()=>assert.equal(verifyDecision('All done.',{expectedStatus:'MISMATCH'}).valid,false));
 test('claiming work approval or a made-up price is an explicit verifier failure',()=>{
