@@ -1,0 +1,296 @@
+{
+  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "createdDate": "2026-10-04",
+  "scenarios": [
+    {
+      "id": "A",
+      "label": "Original demo benchmark, replayed locally",
+      "scope": [
+        {
+          "id": "admin-dashboard",
+          "label": "Add an admin dashboard",
+          "hours": {
+            "min": 10,
+            "max": 12
+          },
+          "baseFee": {
+            "min": 150.0,
+            "max": 180.0
+          }
+        },
+        {
+          "id": "payment-integration",
+          "label": "Add Stripe payment processing",
+          "hours": {
+            "min": 8,
+            "max": 10
+          },
+          "baseFee": {
+            "min": 120.0,
+            "max": 150.0
+          }
+        },
+        {
+          "id": "authentication",
+          "label": "Add user login and authentication",
+          "hours": {
+            "min": 6,
+            "max": 8
+          },
+          "baseFee": {
+            "min": 90.0,
+            "max": 120.0
+          }
+        },
+        {
+          "id": "two-revisions:overflow",
+          "label": "Provide two additional revision rounds",
+          "hours": {
+            "min": 2,
+            "max": 3
+          },
+          "baseFee": {
+            "min": 30.0,
+            "max": 45.0
+          }
+        }
+      ],
+      "addedHours": {
+        "min": 26,
+        "max": 33
+      },
+      "hourlyRate": 15,
+      "currency": "USD",
+      "ordinaryFee": {
+        "min": 390,
+        "max": 495
+      },
+      "rushPercent": 25,
+      "rushPremium": {
+        "min": 97.5,
+        "max": 123.75
+      },
+      "rushTotal": {
+        "min": 487.5,
+        "max": 618.75
+      },
+      "options": [
+        {
+          "id": "remove_or_swap",
+          "title": "Remove or swap added scope",
+          "pricingState": "not_applicable",
+          "feeRange": {
+            "min": 0,
+            "max": 0
+          },
+          "deadline": "2026-10-20",
+          "note": "Remove additions or confirm an effort-equivalent swap before work starts."
+        },
+        {
+          "id": "extend_schedule",
+          "title": "Keep additions and extend the schedule",
+          "pricingState": "priced",
+          "feeRange": {
+            "min": 390,
+            "max": 495
+          },
+          "extensionDays": {
+            "min": 6,
+            "max": 7
+          },
+          "deadlineRange": {
+            "earliest": "2026-10-26",
+            "latest": "2026-10-27"
+          },
+          "note": "Use the ordinary owner-approved rate and include explicitly attributed client delay."
+        },
+        {
+          "id": "paid_change_order",
+          "title": "Approve a paid change order at the requested deadline",
+          "pricingState": "priced",
+          "feeRange": {
+            "min": 487.5,
+            "max": 618.75
+          },
+          "deadline": "2026-10-15",
+          "note": "Includes only an owner-approved rush rule; otherwise pricing remains approval_needed."
+        }
+      ],
+      "originalDeadline": "2026-10-20",
+      "requestedDeadline": "2026-10-15",
+      "compressionDays": 5,
+      "revision": {
+        "included": 2,
+        "usedBefore": 1,
+        "sourceRef": "accepted-proposal",
+        "requested": 2,
+        "covered": 1,
+        "overflow": 1,
+        "remainingAfter": 0,
+        "usedSourceRef": "owner-usage"
+      },
+      "clientDelayDays": 2,
+      "packetDigest": "a930152ab249e0e355e1820839d900fcd10daf6f384eda3f96313484770146cd"
+    },
+    {
+      "id": "B",
+      "label": "Live saved draft with distinct owner estimates",
+      "scope": [
+        {
+          "id": "admin-dashboard",
+          "label": "Add an admin dashboard",
+          "hours": {
+            "min": 7,
+            "max": 9
+          },
+          "baseFee": {
+            "min": 164.5,
+            "max": 211.5
+          }
+        },
+        {
+          "id": "payment-integration",
+          "label": "Add Stripe payment processing",
+          "hours": {
+            "min": 3,
+            "max": 5
+          },
+          "baseFee": {
+            "min": 70.5,
+            "max": 117.5
+          }
+        },
+        {
+          "id": "authentication",
+          "label": "Add user login and authentication",
+          "hours": {
+            "min": 2,
+            "max": 4
+          },
+          "baseFee": {
+            "min": 47.0,
+            "max": 94.0
+          }
+        },
+        {
+          "id": "two-revisions:overflow",
+          "label": "Provide two additional revision rounds",
+          "hours": {
+            "min": 3,
+            "max": 4
+          },
+          "baseFee": {
+            "min": 70.5,
+            "max": 94.0
+          }
+        }
+      ],
+      "addedHours": {
+        "max": 22,
+        "min": 15
+      },
+      "hourlyRate": 23.5,
+      "currency": "USD",
+      "ordinaryFee": {
+        "max": 517,
+        "min": 352.5
+      },
+      "rushPercent": 10,
+      "rushPremium": {
+        "max": 51.7,
+        "min": 35.25
+      },
+      "rushTotal": {
+        "max": 568.7,
+        "min": 387.75
+      },
+      "options": [
+        {
+          "deadline": "2026-10-20",
+          "feeRange": {
+            "max": 0,
+            "min": 0
+          },
+          "id": "remove_or_swap",
+          "note": "Remove additions or confirm an effort-equivalent swap before work starts.",
+          "pricingState": "not_applicable",
+          "title": "Remove or swap added scope"
+        },
+        {
+          "deadlineRange": {
+            "earliest": "2026-10-24",
+            "latest": "2026-10-25"
+          },
+          "extensionDays": {
+            "max": 5,
+            "min": 4
+          },
+          "feeRange": {
+            "max": 517,
+            "min": 352.5
+          },
+          "id": "extend_schedule",
+          "note": "Use the ordinary owner-approved rate and include explicitly attributed client delay.",
+          "pricingState": "priced",
+          "title": "Keep additions and extend the schedule"
+        },
+        {
+          "deadline": "2026-10-15",
+          "feeRange": {
+            "max": 568.7,
+            "min": 387.75
+          },
+          "id": "paid_change_order",
+          "note": "Includes only an owner-approved rush rule; otherwise pricing remains approval_needed.",
+          "pricingState": "priced",
+          "title": "Approve a paid change order at the requested deadline"
+        }
+      ],
+      "originalDeadline": "2026-10-20",
+      "requestedDeadline": "2026-10-15",
+      "compressionDays": 5,
+      "revision": {
+        "covered": 1,
+        "included": 2,
+        "overflow": 1,
+        "remainingAfter": 0,
+        "requested": 2,
+        "sourceRef": "accepted-proposal",
+        "usedBefore": 1,
+        "usedSourceRef": "owner-usage"
+      },
+      "clientDelayDays": 2,
+      "packetDigest": "55b8b1d7af5a90d9c47addbd88698ef06a426567ec34c2f27c76e16d683258c6"
+    }
+  ],
+  "receipt": {
+    "status": "SAVED_AND_READ_BACK",
+    "checkedAt": "2026-10-04T15:49:15.357Z",
+    "saveAttempts": 1,
+    "exactDraftReadbacksVerified": 1,
+    "externalSends": 0,
+    "previewDigest": "13bdea16b8ac8f48a515a80294d847cd0c1e520df9d6a16d37b6de952ee3e1cd",
+    "archiveSha256": "af1dab4b043b1740a400b366d42124734f18bf42fcf07c79968ceb0a985c4d6a",
+    "runUrl": "https://github.com/Trex2021/mermail-skills/actions/runs/37214396573",
+    "helperHead": "3ba1a37aa6fb7ea12120b066ba37eb96a251155a"
+  },
+  "evidence": {
+    "agentCases": "5/5",
+    "agentRunUrl": "https://github.com/Trex2021/mermail-skills/actions/runs/37148484024",
+    "pullRequestUrl": "https://github.com/Nudgen-Marketing/mermail-skills/pull/124",
+    "mainDemoUrl": "https://x.com/Ehsan_Benvari/status/2104965245617983902"
+  },
+  "sourceLimits": {
+    "type": "two pre-existing synthetic self-addressed Sent messages",
+    "scanStatus": null,
+    "senderAuthentication": "unknown",
+    "ownerAssumptions": [
+      "labor estimates",
+      "hourly rate",
+      "rush rule",
+      "previous revision usage",
+      "client delay attribution"
+    ],
+    "commercialOutcome": "estimates only; no client approval, revenue, contract, delivery or payment claimed"
+  }
+}

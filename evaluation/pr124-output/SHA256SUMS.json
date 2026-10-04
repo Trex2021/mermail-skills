@@ -1,6 +1,10 @@
 {
-  "README.md": "5331b17c0e48e700ccfca833a50648e3c481b63fea076e3bca00be95e854c167",
-  "REPORT.md": "7ffc4ea8ee5b54b9cf78bd986cf840911744405a11ee30c25f6a2408a36e23fa",
+  "COMMERCIAL-VALUE.md": "f5fd071817145e335ecfd5d738bf7c3fad00fe78110ae65aa7ba3fcaeaebb5ac",
+  "Mermail-Commercial-Value.pdf": "23052688c08b890ffc95b46d23e08ee338b3dc8d1d843970e01507d737bb7aa5",
+  "README.md": "c82c33aae414c0e08b0cc8022866be2f346bd5d52d499b377056e6e06fdcd1b2",
+  "REPORT.md": "cb48eac4d63180a56e598313d347fb50118d8051b27da54a1dc8f55fb88c9511",
+  "commercial-value.json": "9fca516feaa32f90bbc363d1bc512da294172efe9ddf90ddd4dd442e52a2d663",
+  "commercial-value.py": "42fb45ff836007997bac0a195c0f1d72450d6107f9f8f98128d78d2221dce122",
   "config.json": "b7ea45ed1d233d5189cb0931124f2444e0c9ae83b1b4c9e2025770c1c89345a3",
   "output.mjs": "4f025814f2d681627a3f6ff14ac4420e86178f1e598b707bf85e48bfdacda71e",
   "output.test.mjs": "1bbb26f5549ce8ad9d8ec23a60fb1c78535ef24e680d2a26feb25774f505d5ba",
@@ -15,5 +19,9 @@
   "records/37153485630/encrypted-review.json": "2aafb8e23d488386dd82ec2440b77d763c41a19cb1e8ea7d2af6ccc0c111e044",
   "records/37153485630/original-artifact.zip": "6c87adf0bb7e6cfffae9c8fb0c7cbf0a922cb6b82f82ea4f5edcd3cb86a8a7e8",
   "records/37153485630/save-draft-schema.json": "27e90894c832323c59d7757f81e50b5fc56422e42c3ec70f5b6393e0ecad5a45",
-  "records/37153485630/status.json": "c65c9a62769ccde24498086ae7515c1496429e0417d514a83d38c50327c6040c"
+  "records/37153485630/status.json": "c65c9a62769ccde24498086ae7515c1496429e0417d514a83d38c50327c6040c",
+  "records/37214396573/encrypted-review.json": "98abd60e0799764d5c3bc8cbaaac7d4e5fe1b0ce281ae35d2445bb560a664c70",
+  "records/37214396573/original-artifact.zip": "af1dab4b043b1740a400b366d42124734f18bf42fcf07c79968ceb0a985c4d6a",
+  "records/37214396573/save-draft-schema.json": "27e90894c832323c59d7757f81e50b5fc56422e42c3ec70f5b6393e0ecad5a45",
+  "records/37214396573/status.json": "6d3f27c457169f01072f3479350525f87f66fd1dd5aa7e7d47eed9352e77e4f6"
 }

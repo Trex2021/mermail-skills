@@ -1,0 +1,240 @@
+{
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "mailboxId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Mailbox public_id returned by list_mailboxes (preferred); hosted alias id or current email also works."
+    },
+    "query": {
+      "description": "Optional query-string parameters for the Sold API operation.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "body": {
+      "description": "Draft/schedule payload: content string field is body plus optional body_format: \"html\" | \"text\". text preserves literal whitespace; html is required for rich formatting; Markdown is not rendered automatically.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "to": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "cc": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "bcc": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "from": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "email"
+                  ]
+                }
+              ]
+            },
+            "subject": {
+              "type": "string"
+            },
+            "html": {
+              "description": "Rich HTML content for send/reply/forward; draft compatibility alias.",
+              "type": "string"
+            },
+            "text": {
+              "description": "Plain text for send/reply/forward; draft compatibility alias.",
+              "type": "string"
+            },
+            "body": {
+              "description": "Canonical content string for drafts/schedules; compatibility alias for send.",
+              "type": "string"
+            },
+            "content": {
+              "description": "Legacy content alias.",
+              "type": "string"
+            },
+            "body_format": {
+              "type": "string",
+              "enum": [
+                "html",
+                "text"
+              ]
+            },
+            "attachments": {
+              "description": "Optional attachments: base64 file bytes {content, filename, type, disposition, contentId?}, never a local path or URL; or {attachment_id} from the same authorized mailbox. Omit to preserve the selected source draft's attachments; [] clears them; an array replaces the complete set. Empty files are rejected. Up to 20 files, 10 MiB each, 25 MiB decoded total; provider message limits also apply (Cloudflare 5 MiB, Resend 40 MB, including encoding/overhead). For inline PNG/JPEG/GIF/WebP use disposition=inline, a unique contentId, and matching HTML src=cid:contentId. Resend Content-IDs must be fewer than 128 characters.",
+              "maxItems": 20,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "content": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 13981016,
+                        "description": "Base64 file bytes, never a local path, URL, or data URL."
+                      },
+                      "filename": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "description": "MIME type, e.g. application/pdf."
+                      },
+                      "disposition": {
+                        "type": "string",
+                        "enum": [
+                          "attachment",
+                          "inline"
+                        ]
+                      },
+                      "contentId": {
+                        "description": "Bare Content-ID matching an HTML cid: image. Resend requires fewer than 128 characters.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 998
+                      },
+                      "encryption": {
+                        "description": "Legacy metadata; omit for ordinary file bytes.",
+                        "type": "string",
+                        "const": "worker-aes-v1"
+                      }
+                    },
+                    "required": [
+                      "content",
+                      "filename",
+                      "type",
+                      "disposition"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "attachment_id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255,
+                        "description": "Existing attachment ID in the same authorized mailbox."
+                      }
+                    },
+                    "required": [
+                      "attachment_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "in_reply_to": {
+              "type": "string"
+            },
+            "references": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "thread_id": {
+              "type": "string"
+            },
+            "source_draft_id": {
+              "description": "Source draft for send/reply/forward; omitted attachments inherit this draft's set.",
+              "type": "string"
+            },
+            "draft_id": {
+              "description": "Source draft to replace/save/schedule; omitted attachments inherit this draft's set.",
+              "type": "string"
+            },
+            "scheduled_send_at": {
+              "description": "Required ISO datetime for schedule_email_send.",
+              "type": "string"
+            }
+          },
+          "additionalProperties": {}
+        },
+        {
+          "type": "string",
+          "description": "Legacy flat content string; use the nested object for new integrations."
+        }
+      ]
+    },
+    "idempotencyKey": {
+      "description": "Optional API-metering idempotency key. Reuse only with the identical method, path, query, and body. Mailbox creation returns the existing matching mailbox on replay; other mutation replays return a conflict instead of executing twice.",
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 255
+    }
+  },
+  "required": [
+    "mailboxId"
+  ],
+  "additionalProperties": {}
+}
