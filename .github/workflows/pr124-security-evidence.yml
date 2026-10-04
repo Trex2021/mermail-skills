@@ -1,0 +1,35 @@
+name: Verify preserved PR124 security evidence
+on:
+  push:
+    branches: [evaluation/pr124-security-20261004]
+    paths: ['evaluation/pr124-security/**', '.github/workflows/pr124-security-evidence.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evidence:
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout preserved evidence
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: harness
+          persist-credentials: false
+      - name: Checkout immutable product
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 5e79ba3d7b35ed70a625db5b82f03f82d3f65a64
+          path: product
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Verify corrected evaluator regression checks
+        env:
+          PRODUCT_ROOT: ${{ github.workspace }}/product
+        run: node --test harness/evaluation/pr124-security/security.test.mjs
+      - name: Verify unchanged original live evidence and reconciliation
+        run: node harness/evaluation/pr124-security/verify-observed.mjs --product-root "$GITHUB_WORKSPACE/product"

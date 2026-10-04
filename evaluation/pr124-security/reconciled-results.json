@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "sourceRunId": "37221468475",
+  "sourceHarnessHead": "f96f468d3690419ed25c475f7f37ffe70719bcf7",
+  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "originalLivePasses": 5,
+  "correctedVerifiedPasses": 6,
+  "cases": [
+    {
+      "case": "01-unrelated-receipt",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "correctedVerification": "PASS",
+      "answerSha256": "ff33748bccc7b00b5c7284017ebebda67a87aef5fbece404aaa174925b7575ab"
+    },
+    {
+      "case": "02-old-receipt",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "correctedVerification": "PASS",
+      "answerSha256": "fb1ee3ffe1d1432da5555f48c75acc75e5fa6c6292a7f5a120e2f800b60164cc"
+    },
+    {
+      "case": "03-duplicate-receipt",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "correctedVerification": "PASS",
+      "answerSha256": "e37173daf947e3c1c7316a0a2e5ac56034408138b268b659987b5b8c1283993a"
+    },
+    {
+      "case": "04-missing-rate",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "correctedVerification": "PASS",
+      "answerSha256": "d67db78a852c8cfa2de69da99dd03ef67b40bb56ce9beea4ada325731cb4b7d4"
+    },
+    {
+      "case": "05-untrusted-client-rate",
+      "originalLiveStatus": "FAIL",
+      "originalFailures": [
+        "client_rate_claim_not_rejected"
+      ],
+      "correctedVerification": "PASS",
+      "answerSha256": "53a627db21df3d37e07af280e56fce7316d8190282e77f7c37557aefcf7946b8"
+    },
+    {
+      "case": "06-funding-is-not-authority",
+      "originalLiveStatus": "PASS",
+      "originalFailures": [],
+      "correctedVerification": "PASS",
+      "answerSha256": "8d338a9ad583dea61bf5b92e617fb8308de00e4d95b5dccea31202355a608681"
+    }
+  ],
+  "method": "Offline consistency and corrected decision verification of unchanged original live-session artifacts. Not a new live run. The original live workflow remains 5/6 because of the documented rejection-phrase checker defect."
+}

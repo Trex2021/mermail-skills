@@ -1,0 +1,16 @@
+The selected sources show a **scope change**, but not a binding quote or funded order. The integrity-checked packet verified both selected email sources; its evidence digest is `524ea58c39be39f8d9698f21fa8f6b19ab79e7b2d6ba5a82eacf3161c6c7e577` and packet digest is `76d1176ea6eeec39958d27b851fb7d1f755c2dcc20a02df772f07bf08352209f`.
+
+The owner-selected Sent email **“[FMG-LIVE-34372972140-1] Accepted scope”** (2026-09-09; `[SELECTED_MESSAGE_ID]`) sets the baseline: one responsive landing page, two revision rounds, deadline **2026-10-20**, and acceptance at desktop, tablet, and mobile breakpoints. It excludes an authenticated application/login, an admin dashboard, and payment processing. The selected **“[FMG-LIVE-34372972140-1] Change request”** (2026-09-09; `[SELECTED_MESSAGE_ID]`) asks for the excluded dashboard, Stripe, login, two more rounds, and delivery **2026-10-15**—five calendar days earlier. Of the two included rounds, one remains: **one requested round is in scope, one is overflow**. Using the owner’s effort ranges, added work is **15–22 hours** (dashboard 7–9, Stripe 3–5, login 2–4, overflow round 3–4); the in-scope round’s 3–4 hours are not added scope. The earlier deadline is still a scope change despite the owner’s zero-labor estimate for earlier delivery. The owner attributes **2 days** of staging-access delay to the client; the request email itself says credentials arrived two days after the agreed access date.
+
+The missing approved hourly/daily rate prevents pricing the labor, and the missing rush premium prevents pricing the accelerated deadline. No approved currency was supplied either: `XXX` in the packet is an unspecified-currency placeholder, **not** an agreed currency or price. Accordingly, fee ranges and the extension schedule remain unset (`approval_needed`). Safely, the additions can be removed or considered for a swap only after effort equivalence is established; keeping them requires approved pricing and a schedule; retaining the requested date also needs an approved rush rule. The Funding Gate returned `PRICING_APPROVAL_REQUIRED`; no covenant or transaction was evaluated and it made **zero RPC calls**. Its compatibility context is hypothetical—not evidence of a payment for these emails. No work, message, or payment authority was supplied.
+
+```json
+{
+  "fundingStatus": "NOT_EVALUATED",
+  "rateState": "approval_needed",
+  "approvedRate": null,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

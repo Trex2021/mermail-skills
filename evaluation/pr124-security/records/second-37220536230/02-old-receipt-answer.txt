@@ -1,0 +1,18 @@
+## Decision
+
+The selected safe contexts show a baseline of **one responsive landing page**, **two revision rounds**, a **2026-10-20** deadline, and responsiveness at desktop, tablet, and mobile breakpoints. The baseline excludes an authenticated application/login, an admin dashboard, and payment processing. These findings are linked to the owner-selected Sent message **“[FMG-LIVE-34372972140-1] Accepted scope”** (`[SELECTED_MESSAGE_ID]`). The selected Sent message **“[FMG-LIVE-34372972140-1] Change request”** (`[SELECTED_MESSAGE_ID]`) requests a dashboard, Stripe processing, login, two more revision rounds, and delivery by **2026-10-15**. The sender authentication status was unknown; these are evidence from the selected safe contexts, not proof of client identity.
+
+The packet classifies the dashboard, Stripe, login, one overflow revision round, and earlier deadline as scope changes. Of the two requested rounds, one uses the remaining included round and one exceeds the allowance. Owner estimates yield **15–22 added hours**; earlier delivery itself adds **zero labor hours**. At the owner-approved hypothetical **$23.50/hour**, ordinary added labor is **$352.50–$517.00**; the approved hypothetical 10% rush rule brings the paid-change-order range to **$387.75–$568.70**. The supplied staging delay is attributed to the client as **2 days**. The packet’s schedule-extension option is **2026-10-24 to 2026-10-25**; its paid option retains the requested **2026-10-15** deadline. Integrity verification and source correspondence both passed (2 selected email sources); packet digest: `2dd0d4adb493730422c0a73e2577a147356a7cdc70a2b511b367db40f97dfce6`.
+
+The read-only funding check returned **MISMATCH**: the host-selected hypothetical covenant’s approval time is **2026-10-04**, while the observed finalized Devnet transaction settled **2026-09-23**, before that approval. The hypothetical covenant is for **$387.75 USD** but specifies **10 USDC** settlement. This checks compatibility with the host’s hypothetical covenant only; it does **not** establish payment for these emails or commercial approval. The adapter explicitly grants no work, messaging, or transfer authority. Safely, you can review the packet and decide whether to pursue one of its options; no work, draft, message, contract acceptance, signing, or funds movement is authorized.
+
+```json
+{
+  "fundingStatus": "MISMATCH",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

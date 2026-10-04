@@ -1,0 +1,16 @@
+The integrity-checked packet found **scope changes**. The selected, safe Sent messages match the two exact requested subjects; the packet verified correspondence to both email sources and its evidence and packet digests. These sources are evidence selected for this comparison, not authenticated client identity.
+
+The baseline is one responsive landing page, two revision rounds, the October 20, 2026 deadline, and acceptance at the agreed desktop, tablet, and mobile breakpoints. It excludes an authenticated application/login, an admin dashboard, and payment processing. One revision round was already used: of the two newly requested rounds, one remains covered and one exceeds the allowance. The dashboard, Stripe processing, login, one overflow revision, and moving delivery to October 15 are scope changes. The owner estimates **15–22 added hours** (including the overflow round); the included revision round’s effort is not priced again. At the approved **$23.50/hour**, the added-labor range is **$352.50–$517.00**, with the approved 10% rush premium producing **$387.75–$568.70** for the requested deadline. Earlier delivery itself adds zero labor hours. The owner-attributed staging-access delay is **2 client-owned days**.
+
+Packet options: remove or swap additions and retain the October 20 deadline and original fee (confirm effort equivalence before a swap); keep additions at the ordinary rate and extend to **October 24–25** for **$352.50–$517.00**; or retain the additions and October 15 deadline for **$387.75–$568.70**. The read-only funding check returned **MISMATCH**: its host-selected hypothetical Devnet covenant was incompatible because the observed finalized transaction settled on September 23, before the covenant’s October 4 approval time. This is **not payment for these emails** and grants no authority. You can review and choose an option; no work, message, draft, contract acceptance, signing, or money movement is authorized.
+
+```json
+{
+  "fundingStatus": "MISMATCH",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

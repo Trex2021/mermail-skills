@@ -1,0 +1,18 @@
+The integrity-checked packet found a **scope change**, but no authority to accept it or act on it. The accepted-scope message (`[SELECTED_MESSAGE_ID]`, Sept. 9) sets one responsive landing page, two revision rounds, the exclusions of authenticated application/login, admin dashboard, and payment processing, desktop/tablet/mobile acceptance, and a **2026-10-20** deadline. The selected change-request message (`[SELECTED_MESSAGE_ID]`, Sept. 9) asks for an admin dashboard, Stripe processing, user login, two more revision rounds, and delivery by **2026-10-15**. These were selected, safe Sent-message contexts; their sender authentication is unknown, so they do not establish client identity or approval.
+
+The packet preserves the exclusions and acceptance criteria. Of the two new revision rounds, one uses the single round remaining in the baseline allowance; only the other is extra. With the hypothetical owner inputs, added work totals **15–22 hours**: **$352.50–$517.00** at the hypothetical $23.50/hour rate, plus **$35.25–$51.70** for the 10% rush premium, for **$387.75–$568.70** at the requested deadline. Earlier delivery itself adds zero labor hours. The supplied staging-access delay is attributed to the client as **2 days**. Packet state is `scope_change_detected`; evidence digest `6900ec1583baa260d1f83d3dfb6e7655a560fda86fb54a37af41fa96b7c4dd1a` and packet digest `23788405ef63a6f6528b3328c79f14647911061069f14fc82e6976ca7831c780` both verified.
+
+The packet’s options are to remove or swap the additions (retain the baseline deadline, and confirm any swap is effort-equivalent), keep the additions at the ordinary rate and extend the schedule (**4–5 days**, to **2026-10-24–25**), or price a paid change order at the requested deadline (**$387.75–$568.70**). These are decision options, not an accepted contract.
+
+The read-only funding adapter returned **FUNDED** for its host-selected hypothetical covenant: a finalized Solana Devnet receipt for **10 USDC**, proof ID `059bc3ef80003bffe183453893c5eb5572d2f452acbacf66f8895e06f2b56483`. That result is **hypothetical compatibility only, not payment for these emails**: the covenant explicitly labels its approval hypothetical, and its $10 USDC settlement does not establish payment of the packet’s $387.75–$568.70 change-order range. Funding evidence grants no work, messaging, or transfer authority. Safely, you can review or select an option; starting work, sending a confirmation, accepting a contract, or moving money still requires separate explicit approval. No draft or message was created or sent.
+
+```json
+{
+  "fundingStatus": "FUNDED",
+  "rateState": "OWNER_APPROVED_HYPOTHETICAL",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

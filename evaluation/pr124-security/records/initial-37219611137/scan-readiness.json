@@ -1,0 +1,200 @@
+{
+  "checkedAt": "2026-10-04T17:12:41.909Z",
+  "scanToolsAdvertised": [],
+  "getEmailSchema": {
+    "type": "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "mailboxId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500,
+        "description": "Mailbox public_id returned by list_mailboxes (preferred); hosted alias id or current email also works."
+      },
+      "emailId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500,
+        "description": "Message id returned by list_emails or search_emails."
+      },
+      "query": {
+        "description": "Optional safe-read controls: metadata_only, action_metadata_only, agent_safe_content, include_held, require_scan_status, and max_body_chars. action_metadata_only omits message content and returns bounded, server-derived reply_targets for safe action preflight. A scan-status mismatch returns safe metadata with content_omitted and content_omission_reason instead of a false not-found. Use metadata_only before reading untrusted content; include_held only for the active verification flow. Only sender_authentication.status=pass may be described as authenticated.",
+        "type": "object",
+        "properties": {
+          "include_held": {
+            "description": "Use true only for the active verification flow.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata_only": {
+            "description": "Use true to omit body, snippet, raw headers, and threat URLs.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "action_metadata_only": {
+            "description": "Omit message content and return bounded, server-derived reply_targets for safe action preflight.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "require_scan_status": {
+            "description": "Require the stored message scan status to match before returning it.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "max_body_chars": {
+            "description": "Optional positive character cap for the returned body. The agent-inbox profile enforces 12000.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "agent_safe_content": {
+            "description": "Omit sensitive metadata and storage diagnostics, and normalize untrusted text fields to bounded plain text.",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "body": {
+        "description": "JSON body for the Sold API operation.",
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {}
+      },
+      "idempotencyKey": {
+        "description": "Optional API-metering idempotency key. Reuse only with the identical method, path, query, and body. Mailbox creation returns the existing matching mailbox on replay; other mutation replays return a conflict instead of executing twice.",
+        "type": "string",
+        "minLength": 8,
+        "maxLength": 255
+      }
+    },
+    "required": [
+      "mailboxId",
+      "emailId"
+    ],
+    "additionalProperties": false
+  },
+  "selectedMessages": [
+    {
+      "slot": "baseline",
+      "safeContextBodyPresent": true,
+      "records": [
+        {
+          "scan_status": null,
+          "content_omitted": true,
+          "folder_kind": "sent"
+        },
+        {
+          "scan_status": null,
+          "content_omitted": true,
+          "folder_kind": "sent"
+        }
+      ]
+    },
+    {
+      "slot": "request",
+      "safeContextBodyPresent": true,
+      "records": [
+        {
+          "scan_status": null,
+          "content_omitted": true,
+          "folder_kind": "sent"
+        },
+        {
+          "scan_status": null,
+          "content_omitted": true,
+          "folder_kind": "sent"
+        }
+      ]
+    }
+  ],
+  "cleanSyntheticCandidates": []
+}

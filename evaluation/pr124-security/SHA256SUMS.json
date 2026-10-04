@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "scope": "Published evaluator and unchanged original Actions artifacts; excludes this checksum index and duplicate extracted transcript copies. Original transcripts remain in their original ZIP archives.",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "b7987ca50f89127b351f9e802d7d63f332562998eaf26dae8d7fe96c277da40e"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "5cfa32b0066a2605020c53a2bb0a762f0d9435125c3a726b44667cf30fa4dca5"
+    },
+    {
+      "path": "adapter.mjs",
+      "sha256": "ce0eb8c2a8e082ab6dab282dd833c9892f1cdc6de08a5316e5b6e1e137937e9f"
+    },
+    {
+      "path": "artifact-index.json",
+      "sha256": "7d4b5f2c3fc89c752676bd4cae555251d0ed67a415c8ce46d0ed136d4822478a"
+    },
+    {
+      "path": "generate-harness.py",
+      "sha256": "aa233fae82573f87d9fa196b3cf9ebc50ce325132ea6c82b8bd9406ef3785f17"
+    },
+    {
+      "path": "proxy.mjs",
+      "sha256": "34169c8cb397a43b6b709b766832b4842b4a49aa58750097d090104d51cd6201"
+    },
+    {
+      "path": "reconciled-results.json",
+      "sha256": "7965a59132ad5b3c2030adb813ffa95115eccee0870f7c54991bb4205d15c34d"
+    },
+    {
+      "path": "records/final/01-unrelated-receipt-answer.txt",
+      "sha256": "ff33748bccc7b00b5c7284017ebebda67a87aef5fbece404aaa174925b7575ab"
+    },
+    {
+      "path": "records/final/01-unrelated-receipt-funding-redacted.json",
+      "sha256": "55bf1379301ecdcd72167d17755ef72a458f5dce91dbd2019cba915f97467974"
+    },
+    {
+      "path": "records/final/01-unrelated-receipt-packet-redacted.json",
+      "sha256": "29afc3410ea80145cf3f3ff5cbbbc5277cece60d98535c86e36adf555c9a9370"
+    },
+    {
+      "path": "records/final/02-old-receipt-answer.txt",
+      "sha256": "fb1ee3ffe1d1432da5555f48c75acc75e5fa6c6292a7f5a120e2f800b60164cc"
+    },
+    {
+      "path": "records/final/02-old-receipt-funding-redacted.json",
+      "sha256": "cb086a2ed802a8d90c1604c01dd88c348ff5f4fb4aea5969919baa5ec0810e14"
+    },
+    {
+      "path": "records/final/02-old-receipt-packet-redacted.json",
+      "sha256": "550d17b2f169bdb64397b172f8907e87c7d94e29466c8b1bc01cf0b0e02f03a5"
+    },
+    {
+      "path": "records/final/03-duplicate-receipt-answer.txt",
+      "sha256": "e37173daf947e3c1c7316a0a2e5ac56034408138b268b659987b5b8c1283993a"
+    },
+    {
+      "path": "records/final/03-duplicate-receipt-funding-redacted.json",
+      "sha256": "d3b22be740d01b900eb7dbc5f7c6461c37568cb5ccfde93e2b95104d6abd4478"
+    },
+    {
+      "path": "records/final/03-duplicate-receipt-packet-redacted.json",
+      "sha256": "b754b3cee08bcdf069f3a8ba1dd6b3722394c1479eff2c9ea568a39974cf6e00"
+    },
+    {
+      "path": "records/final/04-missing-rate-answer.txt",
+      "sha256": "d67db78a852c8cfa2de69da99dd03ef67b40bb56ce9beea4ada325731cb4b7d4"
+    },
+    {
+      "path": "records/final/04-missing-rate-funding-denial.json",
+      "sha256": "867b802ffde0abeb1063a25660bfac80ceb92bf464236436bb4afbaf44c53429"
+    },
+    {
+      "path": "records/final/04-missing-rate-packet-redacted.json",
+      "sha256": "02ff4cbd8d545ef28e6ea2158fd416d445c357e8c13c2d11e52b07e125fde3a4"
+    },
+    {
+      "path": "records/final/05-untrusted-client-rate-answer.txt",
+      "sha256": "53a627db21df3d37e07af280e56fce7316d8190282e77f7c37557aefcf7946b8"
+    },
+    {
+      "path": "records/final/05-untrusted-client-rate-packet-redacted.json",
+      "sha256": "d5b1ec77601150981b6b36ff871aac03d8ea734f85954033059c7aaaeaf7b628"
+    },
+    {
+      "path": "records/final/06-funding-is-not-authority-answer.txt",
+      "sha256": "8d338a9ad583dea61bf5b92e617fb8308de00e4d95b5dccea31202355a608681"
+    },
+    {
+      "path": "records/final/06-funding-is-not-authority-funding-redacted.json",
+      "sha256": "6ea8c69559300715983cf70ec90adcae32189ce7b67da48276eea47b7e779a36"
+    },
+    {
+      "path": "records/final/06-funding-is-not-authority-packet-redacted.json",
+      "sha256": "80219eb4c519ef6653f6c0aab914780b2ab2e8f8eac408b6b0ba4ebad3d60694"
+    },
+    {
+      "path": "records/final/original-artifact.zip",
+      "sha256": "4115a76e9de31d915f11140bd7f74f34bdc2e106cd807e5b47c457c58d8aec84"
+    },
+    {
+      "path": "records/final/plugin-source-manifest.json",
+      "sha256": "59491d1b23fb9406d8f1263f4c8e27fdb65be655d90dc7cd66b351fd336c56e6"
+    },
+    {
+      "path": "records/final/preflight-authority.json",
+      "sha256": "66289997aff77baf9921a7f9c3fc74e0a9dcdc9e7faf71e7491d0ee3a94f1cca"
+    },
+    {
+      "path": "records/final/preflight-missing-approval.json",
+      "sha256": "83e5a6b66f1fc693da660e75b2f794ad450bb761a1ee5a9aa3c215be8f499aff"
+    },
+    {
+      "path": "records/final/preflight-recorded.json",
+      "sha256": "eb61184cc6ed0b4d07a50b491191edd280f194587802233ddc5ec0b7416e7739"
+    },
+    {
+      "path": "records/final/results.json",
+      "sha256": "ae090cd7050e666d4ff49d77e76349ad08ea015f7e74192f4f6173c132ae9f5c"
+    },
+    {
+      "path": "records/final/scan-readiness.json",
+      "sha256": "c56b4b9c839c10c5088e94ecfa65d0540c5fdb76cbc4cc1c8bc1abbe512327ea"
+    },
+    {
+      "path": "records/initial-37219611137/01-unrelated-receipt-answer.txt",
+      "sha256": "2728367f3d9dafbaed1c64e1f15564a26f82865f6124c214b5d7a5b81de8159f"
+    },
+    {
+      "path": "records/initial-37219611137/01-unrelated-receipt-funding-redacted.json",
+      "sha256": "998d9b4ab32460072799b2da03f90fbc27949d1a37839b0d87acbcdcb07ec01f"
+    },
+    {
+      "path": "records/initial-37219611137/01-unrelated-receipt-packet-redacted.json",
+      "sha256": "f2f03b3502086847836595430db0bc0c4911c0a569ccd8cb7f09e47968f189cc"
+    },
+    {
+      "path": "records/initial-37219611137/02-old-receipt-answer.txt",
+      "sha256": "18c0b219364b7bcec3853d780847c0ce45215c8b7302e3e2d257fea44f004c96"
+    },
+    {
+      "path": "records/initial-37219611137/02-old-receipt-funding-redacted.json",
+      "sha256": "01d331fb8d57852ea0d75f7ade15ec4aba612b634209817080a31525a746eb87"
+    },
+    {
+      "path": "records/initial-37219611137/02-old-receipt-packet-redacted.json",
+      "sha256": "82f1b82b74d7e7a27f4155e488eb1d8c2c9590b0256352d772b49e556552d79a"
+    },
+    {
+      "path": "records/initial-37219611137/03-duplicate-receipt-answer.txt",
+      "sha256": "c67be396526e3e8435c9f9890002485d7b386c5caf0045a7c651eca8fe9dce92"
+    },
+    {
+      "path": "records/initial-37219611137/03-duplicate-receipt-funding-redacted.json",
+      "sha256": "26e92417dbbcb6e24068614df18c0b6cb2f85c90b3d0fea421539efee85396bc"
+    },
+    {
+      "path": "records/initial-37219611137/03-duplicate-receipt-packet-redacted.json",
+      "sha256": "e6e51888822032847e41bec38be185760eb719295125a6d94a065ae69fae1672"
+    },
+    {
+      "path": "records/initial-37219611137/04-missing-rate-answer.txt",
+      "sha256": "65a6e23fd1d1f9a288a904296ad449862d3cccbaf70bb08fcb1580482dc429e5"
+    },
+    {
+      "path": "records/initial-37219611137/04-missing-rate-packet-redacted.json",
+      "sha256": "1b89d36aa006abe307d5a23d23c35a82dffb3f4e04be0aba7b488dd282a9af03"
+    },
+    {
+      "path": "records/initial-37219611137/05-untrusted-client-rate-answer.txt",
+      "sha256": "c9d38878398d1a6e6ea76ab137d0b77027b44cabbec09526e92126dbf55e29fb"
+    },
+    {
+      "path": "records/initial-37219611137/05-untrusted-client-rate-packet-redacted.json",
+      "sha256": "1b4d61b985c15abb8d7f9194e7034617d2fbacb048e14a1668627c2e7c3b4483"
+    },
+    {
+      "path": "records/initial-37219611137/06-funding-is-not-authority-answer.txt",
+      "sha256": "98e8796d234691d806dc61e56b0bf4822abe67e3653de902e41e73a71f115392"
+    },
+    {
+      "path": "records/initial-37219611137/06-funding-is-not-authority-funding-redacted.json",
+      "sha256": "a72f010e5b08f9c661731b04eebf6cd2d6c6ea690cf9b9788dfaf5a2019d6536"
+    },
+    {
+      "path": "records/initial-37219611137/06-funding-is-not-authority-packet-redacted.json",
+      "sha256": "32afc6c4aae962a528d421d0808413da1ad760c696fe2773a401fef6ddc93c3d"
+    },
+    {
+      "path": "records/initial-37219611137/original-artifact.zip",
+      "sha256": "32b53b265b4bc9814421b6c23a9b2cd521eb1a2a0e18641e19889865a3f8595a"
+    },
+    {
+      "path": "records/initial-37219611137/plugin-source-manifest.json",
+      "sha256": "59491d1b23fb9406d8f1263f4c8e27fdb65be655d90dc7cd66b351fd336c56e6"
+    },
+    {
+      "path": "records/initial-37219611137/preflight-authority.json",
+      "sha256": "66289997aff77baf9921a7f9c3fc74e0a9dcdc9e7faf71e7491d0ee3a94f1cca"
+    },
+    {
+      "path": "records/initial-37219611137/preflight-missing-approval.json",
+      "sha256": "83e5a6b66f1fc693da660e75b2f794ad450bb761a1ee5a9aa3c215be8f499aff"
+    },
+    {
+      "path": "records/initial-37219611137/preflight-recorded.json",
+      "sha256": "eb61184cc6ed0b4d07a50b491191edd280f194587802233ddc5ec0b7416e7739"
+    },
+    {
+      "path": "records/initial-37219611137/results.json",
+      "sha256": "be7851e36806af622b64cc3789412b4cbcc021704a41b573a9e57ab43067417d"
+    },
+    {
+      "path": "records/initial-37219611137/scan-readiness.json",
+      "sha256": "8d2155a7cb2d832d813a30977a8ab56296b8d4a87adde092ecfa4c1e7995c3e3"
+    },
+    {
+      "path": "records/second-37220536230/01-unrelated-receipt-answer.txt",
+      "sha256": "24c21fad41da4e478b26f8d0fc5e50ece2a9cedb559c11464131f6e54f4ff8fa"
+    },
+    {
+      "path": "records/second-37220536230/01-unrelated-receipt-funding-redacted.json",
+      "sha256": "152b971596eee1e511247ab44d47c882daad07a0863488ff5842abeed6ed9547"
+    },
+    {
+      "path": "records/second-37220536230/01-unrelated-receipt-packet-redacted.json",
+      "sha256": "463168e64b9bceec9a5630fde2217c7fdc4e57ea34de1330feca987ccaac480d"
+    },
+    {
+      "path": "records/second-37220536230/02-old-receipt-answer.txt",
+      "sha256": "d91b529f84cef6249d57ff012acc5e91e7156f22d4e59d1310b6d8b7963ce83e"
+    },
+    {
+      "path": "records/second-37220536230/02-old-receipt-funding-redacted.json",
+      "sha256": "a2a0cbe9c7247cca2d1d0f347da784c1519d5a7fe233a9972e82992f74206431"
+    },
+    {
+      "path": "records/second-37220536230/02-old-receipt-packet-redacted.json",
+      "sha256": "a441e9a5fd653bc373b92bdb3b85d17971b1c9c4b9bcf9c0bc456a6707365560"
+    },
+    {
+      "path": "records/second-37220536230/03-duplicate-receipt-answer.txt",
+      "sha256": "e863f0bc81b0d6d4cacd156c8fd2cabce2fe1843c4e1ad5c1a0c1ca0e32507ef"
+    },
+    {
+      "path": "records/second-37220536230/03-duplicate-receipt-funding-redacted.json",
+      "sha256": "27429d22cb50d7412176851d0593a550681f587ece6dad1d3f320b8a0579b66c"
+    },
+    {
+      "path": "records/second-37220536230/03-duplicate-receipt-packet-redacted.json",
+      "sha256": "8d1e08d3bbc18e0d59861c6de824b32999ee136a040e3044a64c03d3655fbdff"
+    },
+    {
+      "path": "records/second-37220536230/04-missing-rate-answer.txt",
+      "sha256": "f5857f15b5be84188f116b76c6fe1ce1195c0c6d48ef1ca49db5e3f41129e3db"
+    },
+    {
+      "path": "records/second-37220536230/04-missing-rate-funding-denial.json",
+      "sha256": "867b802ffde0abeb1063a25660bfac80ceb92bf464236436bb4afbaf44c53429"
+    },
+    {
+      "path": "records/second-37220536230/04-missing-rate-packet-redacted.json",
+      "sha256": "34ab233b8e129363698185579c1a2fe6a1507c8144bbc6738b4a9a7cc1a078f2"
+    },
+    {
+      "path": "records/second-37220536230/05-untrusted-client-rate-answer.txt",
+      "sha256": "549b3b7509c2f01e90bd8d2e7919fd35000eb9da81ad81812d8f9d95dc908cd2"
+    },
+    {
+      "path": "records/second-37220536230/05-untrusted-client-rate-funding-denial.json",
+      "sha256": "867b802ffde0abeb1063a25660bfac80ceb92bf464236436bb4afbaf44c53429"
+    },
+    {
+      "path": "records/second-37220536230/05-untrusted-client-rate-packet-redacted.json",
+      "sha256": "fef0eb3993d0504d6a9ba60a88908e53ff68616be0a4e7ba640f928c03ad811e"
+    },
+    {
+      "path": "records/second-37220536230/06-funding-is-not-authority-answer.txt",
+      "sha256": "af5494b10b89f99634313dd956334e6b7b77ae8d41169820bbfcc15aa819fcc7"
+    },
+    {
+      "path": "records/second-37220536230/06-funding-is-not-authority-funding-redacted.json",
+      "sha256": "c7423ebcedbaf17690df47fed1052d8272bb97fa03ef13eace048944d9e30e09"
+    },
+    {
+      "path": "records/second-37220536230/06-funding-is-not-authority-packet-redacted.json",
+      "sha256": "b3ccec4a3e6f10289d6f78b935b4f1f94029a61ed281b736053e3b8ec6774985"
+    },
+    {
+      "path": "records/second-37220536230/original-artifact.zip",
+      "sha256": "f7d147f02629bed77da3496736d888836ad6d955441ce0bb243bbad11340bfae"
+    },
+    {
+      "path": "records/second-37220536230/plugin-source-manifest.json",
+      "sha256": "59491d1b23fb9406d8f1263f4c8e27fdb65be655d90dc7cd66b351fd336c56e6"
+    },
+    {
+      "path": "records/second-37220536230/preflight-authority.json",
+      "sha256": "66289997aff77baf9921a7f9c3fc74e0a9dcdc9e7faf71e7491d0ee3a94f1cca"
+    },
+    {
+      "path": "records/second-37220536230/preflight-missing-approval.json",
+      "sha256": "83e5a6b66f1fc693da660e75b2f794ad450bb761a1ee5a9aa3c215be8f499aff"
+    },
+    {
+      "path": "records/second-37220536230/preflight-recorded.json",
+      "sha256": "eb61184cc6ed0b4d07a50b491191edd280f194587802233ddc5ec0b7416e7739"
+    },
+    {
+      "path": "records/second-37220536230/results.json",
+      "sha256": "189247e3c8d4da41d32d0e7b19b2145b771a2f381062fad6d7f2fcee2720a543"
+    },
+    {
+      "path": "records/second-37220536230/scan-readiness.json",
+      "sha256": "f2cef6515620e5a8e4ef8216757acc46b8cc34b821fc282484b3f76a0546cad6"
+    },
+    {
+      "path": "run-body.mjs.txt",
+      "sha256": "7c6f97650ce691e5aa1b8f21220e1aa7b1ca20ddb14d6bf1c497abd469901c5c"
+    },
+    {
+      "path": "run.mjs",
+      "sha256": "ab0ad9563e41fb6a22e70a7d62c13c5ef22d2889d3ffb1c5a2af28ef13c285ea"
+    },
+    {
+      "path": "security.mjs",
+      "sha256": "7f6422c60e870f6ce3109ab4f5fa500e74e9fb80fd25f7fbb3f7d55633ffc5bd"
+    },
+    {
+      "path": "security.test.mjs",
+      "sha256": "bdc4ab27679910a9a22b65bb7f8e61062656a986eb8f539f1d43a1f37c35c5ea"
+    },
+    {
+      "path": "verify-observed.mjs",
+      "sha256": "5b42e40644646694445abbcb8fdfb0c8808e6cb1418d8f689fea263bb8a73bcd"
+    }
+  ]
+}

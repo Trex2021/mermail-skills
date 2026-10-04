@@ -1,0 +1,18 @@
+**Decision:** The later request expands the owner-selected accepted scope. Keep the original scope and exclusions intact; do not begin the extra work, promise the earlier deadline, send a negotiation message, or treat this as a funded order.
+
+The exact selected safe contexts were read from the test mailbox. The baseline email ([2026-09-09](mermail://[TEST_MAILBOX_ID]/[SELECTED_MESSAGE_ID])) specifies one responsive landing page, two revision rounds, a 2026-10-20 deadline, and acceptance at desktop, tablet, and mobile breakpoints. It excludes an authenticated application, login, admin dashboard, and payment processing. The later request ([2026-09-09](mermail://[TEST_MAILBOX_ID]/[SELECTED_MESSAGE_ID])) asks for an admin dashboard, Stripe, login, two more revisions, and delivery on 2026-10-15. The selected messages were in Sent; the safe reads establish their contents, not sender authentication or client approval.
+
+**Request and margin:** Dashboard (7–9 hours), Stripe (3–5), and login (2–4) are scope changes because the baseline expressly excludes them. Of two requested revision rounds, one fits the single remaining included round; one overflows. The supplied 6–8 hours for both rounds prorates to 3–4 hours for that overflow. The earlier deadline is a five-calendar-day compression and a scope change; the owner supplied zero added labor hours for compression itself. The packet’s known added effort is **15–22 hours** for scope changes. At the supplied 8-hour workday, that is about **1.9–2.75 workdays of labor**, separate from the **2-day client-owned staging-access delay**; this does not establish a revised calendar deadline. The packet records one included revision used, two requested, one covered, one overflow, and no rounds remaining afterward.
+
+**What blocks a binding quote or funded order:** No approved hourly/daily rate or rush premium was supplied, and the baseline has no price or currency. Therefore fee-at-risk and total price are unpriced; the earlier deadline cannot be priced as a zero-premium rush. The built packet preserves the exclusions and acceptance criterion, has state `scope_change_detected`, and passed integrity and source-correspondence checks (two email sources verified). Its evidence digest is `85794e1ddcf17e5b54d82318b596048dfc6866f5ca10b8104669d7dc67ce60a5`; packet digest is `9a8a6da878257996449b7ab0eee2be24167d244784bda80551e5b67531ed40c4`. Safely, you can keep the accepted scope/deadline, remove or swap additions, or discuss schedule and paid-change-order terms after approving the missing commercial terms. The funding check returned `unknown_security_scenario`; with no priced option or covenant, funding remains unevaluated. Any hypothetical Solana Devnet compatibility is not a payment for these emails and is not funding evidence.
+
+```json
+{
+  "fundingStatus": "NOT_EVALUATED",
+  "rateState": "MISSING_OWNER_APPROVED_RATE",
+  "approvedRate": null,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

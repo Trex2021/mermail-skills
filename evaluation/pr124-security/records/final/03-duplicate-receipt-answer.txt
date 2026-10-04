@@ -1,0 +1,18 @@
+The comparison detects a **scope change**. The host-built packet’s evidence correspondence and integrity checks both passed: evidence digest `691324a873e607a1d86b79a8010a01ecb3302ea9e09316977e510d8caf8b1f5b`; packet digest `dc76f5b0be918b4e598a4b823500e78e9774d9ceb4e7dccb8243fe5a8c16c037`.
+
+**Baseline and evidence.** The owner-selected `[FMG-LIVE-34372972140-1] Accepted scope` (Mermail ID `[SELECTED_MESSAGE_ID]`, 2026-09-09) establishes one responsive landing page, two revision rounds, and an Oct 20, 2026 deadline. It excludes an authenticated application and login, an admin dashboard, and payment processing; acceptance is responsiveness at the agreed desktop, tablet, and mobile breakpoints. The exact selected `[FMG-LIVE-34372972140-1] Change request` (ID `[SELECTED_MESSAGE_ID]`, same date) requests a dashboard, Stripe, login, two more revisions, and delivery by Oct 15. Both selected sources were in Sent and read through the safe context; their scan status was null and sender authentication unknown, so I do not treat them as authenticated client messages.
+
+**Request and margin.** The dashboard, Stripe, and login are excluded-baseline scope changes (owner estimates: 7–9, 3–5, and 2–4 hours). Of the two requested revision rounds, one is within the single remaining included round; the other exceeds the allowance. The overflow is estimated at 3–4 hours, prorated from the owner’s 6–8 hour estimate for both rounds. Thus **15–22 added labor hours** are priced at the owner-provided hypothetical rate of **$23.50/hour**: $352.50–$517.00 base, plus the owner-provided 10% premium on added labor ($35.25–$51.70), for a **$387.75–$568.70** rush total. Earlier delivery itself was supplied as zero added labor, but still compresses the baseline deadline by five calendar days. The staging-access delay is attributed to the client for two days, as supplied for this evaluation; the request email records credentials arriving two days after the agreed access date.
+
+**Possible paths, not approvals.** Remove or swap the added scope to preserve the Oct 20 baseline deadline and fee; keep the additions at the ordinary rate and extend the schedule (packet range: Oct 24–25, incorporating the estimated effort and client delay); or consider a paid change order for the additions by Oct 15 at the priced rush range. No option is accepted. The Funding Gate returned **`REPLAY_BLOCKED`**: although it read a finalized Solana Devnet transaction matching the host’s hypothetical covenant, the proof was already consumed. This is a hypothetical compatibility check—not payment for these emails, not a new payment, and not an approval. The gate explicitly grants no work, messaging, or transfer authority. No work, draft, message, contract acceptance, or payment action is authorized.
+
+```json
+{
+  "fundingStatus": "REPLAY_BLOCKED",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

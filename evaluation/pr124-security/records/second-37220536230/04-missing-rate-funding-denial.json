@@ -1,0 +1,19 @@
+{
+  "scenario": "none",
+  "gate": {
+    "status": "PRICING_APPROVAL_REQUIRED",
+    "fundingSatisfied": false,
+    "reasons": [
+      "selected option is not fully priced"
+    ],
+    "actionAuthority": {
+      "startWork": false,
+      "sendMessage": false,
+      "transferFunds": false
+    }
+  },
+  "covenant": null,
+  "observation": null,
+  "rpcCalls": [],
+  "purpose": "Adapter projection of the real product covenant rejection. No funded status can be established without fully approved pricing."
+}

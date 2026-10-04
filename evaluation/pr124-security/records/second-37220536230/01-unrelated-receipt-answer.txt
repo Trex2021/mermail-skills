@@ -1,0 +1,24 @@
+## Decision packet
+
+The packet is integrity-checked and its selected email sources correspond to the safe reads. The baseline is **one responsive landing page**, **two revision rounds**, exclusions for **authenticated application/login, admin dashboard, and payment processing**, acceptance at the agreed desktop/tablet/mobile breakpoints, and a **2026-10-20** deadline. The selected baseline email is dated 2026-09-09 and in Sent; its sender authentication is unknown, so I treat it as owner-selected evidence, not authenticated sender identity.
+
+The later selected Sent email, also dated 2026-09-09 with sender authentication unknown, requests a dashboard, Stripe payment processing, login, two more revision rounds, and delivery on **2026-10-15**. The first three requests are scope changes because the baseline explicitly excludes them. Of the two added revision rounds, **one is within the one remaining round; one is overflow**. The five-day earlier deadline is a scope change, with zero added labor per your input. The staging-access delay is attributed to the client for **2 days**, as you specified.
+
+Added effort is **15–22 hours**: dashboard 7–9, Stripe 3–5, login 2–4, and the overflow revision 3–4. At the owner-approved hypothetical **$23.50/hour**, base exposure is **$352.50–$517.00**; the 10% rush premium makes the paid-change-order range **$387.75–$568.70**. The packet’s options are: remove or swap the additions (baseline deadline/fee); keep the additions at the ordinary rate with an extension to **2026-10-24–25**; or retain the requested **2026-10-15** deadline at the rush-inclusive range. These are options, not accepted terms.
+
+The evidence digest is `a3c9d40658201783d75dd96c376a7dfafcf8270490482b72177c2f8f609de3e2`; packet digest is `daebbcdf8dfd948f562b8f2663af8d06be80f840ea2b3064d546c36e4ca9c21d`.
+
+## Funding and next step
+
+The read-only adapter returned **UNVERIFIED** (“SPL token settlement was not found”) for the host-selected hypothetical Solana Devnet case. It does **not** support payment for these emails: that hypothetical covenant/receipt is not an actual payment for this email scenario. Even a successful compatibility check would not authorize work, a message, or a transfer. The safe next step is to review the options; no work, draft, final message, contract acceptance, signing, or money movement is authorized.
+
+```json
+{
+  "fundingStatus": "UNVERIFIED",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

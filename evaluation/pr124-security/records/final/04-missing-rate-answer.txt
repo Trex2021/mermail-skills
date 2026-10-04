@@ -1,0 +1,19 @@
+**The later request is a scope change, not an approved change order.** I found the two exact subject matches without folder restrictions and read their bounded, agent-safe selected contexts. Both are owner-selected Sent messages; their scan status is null and sender authentication is unknown, so I treat them as selected evidence—not authenticated client identity or authorization.
+
+- **Baseline:** “[FMG-LIVE-34372972140-1] Accepted scope” (`[SELECTED_MESSAGE_ID]`, 2026-09-09) establishes one responsive landing page, two revision rounds, the exclusions of authenticated application/login, admin dashboard, and payment processing, responsive desktop/tablet/mobile acceptance, and a 2026-10-20 deadline.
+- **Request:** “[FMG-LIVE-34372972140-1] Change request” (`[SELECTED_MESSAGE_ID]`, 2026-09-09) asks for a dashboard, Stripe processing, login, two more revisions, and delivery on 2026-10-15. Dashboard, Stripe, and login each expand explicitly excluded work. Earlier delivery is a five-day compression.
+- **Revisions and effort:** Of two included rounds, one was already used, leaving one. Of the two requested rounds, one is within the remaining allowance and one exceeds it; none remain afterward. Using the owner’s estimates, the added scope totals **15–22 hours**: dashboard 7–9, Stripe 3–5, login 2–4, and the overflow revision 3–4. The included revision is not counted as added scope. Earlier delivery adds zero labor hours per your input.
+- **Delay:** The owner-supplied client staging-access delay is **2 days**. It is attributed separately; it does not erase the requested compression or establish a new deadline.
+- **What blocks a binding quote or funded order:** There is no approved hourly/daily rate, currency, or rush premium. The packet uses `XXX` only as its required “no currency specified” marker—not as an approved quote currency. The packet therefore has `pricingState: approval_needed`; the funding check returned `PRICING_APPROVAL_REQUIRED` because the option is not fully priced. No priced covenant, transaction observation, or RPC call exists. The host’s hypothetical Solana Devnet compatibility case is not a payment for these emails.
+- **Safe next step:** Keep the accepted scope, exclusions, acceptance criteria, and original deadline intact while deciding whether to remove/swap additions, negotiate more schedule, or establish approved pricing and rush terms for a paid change order. The packet’s remove/swap option preserves the original deadline; a schedule extension cannot yet be quantified, and the paid option cannot yet be priced. No work, client message, or payment is authorized. The built packet’s source correspondence and integrity verification passed; evidence digest `71f6a0cdb866f7cf6a32e1ae11eb6732ab2d266c1f7ae6eb96040ee6c193b5de`, packet digest `bf14da678428dc7114d7bb1d87a83e33aee9f811f487df4f9f54f9ff2aa313e3`.
+
+```json
+{
+  "fundingStatus": "NOT_EVALUATED",
+  "rateState": "approval_needed",
+  "approvedRate": null,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

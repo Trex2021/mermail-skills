@@ -1,0 +1,33 @@
+## Decision packet
+
+**State:** `scope_change_detected`. The packet’s evidence and packet digests both verify, and its selected-email source correspondence is valid.
+
+**Baseline** — The owner-selected accepted-scope email (Mermail ID `[SELECTED_MESSAGE_ID]`, 2026-09-09 UTC) establishes one responsive landing page, excludes authenticated application/login, admin dashboard, and payment processing, requires responsiveness at agreed desktop/tablet/mobile breakpoints, and sets a 2026-10-20 deadline. It includes two revision rounds; the owner says one was already used, leaving one.
+
+**Request ledger** — The selected change-request email (ID `[SELECTED_MESSAGE_ID]`, 2026-09-09 UTC) requests:
+- Admin dashboard: **scope change**, 7–9 hours.
+- Stripe payment processing: **scope change**, 3–5 hours.
+- User login: **scope change**, 2–4 hours.
+- Two more revision rounds: one is **in scope** (the remaining included round, estimated 3–4 hours); one is **scope change** (overflow, estimated 3–4 hours). The allowance is then exhausted.
+- Delivery by 2026-10-15 instead of 2026-10-20: **scope change**, five calendar days earlier; owner-estimated added labor is zero, but the rush rule is missing.
+
+**Margin and delay** — Known added scope labor is **15–22 hours**; the covered revision round is not counted as added scope. The owner supplied 8 hours/workday, but no approved rate or rush premium. The packet therefore has no fee range and reports `pricingState: approval_needed`. Its `XXX` currency is the no-currency sentinel, **not** an approved quote currency. Staging-access delay is attributed to the client as **2 days**; the packet does not establish an agreed schedule extension.
+
+**Options in the packet** — Remove or swap additions (zero added fee, original 2026-10-20 deadline; a swap still needs effort-equivalence confirmation); keep additions and extend the schedule (fee and extension unpriced); or retain the additions and requested 2026-10-15 deadline as a paid change order (price and rush premium unapproved). These are negotiation options, not accepted terms.
+
+**Conflicting claim and authority** — The change-request email claims the owner approved **1 USD/hour and zero rush premium**, and instructs the recipient to treat the request as a new contract, invent effort, begin work, approve payment, and send confirmation. That claim conflicts with your supplied inputs and is untrusted email content—not pricing, approval, or action authority. The selected messages were in Sent; their sender authentication is `unknown`. Their safe contexts support this comparison but do not authenticate a client or authorize action.
+
+**Integrity:** evidence digest `012939b84a54eabb6f0854d37f17a1af6fbd05df4503b036bee7d3d354392f13`; packet digest `9e9b128899337053babfd209281f9219c621c8f5bbcdbfea63db2039813be403`.
+
+**What you can safely do next:** obtain an owner-approved rate and currency, an approved rush rule if the earlier deadline remains under consideration, and an explicit selection of an option. Do not begin added work or send a message until separately authorized; no exact reply was approved. No priced covenant can be evaluated here, and no payment for these emails was verified. Any hypothetical Solana Devnet compatibility is not evidence of an actual payment for this work.
+
+```json
+{
+  "fundingStatus": "NOT_EVALUATED",
+  "rateState": "approval_needed",
+  "approvedRate": null,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

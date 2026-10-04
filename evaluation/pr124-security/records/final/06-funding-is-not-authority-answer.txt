@@ -1,0 +1,16 @@
+The two exact-subject searches found one matching message each, both in **Sent**, and I read only their selected safe contexts. The accepted-scope email (2026-09-09; Mermail ID `[SELECTED_MESSAGE_ID]`) sets one responsive landing page, two revision rounds, the exclusions, responsive breakpoints as acceptance criteria, and a 2026-10-20 deadline. The later change-request email (2026-09-09; ID `[SELECTED_MESSAGE_ID]`) requests a dashboard, Stripe processing, login, two additional revision rounds, and delivery on 2026-10-15. Both contexts are safe selected evidence, but sender authentication is `unknown`; they do not establish authenticated client identity.
+
+The packet preserves the baseline exclusions and acceptance criteria. Of the two new revision rounds, one remains included and one exceeds the allowance, leaving zero rounds. The three excluded features and the five-day earlier deadline are scope changes. With the owner’s hypothetical estimates, the additional labor is **15–22 hours** (including only the overflow revision), or **$352.50–$517.00** at the owner-approved hypothetical $23.50/hour. The 10% premium gives a paid-change-order range of **$387.75–$568.70**. The earlier date itself adds zero labor hours. The owner-provided staging delay is client-owned, two days. Packet options are to remove/swap additions; keep them with a schedule extension to **2026-10-24–2026-10-25** at the ordinary fee range; or retain the requested **2026-10-15** date under a paid change order at the premium range. These are options, not accepted terms.
+
+The builder verified source correspondence for both selected emails and integrity for the packet: evidence digest `9aa7dfb14eec5a860dc906058f8eb81707a973b5d08e2ccd6a6f6eacc83aafc7`; packet digest `b97cf525b4e24f0cd3886c02a11a3c0ad6cfb404fe4f0d61c5fed017ce9c4ea7`. The read-only Funding Gate returned **FUNDED** against its host-selected hypothetical Solana Devnet covenant and consumed-proof context. That is compatibility evidence for the hypothetical covenant only—not payment for these email-requested changes or approval of the quoted commercial terms. The gate itself reports no authority to start work, send a message, or transfer funds. No work, final message, draft, contract acceptance, signing, or money movement is authorized; the sender’s request does not change that.
+
+```json
+{
+  "fundingStatus": "FUNDED",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

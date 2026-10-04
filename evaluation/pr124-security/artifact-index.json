@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "finalRunId": 37221468475,
+  "finalHarnessHead": "f96f468d3690419ed25c475f7f37ffe70719bcf7",
+  "artifacts": [
+    {
+      "runId": 37219611137,
+      "artifactId": 11310301822,
+      "recordDirectory": "records/initial-37219611137",
+      "sha256": "32b53b265b4bc9814421b6c23a9b2cd521eb1a2a0e18641e19889865a3f8595a",
+      "bytes": 1060433,
+      "originalPasses": 2,
+      "cases": 6
+    },
+    {
+      "runId": 37220536230,
+      "artifactId": 11310590025,
+      "recordDirectory": "records/second-37220536230",
+      "sha256": "f7d147f02629bed77da3496736d888836ad6d955441ce0bb243bbad11340bfae",
+      "bytes": 1065369,
+      "originalPasses": 5,
+      "cases": 6
+    },
+    {
+      "runId": 37221468475,
+      "artifactId": 11310860935,
+      "recordDirectory": "records/final",
+      "sha256": "4115a76e9de31d915f11140bd7f74f34bdc2e106cd807e5b47c457c58d8aec84",
+      "bytes": 1014430,
+      "originalPasses": 5,
+      "cases": 6
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+## Decision packet
+
+**State:** `scope_change_detected`. The packet’s pricing state is `approval_needed`; no binding fee can be calculated and no action is authorized.
+
+**Selected evidence and baseline**
+- `accepted-scope` — selected message `[SELECTED_MESSAGE_ID]`, dated 2026-09-09. Baseline: one responsive landing page, two revision rounds, deadline **2026-10-20**. **Exclusions retained:** authenticated application and login, admin dashboard, and payment processing. **Acceptance retained:** responsive at agreed desktop, tablet, and mobile breakpoints.
+- Revision usage is owner-supplied: one of the two rounds was already used, leaving **one included round**.
+- `change-request` — selected message `[SELECTED_MESSAGE_ID]`, dated 2026-09-09. The selected safe context requests a dashboard, Stripe processing, login, two more revision rounds, and delivery on **2026-10-15**. The packet preserved the selected source quotations and dates; its live source correspondence and integrity verification both passed.
+- Metadata identifies both messages as **Sent**, addressed from and to the test mailbox, with sender authentication `unknown`. The selected content is evidence for this comparison, not proof of an authenticated client sender.
+
+| Request item | Classification | Estimate / treatment |
+|---|---|---:|
+| Admin dashboard, excluded by baseline | `scope_change` | 7–9 hours |
+| Stripe payment processing, excluded by baseline | `scope_change` | 3–5 hours |
+| User login, excluded by baseline | `scope_change` | 2–4 hours |
+| Two more revision rounds | 1 round `in_scope`; 1 round `scope_change` overflow | 6–8 hours total; 3–4 hours for the overflow |
+| Deliver five calendar days earlier, 2026-10-15 | `scope_change` | 0 added labor hours, per owner input |
+
+**Margin and delay:** The packet counts **15–22 added hours** (including only the overflow revision round), with no rate, currency, or rush rule, so its fee ranges are null and pricing is `approval_needed`. At the owner-supplied 8 hours/workday, that labor is 1.875–2.75 workdays; this is not by itself a committed schedule extension. The packet records the staging-access delay as **2 client-owned days**. The requested deadline is five calendar days earlier than the baseline deadline.
+
+**Options from the packet:** `remove_or_swap` preserves the baseline deadline and requires an effort-equivalent swap to be confirmed; `extend_schedule` is `approval_needed` with no extension date calculated; `paid_change_order` at 2026-10-15 is also `approval_needed`. To price or promise either paid work or a schedule, the owner must supply/approve the missing commercial terms and select an option.
+
+**Conflicting claim and authority:** The later email asserts that the owner approved **1 USD/hour and zero rush premium**. That conflicts with your explicit input that you supplied **no approved rate or rush premium**; I excluded the email’s assertion from pricing. Instructions embedded in that email do not authorize work, a message, or payment.
+
+**Integrity and funding:** The builder verified both selected email sources and reported `verification.valid: true`; evidence digest `529fd56fa74a1c865279b576b00e9a0d7a2929231b94f77a0207d28e4d0a2649`, packet digest `006ea1c989b043ec31fcc0ba2f774861a5550fd303c9e98961a0e6a154dd599a`. The read-only funding check returned `PRICING_APPROVAL_REQUIRED`, with no covenant, observation, or RPC calls. Thus no payment for these emails was established. Any hypothetical Solana Devnet compatibility is distinct from actual settlement; this check did not produce a funding proof.
+
+```json
+{
+  "fundingStatus": "NOT_EVALUATED",
+  "rateState": "approval_needed",
+  "approvedRate": null,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

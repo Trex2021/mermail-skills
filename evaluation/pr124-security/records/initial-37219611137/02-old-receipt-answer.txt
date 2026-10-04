@@ -1,0 +1,35 @@
+## Baseline
+
+The selected safe contexts were the two **Sent** messages, both dated 2026-09-09. The accepted-scope message says “one responsive landing page and two revision rounds”; it excludes an authenticated application and login, an admin dashboard, and payment processing. Its acceptance criterion is responsiveness at the agreed desktop, tablet, and mobile breakpoints, with a 2026-10-20 deadline. The change-request message asks for an admin dashboard, Stripe payment processing, user login, two more revision rounds, and delivery on 2026-10-15; it also says staging credentials arrived two days after the agreed access date.
+
+The packet’s live-source correspondence and integrity checks passed. The safe-context reads do not authenticate the sender (`sender_authentication.status=unknown`), so they are evidence for this owner-selected comparison, not independent proof of client identity.
+
+## Request and margin
+
+- **Admin dashboard:** scope change; expressly excluded. Owner estimate: **7–9 hours**.
+- **Stripe payment processing:** scope change; payment processing was excluded. Owner estimate: **3–5 hours**.
+- **User login:** scope change; authenticated application and login were excluded. Owner estimate: **2–4 hours**.
+- **Two additional revision rounds:** one is within the remaining allowance; one is overflow. The baseline allowance is two rounds, with one already used. Thus **one requested round is included and one is additional**, not both billable. The owner’s 6–8 hour estimate for both rounds yields **3–4 added hours** for the overflow round.
+- **Earlier deadline:** scope change, five calendar days earlier (2026-10-15); owner estimates **zero added labor hours** for the earlier date itself. The approved **10% rush premium** still applies to added labor in the paid-change-order option.
+- **Staging-access delay:** attributed to the client, **2 days**, based on the request’s “Staging credentials were supplied two days after the agreed access date” and the owner-supplied attribution.
+
+That gives **15–22 added labor hours**: 7–9 + 3–5 + 2–4 + 3–4. At the owner-approved hypothetical rate of **$23.50/hour**, the ordinary added-labor range is **$352.50–$517.00**. The 10% rush premium is **$35.25–$51.70**, making the paid option **$387.75–$568.70**. These are evaluation figures, not an accepted price or authorization.
+
+## Safe next choices and funding
+
+The integrity-checked packet offers three choices: remove or swap additions and retain the baseline deadline; keep additions with an ordinary-rate extension to **2026-10-24–2026-10-25** (including the two client-delay days); or consider a paid change order at the requested 2026-10-15 deadline. A swap would need effort-equivalence confirmation. No choice is approved, and no draft or message was created.
+
+The read-only funding adapter returned **`MISMATCH`**, not `FUNDED`. It validated the packet and host-selected hypothetical covenant and read a finalized Solana Devnet transaction, but found that settlement occurred **before the covenant’s owner-approval time**. This is only a hypothetical compatibility check; it does **not** support payment for these emails, establish an actual payment for this request, or produce a public funding receipt. Even a successful funding verdict would not authorize work, messaging, or transfers. Given your stated limits, no work, message, or payment action is authorized; the safe next step is to decide whether any option should be pursued and separately authorize a specific action.
+
+Packet state: `scope_change_detected`. Evidence digest: `82cdf522b1fd630221be57b70ece24dde939660d5de0eedfff855d32dfbd9f0d`. Packet digest: `a0a45f7b9415af2318b884b0c1a8fbcc4cbdadff0aa0e9cd04d960fab10c57b2`.
+
+```json
+{
+  "fundingStatus": "MISMATCH",
+  "rateState": "HYPOTHETICAL_OWNER_APPROVED",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```

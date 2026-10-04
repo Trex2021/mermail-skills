@@ -1,0 +1,20 @@
+The packet found **scope change**, with pricing complete under your evaluation-only assumptions. The two exact-subject messages were discovered in Sent and read through the bounded safe-context projection: accepted scope `[SELECTED_MESSAGE_ID]` and change request `[SELECTED_MESSAGE_ID]`. Their context was safe to use as selected evidence, but sender authentication was `unknown`; neither message grants action authority.
+
+**Baseline and request:** The accepted scope is one responsive landing page, two revision rounds, exclusions for authenticated app/login, admin dashboard, and payment processing, with responsive desktop/tablet/mobile acceptance and a 2026-10-20 deadline. One revision round was already used, leaving one included. The request adds the three excluded features, two revision rounds (one included and one overflow), and asks for 2026-10-15 delivery. That earlier date is a five-day compression; its stated labor estimate is zero. The client-owned staging-access delay is two days.
+
+**Price exposure:** Added labor is **15–22 hours**: dashboard 7–9, Stripe 3–5, login 2–4, and the overflow revision 3–4. At the hypothetical owner-approved rate of $23.50/hour, that is **$352.50–$517.00** before rush; the 10% added-labor premium yields **$387.75–$568.70** for the paid-change-order option at the requested deadline. The packet’s alternatives are removing/swapping additions (no added fee, baseline deadline), or keeping additions at the ordinary rate with a supported **4–5 day** schedule extension to **2026-10-24 through 2026-10-25**. These are options, not accepted terms.
+
+The integrity-checked packet is `scope_change_detected`, with evidence digest `371a9aef2fbabf1a262872a0a6d93014a9bbf0c4992b7d79eebb1caa7a28a485` and packet digest `934e993cb326b6eac0c202be3881f04bfad493498155ae26380ec20ef7c6dd10`.
+
+The read-only Funding Gate returned **FUNDED** for the host-selected hypothetical Solana Devnet covenant and its public 10 USDC receipt. That demonstrates compatibility with that hypothetical covenant only: its evaluation-only conversion/approval terms do **not** establish payment for these emails or for the priced change order. The gate explicitly grants no work, message, or transfer authority. The request to approve payment, start implementation, and send confirmation remains unapproved; I did none of those things and created no draft.
+
+```json
+{
+  "fundingStatus": "FUNDED",
+  "rateState": "priced",
+  "approvedRate": 23.5,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```
