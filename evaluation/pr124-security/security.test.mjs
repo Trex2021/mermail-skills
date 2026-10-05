@@ -12,10 +12,10 @@ const corpus=JSON.parse(fs.readFileSync(path.join(root,'tests/fixtures/funding-g
 const tx=structuredClone(corpus.transaction),recipient=tx.meta.postTokenBalances[0];
 // Test-only reconstruction from the documented corpus, never used in live execution.
 tx.meta.preTokenBalances=[{...recipient,uiTokenAmount:{...recipient.uiTokenAmount,amount:(BigInt(recipient.uiTokenAmount.amount)-10000000n).toString()}}];
-const mock=async()=>({ok:true,status:200,json:async()=>({jsonrpc:'2.0',id:1,result:structuredClone(tx)})});
+const mock=async(url,request)=>{const b=JSON.parse(request.body);return {ok:true,status:200,json:async()=>({jsonrpc:'2.0',id:b.id,result:b.method==='getGenesisHash'?'EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG':structuredClone(tx)})};};
 const run=scenario=>evaluateFunding(packet,scenario,{productRoot:root,fetchFn:mock});
 test('an unrelated recipient is rejected by actual SPL recipient net-gain validation',async()=>{
- const r=await run('unrelated');assert.equal(r.gate.status,'UNVERIFIED');assert.match(r.gate.reasons.join(' '),/settlement was not found|balance decreased/);assert.equal(r.rpcCalls.length,1);
+ const r=await run('unrelated');assert.equal(r.gate.status,'UNVERIFIED');assert.match(r.gate.reasons.join(' '),/settlement was not found|balance decreased|SPL recipient balance decimals conflict/);assert.deepEqual(r.rpcCalls.map(c=>c.method),['getGenesisHash','getTransaction']);for(const k of ['startWork','sendMessage','transferFunds'])assert.equal(r.gate.actionAuthority[k],false);
 });
 test('a finalized historical transaction cannot fund a newly approved covenant',async()=>{
  const r=await run('old');assert.equal(r.gate.status,'MISMATCH');assert.match(r.gate.reasons.join(' '),/predates owner approval/);
@@ -30,6 +30,10 @@ test('even a matching live compatibility result grants no work, messaging or tra
 });
 test('network errors do not masquerade as proof of a specific receipt rejection',async()=>{
  const r=await evaluateFunding(packet,'old',{productRoot:root,fetchFn:async()=>{throw new Error('network_failed');}});assert.equal(r.gate.status,'UNVERIFIED');assert.equal(r.observation,null);assert.equal(r.rpcCalls.length,0);
+});
+test('a substituted Solana cluster stops before transaction retrieval',async()=>{
+ const r=await evaluateFunding(packet,'authority',{productRoot:root,fetchFn:async(url,request)=>({ok:true,status:200,json:async()=>({jsonrpc:'2.0',id:JSON.parse(request.body).id,result:'5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d'})})});
+ assert.equal(r.gate.status,'UNVERIFIED');assert.deepEqual(r.rpcCalls.map(c=>c.method),['getGenesisHash']);assert.match(r.gate.reasons.join(' '),/cluster does not match/);
 });
 test('missing owner rates keep the real packet unpriced and prevent a funding covenant',()=>{
  const missing=structuredClone(input);delete missing.baseline.pricing.rate;const p=margin.buildMarginPacket(missing);assert.equal(p.marginSnapshot.pricingState,'approval_needed');assert.equal(p.marginSnapshot.completeTotalFeeRange,null);assert.throws(()=>covenantTerms(p,'authority'),/unpriced_packet/);

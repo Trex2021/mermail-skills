@@ -23,7 +23,7 @@ export async function request(method, params = {}) {
     nextAt = Date.now() + 3200;
     let response, body;
     try {
-      response = await fetch(ENDPOINT, {method: 'POST', signal: AbortSignal.timeout(30000), headers: {
+      response = await fetch(ENDPOINT, {method: 'POST', redirect: 'error', signal: AbortSignal.timeout(30000), headers: {
         accept: 'application/json, text/event-stream', 'content-type': 'application/json',
         'x-api-key': process.env.MERMAIL_API_KEY,
       }, body: JSON.stringify({jsonrpc: '2.0', id: ++id, method, params})});

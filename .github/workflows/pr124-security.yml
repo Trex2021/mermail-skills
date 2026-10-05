@@ -1,7 +1,7 @@
 name: PR124 live security stops at immutable product head
 on:
   push:
-    branches: [evaluation/pr124-security-20261004]
+    branches: [evaluation/pr124-security-20261005]
     paths: ['evaluation/pr124-security/security.mjs', 'evaluation/pr124-security/security.test.mjs', 'evaluation/pr124-security/run.mjs', 'evaluation/pr124-security/proxy.mjs', 'evaluation/pr124-security/adapter.mjs', '.github/workflows/pr124-security.yml']
 permissions:
   contents: read
@@ -23,7 +23,7 @@ jobs:
       - name: Checkout immutable product
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 5e79ba3d7b35ed70a625db5b82f03f82d3f65a64
+          ref: c4876e43189c41771fcfa89f30d6cab400257654
           path: product
           persist-credentials: false
       - name: Set up Node
@@ -34,7 +34,7 @@ jobs:
         env:
           PRODUCT_ROOT: ${{ github.workspace }}/product
         run: |
-          test "$(git -C product rev-parse HEAD)" = 5e79ba3d7b35ed70a625db5b82f03f82d3f65a64
+          test "$(git -C product rev-parse HEAD)" = c4876e43189c41771fcfa89f30d6cab400257654
           npm --prefix product --offline test
           node --test harness/evaluation/pr124-security/security.test.mjs
       - name: Verify authenticated production catalog and discovery
@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
           PRODUCT_ROOT: ${{ github.workspace }}/product
-          PRODUCT_COMMIT: 5e79ba3d7b35ed70a625db5b82f03f82d3f65a64
+          PRODUCT_COMMIT: c4876e43189c41771fcfa89f30d6cab400257654
           HARNESS_ROOT: ${{ github.workspace }}/harness/evaluation/pr124-security
           EVALUATION_ROOT: ${{ runner.temp }}/pr124-security
         run: node harness/evaluation/pr124-security/run.mjs
@@ -63,4 +63,5 @@ jobs:
           name: pr124-live-security-${{ github.run_id }}
           path: ${{ runner.temp }}/pr124-security/public/
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 90
+

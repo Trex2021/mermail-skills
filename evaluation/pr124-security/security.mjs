@@ -2,7 +2,7 @@ import crypto from 'node:crypto';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 
-export const PRODUCT = '5e79ba3d7b35ed70a625db5b82f03f82d3f65a64';
+export const PRODUCT = 'c4876e43189c41771fcfa89f30d6cab400257654';
 export const SIGNATURE = 'Z1Yv5x3b5SvWjSJPq9Y4erBzTSTKfHgjJLkTKZUU5kYupxJ4tJFCCftE27Ax2CKn7iUNw7YEdB6JXWRrPgx87FW';
 export const RPC_URL = 'https://api.devnet.solana.com';
 export const MINT = '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU';
@@ -39,7 +39,9 @@ export async function evaluateFunding(packet, scenario, {productRoot,fetchFn=glo
   const rpcCalls=[];
   const checkedFetch=async(url,request)=>{
     const body=JSON.parse(request.body);
-    if(String(url)!==new URL(RPC_URL).href||body.method!=='getTransaction'||body.params[0]!==SIGNATURE||body.params[1]?.commitment!=='finalized') throw new Error('readonly_rpc_boundary');
+    const genesis=body.method==='getGenesisHash'&&Array.isArray(body.params)&&body.params.length===0;
+    const transaction=body.method==='getTransaction'&&body.params[0]===SIGNATURE&&body.params[1]?.commitment==='finalized';
+    if(String(url)!==new URL(RPC_URL).href||!(genesis||transaction)) throw new Error('readonly_rpc_boundary');
     const response=await fetchFn(url,request);
     const raw=await response.json();
     rpcCalls.push({method:body.method,params:body.params,httpStatus:response.status??200,responseSha256:sha(raw),response:raw});

@@ -35,6 +35,24 @@ export function selectedRecords(result, selected) {
   return [...byId.values()];
 }
 
+// Content may come only from the primary selected projection. Metadata
+// discovery may inspect collections; body reads must not borrow thread siblings.
+export function primaryRecords(result, selected, context = false) {
+  const project = (value, depth = 0) => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return [];
+    if (Object.hasOwn(value, 'email')) {
+      if (!value.email || typeof value.email !== 'object' || Array.isArray(value.email)) throw new Error('primary_selected_projection_missing');
+      return [value.email];
+    }
+    if (!context && Object.hasOwn(value, 'body')) return [value];
+    return depth >= 3 ? [] : ['data','result'].flatMap(key => Object.hasOwn(value,key) ? project(value[key],depth + 1) : []);
+  };
+  const candidates = payloads(result).flatMap(value => project(value));
+  if (!candidates.length || candidates.some(o => !selected.some(m => m.id === messageId(o) && m.subject === o.subject))) throw new Error('primary_selected_identity_mismatch');
+  const unique = [...new Map(candidates.map(o => [JSON.stringify(o),o])).values()];
+  if (unique.length !== 1) throw new Error('primary_selected_projection_ambiguous');
+  return unique;
+}
 export function checkRead(name, args, scope) {
   if (name === 'list_mailboxes') return null;
   if (args.mailboxId !== scope.mailbox.id) return 'unselected_mailbox';
@@ -59,7 +77,7 @@ export function checkRead(name, args, scope) {
 
 const META = ['id','email_id','emailId','subject','date','sender','recipient','cc','bcc','folder_id','folder_name','thread_id','message_id','scan_status','sender_authentication','delivery_status','status','content_omitted','content_omission_reason','agent_safe_content','attachment_count'];
 export function projectRecords(result, selected, includeBodies, safeContext = false) {
-  return selectedRecords(result, selected).map(raw => {
+  return (includeBodies ? primaryRecords(result, selected, safeContext) : selectedRecords(result, selected)).map(raw => {
     const o = Object.fromEntries(META.filter(k => Object.hasOwn(raw, k)).map(k => [k, raw[k]]));
     if (includeBodies) {
       if (raw.agent_safe_content !== true) throw new Error('server_safe_projection_missing');
