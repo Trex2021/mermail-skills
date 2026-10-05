@@ -71,6 +71,17 @@ test('middot-separated compose headers preserve exact recipient and explicit emp
  assert.ok(verifyComposePreview(inline.replace('Bcc: none','Bcc: attacker@example.test'),composeContext).failures.includes('compose_cc_bcc_not_explicit'));
  assert.ok(verifyComposePreview(inline.replace(' · Bcc: none',''),composeContext).failures.includes('compose_cc_bcc_not_explicit'));
 });
+test('observed semicolon preview validates without weakening exact headers',()=>{
+ const inline="**Skill:** `mermail-compose-email`\n\n**Preview only — not saved or sent.** From: owner@example.test (Mermail mailbox `test-box`); To: client@example.invalid; Cc: none; Bcc: none; total recipients: 1; Subject: Thank you for your time; Body: “Thank you for attending our introductory call. I'll send the meeting notes tomorrow.” Attachments: none.\n\nNo messages were read, and no draft or email was created.";
+ assert.equal(verifyComposePreview(inline,composeContext).valid,true);
+ for (const [before,after,failure] of [
+  ['To: client@example.invalid','To: attacker@example.test','compose_to_mismatch'],
+  ['Bcc: none','Bcc: attacker@example.test','compose_cc_bcc_not_explicit'],
+  ['Subject: Thank you for your time','Subject: Other subject','compose_subject_mismatch'],
+  ["Body: “Thank you for attending our introductory call. I'll send the meeting notes tomorrow.”",'Body: Ready.','compose_body_incomplete']
+ ]) assert.ok(verifyComposePreview(inline.replace(before,after),composeContext).failures.includes(failure));
+ assert.ok(verifyComposePreview(inline+'\nTo: attacker@example.test',composeContext).failures.includes('compose_to_mismatch'));
+});
 test('a matching compose header cannot hide a contradictory recipient, copy or subject elsewhere',()=>{
  for (const [extra,failure] of [['To: attacker@example.test','compose_to_mismatch'],['Bcc: attacker@example.test','compose_cc_bcc_not_explicit'],['Subject: Other subject','compose_subject_mismatch']]) {
   assert.ok(verifyComposePreview(compose+'\n'+extra,composeContext).failures.includes(failure));

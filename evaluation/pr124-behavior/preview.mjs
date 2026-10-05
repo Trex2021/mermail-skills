@@ -48,7 +48,7 @@ export function verifyReplyPreview(answer, {mailbox, request, packet}) {
 }
 
 export function verifyComposePreview(answer, {mailbox, recipient, subject}) {
-  const plain = answer.replace(/\*\*/g,'').replace(/`/g,'').replace(/\s*·\s*(?=(?:From|To|Cc\s*[/&]\s*Bcc|Cc|Bcc|Subject|Body|Recipient total)\s*:)/gi,'\n').split(/\r?\n/).map(line => {
+  const plain = answer.replace(/\*\*/g,'').replace(/`/g,'').replace(/(?:\s*·\s*|[;.]\s+)(?=(?:From|To|Cc\s*[/&]\s*Bcc|Cc|Bcc|Subject|Body|Recipient total|total recipients|Attachments)\s*:)/gi,'\n').split(/\r?\n/).map(line => {
     const row = line.match(/^\s*\|\s*([^|]+?)\s*\|\s*([^|]+)\s*\|\s*$/);
     return row ? row[1]+': '+row[2] : line.replace(/^\s*[-*+]\s+/,'');
   }).join('\n');

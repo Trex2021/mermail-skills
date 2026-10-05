@@ -22,7 +22,7 @@ export async function startCapture({publicRoot,harness,head,prompt,prior}) {
     assert(fs.existsSync('/tmp/.X11-unix/X99'),'recording_display_unavailable');
     gui=spawn('python3',[path.join(harness,'demo-ui.py'),stateFile,eventFile],{env,stdio:['ignore','ignore',fs.openSync(path.join(temp,'demo-ui.log'),'w')]});
     await wait(1500);assert(gui.exitCode===null,'recording_ui_failed');
-    ffmpeg=spawn('ffmpeg',['-y','-hide_banner','-loglevel','error','-f','x11grab','-framerate','15','-video_size','1280x720','-i',':99.0','-an','-c:v','libx264','-preset','veryfast','-crf','21','-pix_fmt','yuv420p','-movflags','+faststart',recording],{stdio:['ignore','ignore',fs.openSync(path.join(temp,'demo-ffmpeg.log'),'w')]});
+    ffmpeg=spawn('ffmpeg',['-y','-hide_banner','-loglevel','error','-f','x11grab','-draw_mouse','0','-framerate','15','-video_size','1280x720','-i',':99.0','-an','-c:v','libx264','-preset','veryfast','-crf','21','-pix_fmt','yuv420p','-movflags','+faststart',recording],{stdio:['ignore','ignore',fs.openSync(path.join(temp,'demo-ffmpeg.log'),'w')]});
     const started=Date.now();await wait(800);assert(ffmpeg.exitCode===null,'recording_encoder_failed');
     return {eventFile,
       observe(file){let loaded=false;transcriptTimer=setInterval(()=>{if(loaded||!fs.existsSync(file))return;for(const line of fs.readFileSync(file,'utf8').split('\n')){let e;try{e=JSON.parse(line);}catch{continue;}if(e.type==='tool.execution_start'&&/mermail-freelance-margin-guard/.test(JSON.stringify(e.data||{}))){fs.appendFileSync(eventFile,JSON.stringify({at:new Date().toISOString(),kind:'skill_loaded',tool:'mermail-freelance-margin-guard'})+'\n');loaded=true;break;}}},400);},
