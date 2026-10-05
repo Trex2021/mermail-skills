@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-04T19:04:52.704Z",
+  "checkedAt": "2026-10-05T17:58:48.868Z",
   "priority": 5,
   "priorityComplete": false,
   "authorPreparationComplete": true,
   "repository": "Nudgen-Marketing/mermail-skills",
   "pullRequest": 124,
-  "productHead": "5e79ba3d7b35ed70a625db5b82f03f82d3f65a64",
+  "productHead": "c4876e43189c41771fcfa89f30d6cab400257654",
   "upstreamBase": "9f2e6e0f9d77d4967bd451058fb7c19a32825da9",
   "productChangedByPriority5": false,
-  "guideCommit": "8f63549f9adb39d78767011e9c4384b87c9f0e28",
-  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/8f63549f9adb39d78767011e9c4384b87c9f0e28/evaluation/pr124-review/REVIEW-GUIDE.md",
-  "descriptionUpdatedAndReadBack": true,
+  "guideCommit": "de3e7c82f2bfdb118b851f330e0967f4cdec4735",
+  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/de3e7c82f2bfdb118b851f330e0967f4cdec4735/evaluation/pr124-review/REVIEW-GUIDE.md",
+  "descriptionUpdatedAndReadBack": false,
   "reviewRequest": {
     "kind": "public_comment_to_verified_upstream_maintainer",
     "id": 5983346999,
@@ -23,39 +23,39 @@
   "unresolvedInlineThreads": 0,
   "upstreamRuns": [
     {
-      "id": 37147782754,
+      "id": 37239114011,
       "name": "Publish plugin bundle to ClawHub",
       "status": "completed",
       "conclusion": "action_required",
-      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782754"
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239114011"
     },
     {
-      "id": 37147782241,
-      "name": "Cursor Directory submission readiness",
-      "status": "completed",
-      "conclusion": "action_required",
-      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782241"
-    },
-    {
-      "id": 37147782342,
-      "name": "Validate skills",
-      "status": "completed",
-      "conclusion": "action_required",
-      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782342"
-    },
-    {
-      "id": 37147782395,
-      "name": "Publish skills to ClawHub",
-      "status": "completed",
-      "conclusion": "action_required",
-      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782395"
-    },
-    {
-      "id": 37147782398,
+      "id": 37239113644,
       "name": "Plugin Security Scan",
       "status": "completed",
       "conclusion": "action_required",
-      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782398"
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113644"
+    },
+    {
+      "id": 37239113655,
+      "name": "Validate skills",
+      "status": "completed",
+      "conclusion": "action_required",
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113655"
+    },
+    {
+      "id": 37239113686,
+      "name": "Cursor Directory submission readiness",
+      "status": "completed",
+      "conclusion": "action_required",
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113686"
+    },
+    {
+      "id": 37239113714,
+      "name": "Publish skills to ClawHub",
+      "status": "completed",
+      "conclusion": "action_required",
+      "url": "https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113714"
     }
   ],
   "upstreamWritePermission": false,
@@ -68,5 +68,8 @@
     "Resolve any concrete review findings and recheck the final head.",
     "Obtain explicit owner authorization before any merge."
   ],
-  "scope": "Review preparation and request only. No product code change, Mermail send, wallet connection, transaction, merge or upstream permission change."
+  "scope": "Focused review preparation refreshed with final-product live evidence. No additional review request, product code change, merge or permission change.",
+  "continuousDemo": "https://github.com/Trex2021/mermail-skills/blob/27fb268ab7773c03965fc99817cde2887accdbad/evaluation/pr124-behavior/REPORT.md",
+  "liveSecurity": "https://github.com/Trex2021/mermail-skills/blob/5cb90c87cf54634841a31cffea90134faabd745e/evaluation/pr124-security/REPORT.md",
+  "productChecks": 198
 }
