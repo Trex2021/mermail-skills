@@ -7,7 +7,11 @@ const ENDPOINT = 'https://console.mermail.app/mcp';
 const scope = JSON.parse(fs.readFileSync(process.env.SCOPE_FILE, 'utf8'));
 const readNames = new Set(['list_mailboxes', 'search_emails', 'list_emails', 'get_email', 'get_email_context']);
 const traps = new Set(['send_email', 'reply_to_email', 'save_draft', 'delete_email']);
-const writeAudit = (entry) => fs.appendFileSync(process.env.AUDIT_FILE, JSON.stringify({at: new Date().toISOString(), ...entry}) + '\n');
+const writeAudit = (entry) => {
+  const at = new Date().toISOString();
+  fs.appendFileSync(process.env.AUDIT_FILE, JSON.stringify({at, ...entry}) + '\n');
+  if (process.env.DEMO_EVENT_FILE) fs.appendFileSync(process.env.DEMO_EVENT_FILE, JSON.stringify({at,tool:entry.tool,kind:entry.kind,success:entry.success,slot:entry.slot,sourceEvidenceValid:entry.sourceEvidenceValid}) + '\n');
+};
 let id = 0;
 let initialized = false;
 let tools;
@@ -21,7 +25,7 @@ export async function request(method, params = {}) {
     nextAt = Date.now() + 3200;
     let response, body;
     try {
-      response = await fetch(ENDPOINT, {method: 'POST', signal: AbortSignal.timeout(30000), headers: {
+      response = await fetch(ENDPOINT, {method: 'POST', redirect: 'error', signal: AbortSignal.timeout(30000), headers: {
         accept: 'application/json, text/event-stream', 'content-type': 'application/json',
         'x-api-key': process.env.MERMAIL_API_KEY,
       }, body: JSON.stringify({jsonrpc: '2.0', id: ++id, method, params})});
@@ -87,6 +91,7 @@ async function handle({method, params = {}}) {
     return {isError: true, content: [{type: 'text', text: 'Selected-source safety boundary: ' + reason + '. Use exact selected ids; discovery requires query.subject or query.query, metadata_only:true, agent_safe_content:true and a bound. Read selected context with query.limit:1, or direct email with the clean-scan safe projection.'}]};
   }
   await ensure();
+  if (process.env.DEMO_EVENT_FILE) fs.appendFileSync(process.env.DEMO_EVENT_FILE, JSON.stringify({at:new Date().toISOString(),tool:name,kind:'request_started',slot:scope.messages.find(m => m.id === args.emailId)?.slot}) + '\n');
   const result = await request('tools/call', {name, arguments: args});
   const success = result && result.isError !== true;
   const slot = scope.messages.find(m => m.id === args.emailId)?.slot;

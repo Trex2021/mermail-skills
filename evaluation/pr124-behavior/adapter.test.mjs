@@ -43,3 +43,18 @@ test('bounded read retries honor numeric Retry-After and cap malformed or extrem
  assert.equal(retryDelay(new Response('',{headers:{'retry-after':'400'}}),0),60000);
  assert.equal(retryDelay(new Response('',{headers:{'retry-after':'bad'}}),1),10000);
 });
+
+test('thread siblings cannot replace an absent primary selected projection',()=>{
+ assert.throws(()=>projectRecords({structuredContent:{thread:{messages:[{email:safeRecord}]}}},scope.messages,true,true),/primary_selected_identity_mismatch/);
+});
+test('a wrong primary identity cannot be rescued by the right thread sibling',()=>{
+ assert.throws(()=>projectRecords({structuredContent:{email:{...safeRecord,id:'wrong'},thread:{messages:[safeRecord]}}},scope.messages,true,true),/primary_selected_identity_mismatch/);
+});
+test('only bounded data/result envelopes expose a primary selected projection',()=>{
+ assert.equal(projectRecords({structuredContent:{data:{result:{email:safeRecord}}}},scope.messages,true,true)[0].body,safeRecord.body);
+ assert.throws(()=>projectRecords({structuredContent:{metadata:{email:safeRecord}}},scope.messages,true,true),/primary_selected_identity_mismatch/);
+});
+test('direct content is valid for get_email but never a context substitution',()=>{
+ assert.equal(projectRecords({structuredContent:{...safeRecord,scan_status:'clean'}},scope.messages,true,false)[0].body,safeRecord.body);
+ assert.throws(()=>projectRecords({structuredContent:safeRecord},scope.messages,true,true),/primary_selected_identity_mismatch/);
+});

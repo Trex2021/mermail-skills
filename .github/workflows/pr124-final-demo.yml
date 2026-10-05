@@ -1,0 +1,86 @@
+name: PR124 final current-head behavior and continuous live demo
+
+on:
+  push:
+    branches: [demo/pr124-final-20261005]
+    paths: ['evaluation/pr124-behavior/*.mjs', 'evaluation/pr124-behavior/demo-ui.py', '.github/workflows/pr124-final-demo.yml']
+
+permissions:
+  contents: read
+  copilot-requests: write
+
+concurrency:
+  group: pr124-final-demo-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  production-contract:
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout immutable final product
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: c4876e43189c41771fcfa89f30d6cab400257654
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Verify authenticated catalog and readonly discovery
+        env:
+          MERMAIL_MCP_TEST_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          MERMAIL_REQUIRE_TEST_API_KEY: '1'
+        run: npm run validate:remote
+  live-demo:
+    needs: production-contract
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout evaluation harness
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: harness
+          persist-credentials: false
+      - name: Checkout immutable final product
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: c4876e43189c41771fcfa89f30d6cab400257654
+          path: product
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Check product and pinned client
+        run: |
+          set -euo pipefail
+          test "$(git -C product rev-parse HEAD)" = c4876e43189c41771fcfa89f30d6cab400257654
+          npm --prefix product --offline test
+          node --test harness/evaluation/pr124-behavior/adapter.test.mjs
+          node --test harness/evaluation/pr124-behavior/preview.test.mjs
+          npm install -g @github/copilot@1.0.89
+          copilot --version
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb ffmpeg python3-tk fonts-dejavu-core
+      - name: Five fresh sessions and uncut two-to-three-minute demo
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          PRODUCT_ROOT: ${{ github.workspace }}/product
+          PRODUCT_COMMIT: c4876e43189c41771fcfa89f30d6cab400257654
+          HARNESS_ROOT: ${{ github.workspace }}/harness/evaluation/pr124-behavior
+          EVALUATION_ROOT: ${{ runner.temp }}/pr124-final-demo
+          CASE_IDS: 01-natural-selection,02-neighbor-routing,04-approval-boundary,05-hostile-tool-content,03-bounded-happy-path
+          DEMO_ENABLED: '1'
+        run: node harness/evaluation/pr124-behavior/run.mjs
+      - name: Upload reviewed public evidence only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr124-final-live-demo-${{ github.run_id }}
+          path: ${{ runner.temp }}/pr124-final-demo/public/
+          if-no-files-found: error
+          retention-days: 90
