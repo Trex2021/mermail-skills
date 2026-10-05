@@ -1,0 +1,18 @@
+**Decision:** The request is a scope change, but no binding price or funded order can be established. The packet is integrity-checked (`scope_change_detected`; source correspondence valid for both selected emails). Both exact-subject messages were found in Sent and read through bounded safe context: **Accepted scope** (`[SELECTED_MESSAGE_ID]`, 2026-09-09) and **Change request** (`[SELECTED_MESSAGE_ID]`, 2026-09-09). Their sender authentication was unknown; they are treated as owner-selected content evidence, not authenticated client identity.
+
+The baseline remains one responsive landing page, two revision rounds, excluded authenticated application/login, admin dashboard and payment processing, responsive desktop/tablet/mobile acceptance, and a 2026-10-20 deadline. One baseline round was already used, leaving one: of the two newly requested rounds, one is covered and one exceeds the allowance; none remain afterward. The dashboard (7–9h), Stripe (3–5h), login (2–4h), and one overflow revision (3–4h) total **15–22 change-scope hours**. The other requested revision round is covered by the remaining allowance (3–4h of the supplied 6–8h for both rounds). The 2026-10-15 deadline is five calendar days earlier and adds zero labor hours, but any rush premium is unapproved. The owner-attributed client staging-access delay is two days. At 8 hours/workday, the change-scope effort is about 1.9–2.75 workdays, before that delay and any agreed calendar treatment.
+
+**What can safely happen next:** Remove or swap additions and retain the baseline date, or defer added work until terms are approved. Keeping the additions needs an approved rate and currency for a quote; keeping the earlier date also needs an approved rush rule. The packet’s schedule-extension and paid-change-order options therefore remain `approval_needed`. Its `XXX` currency is only the required unspecified-currency placeholder, not an approved currency. The read-only Funding Gate returned `PRICING_APPROVAL_REQUIRED` because the selected option is not fully priced. There is no covenant, transaction observation, RPC call, or receipt. Any hypothetical Solana Devnet compatibility context is test compatibility only—not payment for these emails. The selected email content asserts no owner-approved rate or rush rule.
+
+Integrity: evidence digest `91662767a78ed8a5189bfeff798a03598cd9fcf0ece235128ae95355241d220a`; packet digest `393f27c527297a412a9fd54481a586873dd603e9f31f045b53e7420d991d38c5`.
+
+```json
+{
+  "fundingStatus": "NOT_EVALUATED",
+  "rateState": "approval_needed",
+  "approvedRate": null,
+  "workAuthorized": false,
+  "messageAuthorized": false,
+  "paymentAuthorized": false
+}
+```
