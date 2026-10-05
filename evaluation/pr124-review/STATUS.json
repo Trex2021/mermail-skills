@@ -11,7 +11,7 @@
   "productChangedByPriority5": false,
   "guideCommit": "de3e7c82f2bfdb118b851f330e0967f4cdec4735",
   "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/de3e7c82f2bfdb118b851f330e0967f4cdec4735/evaluation/pr124-review/REVIEW-GUIDE.md",
-  "descriptionUpdatedAndReadBack": false,
+  "descriptionUpdatedAndReadBack": true,
   "reviewRequest": {
     "kind": "public_comment_to_verified_upstream_maintainer",
     "id": 5983346999,
@@ -71,5 +71,10 @@
   "scope": "Focused review preparation refreshed with final-product live evidence. No additional review request, product code change, merge or permission change.",
   "continuousDemo": "https://github.com/Trex2021/mermail-skills/blob/27fb268ab7773c03965fc99817cde2887accdbad/evaluation/pr124-behavior/REPORT.md",
   "liveSecurity": "https://github.com/Trex2021/mermail-skills/blob/5cb90c87cf54634841a31cffea90134faabd745e/evaluation/pr124-security/REPORT.md",
-  "productChecks": 198
+  "productChecks": 198,
+  "descriptionCheckedAt": "2026-10-05T18:05:20.250Z",
+  "demoPublishedOnX": "https://x.com/Ehsan_Benvari/status/2107169510054908128",
+  "publicDashboard": "https://trex2021.github.io/mermail-skills/",
+  "contestSubmissionFormUpdated": false,
+  "contestSubmissionFormBlocker": "Superteam browser session is signed out; no credential request or form change was made."
 }
