@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-05T17:58:48.868Z",
+  "checkedAt": "2026-10-05T18:10:40.937Z",
   "priority": 5,
   "priorityComplete": false,
   "authorPreparationComplete": true,
@@ -9,8 +9,8 @@
   "productHead": "c4876e43189c41771fcfa89f30d6cab400257654",
   "upstreamBase": "9f2e6e0f9d77d4967bd451058fb7c19a32825da9",
   "productChangedByPriority5": false,
-  "guideCommit": "de3e7c82f2bfdb118b851f330e0967f4cdec4735",
-  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/de3e7c82f2bfdb118b851f330e0967f4cdec4735/evaluation/pr124-review/REVIEW-GUIDE.md",
+  "guideCommit": "ca5ceebb0567c5534d945e005a74682942cbf749",
+  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/ca5ceebb0567c5534d945e005a74682942cbf749/evaluation/pr124-review/REVIEW-GUIDE.md",
   "descriptionUpdatedAndReadBack": true,
   "reviewRequest": {
     "kind": "public_comment_to_verified_upstream_maintainer",
@@ -69,12 +69,14 @@
     "Obtain explicit owner authorization before any merge."
   ],
   "scope": "Focused review preparation refreshed with final-product live evidence. No additional review request, product code change, merge or permission change.",
-  "continuousDemo": "https://github.com/Trex2021/mermail-skills/blob/27fb268ab7773c03965fc99817cde2887accdbad/evaluation/pr124-behavior/REPORT.md",
-  "liveSecurity": "https://github.com/Trex2021/mermail-skills/blob/5cb90c87cf54634841a31cffea90134faabd745e/evaluation/pr124-security/REPORT.md",
+  "continuousDemo": "https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md",
+  "liveSecurity": "https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md",
   "productChecks": 198,
   "descriptionCheckedAt": "2026-10-05T18:05:20.250Z",
   "demoPublishedOnX": "https://x.com/Ehsan_Benvari/status/2107169510054908128",
   "publicDashboard": "https://trex2021.github.io/mermail-skills/",
   "contestSubmissionFormUpdated": false,
-  "contestSubmissionFormBlocker": "Superteam browser session is signed out; no credential request or form change was made."
+  "contestSubmissionFormBlocker": "Superteam browser session is signed out; no credential request or form change was made.",
+  "publishedPublicFileBytesVerified": 46,
+  "preparedSubmission": "https://github.com/Trex2021/mermail-skills/blob/10a06693fb4c9d1fea4e8abfbbe5039b960a8541/evaluation/pr124-review/FINAL-SUBMISSION.md"
 }
