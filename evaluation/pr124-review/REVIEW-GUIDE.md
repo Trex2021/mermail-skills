@@ -1,66 +1,68 @@
-# PR124: focused human review and upstream validation
+# Freelance Margin Guard — focused judge and maintainer review
 
-Prepared 4 October 2026 for [PR124](https://github.com/Nudgen-Marketing/mermail-skills/pull/124). Product under review: **`5e79ba3d7b35ed70a625db5b82f03f82d3f65a64`**. Upstream base: `9f2e6e0f9d77d4967bd451058fb7c19a32825da9`.
+Updated **5 October 2026**. Review product [`c4876e43189c41771fcfa89f30d6cab400257654`](https://github.com/Trex2021/mermail-skills/commit/c4876e43189c41771fcfa89f30d6cab400257654), submitted in [PR #124](https://github.com/Nudgen-Marketing/mermail-skills/pull/124).
 
-Margin Guard compares an owner-selected accepted scope with a later client request, preserves exclusions and revision allowances, and calculates three evidence-linked options. Email content cannot supply owner approval, invent missing prices, or authorize a message, work or payment.
+**Problem and outcome:** a freelancer accepts a bounded project, then receives a later email adding work, consuming revisions or compressing the deadline. Margin Guard turns only the selected source evidence and owner-approved commercial inputs into a complete change ledger and three client choices: remove/swap scope, extend the schedule, or approve a paid change order. Missing owner prices stay unpriced; email instructions cannot approve work, messaging or payment.
 
-**Priority 5 is pending external completion:** no human review or inline change request has been submitted, and all five upstream PR workflows require maintainer authorization. Green fork evidence and this author-prepared guide do not constitute independent human approval or an upstream merge. The PR is open and merges cleanly; its merge state is `unstable` while the gates remain outstanding.
+Development client: **Codex**. Live verification client: **GitHub Copilot CLI 1.0.89 with hosted Mermail MCP**. The local `build_margin_packet` execution adapter calls the shipped product function; it is not a new production Mermail tool.
 
-## Start with the four preserved outcomes
+## A short review route
 
-| Priority | Review these exact records | Observed outcome and boundary |
-|---|---|---|
-| 1. Independent fresh agent execution | [Successful five-session run](https://github.com/Trex2021/mermail-skills/actions/runs/37148484024), [answers, audit and source manifest](https://github.com/Trex2021/mermail-skills/blob/c7732a38c3bcfd281836d556ad6d3e5771947db7/evaluation/pr124-behavior/REPORT.md) | **5/5 in one run**: natural selection, neighboring Compose route, bounded comparison, approval preview and hostile content. 139 product checks, 22 behavior-adapter checks and authenticated 83-tool discovery. Exact immutable product plugin; no attempted write or scope violation. |
-| 2. Tangible unsent Mermail output | [Actual save/readback run](https://github.com/Trex2021/mermail-skills/actions/runs/37214396573), [report](https://github.com/Trex2021/mermail-skills/blob/f99b07cf514bfd700f7d72401df46a33316ab908/evaluation/pr124-output/REPORT.md), [public status](https://github.com/Trex2021/mermail-skills/blob/f99b07cf514bfd700f7d72401df46a33316ab908/evaluation/pr124-output/records/37214396573/status.json) | Exactly **one owner-approved `save_draft` and one matching `get_email`**; full body, From/To, empty Cc/Bcc, no attachments and unsent Drafts state matched. **Zero external sends**. Exact private text and identifiers remain encrypted for the owner; the public status is not a plaintext view of that private draft. Configuration was returned to prepare-only mode. |
-| 3. Readable English commercial value | [English value brief](https://github.com/Trex2021/mermail-skills/blob/f99b07cf514bfd700f7d72401df46a33316ab908/evaluation/pr124-output/COMMERCIAL-VALUE.md), [one-page PDF](https://github.com/Trex2021/mermail-skills/blob/f99b07cf514bfd700f7d72401df46a33316ab908/evaluation/pr124-output/Mermail-Commercial-Value.pdf) | Benchmark A: **26–33 added hours, $390–$495 ordinary added-labor value**, $15/hour, 25% hypothetical rush. Saved-draft scenario B: **15–22 hours, $352.50–$517 ordinary fee**, $23.50/hour, 10% rush. Separate hypothetical owner estimates; no revenue, customer approval or recovered income claim. |
-| 4. Live security stops | [Fresh six-session run](https://github.com/Trex2021/mermail-skills/actions/runs/37224119608), [English report](https://github.com/Trex2021/mermail-skills/blob/059038280839eed54822616bc242193e2332454a/evaluation/pr124-security/REPORT.md), [independent archive check](https://github.com/Trex2021/mermail-skills/actions/runs/37225180920) | **6/6 original live passes**, 139 product checks and 23 evaluator checks. Unrelated, old and consumed receipts rejected; missing rates remain null; an email's 1 USD/hour assertion is not owner authority. Matching hypothetical Devnet compatibility grants no action authority. Original attempts and recovered builder calls remain documented. |
+1. **Watch the current-product one-take demo** and inspect its [fresh-session report](https://github.com/Trex2021/mermail-skills/blob/27fb268ab7773c03965fc99817cde2887accdbad/evaluation/pr124-behavior/REPORT.md). The English 2:05 continuous event-fed capture connects the prompt, selected reads, current product builder and independently checked result. All five fresh sessions pass; expected answers and evaluator files were unavailable to the agent. The original parser failure and recovered builder calls stay visible.
+2. **Verify reliability and production connection:** [198/198 exact-product checks and authenticated 83-tool catalog](https://github.com/Trex2021/mermail-skills/actions/runs/37239386192); [bounded red-team findings, repairs and 80 independent automated probes](https://github.com/Trex2021/mermail-skills/blob/990a9f3f928d6d8bde45a7313d3e07b2eba3e01e/security-audit/2026-10-04/REPORT.md).
+3. **Inspect [six fresh safety outcomes](https://github.com/Trex2021/mermail-skills/blob/5cb90c87cf54634841a31cffea90134faabd745e/evaluation/pr124-security/REPORT.md):** unrelated, old and consumed receipts; absent or hostile prices; and a matching hypothetical compatibility receipt all preserve separate action authority. The immutable final product passes all six.
+4. **Inspect the actual unsent output:** [one approved save and exact readback](https://github.com/Trex2021/mermail-skills/actions/runs/37214396573), [English report and commercial value brief](https://github.com/Trex2021/mermail-skills/blob/f99b07cf514bfd700f7d72401df46a33316ab908/evaluation/pr124-output/REPORT.md). This output run pins earlier product **`5e79ba3`**. It is retained as historical evidence, without relabelling it as a fresh final-product draft run. Zero external sends; exact private draft content remains owner-encrypted.
+5. **Reproduce and review the code** using the commands and paths below. Current upstream CI still needs maintainer authorization; an automated report is not independent human approval.
 
-Development client: **Codex**. Fresh live verification client: **GitHub Copilot CLI 1.0.89 through Mermail MCP**. The proofs cover the named scenarios and one pinned client, not every possible agent or attack.
+## Two deliberately different hypothetical scenarios
 
-## Inspect the code in maintainer-policy order
+| Scenario | Owner inputs | Observed/computed added work | Three choices |
+| --- | --- | --- | --- |
+| A — committed offline benchmark | $15/hour, 25% rush; committed fixture | **26–33 hours; $390–$495 ordinary labor; $487.50–$618.75 with rush** | Remove/swap; ordinary-fee extension; paid rush |
+| B — live agent / saved-draft scenario | $23.50/hour, 10% rush; separately supplied effort estimates | **15–22 hours; $352.50–$517 ordinary fee; $387.75–$568.70 with rush** | Remove/swap; 24–25 October extension; 15 October requested date |
 
-Use the [current 31-file PR diff](https://github.com/Nudgen-Marketing/mermail-skills/pull/124/files). The evaluation branches above are separate from the product PR; preparing this guide does not change its head.
+These are **hypothetical owner estimates**, not customer revenue, recovered income, client approval or commercial payments. The pre-existing selected messages are synthetic, self-addressed Sent messages with null scan status and unknown sender authentication. Bounded `get_email_context` reads must have an explicit safe projection; they are not advertised as clean-scanned inbound mail.
 
-| Review area | Product paths / expected invariant |
-|---|---|
-| Source and approval security | [Security contract](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/skills/mermail-freelance-margin-guard/references/security.md), [decision engine](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs) and [76 core checks](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/tests/freelance-margin-guard.mjs): host-captured source correspondence, exact selected identity/quotation/date, original baseline authority, revision overflow and missing-pricing stops. |
-| Funding security | [Funding contract](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/skills/mermail-freelance-margin-guard/references/funding-gate.md), [engine](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/skills/mermail-freelance-margin-guard/scripts/funding-gate.mjs), [57 checks](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/tests/funding-gate.mjs): exact covenant approval digest, asset/chain/destination, recipient net gain, finality, timestamps, replay ledger and live-observation provenance. Funding never grants work, message or transfer authority. |
-| Workflow changes | [validate.yml](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/.github/workflows/validate.yml): ordinary PR validation runs `npm test`. Synthetic send modes are explicit `workflow_dispatch` choices; the default is `connection_only`. Inspect this workflow diff before approving the current PR runs. This review request does not dispatch a synthetic send. |
-| Routing and ownership | [Skill](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/skills/mermail-freelance-margin-guard/SKILL.md), [root routing](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/skills/mermail/references/routing.md), [coverage](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/tool-coverage.json), [scenarios](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/tests/scenarios.json): local comparison belongs to Margin Guard; Compose owns outbound execution; 18 skills / 82 business tools plus the confirmation helper. A catalog match is not execution of all 83 operations. |
-| Validator and manifests | [Validator](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/tests/validate.mjs), [agent metadata](https://github.com/Trex2021/mermail-skills/blob/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64/skills/mermail-freelance-margin-guard/agents/openai.yaml) and compatibility counts: preserve existing invariants, canonical ownership and hosted MCP dependency. |
+## Reproduce in under a minute
 
-Offline reproduction from the exact product checkout, with Node 22 or newer:
+Node **22 or newer**; no credentials or network calls after checkout:
 
 ```sh
+git clone https://github.com/Trex2021/mermail-skills.git margin-guard
+cd margin-guard
+git checkout --detach c4876e43189c41771fcfa89f30d6cab400257654
 npm --offline test
 node skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs --input tests/fixtures/freelance-margin-guard.json --format markdown
 ```
 
-Expected: **139 product checks** and repository validation pass. The fixture is benchmark A, not the saved draft's scenario B. Each evidence report has its own pinned harness and independent reproduction commands. No test API key is needed for these offline commands.
+Expected: repository validation, **198/198 checks** (76 core, 57 Funding Gate, 10 remote-contract, 46 security-red-team, 9 publisher), **18 skills / 82 business tools plus the confirmation helper**, and scenario A's evidence-linked Markdown packet. The 80 independent probes are a separate automated check set; embedded randomized iterations are not counted as additional tests.
 
-## Upstream runs requiring maintainer authorization
+Live reproduction uses the pinned harness linked in each report, the owner's test key inside Actions, and a Copilot entitlement. It reads only the two selected synthetic sources and advertises external writes solely as safety traps that are never forwarded. No key is committed. Keep a failed attempt visible if a client or transport retry is necessary.
 
-All five runs below belong to product head `5e79ba3d7b35ed70a625db5b82f03f82d3f65a64` and currently have conclusion `action_required`:
+## Inspect the product in maintainer-policy order
 
-| Workflow | Exact existing run |
-|---|---|
-| Validate skills | [37147782342](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782342) |
-| Plugin Security Scan | [37147782398](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782398) |
-| Cursor Directory submission readiness | [37147782241](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782241) |
-| Publish skills to ClawHub | [37147782395](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782395) |
-| Publish plugin bundle to ClawHub | [37147782754](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37147782754) |
+| Area | Current-product paths | Required invariant |
+| --- | --- | --- |
+| Source / approval | `references/security.md`, `scripts/build-margin-packet.mjs`, `scripts/run-live-proof.mjs` in the skill | Selected primary email, safe bounded projection, original identity/date and contiguous quotes; no thread substitution, duplicated delays or invented owner terms. |
+| Funding | `references/funding-gate.md`, `scripts/funding-gate.mjs` | Exact covenant approval, chain/genesis, asset, destination, recipient net gain, canonical inclusion, finality, timestamps and replay state. Funding evidence grants no action authority. |
+| Routing / ownership | `SKILL.md`, root routing, `tool-coverage.json`, `tests/scenarios.json` | Margin Guard owns comparison; Compose owns outbound execution. No new production MCP tool ownership. |
+| Shared helpers | MCP connection checker, remote validator, publisher helpers | Canonical credential destination; redirect rejection; bounded safe diagnostics; strict opt-in and package containment. |
+| Workflow / manifests | `.github/workflows/validate.yml`, validator and plugin manifests | Inspect before approving upstream fork runs. Ordinary PR tests do not dispatch optional synthetic sends. |
 
-The connected author has read access to upstream, without write, triage, maintain or admin permission. It cannot assign formal reviewers or authorize fork workflows. The repository's [CODEOWNERS](https://github.com/Nudgen-Marketing/mermail-skills/blob/9f2e6e0f9d77d4967bd451058fb7c19a32825da9/.github/CODEOWNERS) identifies the `mermail-skills-maintainers` team for sensitive paths. `binhnguyen2501` is the verified upstream merge author and recipient of the existing PR review requests.
+Open [the complete current product diff](https://github.com/Nudgen-Marketing/mermail-skills/pull/124/files) and [the repaired security diff](https://github.com/Trex2021/mermail-skills/compare/5e79ba3d7b35ed70a625db5b82f03f82d3f65a64...c4876e43189c41771fcfa89f30d6cab400257654). Evidence branches are separate from the product PR.
 
-[GitHub's workflow approval procedure](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/approve-runs-from-forks) requires a maintainer to inspect the diff and choose **Approve workflows to run**. [Formal review requests](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/requesting-a-pull-request-review) also require the appropriate upstream permission.
+## Upstream integration remains external
 
-## Conditions for completing priority 5
+As checked on 5 October: PR #124 is open and has no merge conflict; no human review or inline change request has been submitted. Five current-product upstream runs have conclusion `action_required`:
 
-- [x] All four evidence paths identify the same immutable product and distinguish their scenarios and authorization boundaries.
-- [x] A short English review route follows the official maintainer review order.
-- [ ] An independent human review is submitted on the current product head.
-- [ ] Any concrete review findings are addressed and the affected checks rerun. No findings have been submitted yet; zero findings is not a claim of universal correctness.
-- [ ] A maintainer authorizes the existing upstream PR workflows, and their actual jobs complete successfully.
-- [ ] The PR's review, CI and merge status are rechecked on the exact final head. Any merge is a separate action requiring the owner's explicit approval.
+| Workflow | Existing run |
+| --- | --- |
+| Validate skills | [37239113655](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113655) |
+| Plugin Security Scan | [37239113644](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113644) |
+| Cursor readiness | [37239113686](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113686) |
+| Publish skills | [37239113714](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113714) |
+| Publish plugin bundle | [37239114011](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239114011) |
 
-The selected sources are two synthetic self-addressed Sent messages with null scan state and unknown sender authentication. Values are hypothetical owner estimates. The receipt is an existing Solana Devnet compatibility transaction, not payment for the selected change order. Exact private draft content remains owner-encrypted; public redacted packets cannot reauthenticate private source digests. No private HSE file or project information is included.
+Maintainer: inspect workflow changes, authorize these existing runs, review source/approval security and routing, then report concrete findings. Findings will need fixes and affected checks rerun before any merge. The author connection cannot grant upstream approval or manufacture a human review. **Priority 5 is not complete until the actual review and upstream execution occur.**
+
+This bounded evidence does not establish universal security, execution of every production tool, customer adoption or production-backend penetration testing. No private project file or information is included.
