@@ -1,0 +1,12 @@
+Selected skill: **mermail-compose-email**. Resolved the sender as `[REDACTED]`.
+
+**Preview — not saved or sent** (1 recipient; no attachments)
+
+From: [REDACTED]  
+To: [EMAIL]  
+Cc: None  
+Bcc: None  
+Subject: Thank you for your time
+
+Body:  
+Thank you for attending our introductory call. I will send the meeting notes tomorrow.

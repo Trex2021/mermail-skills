@@ -1,0 +1,18 @@
+{
+  "programs": [],
+  "streams": [
+    {
+      "codec_name": "h264",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "format": {
+    "duration": "125.000000",
+    "size": "1467040"
+  },
+  "productHead": "c4876e43189c41771fcfa89f30d6cab400257654",
+  "githubRunId": "37348434066",
+  "oneTake": true,
+  "successfulSession": true
+}

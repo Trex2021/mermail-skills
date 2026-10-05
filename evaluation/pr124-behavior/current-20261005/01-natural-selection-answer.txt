@@ -1,0 +1,18 @@
+**Selected skill:** `mermail-freelance-margin-guard`. I read only the two exact-subject messages, then built a verified evidence-linked packet. Its state is **`scope_change_detected`**.
+
+**Baseline** — The owner-selected “Accepted scope” message (2026-09-09; ID `[SELECTED_MESSAGE_ID]`) establishes one responsive landing page, two revision rounds, a 2026-10-20 deadline, and acceptance at agreed desktop, tablet, and mobile breakpoints. It explicitly excludes an authenticated application and login, an admin dashboard, and payment processing. The owner says one revision round was already used: **1 of 2 used, 1 remaining**.
+
+**Request ledger** — The “Change request” message (2026-09-09; ID `[SELECTED_MESSAGE_ID]`) classifies as:
+- **Additional scope:** admin dashboard, Stripe payment processing, and user login; each conflicts with an explicit baseline exclusion.
+- **Revision rounds:** of the two requested, **one is covered** by the remaining allowance and **one exceeds it**; no rounds remain afterward.
+- **Additional schedule constraint:** requested delivery on 2026-10-15 is five calendar days earlier than the accepted 2026-10-20 deadline.
+
+The accepted landing page and its breakpoint acceptance criteria remain the baseline; the request does not replace or waive the stated exclusions or acceptance criteria.
+
+**Margin and delay** — No owner-approved effort estimates, rate, or currency were supplied. Added work is **unpriced**; the packet’s zero known-hour subtotal is not a zero-effort estimate. The credentials passage says staging credentials arrived two days after the agreed access date, but the delay owner is **unknown**; it does not establish client responsibility or justify a schedule adjustment.
+
+**Options** — Remove or swap additions to preserve the 2026-10-20 baseline deadline (any swap needs effort-equivalence confirmation); retain additions with a schedule extension (**not calculable yet**); or retain additions at the requested 2026-10-15 deadline as a paid change order (**price approval needed**). None is a binding quote.
+
+**What prevents a binding quote:** owner-approved effort ranges for each additional item, an approved rate and currency, and a rush-premium rule for pricing the earlier deadline. To calculate a schedule extension, the effort basis also needs to be supplied; the staging delay’s responsibility must be resolved before attributing it to a party.
+
+**State and integrity** — No reply draft was created, nothing was sent, and no scope or price was approved. The packet’s evidence and result verified successfully: evidence digest `4908038178b0f41439b6292872477a843fddc04e6b0ec237774cc22c0c887479`; packet digest `96e3b7998c40a20747d3639119935e567b347512a04c1b8661020c72f715728e`.

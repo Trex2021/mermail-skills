@@ -1,0 +1,26 @@
+**Selected skill:** `mermail-freelance-margin-guard`. I read only the two selected messages and built a source-verified packet. The paid-rush option is calculated, but **I have not sent a reply**: your approval must cover the exact text and packet digest below.
+
+**Baseline and comparison:** The accepted baseline is one responsive landing page, two revision rounds, and delivery by **2026-10-20**. It excludes an authenticated application/login, an admin dashboard, and payment processing. Acceptance remains responsive at the agreed desktop, tablet, and mobile breakpoints. Of the two included revision rounds, one was already used, leaving one; of the two requested rounds, one is included and one exceeds the allowance. The dashboard, Stripe payment processing, login, and earlier **2026-10-15** deadline are additional scope. Added effort is **15–22 hours**, including **3–4 hours** for the revision overflow; earlier delivery itself adds zero labor hours. The staging-access delay is attributed to the client: **2 days**.
+
+At the owner-approved **$23.50/hour**, added labor is **$352.50–$517.00**. The **10% rush premium** is **$35.25–$51.70**, making the paid-rush total **$387.75–$568.70 USD** for the requested deadline. The packet also estimates the ordinary-rate schedule-extension option at **2026-10-24–2026-10-25**, accounting for the added effort and supplied client delay; removing or swapping additions preserves the baseline date, subject to confirming an equivalent swap.
+
+**Exact reply preview — approval required**
+
+From: [REDACTED]  
+To: [REDACTED] (source message recipient)  
+Cc: None  
+Bcc: None  
+Subject: Re: [FMG-LIVE-34372972140-1] Change request  
+Source message: `[SELECTED_MESSAGE_ID]`  
+Thread: `[SELECTED_MESSAGE_ID]`  
+Packet digest: `b465e365d7f918f6d1dc1a3ec9c2877aba501a02855d413ac301e7008ee177f1`
+
+> Thanks for sending the change request. The accepted scope remains one responsive landing page, with two revision rounds and delivery by October 20, 2026. The agreed exclusions remain an authenticated application and login, an admin dashboard, and payment processing; acceptance remains responsiveness at the agreed desktop, tablet, and mobile breakpoints.
+>
+> Of the two additional revision rounds requested, one is covered by the remaining included round; the other is additional. The admin dashboard, Stripe payment processing, login, and October 15, 2026 delivery deadline are also outside the accepted scope. The supplied two-day staging-access delay is attributed to the client and is accounted for separately.
+>
+> To keep the requested additions and deliver by October 15, 2026, the paid-rush change-order estimate is **$387.75–$568.70 USD**, including the approved 10% rush premium. This reflects 15–22 hours of added labor at $23.50/hour, plus the premium. The earlier deadline itself adds no labor hours.
+>
+> This is a proposal, not an acceptance of changed scope or authorization to begin additional work. Please confirm written approval of the scope, price, and deadline before work begins.
+
+**State:** `awaiting_send_approval`. The packet’s evidence and result digests verified successfully. No message was sent and no work or payment was authorized. Sending requires your fresh approval of this exact preview and unchanged digest.

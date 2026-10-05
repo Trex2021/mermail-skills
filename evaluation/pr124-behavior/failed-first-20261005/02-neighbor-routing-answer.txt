@@ -1,0 +1,5 @@
+**Skill:** `mermail-compose-email`
+
+**Preview only — not saved or sent.** From: [REDACTED] (Mermail mailbox `[TEST_MAILBOX_ID]`); To: [EMAIL]; Cc: none; Bcc: none; total recipients: 1; Subject: Thank you for your time; Body: “Thank you for attending our introductory call. I'll send the meeting notes tomorrow.” Attachments: none.
+
+No messages were read, and no draft or email was created.

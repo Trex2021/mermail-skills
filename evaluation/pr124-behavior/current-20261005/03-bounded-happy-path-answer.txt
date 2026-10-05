@@ -1,0 +1,32 @@
+**Selected skill:** `mermail-freelance-margin-guard`. I read only the two selected messages. The packet builder verified both email sources and both integrity digests. These messages are in Sent and show sender authentication as unknown; I treated the first as the owner-selected baseline, not as independently authenticated client evidence.
+
+### Baseline
+One responsive landing page, with two revision rounds included; one round was already used, leaving one. **Exclusions:** authenticated application/login, admin dashboard, and payment processing. **Acceptance:** responsive at the agreed desktop, tablet, and mobile breakpoints. Baseline deadline: **2026-10-20**.
+
+### Request ledger
+| Request | Classification | Effort |
+|---|---|---:|
+| Admin dashboard (excluded) | Additional scope | 7–9 h |
+| Stripe payment processing (excluded) | Additional scope | 3–5 h |
+| User login (excluded) | Additional scope | 2–4 h |
+| Two further revision rounds | One included; one exceeds remaining allowance | 6–8 h total; 3–4 h additional |
+| Earlier deadline, **2026-10-15** | Scope change: five days earlier | 0 added labor hours, per owner |
+
+The effort ranges are owner-approved inputs. Net additional effort is **15–22 hours**; the included revision round is not priced again.
+
+### Margin snapshot
+At **$23.50/hour**, added labor is **$352.50–$517.00**. The owner-approved **10% premium on added labor** is **$35.25–$51.70**, making the paid-change-order preview **$387.75–$568.70**. These are hypothetical test estimates, not a contract, payment request, or approval. The deadline compression adds no labor by itself; the premium applies to the added labor.
+
+### Delay attribution
+Staging-access delay: **2 days, client-owned**, as confirmed by the owner and evidenced in the request email. It is included in the schedule-extension option below; it does not change the requested Oct. 15 date automatically.
+
+### Client options — previews only
+- **Remove or swap:** Remove the additions, or agree an effort-equivalent swap before work starts; retain the baseline fee and **Oct. 20** deadline.
+- **Extend schedule:** Keep the additions at the ordinary rate, **$352.50–$517.00**; estimated deadline **Oct. 24–25**, accounting for added work and the supplied client delay.
+- **Paid change order:** Keep the additions and requested **Oct. 15** deadline; preview **$387.75–$568.70**, including the approved rush premium.
+
+### Reply and state
+No reply was requested, drafted, or sent. No option has been selected or approved; no work, contract, or payment was authorized. **State: `scope_change_detected`.** To proceed, the owner must select an option and obtain agreement on its scope, price, and deadline before added work begins.
+
+### Integrity
+SHA-256 (`sorted-json-v1`): evidence digest `de0a089594887322ecdfcae8af8c3f4216447d45506baa57f9c0f8c97c7b451a`; packet digest `921e10c351c6098145edf0c5f2e02769840217161b7a102940d8d2f5c7d840b0`. Verification passed. No funding gate was invoked.
