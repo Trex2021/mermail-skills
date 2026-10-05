@@ -25,8 +25,8 @@ Developed with **Codex**. Fresh live verification used **GitHub Copilot CLI 1.0.
 ## Supporting evidence
 
 - Readable proof dashboard: https://trex2021.github.io/mermail-skills/
-- Current live behavior and recording: https://github.com/Trex2021/mermail-skills/blob/27fb268ab7773c03965fc99817cde2887accdbad/evaluation/pr124-behavior/REPORT.md
-- Fresh live safety: https://github.com/Trex2021/mermail-skills/blob/5cb90c87cf54634841a31cffea90134faabd745e/evaluation/pr124-security/REPORT.md
-- Focused review: https://github.com/Trex2021/mermail-skills/blob/de3e7c82f2bfdb118b851f330e0967f4cdec4735/evaluation/pr124-review/REVIEW-GUIDE.md
+- Current live behavior and recording: https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md
+- Fresh live safety: https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md
+- Focused review: https://github.com/Trex2021/mermail-skills/blob/ca5ceebb0567c5534d945e005a74682942cbf749/evaluation/pr124-review/REVIEW-GUIDE.md
 
 Independent human review and five upstream workflow approvals remain pending. The author's fork evidence does not substitute for maintainer execution or merge. The existing truthful participant identity/country must be preserved; no profile identity change is part of this update.
