@@ -32,7 +32,7 @@ function scrub(value) {
   let s=String(value).replace(/\x1b\[[0-?]*[ -/]*[@-~]/g,'').replace(/\x1b\][^\x07]*(?:\x07|\x1b\\)/g,'');
   for(const secret of [process.env.MERMAIL_API_KEY,process.env.GITHUB_TOKEN,scope.mailbox.id,scope.mailbox.email,...scope.messages.map(m=>m.id)].filter(Boolean))s=s.split(secret).join('[PRIVATE_ID]');
   if(fs.existsSync(file('saved')))s=s.split(JSON.parse(fs.readFileSync(file('saved'),'utf8')).draftId).join('[PRIVATE_DRAFT_ID]');
-  return s.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,'[TEST_EMAIL]').replace(/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi,'[PRIVATE_ID]').replace(/\/(?:home|tmp|opt|usr|workspace)\/[^\s"']+/g,'[LOCAL_PATH]').replace(/[\x00-\x08\x0b-\x1f\x7f\u202a-\u202e\u2066-\u2069]/gu,'');
+  return s.replace(/\b(mailboxId|emailId):\s*"[^"\n]*"/g,'$1: "[PRIVATE_ID]"').replace(/("email"\s*:\s*")[^"\n]*(?:"|$)/g,'$1[TEST_EMAIL]"').replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,'[TEST_EMAIL]').replace(/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi,'[PRIVATE_ID]').replace(/\/(?:home|tmp|opt|usr|workspace)\/[^\s"']+/g,'[LOCAL_PATH]').replace(/[\x00-\x08\x0b-\x1f\x7f\u202a-\u202e\u2066-\u2069]/gu,'');
 }
 function display(s,{clear=false}={}) {
   const safe=scrub(s);
@@ -82,10 +82,13 @@ async function client(args,phase) {
 }
 let ffmpeg,xterm,xvfb,finished=false,status={productHead:HEAD,harnessHead:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,status:'RUNNING',client:'GitHub Copilot CLI 1.0.89',video:'Live privacy-redacted Copilot CLI text output in a terminal; operator review and readback views show the actual frozen and retrieved bodies.',audio:'Locally generated English Piper narration; no cloned human voice.',authorization:'Owner-delegated operator approval for one exact internal synthetic draft; no human approval click is claimed.'};
 try {
+  // Preflight is outside the film. Let the free-tier read budget reset before
+  // starting the client; never shorten or accelerate the captured workflow.
+  await wait(65000);
   fs.writeFileSync(stream,'');
   xvfb=spawn('Xvfb',[':91','-screen','0','1920x1080x24','-nolisten','tcp'],{stdio:'ignore'});
   await wait(600);
-  xterm=spawn('xterm',['-display',':91','-geometry','128x40+0+0','-fa','DejaVu Sans Mono','-fs','18','-bg','#0b1220','-fg','#e5edf9','-b','18','-xrm','XTerm*scrollBar:false','-e','python3',path.join(harness,'terminal.py')],{env:{...process.env,TERMINAL_STREAM:stream},stdio:'ignore'});
+  xterm=spawn('xterm',['-display',':91','-geometry','128x36+0+0','-fa','DejaVu Sans Mono','-fs','17','-bg','#0b1220','-fg','#e5edf9','-b','18','-xrm','XTerm*scrollBar:false','-e','python3',path.join(harness,'terminal.py')],{env:{...process.env,TERMINAL_STREAM:stream},stdio:'ignore'});
   await wait(600);
   const rawVideo=path.join(privateRoot,'capture.mp4');
   ffmpeg=spawn('ffmpeg',['-hide_banner','-loglevel','error','-y','-f','x11grab','-draw_mouse','0','-framerate','15','-video_size','1920x1080','-i',':91','-c:v','libx264','-preset','veryfast','-crf','22','-pix_fmt','yuv420p',rawVideo],{stdio:['pipe','ignore','ignore']});
