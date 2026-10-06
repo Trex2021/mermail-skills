@@ -8,6 +8,10 @@
 - **198 exact-product checks, 14 native save/readback guard checks and authenticated 83-tool discovery passed.** These checks do not constitute independent human review.
 - Original recording: **165.145011 seconds**, 1920 × 1080, H.264, 15 fps, AAC-LC 44.1 kHz stereo. No cuts, speed changes or reconstructed after-the-fact screen sequence. English narration uses a locally generated Piper voice, not a cloned human voice.
 
+## Full prompts
+
+[Exact owner request and operator continuation](./prompts.md) are extracted from `terminal-transcript.json`. The original complete public transcript is included in the 17-file index. The graphical introduction is a concise display of the owner request.
+
 ## Three-minute review route
 
 1. Watch `graphical-current-head-demo.mp4`: workspace → two selected sources → scope/hour graph and three options → exact pre-save stop → real internal draft save and complete server readback → clearly dated verification evidence.

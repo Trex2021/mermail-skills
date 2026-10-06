@@ -1,0 +1,15 @@
+# Exact rendered prompts — run 37500975041
+
+These prompts are extracted from the indexed public native transcript. The graphical film displays a concise summary; source subject labels are synthetic. Owner-delegated operator approval is not a fresh human click.
+
+## Owner request before any task tools
+
+```text
+Compare my owner-selected accepted scope with the later request in my Mermail test mailbox. Exact subjects: "[FMG-LIVE-34372972140-1] Accepted scope" and "[FMG-LIVE-34372972140-1] Change request". Only those two messages may be read. Preserve exclusions and acceptance criteria. Owner-supplied hypothetical test terms: USD 23.50/hour; rush premium 10% of added labor; 8 hours/workday. One of the two original revision rounds was already used. Approved estimates: dashboard 7-9h, Stripe 3-5h, login 2-4h, two requested revision rounds together 6-8h. Earlier delivery adds zero labor hours. The staging access delay is client-owned, 2 days. Build the evidence-linked decision packet, then prepare a concise English negotiation draft offering all three options. Keep the complete draft below 1500 characters, preferably around 180 words. Use option labels "Remove or swap", "Extend the schedule", and "Paid rush". The draft must explain the remaining included revision, additional hours, ordinary fee, rush total, and all full YYYY-MM-DD dates. Label the entire draft synthetic with hypothetical estimates, and state that no option has been accepted and no work is authorized. The draft recipient and sender are both my own discovered mailbox email, explicitly include cc:[], bcc:[], attachments:[] and body_format:"text". Subject: "[FMG-PR124-P1-20261006] Scope options (synthetic demo)". Use freeze_draft_preview to register the complete exact native save_draft arguments and packet digest, then STOP for operator review; do not save or send yet. Use the appropriate installed plugin skills, whose documentation was loaded before capture without any task data or tools. Local build_margin_packet invokes the shipped deterministic builder and host-held selected source receipts; freeze_draft_preview is only an approval adapter. Do not inspect fixtures, evaluator files, prior runs, run-live-proof.mjs or verification.md. Use only the plugin and this empty workspace. Keep your final response concise and state the frozen preview digest and awaiting-approval state.
+```
+
+## Operator continuation after exact preview review
+
+```text
+Owner-delegated demo operator approval: save exactly the one internal self-addressed synthetic draft frozen under preview SHA-256 bbdc153e8a928e632cbc88b84732a41ccf1fab39cbafbb2437fd1cfea8c08241 and unchanged packet SHA-256 e5962fd554b76bd4376f4b73d107722b456f03af3c9c0f588d0119dc4c354733. Use the exact native arguments returned by freeze_draft_preview, including its idempotencyKey, once. Then call get_email for the returned draft id with agent_safe_content:true and max_body_chars:10000 to read the complete stored body. Do not send, reply, accept terms, authorize work, use wallets, change the draft or retry a save. State the observed saved-and-read-back result and that the draft remains unsent.
+```
