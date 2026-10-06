@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
-import {PRODUCT,check,sha,makeRpc,prepare,encryptReview} from './output.mjs';
+import {PRODUCT,check,sha,makeRpc,prepare,makePreview,encryptReview} from './output.mjs';
 import {primaryRecords,bodyText} from '../pr124-behavior/adapter.mjs';
 
 const addresses = value => [...new Set((JSON.stringify(value ?? '').match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g) || []).map(v=>v.toLowerCase()))];
@@ -10,9 +10,20 @@ const addresses = value => [...new Set((JSON.stringify(value ?? '').match(/[A-Za
 // Only a previously approved, byte-identical internal draft may be read here.
 // This entry point always uses prepare-mode transport; it has no write path.
 export async function verifyExisting(prepared, approval, remote) {
+  // The original create payload may have no draft_id. Reading that existing
+  // item adds its ID and changes the idempotency key, but no approved content.
+  const withoutExistingId = preview => {
+    const copy=structuredClone(preview);
+    delete copy.arguments.body.draft_id;
+    delete copy.arguments.idempotencyKey;
+    return copy;
+  };
+  const creation=prepared.creationPreview;
+  const creationMatches=creation && sha(creation)===approval.approvedPreviewDigest &&
+    sha(withoutExistingId(creation))===sha(withoutExistingId(prepared.preview));
   check(/^[a-f0-9]{64}$/.test(approval.approvedPreviewDigest || '') &&
-    prepared.previewDigest === approval.approvedPreviewDigest &&
-    sha(prepared.preview) === approval.approvedPreviewDigest,
+    sha(prepared.preview) === prepared.previewDigest &&
+    (prepared.previewDigest === approval.approvedPreviewDigest || creationMatches),
     'historical_exact_preview_changed');
   check(prepared.packet.integrity.packetDigest === approval.expectedPacketDigest,
     'historical_packet_changed');
@@ -50,6 +61,7 @@ export function publicProjection(prepared, outcome, audit, config) {
     productHead:PRODUCT,historicalSaveRun:config.historicalSaveRun,
     checkedAt:new Date().toISOString(),runId:process.env.GITHUB_RUN_ID??null,
     harnessHead:process.env.GITHUB_SHA??null,previewDigest:prepared.previewDigest,
+    approvedCreationPreviewDigest:config.approvedPreviewDigest,
     packetDigest:prepared.packet.integrity.packetDigest,bodySha256:outcome.bodySha256,
     verifiedEmailSources:prepared.correspondence.verifiedEmailSources,
     readbackVerified:outcome.readbackVerified,saveAttempts:audit.filter(a=>a.writeAttempt).length,
@@ -74,6 +86,7 @@ async function main() {
   const builder=await import(pathToFileURL(path.join(root,'skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs')).href);
   const audit=[], remote=makeRpc(process.env.MERMAIL_API_KEY,'prepare',audit);
   const prepared=await prepare(remote,helper,builder);
+  prepared.creationPreview=makePreview(prepared.mailbox,prepared.messages,prepared.packet,null).preview;
   const outcome=await verifyExisting(prepared,config,remote);
   const projection=publicProjection(prepared,outcome,audit,config);
   fs.mkdirSync(dir,{recursive:true,mode:0o700});

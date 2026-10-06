@@ -23,6 +23,17 @@ test('changed source packet or exact preview stops before any network request',a
   await assert.rejects(verifyExisting(x.p,x.approval,async()=>{calls++;}));assert.equal(calls,0);
  }
 });
+test('original creation approval stays bound to exact content when the existing draft ID is added',async()=>{
+ const {p,approval}=ready();
+ p.creationPreview=structuredClone(p.preview);
+ delete p.creationPreview.arguments.body.draft_id;
+ p.creationPreview.arguments.idempotencyKey='original-create-key';
+ approval.approvedPreviewDigest=sha(p.creationPreview);
+ p.preview.arguments.idempotencyKey='existing-draft-key';p.previewDigest=sha(p.preview);
+ assert.equal((await verifyExisting(p,approval,async()=>({structuredContent:actual()}))).readbackVerified,true);
+ p.preview.arguments.body.bcc=['leak@example.invalid'];p.previewDigest=sha(p.preview);
+ let calls=0;await assert.rejects(verifyExisting(p,approval,async()=>{calls++;}));assert.equal(calls,0);
+});
 test('a matching nested sibling cannot replace a mismatching primary draft',async()=>{
  const {p,approval}=ready();
  await assert.rejects(verifyExisting(p,approval,async()=>({structuredContent:{email:{...actual(),id:'unselected'},thread:[actual()]}})));
