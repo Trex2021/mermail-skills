@@ -127,6 +127,7 @@ def render(state):
     txt(24,917,"COPILOT CLI",14,"#89A2C4",True)
     txt(24,950,state.get("clientVersion","1.0.89"),19,"white",True)
     txt(24,1008,"Hosted Mermail MCP",15,"#BECAE0")
+    txt(24,1040,"Ehsan Benvari",15,"white",True)
     txt(272,25,"Freelance Margin Guard",34,INK,True)
     txt(273,73,"Actual agent execution • graphical evaluation view",20,MUTED)
     pill(1270,29,"SYNTHETIC DEMO",AMBER,"#FFF0D8")
@@ -178,6 +179,7 @@ def render(state):
             pill(xx+29,367,"LIVE SAFE-CONTEXT READ" if found else "Awaiting selected read",GREEN if found else MUTED,"#E6F5EF" if found else BG)
             if found:
                 prose(xx+29,427,found.get("body",""),732,260,26,INK,leading=38)
+                txt(xx+29,687,"Scan: null  ·  sender authentication: unknown",16,MUTED)
             else:
                 prose(xx+29,433,"The evaluation view waits for the actual selected tool result.",731,190,25,MUTED)
         box(272,744,1603,162)
@@ -197,7 +199,22 @@ def render(state):
         for i,row in enumerate(rows[:5]):
             yy=345+i*56
             d.ellipse((303,yy+9,314,yy+20),fill=AMBER)
-            txt(330,yy,names.get(row.get("id"),row.get("label","")),23,INK,True)
+            # Model-chosen row IDs and wording are not fixed UI keys. Keep the
+            # rendered labels faithful to the observed semantic item and its
+            # charged units, then measure the label column before drawing.
+            raw_label=str(row.get("label",""))
+            low=raw_label.lower()
+            if row.get("kind")=="revision":
+                units=row.get("units",(packet.get("baseline") or {}).get("revisionBudget",{}).get("overflow"))
+                label=f"{units} overflow revision"+("s" if units!=1 else "")
+            elif row.get("kind")=="deadline":
+                days=(packet.get("request") or {}).get("compressionDays")
+                label=f"{days} days earlier" if days is not None else "Earlier deadline"
+            elif "dashboard" in low:label="Admin dashboard"
+            elif "stripe" in low:label="Stripe payments"
+            elif "login" in low:label="User login"
+            else:label=names.get(row.get("id"),raw_label)
+            prose(330,yy,label,265,40,22,INK,True,leading=26)
             effort=row.get("effortHours") or {}
             hh=f"{effort.get('min',0)}–{effort.get('max',0)} h" if effort.get("max",0) else "0 labor h"
             txt(822,yy,hh,23,BLUE,True)
