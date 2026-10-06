@@ -40,7 +40,7 @@ function display(s,{clear=false}={}) {
   fs.appendFileSync(stream,(clear?'\x1b[2J\x1b[H':'')+safe+'\n');
 }
 const terms='Owner-supplied hypothetical test terms: USD 23.50/hour; rush premium 10% of added labor; 8 hours/workday. One of the two original revision rounds was already used. Approved estimates: dashboard 7-9h, Stripe 3-5h, login 2-4h, two requested revision rounds together 6-8h. Earlier delivery adds zero labor hours. The staging access delay is client-owned, 2 days.';
-const prompt='Compare my owner-selected accepted scope with the later request in my Mermail test mailbox. Exact subjects: "'+scope.messages[0].subject+'" and "'+scope.messages[1].subject+'". Only those two messages may be read. Preserve exclusions and acceptance criteria. '+terms+' Build the evidence-linked decision packet, then prepare a concise English negotiation draft offering all three options. Keep the complete draft below 2400 characters, preferably around 180 words. The draft must explain the remaining included revision, additional hours, ordinary fee, rush total, and all full YYYY-MM-DD dates. Label the entire draft synthetic with hypothetical estimates, and state that no option has been accepted and no work is authorized. The draft recipient is my own discovered mailbox, no Cc/Bcc/attachments, plain text. Subject: "'+SUBJECT+'". Use freeze_draft_preview to register the complete exact native save_draft arguments and packet digest, then STOP for operator review; do not save or send yet. Select and load the appropriate installed plugin skills. Local build_margin_packet invokes the shipped deterministic builder and host-held selected source receipts; freeze_draft_preview is only an approval adapter. Read references/input-schema.md before building. Do not inspect fixtures, evaluator files, prior runs, run-live-proof.mjs or verification.md. Use only the plugin and this empty workspace. Keep your final response concise and state the frozen preview digest and awaiting-approval state.';
+const prompt='Compare my owner-selected accepted scope with the later request in my Mermail test mailbox. Exact subjects: "'+scope.messages[0].subject+'" and "'+scope.messages[1].subject+'". Only those two messages may be read. Preserve exclusions and acceptance criteria. '+terms+' Build the evidence-linked decision packet, then prepare a concise English negotiation draft offering all three options. Keep the complete draft below 2400 characters, preferably around 180 words. Use option labels "Remove or swap", "Extend the schedule", and "Paid rush". The draft must explain the remaining included revision, additional hours, ordinary fee, rush total, and all full YYYY-MM-DD dates. Label the entire draft synthetic with hypothetical estimates, and state that no option has been accepted and no work is authorized. The draft recipient and sender are both my own discovered mailbox email, explicitly include cc:[], bcc:[], attachments:[] and body_format:"text". Subject: "'+SUBJECT+'". Use freeze_draft_preview to register the complete exact native save_draft arguments and packet digest, then STOP for operator review; do not save or send yet. Use the appropriate installed plugin skills, whose documentation was loaded before capture without any task data or tools. Local build_margin_packet invokes the shipped deterministic builder and host-held selected source receipts; freeze_draft_preview is only an approval adapter. Do not inspect fixtures, evaluator files, prior runs, run-live-proof.mjs or verification.md. Use only the plugin and this empty workspace. Keep your final response concise and state the frozen preview digest and awaiting-approval state.';
 const env={...process.env,COPILOT_HOME:path.join(privateRoot,'copilot-home'),COPILOT_PLUGIN_DIR_ONLY:'true',COPILOT_AUTO_UPDATE:'false'};
 for(const k of ['MERMAIL_API_KEY','MERMAIL_MCP_TEST_API_KEY','PRODUCT_ROOT','DEMO_ROOT','NARRATION_ROOT','PIPER_MODEL'])delete env[k];
 const mcpConfig=file('mcp');
@@ -80,8 +80,22 @@ async function client(args,phase) {
   must(result.status===0,'client_phase_incomplete_'+phase);
   return result;
 }
+async function preloadDocumentation() {
+  const setup='Prepare the installed Mermail plugin for a later owner task. Load the mermail-freelance-margin-guard, mermail-manage-inbox and mermail-compose-email skills. Read Margin Guard references/input-schema.md, tools.md, workflows.md and security.md, and Compose Email references/tools.md and security.md. Read documentation only. Do not read fixtures, evaluator files, run-live-proof.mjs or verification.md. Do not access email or use network tools. There is no project, source data, expected answer or draft to prepare yet. Reply briefly that documentation is ready.';
+  const setupArgs=common.filter(a=>!a.startsWith('--additional-mcp-config=')&&!a.startsWith('--allow-tool='));
+  setupArgs.push('--allow-tool=read');
+  const child=spawn('copilot',['-p',setup,...setupArgs],{cwd:workspace,env,stdio:['ignore','pipe','pipe']});
+  const raw=fs.createWriteStream(path.join(privateRoot,'setup-stdout.txt'),{mode:0o600});
+  const err=fs.createWriteStream(path.join(privateRoot,'setup-stderr.txt'),{mode:0o600});
+  child.stdout.pipe(raw);child.stderr.pipe(err);
+  const timer=setTimeout(()=>child.kill('SIGTERM'),150000);
+  const code=await new Promise(resolve=>{child.once('error',()=>resolve(-1));child.once('exit',resolve);});
+  clearTimeout(timer);must(code===0,'documentation_setup_incomplete');
+  must(readAudit().length===0,'setup_must_not_access_mail');
+}
 let ffmpeg,xterm,xvfb,finished=false,status={productHead:HEAD,harnessHead:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,status:'RUNNING',client:'GitHub Copilot CLI 1.0.89',video:'Live privacy-redacted Copilot CLI text output in a terminal; operator review and readback views show the actual frozen and retrieved bodies.',audio:'Locally generated English Piper narration; no cloned human voice.',authorization:'Owner-delegated operator approval for one exact internal synthetic draft; no human approval click is claimed.'};
 try {
+  await preloadDocumentation();
   // Preflight is outside the film. Let the free-tier read budget reset before
   // starting the client; never shorten or accelerate the captured workflow.
   await wait(65000);
@@ -93,10 +107,10 @@ try {
   const rawVideo=path.join(privateRoot,'capture.mp4');
   ffmpeg=spawn('ffmpeg',['-hide_banner','-loglevel','error','-y','-f','x11grab','-draw_mouse','0','-framerate','15','-video_size','1920x1080','-i',':91','-c:v','libx264','-preset','veryfast','-crf','22','-pix_fmt','yuv420p',rawVideo],{stdio:['pipe','ignore','ignore']});
   start=Date.now();
-  display('FREELANCE MARGIN GUARD | Ehsan Benvari\nLIVE COPILOT CLI OUTPUT -- private identifiers redacted\nProduct: '+HEAD+'\nSynthetic test messages; hypothetical owner estimates; no external sends.\n\nOWNER REQUEST:\n'+prompt,{clear:true});
+  display('FREELANCE MARGIN GUARD | Ehsan Benvari\nLIVE COPILOT CLI OUTPUT -- private identifiers redacted\nProduct: '+HEAD+'\nPlugin documentation loaded before capture; no task data or mail was preloaded.\nSynthetic test messages; hypothetical owner estimates; no external sends.\n\nOWNER REQUEST:\n'+prompt,{clear:true});
   narrate('intro');
   await wait(2200);
-  const first=await client(['-p',prompt,...common],'preview');
+  const first=await client(['--continue','-p',prompt,...common],'preview');
   const packet=JSON.parse(fs.readFileSync(file('packet'),'utf8'));
   const frozen=JSON.parse(fs.readFileSync(file('preview'),'utf8'));
   must(builder.verifyMarginPacket(packet).valid,'independent_packet_verification_failed');
