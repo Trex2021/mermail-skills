@@ -1,0 +1,78 @@
+name: PR124 narrated native client save and readback
+
+on:
+  push:
+    branches: [evaluation/pr124-native-demo-20261006]
+    paths: ['evaluation/pr124-native-demo/**', '.github/workflows/pr124-native-demo.yml']
+
+permissions:
+  contents: read
+  copilot-requests: write
+
+concurrency:
+  group: pr124-native-demo-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  live-demo:
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout isolated evaluation harness
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: harness
+          persist-credentials: false
+      - name: Checkout immutable current product
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: c4876e43189c41771fcfa89f30d6cab400257654
+          path: product
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Verify exact product and bounded write controls
+        run: |
+          npm --prefix product --offline test
+          node --test harness/evaluation/pr124-native-demo/guard.test.mjs
+          node --check harness/evaluation/pr124-native-demo/proxy.mjs
+          node --check harness/evaluation/pr124-native-demo/run.mjs
+      - name: Prepare pinned client, terminal recorder and local English narration
+        run: |
+          npm install -g @github/copilot@1.0.89
+          copilot --version
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb xterm ffmpeg fonts-dejavu-core
+          python3 -m venv "${RUNNER_TEMP}/pr124-voice-env"
+          "${RUNNER_TEMP}/pr124-voice-env/bin/pip" install piper-tts==1.3.0
+          mkdir -p "${RUNNER_TEMP}/pr124-voice"
+          cd "${RUNNER_TEMP}/pr124-voice"
+          "${RUNNER_TEMP}/pr124-voice-env/bin/python" -m piper.download_voices en_US-lessac-medium
+      - name: Synthesize public English narration locally
+        env:
+          NARRATION_ROOT: ${{ runner.temp }}/pr124-narration
+          PIPER_MODEL: ${{ runner.temp }}/pr124-voice/en_US-lessac-medium.onnx
+        run: '"${RUNNER_TEMP}/pr124-voice-env/bin/python" harness/evaluation/pr124-native-demo/voice.py'
+      - name: Record current live client through exact internal save and full readback
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          MERMAIL_MCP_TEST_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          MERMAIL_REQUIRE_TEST_API_KEY: '1'
+          PRODUCT_ROOT: ${{ github.workspace }}/product
+          DEMO_ROOT: ${{ runner.temp }}/pr124-native-demo
+          NARRATION_ROOT: ${{ runner.temp }}/pr124-narration
+        run: |
+          npm --prefix product run validate:remote
+          node harness/evaluation/pr124-native-demo/run.mjs
+      - name: Preserve sanitized or encrypted evidence only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr124-native-demo-${{ github.run_id }}
+          path: ${{ runner.temp }}/pr124-native-demo/public/
+          if-no-files-found: warn
+          retention-days: 90
