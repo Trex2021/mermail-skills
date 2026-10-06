@@ -1,6 +1,6 @@
 # Freelance Margin Guard — focused judge and maintainer review
 
-Updated **5 October 2026**. Review product [`c4876e43189c41771fcfa89f30d6cab400257654`](https://github.com/Trex2021/mermail-skills/commit/c4876e43189c41771fcfa89f30d6cab400257654), submitted in [PR #124](https://github.com/Nudgen-Marketing/mermail-skills/pull/124).
+Updated **6 October 2026**. Review product [`c4876e43189c41771fcfa89f30d6cab400257654`](https://github.com/Trex2021/mermail-skills/commit/c4876e43189c41771fcfa89f30d6cab400257654), submitted in [PR #124](https://github.com/Nudgen-Marketing/mermail-skills/pull/124).
 
 **Problem and outcome:** a freelancer accepts a bounded project, then receives a later email adding work, consuming revisions or compressing the deadline. Margin Guard turns only the selected source evidence and owner-approved commercial inputs into a complete change ledger and three client choices: remove/swap scope, extend the schedule, or approve a paid change order. Missing owner prices stay unpriced; email instructions cannot approve work, messaging or payment.
 
@@ -11,7 +11,7 @@ Development client: **Codex**. Live verification client: **GitHub Copilot CLI 1.
 1. **Watch the current-product one-take demo** and inspect its [fresh-session report](https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md). The English 2:05 continuous event-fed capture connects the prompt, selected reads, current product builder and independently checked result. All five fresh sessions pass; expected answers and evaluator files were unavailable to the agent. The original parser failure and recovered builder calls stay visible.
 2. **Verify reliability and production connection:** [198/198 exact-product checks and authenticated 83-tool catalog](https://github.com/Trex2021/mermail-skills/actions/runs/37239386192); [bounded red-team findings, repairs and 80 independent automated probes](https://github.com/Trex2021/mermail-skills/blob/990a9f3f928d6d8bde45a7313d3e07b2eba3e01e/security-audit/2026-10-04/REPORT.md).
 3. **Inspect [six fresh safety outcomes](https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md):** unrelated, old and consumed receipts; absent or hostile prices; and a matching hypothetical compatibility receipt all preserve separate action authority. The immutable final product passes all six.
-4. **Inspect the actual unsent output:** [one approved save and exact readback](https://github.com/Trex2021/mermail-skills/actions/runs/37214396573), [English report and commercial value brief](https://github.com/Trex2021/mermail-skills/blob/f99b07cf514bfd700f7d72401df46a33316ab908/evaluation/pr124-output/REPORT.md). This output run pins earlier product **`5e79ba3`**. It is retained as historical evidence, without relabelling it as a fresh final-product draft run. Zero external sends; exact private draft content remains owner-encrypted.
+4. **Inspect the current-product tangible result:** [fresh current-product source recomputation and exact existing-draft readback](https://github.com/Trex2021/mermail-skills/blob/fa22fae94092b94dd80c045749443a16fc8f6d38/evaluation/pr124-output/REPORT-CURRENT.md), [successful run 37401281664](https://github.com/Trex2021/mermail-skills/actions/runs/37401281664). Product `c4876e4` reproduced the unchanged approved packet and read the complete existing unsent draft, with zero write attempts. The original [4 October save](https://github.com/Trex2021/mermail-skills/actions/runs/37214396573) still carries historical product `5e79ba3`. This deterministic integration check is distinct from the five natural-language sessions. The exact synthetic negotiation body and source ledger are public; original private identities remain encrypted.
 5. **Reproduce and review the code** using the commands and paths below. Current upstream CI still needs maintainer authorization; an automated report is not independent human approval.
 
 ## Two deliberately different hypothetical scenarios
@@ -53,7 +53,7 @@ Open [the complete current product diff](https://github.com/Nudgen-Marketing/mer
 
 ## Upstream integration remains external
 
-As checked on 5 October: PR #124 is open and has no merge conflict; no human review or inline change request has been submitted. Five current-product upstream runs have conclusion `action_required`:
+As checked on 6 October: PR #124 is open and has no merge conflict; no human review or inline change request has been submitted. Five current-product upstream runs have conclusion `action_required`:
 
 | Workflow | Existing run |
 | --- | --- |
@@ -63,6 +63,6 @@ As checked on 5 October: PR #124 is open and has no merge conflict; no human rev
 | Publish skills | [37239113714](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239113714) |
 | Publish plugin bundle | [37239114011](https://github.com/Nudgen-Marketing/mermail-skills/actions/runs/37239114011) |
 
-Maintainer: inspect workflow changes, authorize these existing runs, review source/approval security and routing, then report concrete findings. Findings will need fixes and affected checks rerun before any merge. The author connection cannot grant upstream approval or manufacture a human review. **Priority 5 is not complete until the actual review and upstream execution occur.**
+Maintainer: inspect workflow changes, authorize these existing runs, review source/approval security and routing, then report concrete findings. Findings will need fixes and affected checks rerun before any merge. The repository API confirms the author connection has `pull: true`, `push: false`, `maintain: false` and `admin: false`. It cannot grant upstream approval or manufacture a human review. **Priority 5 is not complete until the actual review and upstream execution occur.**
 
 This bounded evidence does not establish universal security, execution of every production tool, customer adoption or production-backend penetration testing. No private project file or information is included.

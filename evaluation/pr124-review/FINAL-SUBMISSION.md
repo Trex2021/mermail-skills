@@ -1,32 +1,34 @@
-# Prepared Superteam submission update — English
+# Prepared final Superteam fields — English
 
-Prepared 5 October 2026. **The Superteam form has not been changed:** the available browser is signed out. The public PR, proof dashboard and new X demo have been published and verified.
+Prepared **6 October 2026**. The available Superteam browser is signed out, so **the submission form has not been updated**. All public links below are ready; existing truthful identity and country must remain unchanged.
 
 ## Public GitHub pull request
 
 https://github.com/Nudgen-Marketing/mermail-skills/pull/124
 
-## Primary current-product demo
+## Primary demo video
 
 https://x.com/Ehsan_Benvari/status/2107169510054908128
 
-2:05 continuous English event-fed screen capture, product `c4876e4`, actual selected Mermail reads and observed packet output. Supplements the historical X demonstrations.
+English 2:05 continuous current-product event-fed screen recording, tagged @Mermailapp. It shows the natural prompt, selected live Mermail use, packet construction and observed result. Historical videos remain supplementary.
 
 ## Short description
 
-Freelance Margin Guard protects a freelancer's accepted scope before extra work is committed. It reads only the owner-selected baseline and later Mermail request, preserves exclusions and revision limits, attributes delays, and creates an evidence-linked change ledger with three choices: remove/swap scope, extend the schedule, or negotiate a paid change order. Missing owner-approved rates stay unpriced; untrusted email claims cannot become commercial or action authority.
+Freelance Margin Guard turns a later client email into an evidence-linked scope, revision and margin decision before extra work is committed. It reads only owner-selected Mermail messages and uses owner-approved commercial terms, preserving exclusions and acceptance criteria. It offers three choices: remove/swap scope, extend the schedule, or negotiate a paid change order. Missing rates remain unpriced; hostile email instructions and funding receipts cannot authorize work, messaging or payment.
 
-The current-product demo shows live source reads, source-checked packet construction and a visible result: 15–22 added hours, a $352.50–$517 ordinary fee and a $387.75–$568.70 rush range, using explicitly hypothetical owner inputs. A separate committed benchmark demonstrates 26–33 hours and $390–$495 base value; these are test estimates, not customer revenue. Exact-product validation passes 198 checks, five fresh behavior sessions and six fresh security sessions. Historical approved unsent-draft save/readback remains separately labelled. No new send, payment or wallet action occurs in the current demonstration.
+The current-product live synthetic demo yields 15–22 added hours, $352.50–$517 ordinary fees and $387.75–$568.70 with a 10% rush rule. Evidence includes 198 product checks, five fresh behavior sessions, six fresh safety sessions and current-product recomputation plus exact readback of the existing approved unsent draft. Estimates are hypothetical, not customer revenue. The current demonstrations make no external send, payment or wallet action.
 
 ## AI client used
 
-Developed with **Codex**. Fresh live verification used **GitHub Copilot CLI 1.0.89 with hosted Mermail MCP**. A narrow local execution adapter invokes the shipped deterministic packet builder; it is not a new production MCP tool.
+Developed with **Codex**. Live agent verification: **GitHub Copilot CLI 1.0.89 + hosted Mermail MCP**. A narrow local adapter invokes the shipped packet builder; it is not a new production MCP tool. The separate current-product draft readback is a deterministic integration check.
 
-## Supporting evidence
+## Supporting links
 
-- Readable proof dashboard: https://trex2021.github.io/mermail-skills/
-- Current live behavior and recording: https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md
-- Fresh live safety: https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md
-- Focused review: https://github.com/Trex2021/mermail-skills/blob/ca5ceebb0567c5534d945e005a74682942cbf749/evaluation/pr124-review/REVIEW-GUIDE.md
+- Public judge dashboard: https://trex2021.github.io/mermail-skills/
+- Five fresh behavior sessions + continuous capture: https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md
+- Six fresh safety sessions: https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md
+- Current-product tangible output and complete observed draft: https://github.com/Trex2021/mermail-skills/blob/fa22fae94092b94dd80c045749443a16fc8f6d38/evaluation/pr124-output/REPORT-CURRENT.md
 
-Independent human review and five upstream workflow approvals remain pending. The author's fork evidence does not substitute for maintainer execution or merge. The existing truthful participant identity/country must be preserved; no profile identity change is part of this update.
+## Honest readiness limits
+
+Human review and actual successful execution of the five upstream workflows still need the maintainer. A clean merge state and green author-fork checks do not replace them. The 6 October result reproduces and reads back the existing 4 October approved draft; it does not claim a new save. Original private identities remain encrypted. The two commercial scenarios use different hypothetical inputs and must not be combined.
