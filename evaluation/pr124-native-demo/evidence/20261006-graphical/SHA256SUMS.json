@@ -1,0 +1,90 @@
+{
+  "productHead": "c4876e43189c41771fcfa89f30d6cab400257654",
+  "files": [
+    {
+      "path": "client-version.txt",
+      "sha256": "437f4cbde248af21ab6dabb99fe583b6ed1cb703722c3021ed75084a391f05d7",
+      "bytes": 70
+    },
+    {
+      "path": "draft-body.txt",
+      "sha256": "f696f09fce996221fe7507dce03981f93afda80fed14e1e1102b331f3469339f",
+      "bytes": 1203
+    },
+    {
+      "path": "encrypted-review.json",
+      "sha256": "d1366cdfde98973c9e39fabad46d0d14d8470e58a539cc46497111f530967fd5",
+      "bytes": 22854
+    },
+    {
+      "path": "graphical-current-head-demo.mp4",
+      "sha256": "ed26ca8fb60451d037e30fe862b9a3d82a8b12c35b66654e48675055e7ec26e5",
+      "bytes": 3955803
+    },
+    {
+      "path": "narration-timeline.json",
+      "sha256": "412d90d29da27ad3556fe7c54b6e2c47f900f5c376c951c48a7124e3ac7cd414",
+      "bytes": 2526
+    },
+    {
+      "path": "packet-redacted.json",
+      "sha256": "2ef045cbaee70590afedd1df569ef6974e0fbc9c09184af1c990f3f51a5f20be",
+      "bytes": 10328
+    },
+    {
+      "path": "preflight.json",
+      "sha256": "263549321df08a44cd13a39421f92fe2836c4a5668cdd746375027e6eaef58b0",
+      "bytes": 176
+    },
+    {
+      "path": "prior-safety-summary.json",
+      "sha256": "58532a97b5e4ea1a9009134a18d27ee8182211cfb9f2e617aff946e1c39b8c26",
+      "bytes": 2996
+    },
+    {
+      "path": "product-manifest.json",
+      "sha256": "a5b27d9f8d9deddf915cf96fd0a8d4384302bbac1716585693c6ab46b49e9823",
+      "bytes": 15666
+    },
+    {
+      "path": "scope-report.md",
+      "sha256": "2d090193a0a8f4e55556e79816dbe88d369e7041bd0aef23bb8ebe700c9c1d68",
+      "bytes": 3856
+    },
+    {
+      "path": "status.json",
+      "sha256": "357a3b5547c107137d18e440426b66b317932a94dc0672e42cd87dd2a3b9777d",
+      "bytes": 5794
+    },
+    {
+      "path": "terminal-transcript.json",
+      "sha256": "154d21558fc01d0fa639a8be58e367221090f5a280a692ffb6ad1424e81bc769",
+      "bytes": 14261
+    },
+    {
+      "path": "terminal.txt",
+      "sha256": "cda980ad7466e93b6474eb77bbdcdb3e0d9f574c8958acb2c5d2159e2512a778",
+      "bytes": 9464
+    },
+    {
+      "path": "terminal.txt.done",
+      "sha256": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+      "bytes": 4
+    },
+    {
+      "path": "video-metadata.json",
+      "sha256": "10ae90a0a3c7069b004964d3251a1b2225d6ae8028f2d2896db69c99d883f13c",
+      "bytes": 3479
+    },
+    {
+      "path": "visual-render.jsonl",
+      "sha256": "ef06976878c4693f09ae554496e211af39a1d3a7d6cb8d090d227719ef743f5d",
+      "bytes": 2551
+    },
+    {
+      "path": "visual-state-history.jsonl",
+      "sha256": "2c0d5ecd69876c0ce109bfce8286ae387dc2ec109b6fca8e8a765b76f96a5384",
+      "bytes": 137547
+    }
+  ]
+}
