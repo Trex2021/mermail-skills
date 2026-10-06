@@ -1,6 +1,8 @@
-# Prepared final Superteam fields — English
+# Final Superteam fields — English
 
-Prepared **6 October 2026**. The available Superteam browser is signed out, so **the submission form has not been updated**. All public links below are ready; existing truthful identity and country must remain unchanged.
+Updated **6 October 2026** (2026-10-06T02:29:51.115Z). The existing Superteam submission was updated after successful email authentication. A fresh listing reload followed by reopening Edit Submission confirmed all three link values and the complete English text (after whitespace normalization). No duplicate entry was created.
+
+The exact submitted supporting text and observed result screenshot are retained as `SUBMITTED-TEXT-20261006.txt` and `SUPERTEAM-SUBMISSION-20261006.jpg` in this folder.
 
 ## Public GitHub pull request
 

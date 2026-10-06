@@ -1,0 +1,29 @@
+Mermail Freelance Margin Guard
+
+Judge Proof Dashboard: https://trex2021.github.io/mermail-skills/
+
+Freelance Margin Guard turns a later client email into an evidence-linked scope, revision and margin decision before extra work is committed. It reads only owner-selected Mermail messages and uses owner-approved commercial terms, preserving exclusions and acceptance criteria. It offers three choices: remove/swap scope, extend the schedule, or negotiate a paid change order. Missing rates remain unpriced; hostile email instructions and funding receipts cannot authorize work, messaging or payment.
+
+The current-product live synthetic demo yields 15–22 added hours, $352.50–$517 ordinary fees and $387.75–$568.70 with a 10% rush rule. Evidence includes 198 product checks, five fresh behavior sessions, six fresh safety sessions and current-product recomputation plus exact readback of the existing approved unsent draft. Estimates are hypothetical, not customer revenue. The current demonstrations make no external send, payment or wallet action.
+
+AI client: Developed with Codex. Live agent verification: GitHub Copilot CLI 1.0.89 + hosted Mermail MCP. A narrow local adapter invokes the shipped packet builder; it is not a new production MCP tool. The separate current-product draft readback is a deterministic integration check.
+
+Primary demo: English 2:05 continuous current-product event-fed screen recording, tagged @Mermailapp. Natural prompt, real hosted Mermail calls, packet construction and observed result are shown in one capture.
+https://x.com/Ehsan_Benvari/status/2107169510054908128
+
+Current product: c4876e43189c41771fcfa89f30d6cab400257654. Authenticated production catalog: 83 tools (82 business tools plus prepare_destructive_action), 18 skills.
+
+Reproducible evidence:
+Current-product recomputation, source ledger and complete observed unsent draft: https://github.com/Trex2021/mermail-skills/blob/fa22fae94092b94dd80c045749443a16fc8f6d38/evaluation/pr124-output/REPORT-CURRENT.md
+Successful read-only job (198 product checks + 14 output checks): https://github.com/Trex2021/mermail-skills/actions/runs/37401281664
+Five fresh behavior sessions and continuous capture: https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md
+Six fresh live safety sessions: https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md
+Short review guide: https://github.com/Trex2021/mermail-skills/blob/65c1e729f2060f3689a83851c2d2e9f33ad09171/evaluation/pr124-review/REVIEW-GUIDE.md
+
+Evidence boundaries: The 6 October result recomputes and reads back the existing explicitly approved 4 October draft; it does not claim a new save. The dashboard also retains a separate historical/offline scenario (26–33 hours; $390–$495 base); its inputs must not be mixed with the current live scenario. Human review and authorization/execution of the five upstream workflows remain maintainer tasks. Green author-fork checks do not replace them.
+
+Supplementary historical demos (older product versions):
+2:10: https://x.com/Ehsan_Benvari/status/2104965245617983902
+2:19 narrated: https://x.com/Ehsan_Benvari/status/2104696551444566308
+
+Public PR: https://github.com/Nudgen-Marketing/mermail-skills/pull/124

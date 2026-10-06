@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-06T02:10:57.796Z",
+  "checkedAt": "2026-10-06T02:29:51.115Z",
   "priority": 5,
   "priorityComplete": false,
   "authorPreparationComplete": true,
@@ -63,21 +63,20 @@
   "mergeableState": "unstable",
   "merged": false,
   "remaining": [
-    "Apply the prepared final English fields to the existing Superteam entry from an authenticated session before the sponsor deadline.",
     "Independent human review on the exact current product head.",
     "Maintainer authorization and actual successful execution of the five upstream PR workflows.",
     "Address any concrete review findings and recheck the affected final head.",
     "Maintainer integration after required review and checks."
   ],
-  "scope": "Current-product tangible-output evidence, final English review/submission material and verified public result presentation completed. Product head remains unchanged. No new person-directed message, save, send, wallet action, financial action, merge or permission change.",
+  "scope": "Current-product tangible-output evidence, final English review/submission material and verified public result presentation completed. The existing Superteam submission is updated and persisted links/full text were verified after a fresh reload. Product head remains unchanged. No new person-directed message, save, send, wallet action, financial action, merge or permission change.",
   "continuousDemo": "https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md",
   "liveSecurity": "https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md",
   "productChecks": 198,
   "descriptionCheckedAt": "2026-10-06T01:57:45Z",
   "demoPublishedOnX": "https://x.com/Ehsan_Benvari/status/2107169510054908128",
   "publicDashboard": "https://trex2021.github.io/mermail-skills/",
-  "contestSubmissionFormUpdated": false,
-  "contestSubmissionFormBlocker": "The existing-account Google sign-in method and saved account were selected through secure browser authentication. Sign-in is waiting for the user's device verification. The final English fields have not yet been applied to the existing Superteam submission.",
+  "contestSubmissionFormUpdated": true,
+  "contestSubmissionFormBlocker": null,
   "publishedPublicFileBytesVerified": 46,
   "preparedSubmission": "https://github.com/Trex2021/mermail-skills/blob/65c1e729f2060f3689a83851c2d2e9f33ad09171/evaluation/pr124-review/FINAL-SUBMISSION.md",
   "currentProductTangibleOutput": "https://github.com/Trex2021/mermail-skills/blob/fa22fae94092b94dd80c045749443a16fc8f6d38/evaluation/pr124-output/REPORT-CURRENT.md",
@@ -102,9 +101,22 @@
     "totalPrizeUSDC": 500
   },
   "contestAuthentication": {
-    "method": "Google",
-    "priorAccountAssociationVerified": true,
-    "deviceVerificationPending": true,
-    "targetSessionVerified": false
+    "method": "Email",
+    "existingAccount": true,
+    "deviceVerificationPending": false,
+    "targetSessionVerified": true
+  },
+  "contestSubmissionVerifiedAt": "2026-10-06T02:29:51.115Z",
+  "contestSubmissionVerification": {
+    "method": "reload_listing_then_reopen_existing_Edit_Submission",
+    "entry": "existing Ehsan submission linked to public PR 124",
+    "linksMatch": true,
+    "fullTextMatchesAfterWhitespaceNormalization": true,
+    "createdDuplicate": false
+  },
+  "contestSubmissionProof": {
+    "record": "evaluation/pr124-review/SUBMISSION-PUBLICATION-20261006.md",
+    "submittedText": "evaluation/pr124-review/SUBMITTED-TEXT-20261006.txt",
+    "screenshot": "evaluation/pr124-review/SUPERTEAM-SUBMISSION-20261006.jpg"
   }
 }
