@@ -1,0 +1,63 @@
+name: PR124 current-product source-linked draft compatibility
+
+on:
+  push:
+    branches: [evaluation/pr124-output-20261006]
+    paths: ['evaluation/pr124-output/readback*.mjs', 'evaluation/pr124-output/readback-config.json', 'evaluation/pr124-output/output.mjs', 'evaluation/pr124-behavior/adapter.mjs', '.github/workflows/pr124-current-output.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr124-current-output-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  current-output:
+    if: github.repository == 'Trex2021/mermail-skills'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout evaluation helper
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: harness
+          persist-credentials: false
+      - name: Checkout immutable current product
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: c4876e43189c41771fcfa89f30d6cab400257654
+          path: product
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+      - name: Verify product, approval boundary and primary draft readback
+        env:
+          PRODUCT_ROOT: ${{ github.workspace }}/product
+        run: |
+          set -euo pipefail
+          npm --prefix product --offline test
+          node --check harness/evaluation/pr124-output/readback.mjs
+          node --test harness/evaluation/pr124-output/output.test.mjs harness/evaluation/pr124-output/readback.test.mjs
+      - name: Authenticated catalog and bounded discovery
+        env:
+          MERMAIL_MCP_TEST_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          MERMAIL_REQUIRE_TEST_API_KEY: '1'
+        run: npm --prefix product run validate:remote
+      - name: Recompute from selected live sources and read existing approved draft
+        env:
+          MERMAIL_API_KEY: ${{ secrets.MERMAIL_MCP_TEST_API_KEY }}
+          PRODUCT_ROOT: ${{ github.workspace }}/product
+          OUTPUT_CONFIG: ${{ github.workspace }}/harness/evaluation/pr124-output/readback-config.json
+          OUTPUT_PUBLIC_ROOT: ${{ runner.temp }}/pr124-current-output/public
+        run: node harness/evaluation/pr124-output/readback.mjs
+      - name: Preserve bounded public proof and encrypted private detail
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr124-current-output-${{ github.run_id }}
+          path: ${{ runner.temp }}/pr124-current-output/public/
+          if-no-files-found: warn
+          retention-days: 90

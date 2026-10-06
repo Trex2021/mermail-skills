@@ -5,7 +5,7 @@ import {spawnSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
 import {decodeRpc, payloads, objects, selectedRecords, bodyText, projectRecords} from '../pr124-behavior/adapter.mjs';
 
-export const PRODUCT = '5e79ba3d7b35ed70a625db5b82f03f82d3f65a64';
+export const PRODUCT = 'c4876e43189c41771fcfa89f30d6cab400257654';
 export const TAG = 'FMG-LIVE-34372972140-1';
 export const DRAFT_SUBJECT = '[FMG-PR124-P2] Scope options (synthetic demo)';
 const READS = new Set(['list_mailboxes', 'search_emails', 'get_email_context', 'get_email']);
@@ -37,7 +37,7 @@ export function makeRpc(apiKey, mode, audit) {
       await sleep(Math.max(0,nextAt-Date.now())); nextAt=Date.now()+3200;
       let response, envelope;
       try {
-        response = await fetch('https://console.mermail.app/mcp',{method:'POST',signal:AbortSignal.timeout(30000),headers:{accept:'application/json, text/event-stream','content-type':'application/json','x-api-key':apiKey},body:JSON.stringify({jsonrpc:'2.0',id:++id,method,params})});
+        response = await fetch('https://console.mermail.app/mcp',{method:'POST',redirect:'error',signal:AbortSignal.timeout(30000),headers:{accept:'application/json, text/event-stream','content-type':'application/json','x-api-key':apiKey},body:JSON.stringify({jsonrpc:'2.0',id:++id,method,params})});
         envelope = await decodeRpc(response);
       } catch {
         audit.push({tool:params.name||method,success:false,writeAttempt:write});
