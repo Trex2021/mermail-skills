@@ -1,0 +1,155 @@
+1
+00:00:00,300 --> 00:00:03,338
+A few small changes can quietly turn a
+
+2
+00:00:03,338 --> 00:00:06,377
+landing page into a much larger project. Freelance
+
+3
+00:00:06,377 --> 00:00:09,415
+Margin Guard makes that difference visible. This graphical
+
+4
+00:00:09,415 --> 00:00:12,454
+evaluation workspace follows an actual Copilot agent using
+
+5
+00:00:12,454 --> 00:00:15,492
+the submitted plugin and hosted Mermail. The inputs
+
+6
+00:00:15,492 --> 00:00:18,531
+and estimates are synthetic. The product version is
+
+7
+00:00:18,531 --> 00:00:18,911
+pinned.
+
+8
+00:00:28,441 --> 00:00:31,659
+The agent reads only two selected messages: the
+
+9
+00:00:31,659 --> 00:00:34,876
+accepted scope and the later request. The agreement
+
+10
+00:00:34,876 --> 00:00:38,094
+includes a responsive landing page and two revision
+
+11
+00:00:38,094 --> 00:00:41,311
+rounds. Dashboard, payments and login were excluded. One
+
+12
+00:00:41,311 --> 00:00:44,529
+revision was already used. The original acceptance criteria
+
+13
+00:00:44,529 --> 00:00:45,334
+remain intact.
+
+14
+00:00:50,828 --> 00:00:53,580
+The current product links each change to its
+
+15
+00:00:53,580 --> 00:00:56,332
+source. Fifteen to twenty two additional hours means
+
+16
+00:00:56,332 --> 00:00:59,084
+three hundred fifty two dollars fifty to five
+
+17
+00:00:59,084 --> 00:01:01,836
+hundred seventeen dollars at the owner supplied test
+
+18
+00:01:01,836 --> 00:01:04,588
+rate. The included revision is never charged twice.
+
+19
+00:01:04,588 --> 00:01:07,340
+Three options preserve the original scope, extend the
+
+20
+00:01:07,340 --> 00:01:09,404
+schedule, or discuss a paid rush.
+
+21
+00:01:09,704 --> 00:01:12,426
+Before any save, the agent stops at the
+
+22
+00:01:12,426 --> 00:01:15,149
+complete frozen preview. No write has occurred. The
+
+23
+00:01:15,149 --> 00:01:17,871
+operator checks this exact payload under the owner
+
+24
+00:01:17,871 --> 00:01:20,594
+delegated permission for one internal synthetic draft. Permission
+
+25
+00:01:20,594 --> 00:01:23,316
+to send email, accept an agreement, pay, or
+
+26
+00:01:23,316 --> 00:01:25,018
+start work is still absent.
+
+27
+00:01:29,904 --> 00:01:32,926
+The live Mermail server saved one internal draft.
+
+28
+00:01:32,926 --> 00:01:35,947
+Its complete body, subject and addresses were read
+
+29
+00:01:35,947 --> 00:01:38,969
+back and matched the approved preview. The draft
+
+30
+00:01:38,969 --> 00:01:41,990
+remains unsent. The dates, ordinary fee and rush
+
+31
+00:01:41,990 --> 00:01:45,012
+estimate are visible here. These are discussion options,
+
+32
+00:01:45,012 --> 00:01:47,656
+not recovered revenue or an accepted contract.
+
+33
+00:01:48,324 --> 00:01:51,596
+This run also passed the exact product suites,
+
+34
+00:01:51,596 --> 00:01:54,868
+fourteen save and readback guards, and authenticated production
+
+35
+00:01:54,868 --> 00:01:58,141
+tool discovery. Six separate safety sessions from October
+
+36
+00:01:58,141 --> 00:02:01,413
+fifth tested unrelated, old and consumed receipts, missing
+
+37
+00:02:01,413 --> 00:02:04,685
+and hostile rates, and funding without action authority.
+
+38
+00:02:04,685 --> 00:02:07,957
+The linked evidence retains the measured boundaries. Human
+
+39
+00:02:07,957 --> 00:02:09,593
+review is still pending.
