@@ -1,0 +1,130 @@
+[2J[HFREELANCE MARGIN GUARD | Ehsan Benvari
+LIVE COPILOT CLI OUTPUT -- private identifiers redacted
+Product: c4876e43189c41771fcfa89f30d6cab400257654
+Plugin documentation loaded before capture; no task data or mail was preloaded.
+Synthetic test messages; hypothetical owner estimates; no external sends.
+
+OWNER REQUEST:
+Compare my owner-selected accepted scope with the later request in my Mermail test mailbox. Exact subjects: "[FMG-LIVE-3
+4372972140-1] Accepted scope" and "[FMG-LIVE-34372972140-1] Change request". Only those two messages may be read. Preser
+ve exclusions and acceptance criteria. Owner-supplied hypothetical test terms: USD 23.50/hour; rush premium 10% of added
+ labor; 8 hours/workday. One of the two original revision rounds was already used. Approved estimates: dashboard 7-9h, S
+tripe 3-5h, login 2-4h, two requested revision rounds together 6-8h. Earlier delivery adds zero labor hours. The staging
+ access delay is client-owned, 2 days. Build the evidence-linked decision packet, then prepare a concise English negotia
+tion draft offering all three options. Keep the complete draft below 2400 characters, preferably around 180 words. Use o
+ption labels "Remove or swap", "Extend the schedule", and "Paid rush". The draft must explain the remaining included rev
+ision, additional hours, ordinary fee, rush total, and all full YYYY-MM-DD dates. Label the entire draft synthetic with 
+hypothetical estimates, and state that no option has been accepted and no work is authorized. The draft recipient and se
+nder are both my own discovered mailbox email, explicitly include cc:[], bcc:[], attachments:[] and body_format:"text". 
+Subject: "[FMG-PR124-P1-20261006] Scope options (synthetic demo)". Use freeze_draft_preview to register the complete exa
+ct native save_draft arguments and packet digest, then STOP for operator review; do not save or send yet. Use the approp
+riate installed plugin skills, whose documentation was loaded before capture without any task data or tools. Local build
+_margin_packet invokes the shipped deterministic builder and host-held selected source receipts; freeze_draft_preview is
+ only an approval adapter. Do not inspect fixtures, evaluator files, prior runs, run-live-proof.mjs or verification.md. 
+Use only the plugin and this empty workspace. Keep your final response concise and state the frozen preview digest and a
+waiting-approval state.
+● Disabled tools: list_agents, read_agent, task, write_agent
+
+● skill(mermail-freelance-margin-guard)
+
+● skill(mermail-manage-inbox)
+
+● skill(mermail-compose-email)
+
+● List mailboxes (MCP: mermail-demo)
+  └ {"mailboxes":[{"public_id":"[PRIVATE_ID]","email":"[TEST_EMAIL]"
+
+● Search emails (MCP: mermail-demo) · mailboxId: "[PRIVATE_ID]", query: {…}
+  └ {"emails":[{"id":"[PRIVATE_ID]","subject":"[FMG-LIVE-...
+
+● Search emails (MCP: mermail-demo) · mailboxId: "[PRIVATE_ID]", query: {…}
+  └ {"emails":[{"id":"[PRIVATE_ID]","subject":"[FMG-LIVE-...
+
+● Get email context (MCP: mermail-demo) · mailboxId: "[PRIVATE_ID]", emailI…
+  └ {"email":{"id":"[PRIVATE_ID]","subject":"[FMG-LIVE-34...
+
+● Get email context (MCP: mermail-demo) · mailboxId: "[PRIVATE_ID]", emailI…
+  └ {"email":{"id":"[PRIVATE_ID]","subject":"[FMG-LIVE-34...
+
+● build_margin_packet (MCP: mermail-demo) · input: {…}, observedEmails: [2 items]
+  └ {"packet":{"schemaVersion":1,"project":{"name":"Synthetic project"},"state":"...
+
+● freeze_draft_preview (MCP: mermail-demo) · mailboxId: "[PRIVATE_ID]", pac…
+  └ {"preview":{"action":"save_draft_only","packetDigest":"69262fd9b38c0eeb672e9b...
+
+The evidence-linked packet found **15–22 additional hours**: ordinary fees of **USD 352.50–517.00** and a hypothetical r
+ush total of **USD 387.75–568.70**. The draft preview is frozen with digest **`bf2fc5c4cac60e7f009e84ebf947abc69e38e2a62
+dfa757ebe277e7df7ec9f98`**; state: **awaiting exact internal draft approval**. It has **not** been saved or sent.
+
+[2J[HOPERATOR REVIEW -- EXACT UNSENT DRAFT
+To / From: the same discovered test mailbox | Cc/Bcc/attachments: none
+Subject: [FMG-PR124-P1-20261006] Scope options (synthetic demo)
+Packet digest: 69262fd9b38c0eeb672e9b1af2c89bc559e14ab0dea053c5b1182b447f891382
+Preview digest: bf2fc5c4cac60e7f009e84ebf947abc69e38e2a62dfa757ebe277e7df7ec9f98
+
+SYNTHETIC TEST DRAFT ONLY — all rates, estimates, and prices are hypothetical.
+
+The accepted scope remains one responsive landing page, accepted at the agreed desktop, tablet, and mobile breakpoints. 
+It excludes an authenticated application/login, admin dashboard, and payment processing. Of the original two revision ro
+unds, one was used, leaving one included. Of the two requested rounds, one is included and one is additional.
+
+The dashboard, Stripe, login, and overflow revision total 15–22 additional hours; the earlier deadline adds 0 labor hour
+s. At USD 23.50/hour, the ordinary fee is USD 352.50–USD 517.00. With the hypothetical 10% rush premium, the total is US
+D 387.75–USD 568.70.
+
+Remove or swap: Remove the additions or confirm an effort-equivalent swap; baseline deadline remains 2026-10-20.
+Extend the schedule: Keep additions at ordinary rates; including the 2-day client-owned staging delay, proposed delivery
+ is 2026-10-24–2026-10-25.
+Paid rush: Keep additions and target 2026-10-15 for the rush total above.
+
+No option has been accepted, and no work is authorized. These are discussion options only.
+
+STATE: awaiting exact internal-draft approval. No write has occurred.
+
+OPERATOR: delegated approval granted for the displayed unchanged internal draft only.
+
+RESUMING THE SAME COPILOT SESSION:
+Owner-delegated demo operator approval: save exactly the one internal self-addressed synthetic draft frozen under previe
+w SHA-256 bf2fc5c4cac60e7f009e84ebf947abc69e38e2a62dfa757ebe277e7df7ec9f98 and unchanged packet SHA-256 69262fd9b38c0eeb
+672e9b1af2c89bc559e14ab0dea053c5b1182b447f891382. Use the exact native arguments returned by freeze_draft_preview, inclu
+ding its idempotencyKey, once. Then call get_email for the returned draft id with agent_safe_content:true and max_body_c
+hars:10000 to read the complete stored body. Do not send, reply, accept terms, authorize work, use wallets, change the d
+raft or retry a save. State the observed saved-and-read-back result and that the draft remains unsent.
+● Disabled tools: list_agents, read_agent, task, write_agent
+
+● skill(mermail-compose-email)
+
+● Save draft (MCP: mermail-demo) · mailboxId: "[PRIVATE_ID]", idempotencyKe…
+  └ {
+
+● Get email (MCP: mermail-demo) · mailboxId: "[PRIVATE_ID]", emailId: "c9af…
+  └ {"email":{"id":"[PRIVATE_DRAFT_ID]","subject":"[FMG-PR124-P...
+
+Saved draft **`[PRIVATE_DRAFT_ID]`** and read it back with the requested safe-content settings; the stored body matches 
+the frozen preview. It remains **unsent**.
+
+[2J[HOBSERVED MERMAIL RESULT -- CURRENT PRODUCT
+One internal draft saved; complete body read back from the live server.
+Exact body / subject / sender / recipient: MATCH
+Cc / Bcc / attachments: NONE | Folder: DRAFTS | Email sends: ZERO
+Body SHA-256: 0ab25d657d327906908756ba908455df6b771b9f64150c842330c8ee935596eb
+
+SYNTHETIC TEST DRAFT ONLY — all rates, estimates, and prices are hypothetical.
+
+The accepted scope remains one responsive landing page, accepted at the agreed desktop, tablet, and mobile breakpoints. 
+It excludes an authenticated application/login, admin dashboard, and payment processing. Of the original two revision ro
+unds, one was used, leaving one included. Of the two requested rounds, one is included and one is additional.
+
+The dashboard, Stripe, login, and overflow revision total 15–22 additional hours; the earlier deadline adds 0 labor hour
+s. At USD 23.50/hour, the ordinary fee is USD 352.50–USD 517.00. With the hypothetical 10% rush premium, the total is US
+D 387.75–USD 568.70.
+
+Remove or swap: Remove the additions or confirm an effort-equivalent swap; baseline deadline remains 2026-10-20.
+Extend the schedule: Keep additions at ordinary rates; including the 2-day client-owned staging delay, proposed delivery
+ is 2026-10-24–2026-10-25.
+Paid rush: Keep additions and target 2026-10-15 for the rush total above.
+
+No option has been accepted, and no work is authorized. These are discussion options only.
+
+Three review choices: remove/swap; ordinary-fee extension; proposed paid rush.
+Test estimates only. No accepted agreement, payment or permission to start work.

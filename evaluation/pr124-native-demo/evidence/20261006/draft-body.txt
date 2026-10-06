@@ -1,0 +1,11 @@
+SYNTHETIC TEST DRAFT ONLY — all rates, estimates, and prices are hypothetical.
+
+The accepted scope remains one responsive landing page, accepted at the agreed desktop, tablet, and mobile breakpoints. It excludes an authenticated application/login, admin dashboard, and payment processing. Of the original two revision rounds, one was used, leaving one included. Of the two requested rounds, one is included and one is additional.
+
+The dashboard, Stripe, login, and overflow revision total 15–22 additional hours; the earlier deadline adds 0 labor hours. At USD 23.50/hour, the ordinary fee is USD 352.50–USD 517.00. With the hypothetical 10% rush premium, the total is USD 387.75–USD 568.70.
+
+Remove or swap: Remove the additions or confirm an effort-equivalent swap; baseline deadline remains 2026-10-20.
+Extend the schedule: Keep additions at ordinary rates; including the 2-day client-owned staging delay, proposed delivery is 2026-10-24–2026-10-25.
+Paid rush: Keep additions and target 2026-10-15 for the rush total above.
+
+No option has been accepted, and no work is authorized. These are discussion options only.

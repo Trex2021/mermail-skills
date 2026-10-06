@@ -1,0 +1,4 @@
+Freelance Margin Guard | 2:02 @Mermailapp demo (c4876e4)
+Live Copilot: selected emails → scope/fees → 3 options → exact draft approval → Mermail save + full readback.
+Synthetic estimates; no send/payment. English narration, continuous capture.
+Proof: https://trex2021.github.io/mermail-skills/

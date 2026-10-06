@@ -1,0 +1,13 @@
+{
+  "sourceVideoSha256": "aca9fab3b7e4ee5663bb62b2c25d5131be1e4464ed929d87571a94295c0fa110",
+  "xUploadSha256": "b2c51b7d868b1f960fe72e8cef35380c83369b920dcca59bf56bc024af02ad37",
+  "unchangedVideoStream": "SHA256=fceafbea9ea278355302eacdcb7992a3c41a801fa2761e231d9688a53232ba3d",
+  "audio": {
+    "codec": "aac",
+    "profile": "LC",
+    "sampleRate": 44100,
+    "channels": 2
+  },
+  "duration": 122.23,
+  "change": "AAC audio encoded as 44.1kHz stereo for X upload; H.264 video stream copied without frame or speed changes."
+}
