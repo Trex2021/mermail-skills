@@ -1,0 +1,22 @@
+SYNTHETIC DEMONSTRATION ONLY. These are hypothetical terms, not a contract, payment request or permission to start work.
+
+Thank you for the change request. The accepted baseline remains one responsive landing page with two revision rounds and delivery on 2026-10-20. Acceptance remains responsiveness at the agreed desktop, tablet and mobile breakpoints. The exclusions remain authenticated application/login, admin dashboard and payment processing.
+
+One revision round was already used. Of the two newly requested rounds, one is included and one exceeds the remaining allowance. The included round is not billed as added work.
+
+Added work and owner-supplied estimates: admin dashboard 7-9 hours; Stripe integration 3-5 hours; login 2-4 hours; overflow revision round 3-4 hours. Earlier delivery itself adds zero labor hours. Total billable additions: 15-22 hours.
+
+At the hypothetical owner-approved 23.50 USD/hour, ordinary added fees are 352.50-517.00 USD. The 10% rush premium on added labor is 35.25-51.70 USD, giving 387.75-568.70 USD at the requested 2026-10-15 deadline.
+
+The separately owner-attributed staging-access delay is 2 client-owned days. It is distinct from the requested five-calendar-day deadline compression.
+
+Three options for review:
+1. Remove or swap: remove the additions, or agree an effort-equivalent swap; retain the original fee and 2026-10-20 baseline deadline.
+2. Extend the schedule: retain the additions at 352.50-517.00 USD with an indicative calendar extension to 2026-10-24-2026-10-25, including the supplied client delay. Confirm working-calendar availability before agreement.
+3. Paid rush change order: retain the additions and requested 2026-10-15 deadline for 387.75-568.70 USD, including the stated 10% rush premium.
+
+No option has been accepted, no payment has occurred and no additional work is authorized. Please review the option, exact fee and deadline before any written agreement. This saved draft is not an email delivery.
+
+Evidence: owner-selected "[FMG-LIVE-34372972140-1] Accepted scope" and "[FMG-LIVE-34372972140-1] Change request", dated 2026-09-09. Both are synthetic self-addressed Sent messages; scan status and sender authentication are unknown. They are not verified client messages.
+
+Packet SHA-256: 55b8b1d7af5a90d9c47addbd88698ef06a426567ec34c2f27c76e16d683258c6
