@@ -1,0 +1,41 @@
+{
+  "verifiedAt": "2026-10-06T22:39:41.007Z",
+  "productHead": "c4876e43189c41771fcfa89f30d6cab400257654",
+  "reportCommit": "4a7a022db79ecec21ac17352806e17f27477f8f8",
+  "evidenceRun": "37500975041",
+  "graphicalFilm": {
+    "durationSeconds": 165.145011,
+    "sha256": "ed26ca8fb60451d037e30fe862b9a3d82a8b12c35b66654e48675055e7ec26e5",
+    "xURL": "https://x.com/Ehsan_Benvari/status/2107520796780630361",
+    "englishNarration": true
+  },
+  "proofPage": {
+    "url": "https://trex2021.github.io/mermail-skills/#live-demo",
+    "commit": "2dcb168254dfb1138adb70683ed52ef1430da45d",
+    "workflowRun": "37541413575",
+    "conclusion": "success",
+    "visualScreenshot": "proof-graphical-primary-20261007.jpg",
+    "screenshotSha256": "8808e73878aa25513f537d50ae7ab907896fca90324aaf189bf9078519684604"
+  },
+  "verification": {
+    "productChecks": 198,
+    "saveReadbackChecks": 14,
+    "authenticatedProductionTools": 83,
+    "originalHashesPassed": "17/17",
+    "fullVideoDecode": "PASS",
+    "oneInternalSaveInThisRun": true,
+    "externalSends": 0
+  },
+  "pullRequest": {
+    "number": 124,
+    "state": "open",
+    "merged": false,
+    "descriptionContainsReportLink": true
+  },
+  "remainingGates": {
+    "superteamNewVideoLinkSaved": false,
+    "superteamVisibleState": "Login and Sign Up buttons; no authenticated submission editor",
+    "independentHumanReview": "pending",
+    "upstreamMaintainerWorkflowPermission": "action_required"
+  }
+}
