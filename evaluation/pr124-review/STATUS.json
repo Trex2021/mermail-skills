@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-06T02:00:20.373Z",
+  "checkedAt": "2026-10-06T02:10:57.796Z",
   "priority": 5,
   "priorityComplete": false,
   "authorPreparationComplete": true,
@@ -77,7 +77,7 @@
   "demoPublishedOnX": "https://x.com/Ehsan_Benvari/status/2107169510054908128",
   "publicDashboard": "https://trex2021.github.io/mermail-skills/",
   "contestSubmissionFormUpdated": false,
-  "contestSubmissionFormBlocker": "Superteam browser is visibly signed out. Final English fields and current public links are prepared, but no form edit or credential entry occurred.",
+  "contestSubmissionFormBlocker": "The existing-account Google sign-in method and saved account were selected through secure browser authentication. Sign-in is waiting for the user's device verification. The final English fields have not yet been applied to the existing Superteam submission.",
   "publishedPublicFileBytesVerified": 46,
   "preparedSubmission": "https://github.com/Trex2021/mermail-skills/blob/65c1e729f2060f3689a83851c2d2e9f33ad09171/evaluation/pr124-review/FINAL-SUBMISSION.md",
   "currentProductTangibleOutput": "https://github.com/Trex2021/mermail-skills/blob/fa22fae94092b94dd80c045749443a16fc8f6d38/evaluation/pr124-output/REPORT-CURRENT.md",
@@ -100,5 +100,11 @@
     "deadlineUTC": "2026-10-07T13:59:00Z",
     "winnerAnnouncementDate": "2026-10-11",
     "totalPrizeUSDC": 500
+  },
+  "contestAuthentication": {
+    "method": "Google",
+    "priorAccountAssociationVerified": true,
+    "deviceVerificationPending": true,
+    "targetSessionVerified": false
   }
 }
