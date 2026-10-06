@@ -1,0 +1,18 @@
+[
+  {
+    "slot": "baseline",
+    "subject": "[FMG-LIVE-34372972140-1] Accepted scope",
+    "date": "2026-09-09T15:51:29.828Z",
+    "folder": "sent",
+    "scanStatus": null,
+    "identity": "owner-selected synthetic self-addressed message; identifiers withheld"
+  },
+  {
+    "slot": "request",
+    "subject": "[FMG-LIVE-34372972140-1] Change request",
+    "date": "2026-09-09T15:51:31.973Z",
+    "folder": "sent",
+    "scanStatus": null,
+    "identity": "owner-selected synthetic self-addressed message; identifiers withheld"
+  }
+]

@@ -1031,7 +1031,7 @@
       <article class="hero" aria-labelledby="page-title">
         <div class="hero-grid">
           <div>
-            <p class="eyebrow">Current PR head · c4876e4 · 5 Oct 2026</p>
+            <p class="eyebrow">Current PR head · c4876e4 · 6 Oct 2026</p>
             <h1 id="page-title">Freelance <span>Margin Guard</span></h1>
             <p class="lede">
               Converts a later client request into an evidence-backed scope and margin decision—without sending a reply, inventing pricing, or trusting instructions inside email.
@@ -1039,6 +1039,7 @@
             <div class="hero-actions">
               <a class="button primary" href="#reproduce">60-second judge route</a>
               <a class="button" href="#live-demo">Watch current 2:05 live demo ↓</a>
+              <a class="button" href="#current-output">Inspect the saved result ↓</a>
               <a class="button" href="https://github.com/Nudgen-Marketing/mermail-skills/pull/124" target="_blank" rel="noreferrer">Open PR #124 ↗</a>
             </div>
           </div>
@@ -1058,10 +1059,41 @@
       <section id="live-demo" aria-labelledby="live-demo-title">
         <div class="section-head">
           <div><p class="section-kicker">Current product · continuous capture</p><h2 id="live-demo-title">A real request, selected Mermail reads, and an observed result.</h2></div>
-          <p class="section-note">English 2:05 screen recording of the event-fed evaluation dashboard. No cuts or speed changes. The client is GitHub Copilot CLI 1.0.89; the local execution adapter invokes the shipped packet builder. Source bodies and credentials stay private.</p>
+          <p class="section-note">English 2:05 screen recording of the event-fed evaluation dashboard. No cuts or speed changes. Developed with Codex; live client: GitHub Copilot CLI 1.0.89. The local execution adapter invokes the shipped packet builder. Source bodies and credentials stay private.</p>
         </div>
         <video controls preload="metadata" playsinline style="width:100%;height:auto;border-radius:16px;background:#071523" src="./demo/current-head-20261005.mp4" poster="./demo/current-head-20261005.jpg" aria-label="Current product live Mermail demonstration"></video>
         <p class="section-note">Live scenario B: <strong>15–22 added hours · $352.50–$517 ordinary fee · $387.75–$568.70 rush fee</strong>. All numbers are hypothetical owner-approved test estimates. <a href="https://x.com/Ehsan_Benvari/status/2107169510054908128" target="_blank" rel="noreferrer">Current demo published on X ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md">Prompt, tools, answer and recording checks ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md">Six live security stops ↗</a>.</p>
+      </section>
+
+      <section id="current-output" aria-labelledby="current-output-title">
+        <div class="section-head">
+          <div><p class="section-kicker">Current product · live synthetic scenario B</p><h2 id="current-output-title">The complete result, preserved in Mermail.</h2></div>
+          <p class="section-note">On 6 October, c4876e4 read the two selected synthetic sources, reproduced the exact approved packet, and read back the unchanged existing unsent draft. The original save was on 4 October; this fresh run made zero writes. Hypothetical estimates, not customer revenue.</p>
+        </div>
+        <div class="claim-table-shell"><table class="claim-table">
+          <thead><tr><th scope="col">Selected request</th><th scope="col">Decision and source</th><th scope="col">Added effort</th></tr></thead>
+          <tbody>
+            <tr><td>Admin dashboard</td><td>Explicit baseline exclusion; “add an admin dashboard” in selected later-request</td><td>7–9 h</td></tr>
+            <tr><td>Stripe integration</td><td>Explicit exclusion; “Stripe payment processing”</td><td>3–5 h</td></tr>
+            <tr><td>Login</td><td>Explicit exclusion; “user login”</td><td>2–4 h</td></tr>
+            <tr><td>Two more revisions</td><td>One included, one overflow; “two more revision rounds”</td><td>3–4 h overflow only</td></tr>
+            <tr><td>Five days earlier</td><td>Deadline change; no invented extra labor</td><td>0 h</td></tr>
+          </tbody>
+        </table></div>
+        <div class="option-grid" style="margin-top:18px">
+          <article class="option-card"><p class="section-kicker">01 · Remove or swap</p><h3>Keep the accepted boundary</h3><p>No added fee. Original 20 October deadline; effort-equivalent swaps need agreement.</p></article>
+          <article class="option-card"><p class="section-kicker">02 · Extend</p><h3>$352.50–$517</h3><p>15–22 h at owner-supplied $23.50/h. Indicative 24–25 October extension includes a separate two-day client delay.</p></article>
+          <article class="option-card featured"><p class="section-kicker">03 · Proposed rush</p><h3>$387.75–$568.70</h3><p>10% owner-approved premium; requested 15 October date. Confirm availability and written terms before work.</p></article>
+        </div>
+        <p class="section-note"><a href="https://github.com/Trex2021/mermail-skills/blob/fa22fae94092b94dd80c045749443a16fc8f6d38/evaluation/pr124-output/REPORT-CURRENT.md" target="_blank" rel="noreferrer">Original run and complete readback report ↗</a> · <a href="./current-output/scope-report.md">Download source-linked report</a> · <a href="./current-output/source-ledger.json">Selected source metadata</a> · <a href="./current-output/draft-body.txt">Exact unsent draft body</a>.</p>
+        <div class="verifier-panel" style="padding:24px">
+          <p class="section-kicker">Current evidence integrity</p>
+          <p id="current-result-status" role="status" aria-live="polite">Ready to check the published current-product result.</p>
+          <div class="hero-actions"><button class="button primary" id="verify-current-result" type="button">Verify current result</button><button class="button" id="tamper-current-result" type="button">Test an altered fee</button></div>
+          <ul id="current-result-checks"></ul>
+          <details style="margin-top:18px"><summary>Read the complete observed unsent draft</summary><pre id="current-draft-body" style="white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.65 var(--sans);color:var(--ink)">Open Verify current result to load the preserved body.</pre></details>
+          <p class="section-note">These local checks verify published file integrity and commercial invariants. Actual authenticated reads are recorded in the pinned run; this browser does not authenticate the private source identities or send email.</p>
+        </div>
       </section>
 
       <div class="metric-grid" aria-label="Offline benchmark A and current test summary">
@@ -1108,7 +1140,7 @@
               <tr>
                 <td data-label="Claim">Authenticated Mermail use</td>
                 <td data-label="Direct public evidence"><a href="https://github.com/Trex2021/mermail-skills/actions/runs/37239386192" target="_blank" rel="noreferrer">Exact-product validation ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/actions/runs/37350207423" target="_blank" rel="noreferrer">five fresh agent sessions + capture ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/actions/runs/37214396573" target="_blank" rel="noreferrer">earlier unsent draft/readback ↗</a></td>
-                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> authenticated 83-tool catalog, two selected synthetic-message reads and a complete packet on c4876e4. The separately dated saved-draft proof uses 5e79ba3.</td>
+                <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> authenticated 83-tool catalog, two selected synthetic-message reads and a complete packet on c4876e4. <a href="#current-output">Current-product recomputation and exact draft readback</a> now links the earlier 5e79ba3 save to the unchanged current result.</td>
               </tr>
               <tr>
                 <td data-label="Claim">Deterministic margin decision</td>
@@ -1122,7 +1154,7 @@
               </tr>
               <tr>
                 <td data-label="Claim">Safe 60-second reproduction</td>
-                <td data-label="Direct public evidence"><a href="https://github.com/Trex2021/mermail-skills/blob/ca5ceebb0567c5534d945e005a74682942cbf749/evaluation/pr124-review/REVIEW-GUIDE.md" target="_blank" rel="noreferrer">Focused review guide ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/commit/c4876e43189c41771fcfa89f30d6cab400257654" target="_blank" rel="noreferrer">current head ↗</a></td>
+                <td data-label="Direct public evidence"><a href="https://github.com/Trex2021/mermail-skills/blob/65c1e729f2060f3689a83851c2d2e9f33ad09171/evaluation/pr124-review/REVIEW-GUIDE.md" target="_blank" rel="noreferrer">Focused review guide ↗</a> · <a href="https://github.com/Trex2021/mermail-skills/commit/c4876e43189c41771fcfa89f30d6cab400257654" target="_blank" rel="noreferrer">current head ↗</a></td>
                 <td data-label="What a judge can verify"><span class="proof-ok">Verified:</span> 18 skills, 82 business tools plus prepare_destructive_action and 198 checks; no network calls in the offline reproduction.</td>
               </tr>
             </tbody>
@@ -1469,6 +1501,7 @@ node skills/mermail-freelance-margin-guard/scripts/build-margin-packet.mjs \
     </footer>
 
     <script type="module" src="./proof-verifier-ui.mjs"></script>
+    <script type="module" src="./current-output/verify.mjs"></script>
     <script>
       document.querySelectorAll('[data-copy]').forEach((button) => {
         button.addEventListener('click', async () => {
