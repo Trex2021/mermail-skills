@@ -92,6 +92,14 @@ Independent human review, upstream maintainer workflow approval and merge remain
 {body}
 ```
 '''
+events = json.loads((p/'terminal-transcript.json').read_text())
+owner = events[0]['text'].replace('\\n','\n').split('OWNER REQUEST:\n',1)[1]
+operator = next(x['text'].replace('\\n','\n') for x in events if 'RESUMING THE SAME COPILOT SESSION:' in x['text']).split('RESUMING THE SAME COPILOT SESSION:\n',1)[1]
+prompts = '# Exact rendered prompts — run '+run+'\n\nThese prompts are extracted from the indexed public native transcript. The graphical film displays a concise summary; source subject labels are synthetic. Owner-delegated operator approval is not a fresh human click.\n\n## Owner request before any task tools\n\n```text\n'+owner+'\n```\n\n## Operator continuation after exact preview review\n\n```text\n'+operator+'\n```\n'
+(p/'prompts.md').write_text(prompts)
+report = report.replace('## Three-minute review route\n','## Full prompts\n\n[Exact owner request and operator continuation](./prompts.md) are extracted from `terminal-transcript.json`. The original complete public transcript is included in the 17-file index. The graphical introduction is a concise display of the owner request.\n\n## Three-minute review route\n')
 (p/'REPORT.md').write_text(report)
-(p/'publication-context.json').write_text(json.dumps({'runId':run,'productHead':product,'harnessHead':harness,'videoDigest':video_digest,'durationSeconds':seconds,'originalIndexCount':17,'replacesPrimaryPresentation':True,'preservesPriorEvidence':True},indent=2)+'\n')
+context = json.loads((p/'publication-context.json').read_text()) if (p/'publication-context.json').exists() else {}
+context.update({'runId':run,'productHead':product,'harnessHead':harness,'videoDigest':video_digest,'durationSeconds':seconds,'originalIndexCount':17,'replacesPrimaryPresentation':True,'preservesPriorEvidence':True})
+(p/'publication-context.json').write_text(json.dumps(context,indent=2)+'\n')
 print(json.dumps({'run':run,'seconds':seconds,'reportChars':len(report),'bodyHash':status['bodyHash'],'subtitleCues':len(cues),'videoDigest':video_digest}))

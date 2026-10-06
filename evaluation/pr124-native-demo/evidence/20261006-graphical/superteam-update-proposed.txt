@@ -1,0 +1,19 @@
+Mermail Freelance Margin Guard
+
+Public PR: https://github.com/Nudgen-Marketing/mermail-skills/pull/124
+Proof workspace: https://trex2021.github.io/mermail-skills/
+
+Freelance Margin Guard compares the owner-selected accepted scope with a later request in Mermail. It preserves exclusions and acceptance criteria, accounts for remaining included revisions, and builds a source-linked change ledger, owner-grounded cost ranges and three client options. Missing rates remain unpriced; email instructions and funding receipts cannot authorize work, sends or payment.
+
+Primary demo: https://x.com/Ehsan_Benvari/status/2107520796780630361
+Continuous English recording of a graphical evaluation workspace driven by the actual GitHub Copilot client and hosted Mermail tool events. The agent reads only the two selected synthetic sources, invokes the shipped packet builder, freezes the complete exact draft, stops before any write, saves one internal self-addressed draft under owner-delegated operator permission, and reads the complete stored body back. No external send, payment, wallet or accepted agreement. This is an evaluation UI, not the official Mermail console.
+
+The live hypothetical scenario produces 15–22 added hours, $352.50–$517 ordinary fees and $387.75–$568.70 including a 10% owner-supplied rush rule. One remaining included revision is not charged twice. These are test estimates, not customer revenue or guaranteed dates. The old offline benchmark (26–33 hours, $390–$495 base) has distinct inputs.
+
+AI client: Developed with Codex; live agent: GitHub Copilot CLI 1.0.89 + hosted Mermail MCP. Product c4876e43189c41771fcfa89f30d6cab400257654, 97 pinned plugin files. Plugin documentation only was prepared before capture; no task data or email content was preloaded into the agent. The film is not a cold-start routing benchmark or a fresh human approval click. The narrow local builder and preview adapters are not new production MCP tools.
+
+Current graphical run and raw evidence: https://github.com/Trex2021/mermail-skills/blob/8cf3b8e34e63179356304837b7674416c6e1768d/evaluation/pr124-native-demo/evidence/20261006-graphical/REPORT.md
+198 exact-product checks, 14 exact-save/readback guards and authenticated 83-tool catalog passed. Separate five fresh behavior and six fresh safety sessions remain linked on the proof page. Synthetic self-addressed sources retain null scan status and unknown sender authentication; public redaction does not reauthenticate private identifiers. Human review and execution of five upstream workflows still require the maintainer.
+
+Supplemental native CLI capture: https://x.com/Ehsan_Benvari/status/2107510447003824637
+Earlier five-session behavior demo: https://x.com/Ehsan_Benvari/status/2107169510054908128

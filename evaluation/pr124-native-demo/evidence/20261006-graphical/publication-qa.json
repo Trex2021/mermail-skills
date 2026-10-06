@@ -1,0 +1,41 @@
+{
+  "verifiedAt": "2026-10-06T22:32:08.577315+00:00",
+  "runId": "37500975041",
+  "productHead": "c4876e43189c41771fcfa89f30d6cab400257654",
+  "videoDurationSeconds": 165.145011,
+  "fullVideoDecode": "PASS",
+  "originalArtifactHashes": "17/17 PASS",
+  "renderStagesReviewed": [
+    "intro",
+    "sources",
+    "packet",
+    "approval",
+    "result",
+    "tests"
+  ],
+  "noFitErrors": true,
+  "completeFrozenAndReadbackBodyMatch": true,
+  "productTests": 198,
+  "writeReadbackGuardTests": 14,
+  "authenticatedToolCatalog": 83,
+  "liveDraftSavesInThisRun": 1,
+  "externalSends": 0,
+  "xPlayback": {
+    "url": "https://x.com/Ehsan_Benvari/status/2107520796780630361",
+    "durationSeconds": 165.2,
+    "readyState": 4,
+    "error": null
+  },
+  "pagesDeployment": {
+    "commit": "ce4e8784fbc9e5efbb814b78053e79f77dcb9b15",
+    "runId": "37540791629",
+    "status": "success"
+  },
+  "historicalBrowserVerifiers": {
+    "archivedSnapshotChecks": "11/11 PASS",
+    "priorCurrentResultChecks": "7/7 PASS"
+  },
+  "independentHumanReview": "pending",
+  "upstreamWorkflowApproval": "action_required",
+  "superteamNewLinkPersisted": false
+}
