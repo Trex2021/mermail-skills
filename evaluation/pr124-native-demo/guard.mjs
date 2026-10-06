@@ -13,7 +13,7 @@ export function freezePreview(args, packetDigest, scope, packet) {
   must(args.mailboxId === scope.mailbox.id && b.from === scope.mailbox.email && b.to === scope.mailbox.email, 'self_addressed_mailbox_required');
   must(Array.isArray(b.cc) && !b.cc.length && Array.isArray(b.bcc) && !b.bcc.length && Array.isArray(b.attachments) && !b.attachments.length, 'copies_or_attachments_forbidden');
   must(b.subject === SUBJECT && b.body_format === 'text', 'draft_subject_or_format_mismatch');
-  must(typeof b.body === 'string' && b.body.length >= 600 && b.body.length <= 6000 && !/[\x00-\x08\x0b-\x1f\x7f\u202a-\u202e\u2066-\u2069]/u.test(b.body), 'unsafe_or_incomplete_body');
+  must(typeof b.body === 'string' && b.body.length >= 600 && b.body.length <= 2400 && !/[\x00-\x08\x0b-\x1f\x7f\u202a-\u202e\u2066-\u2069]/u.test(b.body), 'unsafe_or_incomplete_body');
   must(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i.test(b.body), 'private_identifier_in_public_demo_body');
   must(packet?.integrity?.packetDigest === packetDigest && /^[a-f0-9]{64}$/.test(packetDigest), 'packet_binding_mismatch');
   must(packet.state === 'scope_change_detected' && packet.clientOptions?.length === 3, 'incomplete_decision_packet');
