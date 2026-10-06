@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-05T18:10:40.937Z",
+  "checkedAt": "2026-10-06T02:00:20.373Z",
   "priority": 5,
   "priorityComplete": false,
   "authorPreparationComplete": true,
@@ -9,8 +9,8 @@
   "productHead": "c4876e43189c41771fcfa89f30d6cab400257654",
   "upstreamBase": "9f2e6e0f9d77d4967bd451058fb7c19a32825da9",
   "productChangedByPriority5": false,
-  "guideCommit": "ca5ceebb0567c5534d945e005a74682942cbf749",
-  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/ca5ceebb0567c5534d945e005a74682942cbf749/evaluation/pr124-review/REVIEW-GUIDE.md",
+  "guideCommit": "65c1e729f2060f3689a83851c2d2e9f33ad09171",
+  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/65c1e729f2060f3689a83851c2d2e9f33ad09171/evaluation/pr124-review/REVIEW-GUIDE.md",
   "descriptionUpdatedAndReadBack": true,
   "reviewRequest": {
     "kind": "public_comment_to_verified_upstream_maintainer",
@@ -63,20 +63,42 @@
   "mergeableState": "unstable",
   "merged": false,
   "remaining": [
+    "Apply the prepared final English fields to the existing Superteam entry from an authenticated session before the sponsor deadline.",
     "Independent human review on the exact current product head.",
     "Maintainer authorization and actual successful execution of the five upstream PR workflows.",
-    "Resolve any concrete review findings and recheck the final head.",
-    "Obtain explicit owner authorization before any merge."
+    "Address any concrete review findings and recheck the affected final head.",
+    "Maintainer integration after required review and checks."
   ],
-  "scope": "Focused review preparation refreshed with final-product live evidence. No additional review request, product code change, merge or permission change.",
+  "scope": "Current-product tangible-output evidence, final English review/submission material and verified public result presentation completed. Product head remains unchanged. No new person-directed message, save, send, wallet action, financial action, merge or permission change.",
   "continuousDemo": "https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md",
   "liveSecurity": "https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md",
   "productChecks": 198,
-  "descriptionCheckedAt": "2026-10-05T18:05:20.250Z",
+  "descriptionCheckedAt": "2026-10-06T01:57:45Z",
   "demoPublishedOnX": "https://x.com/Ehsan_Benvari/status/2107169510054908128",
   "publicDashboard": "https://trex2021.github.io/mermail-skills/",
   "contestSubmissionFormUpdated": false,
-  "contestSubmissionFormBlocker": "Superteam browser session is signed out; no credential request or form change was made.",
+  "contestSubmissionFormBlocker": "Superteam browser is visibly signed out. Final English fields and current public links are prepared, but no form edit or credential entry occurred.",
   "publishedPublicFileBytesVerified": 46,
-  "preparedSubmission": "https://github.com/Trex2021/mermail-skills/blob/10a06693fb4c9d1fea4e8abfbbe5039b960a8541/evaluation/pr124-review/FINAL-SUBMISSION.md"
+  "preparedSubmission": "https://github.com/Trex2021/mermail-skills/blob/65c1e729f2060f3689a83851c2d2e9f33ad09171/evaluation/pr124-review/FINAL-SUBMISSION.md",
+  "currentProductTangibleOutput": "https://github.com/Trex2021/mermail-skills/blob/fa22fae94092b94dd80c045749443a16fc8f6d38/evaluation/pr124-output/REPORT-CURRENT.md",
+  "currentProductReadbackRun": "https://github.com/Trex2021/mermail-skills/actions/runs/37401281664",
+  "currentProductReadbackVerified": true,
+  "currentProductReadbackWrites": 0,
+  "outputEvaluatorChecks": 14,
+  "browserCurrentEvidenceChecks": 7,
+  "browserAlteredFeeRejected": true,
+  "dashboardCommit": "18f5c434e075086a474dbee9980bf58b6be93f6b",
+  "dashboardDeployRun": "https://github.com/Trex2021/mermail-skills/actions/runs/37401789509",
+  "upstreamPermissionEvidence": {
+    "pull": true,
+    "push": false,
+    "maintain": false,
+    "admin": false
+  },
+  "competition": {
+    "submissions": 215,
+    "deadlineUTC": "2026-10-07T13:59:00Z",
+    "winnerAnnouncementDate": "2026-10-11",
+    "totalPrizeUSDC": 500
+  }
 }
