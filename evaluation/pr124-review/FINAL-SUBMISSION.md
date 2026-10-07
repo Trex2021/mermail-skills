@@ -1,6 +1,6 @@
 # Final Superteam fields — English
 
-Updated **6 October 2026** (2026-10-06T02:29:51.115Z). The existing Superteam submission was updated after successful email authentication. A fresh listing reload followed by reopening Edit Submission confirmed all three link values and the complete English text (after whitespace normalization). No duplicate entry was created.
+Updated **7 October 2026** (2026-10-07T01:03:44.962Z). The existing Superteam entry was updated after secure email authentication. A fresh listing reload and reopened Edit Submission verified the public PR, both new graphical demo links and the complete English supporting text after whitespace normalization. No duplicate entry was created.
 
 The 6 October text and screenshot remain the historical publication record. The current exact supporting text is retained in `SUBMITTED-TEXT-20261007.txt`; the successful 7 October verification is documented in `SUBMISSION-PUBLICATION-20261007.md`.
 
