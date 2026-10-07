@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-06T02:29:51.115Z",
+  "checkedAt": "2026-10-07T01:03:44.962Z",
   "priority": 5,
   "priorityComplete": false,
   "authorPreparationComplete": true,
@@ -9,8 +9,8 @@
   "productHead": "c4876e43189c41771fcfa89f30d6cab400257654",
   "upstreamBase": "9f2e6e0f9d77d4967bd451058fb7c19a32825da9",
   "productChangedByPriority5": false,
-  "guideCommit": "65c1e729f2060f3689a83851c2d2e9f33ad09171",
-  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/65c1e729f2060f3689a83851c2d2e9f33ad09171/evaluation/pr124-review/REVIEW-GUIDE.md",
+  "guideCommit": "25ac97dda0f54220aa26b18504c688129129efd0",
+  "reviewGuide": "https://github.com/Trex2021/mermail-skills/blob/25ac97dda0f54220aa26b18504c688129129efd0/evaluation/pr124-review/REVIEW-GUIDE.md",
   "descriptionUpdatedAndReadBack": true,
   "reviewRequest": {
     "kind": "public_comment_to_verified_upstream_maintainer",
@@ -68,17 +68,17 @@
     "Address any concrete review findings and recheck the affected final head.",
     "Maintainer integration after required review and checks."
   ],
-  "scope": "Current-product tangible-output evidence, final English review/submission material and verified public result presentation completed. The existing Superteam submission is updated and persisted links/full text were verified after a fresh reload. Product head remains unchanged. No new person-directed message, save, send, wallet action, financial action, merge or permission change.",
+  "scope": "Graphical continuous live demo, exact verified output, judge route and existing Superteam entry updated. A fresh reload/reopened editor verified all saved links and complete English text. Product head is unchanged. This continuation makes no new Mermail save/send, financial action, person-directed message, permission change or merge.",
   "continuousDemo": "https://github.com/Trex2021/mermail-skills/blob/23167f2e9b4ae86e10d3e83fc9775b9e176b5ba7/evaluation/pr124-behavior/REPORT.md",
   "liveSecurity": "https://github.com/Trex2021/mermail-skills/blob/780bba180c652c2c16749a9975f2e26598ec78c8/evaluation/pr124-security/REPORT.md",
   "productChecks": 198,
   "descriptionCheckedAt": "2026-10-06T01:57:45Z",
-  "demoPublishedOnX": "https://x.com/Ehsan_Benvari/status/2107169510054908128",
+  "demoPublishedOnX": "https://x.com/Ehsan_Benvari/status/2107520796780630361",
   "publicDashboard": "https://trex2021.github.io/mermail-skills/",
   "contestSubmissionFormUpdated": true,
   "contestSubmissionFormBlocker": null,
   "publishedPublicFileBytesVerified": 46,
-  "preparedSubmission": "https://github.com/Trex2021/mermail-skills/blob/65c1e729f2060f3689a83851c2d2e9f33ad09171/evaluation/pr124-review/FINAL-SUBMISSION.md",
+  "preparedSubmission": "https://github.com/Trex2021/mermail-skills/blob/45b07bad828067ba1468f079febe39b4bd60130a/evaluation/pr124-review/FINAL-SUBMISSION.md",
   "currentProductTangibleOutput": "https://github.com/Trex2021/mermail-skills/blob/fa22fae94092b94dd80c045749443a16fc8f6d38/evaluation/pr124-output/REPORT-CURRENT.md",
   "currentProductReadbackRun": "https://github.com/Trex2021/mermail-skills/actions/runs/37401281664",
   "currentProductReadbackVerified": true,
@@ -86,8 +86,8 @@
   "outputEvaluatorChecks": 14,
   "browserCurrentEvidenceChecks": 7,
   "browserAlteredFeeRejected": true,
-  "dashboardCommit": "18f5c434e075086a474dbee9980bf58b6be93f6b",
-  "dashboardDeployRun": "https://github.com/Trex2021/mermail-skills/actions/runs/37401789509",
+  "dashboardCommit": "6abadcbb907fbbf21ddfcc18efe594f068f5747a",
+  "dashboardDeployRun": "https://github.com/Trex2021/mermail-skills/actions/runs/37554642452",
   "upstreamPermissionEvidence": {
     "pull": true,
     "push": false,
@@ -95,7 +95,7 @@
     "admin": false
   },
   "competition": {
-    "submissions": 215,
+    "submissions": 229,
     "deadlineUTC": "2026-10-07T13:59:00Z",
     "winnerAnnouncementDate": "2026-10-11",
     "totalPrizeUSDC": 500
@@ -106,7 +106,7 @@
     "deviceVerificationPending": false,
     "targetSessionVerified": true
   },
-  "contestSubmissionVerifiedAt": "2026-10-06T02:29:51.115Z",
+  "contestSubmissionVerifiedAt": "2026-10-07T01:03:44.962Z",
   "contestSubmissionVerification": {
     "method": "reload_listing_then_reopen_existing_Edit_Submission",
     "entry": "existing Ehsan submission linked to public PR 124",
@@ -115,8 +115,25 @@
     "createdDuplicate": false
   },
   "contestSubmissionProof": {
-    "record": "evaluation/pr124-review/SUBMISSION-PUBLICATION-20261006.md",
-    "submittedText": "evaluation/pr124-review/SUBMITTED-TEXT-20261006.txt",
-    "screenshot": "evaluation/pr124-review/SUPERTEAM-SUBMISSION-20261006.jpg"
-  }
+    "record": "evaluation/pr124-review/SUBMISSION-PUBLICATION-20261007.md",
+    "submittedText": "evaluation/pr124-review/SUBMITTED-TEXT-20261007.txt",
+    "ownerScreenshotSha256": "f4c8026cbca905c24625422f7d4dc91e29c75d7c616c50a5e2aa9d063a129ec8"
+  },
+  "graphicalDemo": {
+    "durationSeconds": 165.145011,
+    "run": "https://github.com/Trex2021/mermail-skills/actions/runs/37500975041",
+    "report": "https://github.com/Trex2021/mermail-skills/blob/4a7a022db79ecec21ac17352806e17f27477f8f8/evaluation/pr124-native-demo/evidence/20261006-graphical/REPORT.md",
+    "productChecks": 198,
+    "guardChecks": 14,
+    "catalogTools": 83,
+    "internalSavesInOriginalRun": 1,
+    "externalSends": 0,
+    "videoSha256": "ed26ca8fb60451d037e30fe862b9a3d82a8b12c35b66654e48675055e7ec26e5",
+    "evaluatedOriginalArtifactHashes": "17/17 PASS",
+    "fullVideoDecode": "PASS",
+    "xPlaybackDuration": 165.2,
+    "evaluationUI": true,
+    "independentHumanReview": "pending"
+  },
+  "dashboardDeploymentConclusion": "success"
 }
